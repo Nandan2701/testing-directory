@@ -1802,7 +1802,14 @@
 
       clearDrawerMotion();
       renderDrawer(activeStartup);
-      openDrawer();
+
+      if (window.innerWidth <= 960) {
+        requestAnimationFrame(() => {
+          openDrawer();
+        });
+      } else {
+        openDrawer();
+      }
 
       const bodyEl = document.getElementById('drawerBodyContent');
       const footerEl = document.getElementById('drawerFooterContent');
@@ -1830,6 +1837,10 @@
       if (workbench) {
         workbench.classList.remove('drawer-peek');
         workbench.classList.add('drawer-open');
+        if (window.innerWidth <= 960) {
+          document.documentElement.classList.add('stage2-mobile-open');
+          document.body.classList.add('stage2-mobile-open');
+        }
       }
     }
 
@@ -1838,6 +1849,8 @@
       if (workbench) workbench.classList.remove('drawer-open', 'drawer-peek');
       activeStartup = null;
       document.querySelectorAll('.venture-card').forEach(card => card.classList.remove('is-active'));
+      document.documentElement.classList.remove('stage2-mobile-open');
+      document.body.classList.remove('stage2-mobile-open');
     }
 
     function closeDrawer() {
@@ -1932,11 +1945,21 @@
     window.addEventListener('pointerup', endDrawerDrag);
     window.addEventListener('pointercancel', endDrawerDrag);
 
-    /* Mobile Bottom Sheet touch swipe-to-dismiss */
+    /* Mobile Bottom Sheet touch swipe-to-dismiss (Fluid GPU Drag) */
     let mobileTouchStartY = 0;
     let mobileTouchDeltaY = 0;
     const gripEl = document.querySelector('.stage2-grip');
     const drawerHeaderEl = document.getElementById('drawerHeader');
+    const inspectionDrawerEl = document.getElementById('inspectionDrawer');
+
+    // Prevent backdrop drag from scrolling background
+    if (inspectionDrawerEl) {
+      inspectionDrawerEl.addEventListener('touchmove', (e) => {
+        if (e.target === inspectionDrawerEl) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+    }
 
     [gripEl, drawerHeaderEl].forEach(el => {
       if (!el) return;
@@ -1951,12 +1974,14 @@
         const currentY = e.touches[0].clientY;
         mobileTouchDeltaY = currentY - mobileTouchStartY;
         if (mobileTouchDeltaY > 0) {
-          drawerSheet.style.transform = `translateY(${mobileTouchDeltaY}px)`;
+          drawerSheet.style.transition = 'none';
+          drawerSheet.style.transform = `translate3d(0, ${mobileTouchDeltaY}px, 0)`;
         }
       }, { passive: true });
 
       el.addEventListener('touchend', () => {
         if (window.innerWidth > 960 || !isDrawerOpen()) return;
+        drawerSheet.style.transition = '';
         drawerSheet.style.transform = '';
         if (mobileTouchDeltaY > 70) {
           closeDrawer();

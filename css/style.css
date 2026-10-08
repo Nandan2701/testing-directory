@@ -3564,8 +3564,15 @@
   }
 
   /* ----------------------------------------------------
-     STAGE 2 NATIVE MOBILE BOTTOM SHEET (Variation 1)
+     STAGE 2 NATIVE MOBILE BOTTOM SHEET (Hardware Accelerated & Ultra-Smooth)
      ---------------------------------------------------- */
+  html.stage2-mobile-open,
+  body.stage2-mobile-open {
+    overflow: hidden !important;
+    height: 100dvh !important;
+    touch-action: none !important;
+  }
+
   .inspection-column,
   .main-workbench.drawer-open .inspection-column,
   .main-workbench.drawer-peek .inspection-column {
@@ -3581,16 +3588,16 @@
     padding: 0 !important;
     z-index: 2000 !important;
     clip-path: none !important;
-    background: rgba(15, 23, 42, 0.55) !important;
-    backdrop-filter: blur(4px) !important;
-    -webkit-backdrop-filter: blur(4px) !important;
+    background: rgba(15, 23, 42, 0.58) !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-end !important;
     align-items: center !important;
     opacity: 0 !important;
     pointer-events: none !important;
-    transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transition: opacity 0.26s cubic-bezier(0.2, 0.9, 0.2, 1) !important;
+    will-change: opacity;
+    touch-action: none;
   }
 
   .main-workbench.drawer-open .inspection-column {
@@ -3612,18 +3619,25 @@
     border-bottom-right-radius: 0 !important;
     border: none !important;
     border-top: 3px solid var(--action-primary-bg, #2563EB) !important;
-    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.25) !important;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.22) !important;
     display: flex !important;
     flex-direction: column !important;
-    transform: translateY(100%) !important;
-    transition: transform 0.34s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transform: translate3d(0, 100%, 0) !important;
+    -webkit-transform: translate3d(0, 100%, 0) !important;
+    transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1) !important;
+    will-change: transform;
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
     visibility: visible !important;
     overflow: hidden !important;
     margin: 0 !important;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
   }
 
   .main-workbench.drawer-open .inspection-column-inner {
-    transform: translateY(0) !important;
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
   }
 
   /* Sheet Pill Drag Handle on Mobile */
