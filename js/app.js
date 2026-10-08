@@ -1298,10 +1298,41 @@
         if (supaRes.ok) {
           const liveData = await supaRes.json();
           if (liveData && liveData.length > 0) {
-            // Keep exact Supabase display_order sequence
-            const liveNames = new Set(liveData.map(s => s.name.toLowerCase()));
-            const remainingSeed = allStartups.filter(s => !liveNames.has(s.name.toLowerCase()));
-            allStartups = [...liveData, ...remainingSeed];
+            // Build lookup of seed startups to enrich live data with logos & slugs
+            const seedMap = new Map();
+            allStartups.forEach(s => seedMap.set(s.name.toLowerCase().trim(), s));
+            if (typeof SEED_STARTUPS !== 'undefined') {
+              SEED_STARTUPS.forEach(s => seedMap.set(s.name.toLowerCase().trim(), s));
+            }
+
+            // Merge live data with seed enrichments to guarantee logos are always present
+            const enrichedLive = liveData.map(item => {
+              const seed = seedMap.get(item.name.toLowerCase().trim());
+              const fallbackSlug = item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+              const slug = item.slug || (seed && seed.slug) || fallbackSlug;
+              const logoUrl = item.logo_url || (seed && seed.logo_url) || `./assets/logos/${slug}.png`;
+              const monogram = item.monogram || (seed && seed.monogram) || item.name.substring(0, 2).toUpperCase();
+
+              return {
+                ...seed,
+                ...item,
+                slug,
+                logo_url: logoUrl,
+                monogram,
+                founders: (item.founders && item.founders.length > 0) ? item.founders : ((seed && seed.founders) || [])
+              };
+            });
+
+            // Sort strictly by display_order
+            enrichedLive.sort((a, b) => {
+              const oA = (a.display_order !== undefined && a.display_order !== null) ? Number(a.display_order) : 999;
+              const oB = (b.display_order !== undefined && b.display_order !== null) ? Number(b.display_order) : 999;
+              return oA - oB;
+            });
+
+            const liveNames = new Set(enrichedLive.map(s => s.name.toLowerCase().trim()));
+            const remainingSeed = allStartups.filter(s => !liveNames.has(s.name.toLowerCase().trim()));
+            allStartups = [...enrichedLive, ...remainingSeed];
           }
         }
       } catch (err) {
@@ -1471,8 +1502,11 @@
           };
           filtered.sort((a, b) => score(b) - score(a));
         } else {
-          // Default curated order: verified ventures by foundation year
+          // Default curated order: strictly by display_order from Supabase
           filtered.sort((a, b) => {
+            const orderA = (a.display_order !== undefined && a.display_order !== null) ? Number(a.display_order) : 999;
+            const orderB = (b.display_order !== undefined && b.display_order !== null) ? Number(b.display_order) : 999;
+            if (orderA !== orderB) return orderA - orderB;
             const yearA = a.incorporated_year || a.batch_year || 2020;
             const yearB = b.incorporated_year || b.batch_year || 2020;
             return yearB - yearA;
