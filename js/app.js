@@ -1598,7 +1598,7 @@
             </tr>
             <tr>
               <td class="lbl">About</td>
-              <td class="val pitch">${startup.pitch}</td>
+              <td class="val pitch">${startup.about || startup.pitch || ''}</td>
             </tr>
           </table>
         </div>
