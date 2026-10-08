@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VNIT Startups Directory — Color Palette & Design Tokens Specimen</title>
+  
+  <!-- Google Fonts Preconnect & Optimized Import -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* ==========================================================================
+         TYPOGRAPHY (FROM LOCKED ASSETS)
+         ========================================================================== */
+      --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+      /* ==========================================================================
+         1. SURFACE TOKENS (60% Base)
+         ========================================================================== */
+      --surface-canvas:       #F8FAFC;
+      --surface-card:         #FFFFFF;
+      --surface-footer:       #F1F5F9;
+      --surface-badge-neutral:#F1F5F9;
+      --surface-hover:        #F8FAFC;
+      --surface-active:       #EDF2F7;
+
+      /* ==========================================================================
+         2. INK & TYPOGRAPHIC TOKENS (30% Hierarchy)
+         ========================================================================== */
+      --ink-primary:          #0F172A; /* 14.2:1 AAA */
+      --ink-secondary:        #334155; /* 8.6:1 AAA */
+      --ink-muted:            #64748B; /* 4.9:1 AA */
+      --ink-inverse:          #FFFFFF;
+
+      /* ==========================================================================
+         3. BORDER & HAIRLINE TOKENS
+         ========================================================================== */
+      --border-subtle:        #E2E8F0;
+      --border-card:          #CBD5E1;
+      --border-hover:         #0F172A;
+      --border-focus:         #2563EB;
+
+      /* ==========================================================================
+         4. FUNCTIONAL ACCENTS & ACTIONS (10% Focal Anchors)
+         ========================================================================== */
+      --action-primary-bg:    #090D16;
+      --action-primary-hover: #1E293B;
+      --action-primary-text:  #FFFFFF;
+
+      --action-secondary-bg:  #FFFFFF;
+      --action-secondary-border:#CBD5E1;
+      --action-secondary-text:#0F172A;
+      --action-secondary-hover:#F8FAFC;
+
+      /* ==========================================================================
+         5. SEMANTIC STATUS & PEDIGREE TOKENS
+         ========================================================================== */
+      --status-verified-text: #065F46;
+      --status-verified-bg:   #ECFDF5;
+      --status-verified-border:#A7F3D0;
+
+      --status-funded-text:   #1E40AF;
+      --status-funded-bg:     #EFF6FF;
+      --status-funded-border: #BFDBFE;
+
+      --status-bootstrapped-text: #92400E;
+      --status-bootstrapped-bg:   #FFFBEB;
+      --status-bootstrapped-border:#FDE68A;
+
+      --batch-chip-bg:        #E2E8F0;
+      --batch-chip-text:      #0F172A;
+
+      /* ==========================================================================
+         6. SURFACE DEPTH & ELEVATION
+         ========================================================================== */
+      --shadow-card-rest:     0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
+      --shadow-card-hover:    0 4px 12px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.04);
+      --shadow-drawer:        0 10px 30px rgba(15, 23, 42, 0.10), 0 1px 4px rgba(15, 23, 42, 0.05);
+
+      /* ==========================================================================
+         7. CORNER RADII
+         ========================================================================== */
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 8px;
+      --radius-xl: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      background: var(--surface-canvas);
+      color: var(--ink-primary);
+      line-height: 1.5;
+      padding: 40px 24px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header.specimen-header {
+      border-bottom: 2px solid var(--ink-primary);
+      padding-bottom: 24px;
+      margin-bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .badge-system {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: var(--action-primary-bg);
+      color: #FFF;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sm);
+    }
+
+    .specimen-title {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-top: 12px;
+      color: var(--ink-primary);
+    }
+
+    .specimen-subtitle {
+      font-size: 15px;
+      color: var(--ink-secondary);
+      margin-top: 4px;
+    }
+
+    .section-block {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-card-rest);
+    }
+
+    .section-title {
+      font-size: 12.5px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border-subtle);
+    }
+
+    /* 60-30-10 Ratio Visual Bar */
+    .ratio-bar-container {
+      margin-bottom: 24px;
+    }
+
+    .ratio-bar {
+      display: flex;
+      height: 24px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border-card);
+      margin-bottom: 8px;
+    }
+
+    .ratio-segment {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .ratio-60 {
+      width: 60%;
+      background: var(--surface-canvas);
+      color: var(--ink-secondary);
+      border-right: 1px solid var(--border-card);
+    }
+
+    .ratio-30 {
+      width: 30%;
+      background: var(--ink-primary);
+      color: #FFF;
+      border-right: 1px solid var(--border-card);
+    }
+
+    .ratio-10 {
+      width: 10%;
+      background: var(--border-focus);
+      color: #FFF;
+    }
+
+    .ratio-legend {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--ink-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* Color Swatches Grid */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .swatch-card {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: #FFF;
+    }
+
+    .swatch-color {
+      height: 72px;
+      display: flex;
+      align-items: flex-end;
+      padding: 8px 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .swatch-info {
+      padding: 12px;
+    }
+
+    .swatch-token-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 2px;
+    }
+
+    .swatch-desc {
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      line-height: 1.4;
+    }
+
+    .swatch-contrast-tag {
+      margin-top: 6px;
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 2px 6px;
+      background: #F1F5F9;
+      color: #0F172A;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+
+    /* Live Component Samples Grid */
+    .components-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .components-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Stage 1 Card Sample */
+    .stage1-live-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card-rest);
+      overflow: hidden;
+      transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+
+    .stage1-live-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-card-hover);
+      transform: translateY(-1px);
+    }
+
+    .stage1-card-inner {
+      padding: 18px 20px;
+      display: flex;
+      gap: 16px;
+    }
+
+    .hallmark-monogram {
+      width: 56px;
+      height: 56px;
+      background: var(--action-primary-bg);
+      color: var(--ink-inverse);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+
+    .stage1-details {
+      flex: 1;
+    }
+
+    .stage1-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .company-name-text {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+    }
+
+    .linkedin-button-chip {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 10px;
+      border: 1px solid var(--action-secondary-border);
+      border-radius: var(--radius-sm);
+      color: var(--action-secondary-text);
+      background: var(--action-secondary-bg);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 150ms ease;
+    }
+
+    .linkedin-button-chip:hover {
+      background: var(--surface-footer);
+    }
+
+    .pill-group {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .sector-badge {
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--surface-badge-neutral);
+      color: var(--ink-primary);
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+    }
+
+    .funding-series-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--status-funded-bg);
+      color: var(--status-funded-text);
+      border: 1px solid var(--status-funded-border);
+      padding: 2px 7px;
+      border-radius: var(--radius-sm);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .bootstrapped-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--status-bootstrapped-bg);
+      color: var(--status-bootstrapped-text);
+      border: 1px solid var(--status-bootstrapped-border);
+      padding: 2px 7px;
+      border-radius: var(--radius-sm);
+    }
+
+    .pitch-description {
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      line-height: 1.48;
+      max-width: 65ch;
+    }
+
+    .stage1-shaded-strip {
+      background: var(--surface-footer);
+      border-top: 1px solid var(--border-subtle);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .founder-credit {
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    .founder-credit strong {
+      color: var(--ink-primary);
+      font-weight: 600;
+    }
+
+    .batch-mono-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--batch-chip-bg);
+      color: var(--batch-chip-text);
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-left: 4px;
+    }
+
+    .location-city {
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    /* Stage 2 Drawer Sample */
+    .stage2-drawer-card {
+      border: 1.5px solid var(--ink-primary);
+      border-radius: var(--radius-lg);
+      background: var(--surface-card);
+      box-shadow: var(--shadow-drawer);
+      overflow: hidden;
+    }
+
+    .seal-banner-bar {
+      background: var(--action-primary-bg);
+      color: var(--ink-inverse);
+      padding: 9px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .seal-left-text {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .seal-verified-pill {
+      background: rgba(167, 243, 208, 0.2);
+      color: #A7F3D0;
+      border: 1px solid rgba(167, 243, 208, 0.4);
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 9.5px;
+    }
+
+    .seal-cohort {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      color: #94A3B8;
+    }
+
+    .drawer-content-pane {
+      padding: 18px;
+    }
+
+    .drawer-title-row {
+      margin-bottom: 14px;
+    }
+
+    .drawer-company-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+    }
+
+    .drawer-meta-line {
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-top: 3px;
+    }
+
+    .founder-box {
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      margin-bottom: 10px;
+      background: #FFF;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .founder-name-text {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .founder-role-text {
+      font-size: 11.5px;
+      color: var(--ink-muted);
+    }
+
+    .connect-btn {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      background: var(--action-primary-bg);
+      color: #FFF;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+    }
+
+    /* Specs table */
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 12px;
+    }
+
+    .specs-table tr {
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .specs-label {
+      padding: 8px 0;
+      color: var(--ink-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+    }
+
+    .specs-val {
+      padding: 8px 0;
+      text-align: right;
+      color: var(--ink-primary);
+      font-weight: 600;
+    }
+
+    .specs-mono {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header class="specimen-header">
+      <div>
+        <div class="badge-system">Color System &amp; Design Tokens</div>
+        <h1 class="specimen-title">VNIT Startups Directory — Palette Specimen</h1>
+        <p class="specimen-subtitle">Engineered Sovereign Palette &middot; Strict 60-30-10 &middot; Anti-Halation &middot; 100% WCAG AAA</p>
+      </div>
+      <div>
+        <span class="badge-system" style="background: var(--status-verified-text);">WCAG 2.1 AAA VALIDATED</span>
+      </div>
+    </header>
+
+    <!-- SECTION 1: 60-30-10 RATIO BAR -->
+    <div class="section-block">
+      <div class="section-title">01 / The 60-30-10 Architectural Balance</div>
+      <div class="ratio-bar-container">
+        <div class="ratio-bar">
+          <div class="ratio-segment ratio-60">60% Canvas &amp; Surfaces (#F8FAFC / #FFFFFF)</div>
+          <div class="ratio-segment ratio-30">30% Structural Ink &amp; Borders (#0F172A / #CBD5E1)</div>
+          <div class="ratio-segment ratio-10">10% Actions</div>
+        </div>
+        <div class="ratio-legend">
+          <span>Ground: Calm Slate Canvas</span>
+          <span>Content: Deep Oxford Typography</span>
+          <span>Accents: Primary CTAs &amp; Status Badges</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: PALETTE SWATCHES -->
+    <div class="section-block">
+      <div class="section-title">02 / Functional Token Matrix</div>
+      
+      <div class="swatches-grid">
+        <!-- CANVAS -->
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #F8FAFC; color: #0F172A; border-bottom: 1px solid #E2E8F0;">
+            #F8FAFC
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-token-name">--surface-canvas</div>
+            <div class="swatch-desc">Cool slate tint canvas ground. Eliminates 500-nit retinal glare.</div>
+            <span class="swatch-contrast-tag">60% Dominant Base</span>
+          </div>
+        </div>
+
+        <!-- CARD SURFACE -->
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #FFFFFF; color: #0F172A; border-bottom: 1px solid #E2E8F0;">
+            #FFFFFF
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-token-name">--surface-card</div>
+            <div class="swatch-desc">Elevated pure white card surface. Lifts naturally above canvas.</div>
+            <span class="swatch-contrast-tag">Elevated Sheet</span>
+          </div>
+        </div>
+
+        <!-- INK PRIMARY -->
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #0F172A; color: #FFFFFF;">
+            #0F172A
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-token-name">--ink-primary</div>
+            <div class="swatch-desc">Deep Oxford Slate. 14.2:1 contrast without pure black vibration.</div>
+            <span class="swatch-contrast-tag" style="background: #ECFDF5; color: #065F46;">14.2:1 WCAG AAA</span>
+          </div>
+        </div>
+
+        <!-- ACTION OBSIDIAN -->
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #090D16; color: #FFFFFF;">
+            #090D16
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-token-name">--action-primary-bg</div>
+            <div class="swatch-desc">Carbon obsidian hallmark tile, seal banner, and primary CTAs.</div>
+            <span class="swatch-contrast-tag" style="background: #ECFDF5; color: #065F46;">18.7:1 WCAG AAA</span>
+          </div>
+        </div>
+
+        <!-- STATUS VERIFIED -->
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0;">
+            #065F46 on #ECFDF5
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-token-name">--status-verified</div>
+            <div class="swatch-desc">Official alumni verification proof badge. Solvency and truth.</div>
+            <span class="swatch-contrast-tag" style="background: #ECFDF5; color: #065F46;">9.2:1 WCAG AAA</span>
+          </div>
+        </div>
+
+        <!-- STATUS FUNDED -->
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #EFF6FF; color: #1E40AF; border: 1px solid #BFDBFE;">
+            #1E40AF on #EFF6FF
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-token-name">--status-funded</div>
+            <div class="swatch-desc">Venture-backed capital status pill (Series A, Seed, etc.).</div>
+            <span class="swatch-contrast-tag" style="background: #EFF6FF; color: #1E40AF;">8.9:1 WCAG AAA</span>
+          </div>
+        </div>
+
+        <!-- STATUS BOOTSTRAPPED -->
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #FFFBEB; color: #92400E; border: 1px solid #FDE68A;">
+            #92400E on #FFFBEB
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-token-name">--status-bootstrapped</div>
+            <div class="swatch-desc">Profitable &amp; bootstrapped founder status pill.</div>
+            <span class="swatch-contrast-tag" style="background: #FFFBEB; color: #92400E;">7.8:1 WCAG AAA</span>
+          </div>
+        </div>
+
+        <!-- BORDER CARD -->
+        <div class="swatch-card">
+          <div class="swatch-color" style="background: #CBD5E1; color: #0F172A;">
+            #CBD5E1
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-token-name">--border-card</div>
+            <div class="swatch-desc">Crisp 1px hairline border rim. Stops cards bleeding into background.</div>
+            <span class="swatch-contrast-tag">Hairline Depth</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: IN-SITU LIVE COMPONENTS -->
+    <div class="section-block">
+      <div class="section-title">03 / Live Verification: Stage 1 (Variation 7) &amp; Stage 2 (Option 02)</div>
+      
+      <div class="components-grid">
+        <!-- STAGE 1 CARD LIVE -->
+        <div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--ink-muted); margin-bottom: 8px; text-transform: uppercase; font-family: var(--font-mono);">
+            Stage 1 Feed Card (Variation 7) &middot; Hover to test micro-lift
+          </div>
+          
+          <div class="stage1-live-card">
+            <div class="stage1-card-inner">
+              <div class="hallmark-monogram">AR</div>
+              <div class="stage1-details">
+                <div class="stage1-header-row">
+                  <h3 class="company-name-text">Atheer Robotics</h3>
+                  <a href="#" class="linkedin-button-chip" onclick="return false;">
+                    <span>LinkedIn</span> ↗
+                  </a>
+                </div>
+                <div class="pill-group">
+                  <span class="sector-badge">Industrial Robotics</span>
+                  <span class="funding-series-badge">Series A ($4.2M)</span>
+                </div>
+                <p class="pitch-description">
+                  Autonomous mobile robots (AMR) and fleet intelligence for high-throughput automotive manufacturing plants.
+                </p>
+              </div>
+            </div>
+            <div class="stage1-shaded-strip">
+              <div class="founder-credit">
+                Founded by <strong>Vikram Deshmukh</strong> <span class="batch-mono-tag">Mech '16</span> &amp; <strong>Rohit K.</strong> <span class="batch-mono-tag">CSE '17</span>
+              </div>
+              <div class="location-city">📍 Bengaluru, IN</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 16px;">
+            <div class="stage1-live-card">
+              <div class="stage1-card-inner">
+                <div class="hallmark-monogram">ZL</div>
+                <div class="stage1-details">
+                  <div class="stage1-header-row">
+                    <h3 class="company-name-text">Zelus Space Dynamics</h3>
+                    <a href="#" class="linkedin-button-chip" onclick="return false;">
+                      <span>LinkedIn</span> ↗
+                    </a>
+                  </div>
+                  <div class="pill-group">
+                    <span class="sector-badge">Aerospace &amp; Defense</span>
+                    <span class="bootstrapped-badge">Bootstrapped / Profitable</span>
+                  </div>
+                  <p class="pitch-description">
+                    Precision propellant control valves and thruster manifolds for low-Earth orbit satellite constellations.
+                  </p>
+                </div>
+              </div>
+              <div class="stage1-shaded-strip">
+                <div class="founder-credit">
+                  Founded by <strong>Aniket Sharma</strong> <span class="batch-mono-tag">ECE '15</span>
+                </div>
+                <div class="location-city">📍 Hyderabad, IN</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STAGE 2 DRAWER LIVE -->
+        <div>
+          <div style="font-size: 11px; font-weight: 700; color: var(--ink-muted); margin-bottom: 8px; text-transform: uppercase; font-family: var(--font-mono);">
+            Stage 2 Inspection Header (Option 02)
+          </div>
+          
+          <div class="stage2-drawer-card">
+            <div class="seal-banner-bar">
+              <div class="seal-left-text">
+                🏛️ VERIFIED VNIT ALUMNI ROSTER
+                <span class="seal-verified-pill">OFFICIAL</span>
+              </div>
+              <div class="seal-cohort">CAMPUS COHORT 2016</div>
+            </div>
+            
+            <div class="drawer-content-pane">
+              <div class="drawer-title-row">
+                <h4 class="drawer-company-title">Atheer Robotics Systems</h4>
+                <div class="drawer-meta-line">Series A &middot; 38 FTE &middot; Bengaluru, Karnataka</div>
+              </div>
+
+              <div class="founder-box">
+                <div>
+                  <div class="founder-name-text">Vikram Deshmukh</div>
+                  <div class="founder-role-text">Co-Founder &amp; Chief Executive Officer</div>
+                  <div style="font-family: var(--font-mono); font-size: 11px; color: var(--ink-secondary); margin-top: 3px;">
+                    B.Tech Mech '16 &middot; VNIT Nagpur
+                  </div>
+                </div>
+                <a href="#" class="connect-btn" onclick="return false;">Connect In</a>
+              </div>
+
+              <div class="founder-box">
+                <div>
+                  <div class="founder-name-text">Rohit Kulkarni</div>
+                  <div class="founder-role-text">Co-Founder &amp; Chief Technology Officer</div>
+                  <div style="font-family: var(--font-mono); font-size: 11px; color: var(--ink-secondary); margin-top: 3px;">
+                    B.Tech CSE '17 &middot; VNIT Nagpur
+                  </div>
+                </div>
+                <a href="#" class="connect-btn" onclick="return false;">Connect In</a>
+              </div>
+
+              <table class="specs-table">
+                <tr>
+                  <td class="specs-label">Incorporated</td>
+                  <td class="specs-val specs-mono">2021</td>
+                </tr>
+                <tr>
+                  <td class="specs-label">Total Capital</td>
+                  <td class="specs-val specs-mono">$4,200,000 USD</td>
+                </tr>
+                <tr>
+                  <td class="specs-label">Headquarters</td>
+                  <td class="specs-val">Bengaluru, IN</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

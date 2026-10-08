@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>VNIT Startups Directory — The Frontier Companies of VNIT Nagpur</title>
+  <meta name="description"
+    content="A handpicked high-density index of deep-tech, robotics, and venture-backed startups founded by Visvesvaraya National Institute of Technology (VNIT/VRCE) alumni.">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="VNIT Startups Directory — The Frontier Companies">
+  <meta property="og:description"
+    content="A handpicked high-density index of deep-tech, robotics, and venture-backed startups founded by VNIT alumni.">
+  <meta property="og:type" content="website">
+
+  <!-- Typography: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Core Design System Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- TOP NAVBAR -->
+  <nav class="nav-wrap" aria-label="Main Navigation">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <div class="brand-group" onclick="resetFilters()">
+          <div class="hallmark-tile">VR</div>
+          <div>
+            <div class="brand-text">VNIT STARTUPS</div>
+            <div class="brand-sub">EST. 1960 NAGPUR</div>
+          </div>
+        </div>
+        <a class="nav-home" href="#" onclick="goHome(event)" title="Home" aria-label="Home">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"></path>
+          </svg>
+        </a>
+      </div>
+      <div class="nav-actions">
+        <button class="btn-submit btn-submit-nav" id="navSubmitBtn" onclick="openSubmissionModal()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+            stroke-linecap="round" aria-hidden="true">
+            <path d="M12 5v14M5 12h14"></path>
+          </svg>
+          Submit Your Startup
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO WRAPPER WITH STATIC ARCHITECTURAL BLUEPRINT GRID + 3D DEPTH -->
+  <div class="hero-wrapper" id="heroWrapper">
+    <div class="hero-grid-static" aria-hidden="true"></div>
+    <header class="hero-container" id="heroContainer">
+      <h1 class="hero-headline" id="mainHeroHeadline">
+        <span class="headline-top-plane" id="planeTop">From Campus to Company:</span> <br>
+        <span class="headline-accent-plane" id="planeAccent">The VNIT Founder Directory.</span>
+      </h1>
+      <p class="hero-subhead" id="planeSubhead">
+        A <strong>handpicked</strong> directory of companies built by VNIT alumni. Filter by branch, funding status, or
+        team size—and connect on LinkedIn in one click.
+      </p>
+    </header>
+  </div>
+
+  <!-- 3-COLUMN WORKBENCH -->
+  <main class="main-workbench" id="mainWorkbench">
+
+    <!-- LEFT FACET FILTER RAIL -->
+    <aside class="filter-rail" aria-label="Filters Rail">
+
+      <!-- Branch / Department -->
+      <div>
+        <div class="filter-group-title">Branch / Department</div>
+        <div class="facet-list">
+          <div class="facet-item active" onclick="toggleFacet('branch', 'ALL')">
+            <span>All Departments</span>
+            <span class="facet-count" id="branchAllCount">4</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('branch', 'Mechanical')">
+            <span>Mechanical</span>
+            <span class="facet-count" id="branchMechCount">2</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('branch', 'Computer Science')">
+            <span>Computer Science</span>
+            <span class="facet-count" id="branchCSECount">1</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('branch', 'Electronics')">
+            <span>Electronics & Comm.</span>
+            <span class="facet-count" id="branchECECount">2</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('branch', 'Electrical')">
+            <span>Electrical & Electronics</span>
+            <span class="facet-count" id="branchEEECount">0</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('branch', 'Chemical')">
+            <span>Chemical</span>
+            <span class="facet-count" id="branchChemCount">0</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('branch', 'Metallurgy')">
+            <span>Metallurgy</span>
+            <span class="facet-count" id="branchMetCount">0</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('branch', 'Civil')">
+            <span>Civil</span>
+            <span class="facet-count" id="branchCivilCount">0</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('branch', 'Architecture')">
+            <span>Architecture</span>
+            <span class="facet-count" id="branchArchCount">0</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('branch', 'Mining')">
+            <span>Mining</span>
+            <span class="facet-count" id="branchMiningCount">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Funding Status -->
+      <div>
+        <div class="filter-group-title">Funding Status</div>
+        <div class="facet-list">
+          <div class="facet-item active" onclick="toggleFacet('stage', 'ALL')">
+            <span>All</span>
+            <span class="facet-count" id="stageAllCount">4</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('stage', 'Series')">
+            <span>Funded (VC / Angel)</span>
+            <span class="facet-count" id="stageFundedCount">4</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('stage', 'Bootstrapped')">
+            <span>Bootstrapped / Profitable</span>
+            <span class="facet-count" id="stageBootCount">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Company Stage / Team Size -->
+      <div>
+        <div class="filter-group-title">Team Size</div>
+        <div class="facet-list">
+          <div class="facet-item active" onclick="toggleFacet('team', 'ALL')">
+            <span>All Sizes</span>
+            <span class="facet-count" id="teamAllCount">4</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('team', '1-10')">
+            <span>Early Stage (1–10)</span>
+            <span class="facet-count" id="teamEarlyCount">0</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('team', '11-50')">
+            <span>Growth (11–50)</span>
+            <span class="facet-count" id="teamGrowthCount">3</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('team', '50+')">
+            <span>Scaleup (50+)</span>
+            <span class="facet-count" id="teamScaleCount">1</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Headquarters -->
+      <div>
+        <div class="filter-group-title">Headquarters</div>
+        <div class="facet-list">
+          <div class="facet-item active" onclick="toggleFacet('location', 'ALL')">
+            <span>All Locations</span>
+            <span class="facet-count" id="locAllCount">4</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('location', 'Bengaluru')">
+            <span>Bengaluru, IN</span>
+            <span class="facet-count" id="locBlrCount">2</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('location', 'San Francisco')">
+            <span>SF Bay Area, US</span>
+            <span class="facet-count" id="locSfCount">1</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('location', 'Pune')">
+            <span>Pune & Mumbai</span>
+            <span class="facet-count" id="locPuneCount">1</span>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- CENTER STREAM (Stage 1 Cards Feed) -->
+    <section class="stream-container">
+      <!-- CONTEXTUAL SEARCH & SORT TOOLBAR ON TOP OF STAGE 1 LIST -->
+      <div class="stream-toolbar">
+        <div class="stream-search-wrap">
+          <div class="stream-search-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <input type="text" id="searchInput" class="stream-search-input"
+            placeholder="Search companies, branch, batch year, founders, or location... (Press / to focus)"
+            oninput="executeSearch()" autocomplete="off">
+          <kbd class="stream-search-kbd">/</kbd>
+        </div>
+        <div class="stream-sort-wrap">
+          <select class="sort-select" id="sortSelect" onchange="handleSortChange(this.value)">
+            <option value="relevance">Sort: Relevance</option>
+            <option value="latest">Sort: Latest to Oldest</option>
+            <option value="oldest">Sort: Oldest to Latest</option>
+            <option value="alphabetical">Sort: Alphabetical (A-Z)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="stream-cards-list" id="cardsContainer">
+        <!-- Injected via JavaScript Render Engine -->
+      </div>
+    </section>
+
+    <!-- 3. RIGHT STAGE 2 IN-PLACE INSPECTION PANE (No Backdrop, No Blur, Adaptive Width) -->
+    <aside class="inspection-column" id="inspectionDrawer" aria-label="Startup Details Inspection Panel">
+      <div class="inspection-column-inner" id="drawerSheet">
+        <div class="stage2-grip" aria-hidden="true"></div>
+        <!-- Header -->
+        <div class="stage2-header" id="drawerHeader">
+          <div id="drawerTitleBlock" style="display: flex; align-items: center; gap: 14px;">
+            <div id="stage2LogoTile" class="card-monogram-tile" style="width: 46px; height: 46px; flex-shrink: 0; background: #FFFFFF; padding: 4px; border: 1px solid #E2E8F0; border-radius: 8px;">
+              <img id="stage2LogoImg" src="./assets/logos/truemeds-india.png" alt="Company Logo" class="card-logo-img" style="object-fit: contain; width: 100%; height: 100%;">
+            </div>
+            <div>
+              <h2 class="stage2-title" id="stage2Title">Truemeds India</h2>
+            </div>
+          </div>
+          <button class="stage2-close-btn" onclick="closeDrawer()" title="Close Inspection (Esc)">✕</button>
+        </div>
+
+        <!-- Body -->
+        <div class="stage2-body" id="drawerBodyContent">
+          <!-- Injected dynamically via renderDrawer() -->
+        </div>
+
+        <!-- Footer -->
+        <div class="stage2-footer" id="drawerFooterContent">
+          <!-- Injected dynamically via renderDrawer() -->
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- DEDICATED COMMUNITY ECOSYSTEM DOCK (Attached at the end) -->
+  <footer class="ecosystem-dock-section" id="communityDock">
+    <div class="ecosystem-dock-inner">
+
+      <!-- 1. The VNIT Dispatch (Newsletter Callout - Architectural Studio Ledger) -->
+      <div class="studio-dispatch-card" id="newsletterCard">
+        <!-- Left: Editorial Context & Narrative -->
+        <div class="dispatch-left">
+          <div class="dispatch-kicker">
+            <span class="pulse-beacon" id="dispatchKickerDot"></span>
+            <span id="dispatchKickerText">VNIT Founder Registry · Monthly Briefing</span>
+          </div>
+          <h2 class="dispatch-title">Stay in the loop with VNIT's startup ecosystem.</h2>
+          <p class="dispatch-sub" id="dispatchSubText">
+            A handpicked monthly briefing covering alumni venture launches, seed rounds, and campus innovation.
+          </p>
+        </div>
+
+        <!-- Right: Architectural Action Capsule & In-Situ Confirmation State -->
+        <div class="dispatch-right">
+          <!-- Active Form Capsule -->
+          <form class="dispatch-capsule" id="newsletterFormCapsule" onsubmit="handleNewsletterSubmit(event)">
+            <div class="dispatch-icon" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+            </div>
+            <input type="email" id="newsletterEmail" class="dispatch-input" required
+              placeholder="Enter your email address..." autocomplete="email">
+            <button type="submit" class="dispatch-action-btn" id="newsletterSubmitBtn">
+              <span>Get Monthly Updates</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+            </button>
+          </form>
+
+          <!-- Confirmed In-Situ State -->
+          <div class="dispatch-success-card" id="newsletterSuccessState">
+            <div class="dispatch-success-left">
+              <div class="dispatch-success-seal" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div class="dispatch-success-info">
+                <div class="dispatch-success-title">You're on the dispatch list.</div>
+                <div class="dispatch-confirmed-email" id="dispatchConfirmedEmail">user@gmail.com</div>
+              </div>
+            </div>
+            <div class="dispatch-success-right">
+              <span class="dispatch-tag-queued">#09 QUEUED</span>
+              <span class="dispatch-tag-active">● Active Subscriber</span>
+              <button type="button" class="dispatch-change-email-btn" onclick="resetNewsletterForm()">Change email</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Finalized Variation 14: Unified Split Command Dock -->
+      <div class="unified-dock-card">
+        <div class="dock-split-body">
+          
+          <!-- LEFT PANEL: Direct Dispatch & Message (Sketch Hierarchy) -->
+          <div class="dock-left-panel">
+            <div class="dock-panel-header">
+              <div class="dock-panel-title">
+                <span class="dock-dot-indicator blue"></span>
+                <span>Send a Message</span>
+              </div>
+              <span class="dock-badge-pill blue">DIRECT INBOX</span>
+            </div>
+
+            <!-- EYE PATH 1 & 2: Primary Message Canvas with Anchored Button -->
+            <div class="hero-compose-box">
+              <textarea id="feedbackInput" class="dock-hero-textarea" rows="4" placeholder="Write your message, feedback, or suggest a startup..."></textarea>
+              <div class="dock-compose-toolbar" style="justify-content: flex-end;">
+                <button type="button" class="dock-anchored-btn" onclick="sendMakerFeedback()">
+                  Send Message ↗
+                </button>
+              </div>
+            </div>
+
+            <!-- EYE PATH 3: Identity Sub-row (Name & Gmail) -->
+            <div class="dock-meta-row">
+              <input type="text" id="feedbackName" class="dock-sub-input" placeholder="Name">
+              <input type="email" id="feedbackEmail" class="dock-sub-input" placeholder="Email / Gmail">
+            </div>
+          </div>
+
+          <!-- RIGHT PANEL: Support & Contribute (Partitioned & High Emotional Resonance) -->
+          <div class="dock-right-panel">
+            <div class="dock-panel-header">
+              <div class="dock-panel-title">
+                <span class="dock-dot-indicator green"></span>
+                <span>Support This Project</span>
+              </div>
+              <span class="dock-badge-pill amber">100% FREE PROJECT</span>
+            </div>
+
+            <h3 class="dock-contribute-headline">A free public project. Help us document every founder our college ever produced.</h3>
+            <p class="dock-contribute-desc">
+              To keep this directory credible and uncompromised, we refuse commercial sponsors and paywalls. If this directory inspired you or helped you find an alumnus, consider backing the next month of research.
+            </p>
+
+            <div class="dock-qr-card">
+              <svg width="68" height="68" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius:6px;background:white;padding:3px;border:1px solid #E2E8F0;flex-shrink:0;">
+                <rect width="72" height="72" fill="white"/>
+                <rect x="6" y="6" width="22" height="22" rx="3" fill="#111827"/>
+                <rect x="10" y="10" width="14" height="14" rx="2" fill="white"/>
+                <rect x="13" y="13" width="8" height="8" fill="#111827"/>
+                <rect x="44" y="6" width="22" height="22" rx="3" fill="#111827"/>
+                <rect x="48" y="10" width="14" height="14" rx="2" fill="white"/>
+                <rect x="51" y="13" width="8" height="8" fill="#111827"/>
+                <rect x="6" y="44" width="22" height="22" rx="3" fill="#111827"/>
+                <rect x="10" y="48" width="14" height="14" rx="2" fill="white"/>
+                <rect x="13" y="51" width="8" height="8" fill="#111827"/>
+                <rect x="32" y="8" width="8" height="4" fill="#111827"/>
+                <rect x="32" y="16" width="4" height="8" fill="#111827"/>
+                <rect x="8" y="32" width="4" height="8" fill="#111827"/>
+                <rect x="16" y="32" width="12" height="4" fill="#111827"/>
+                <rect x="32" y="32" width="8" height="8" rx="1" fill="#2563EB"/>
+                <rect x="44" y="32" width="10" height="4" fill="#111827"/>
+                <rect x="58" y="32" width="8" height="4" fill="#111827"/>
+                <rect x="32" y="44" width="4" height="12" fill="#111827"/>
+                <rect x="40" y="44" width="12" height="4" fill="#111827"/>
+                <rect x="56" y="44" width="10" height="10" fill="#111827"/>
+                <rect x="36" y="60" width="12" height="6" fill="#111827"/>
+                <rect x="52" y="58" width="14" height="8" fill="#111827"/>
+              </svg>
+              <div class="dock-qr-details">
+                <div class="dock-qr-title">
+                  <svg width="24" height="13" viewBox="0 0 32 18" fill="none"><path d="M12 2L6 16H2L8 2H12Z" fill="#097939"/><path d="M22 2L16 16H12L18 2H22Z" fill="#ED7524"/></svg>
+                  <span>Scan QR via PhonePe / GPay</span>
+                </div>
+                <div class="dock-qr-sub">Scan with any UPI app · Razorpay Verified</div>
+                <div class="dock-amt-pills">
+                  <button type="button" class="dock-amt-pill" onclick="selectDonationAmt(150)">₹150</button>
+                  <button type="button" class="dock-amt-pill" onclick="selectDonationAmt(500)">₹500</button>
+                  <button type="button" class="dock-amt-pill" onclick="selectDonationAmt(1000)">₹1,000</button>
+                </div>
+              </div>
+            </div>
+
+            <a href="https://github.com" target="_blank" rel="noopener" class="dock-btn-support">
+              Support This Project (UPI) ↗
+            </a>
+          </div>
+
+        </div>
+
+        <!-- INTEGRATED BASEMENT STRIP (Dignified Institutional + Live Telemetry) -->
+        <div class="dock-basement-strip">
+          <div class="dock-telemetry-row">
+            <span class="dock-tel-item"><span style="color:#10B981;">●</span> <strong id="pageViewsCounter">8,995</strong> Views</span>
+            <span class="dock-tel-item"><span style="color:#2563EB;">●</span> <strong id="uniqueVisitorsCounter">1,843</strong> Visitors</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Institutional Footer Bar -->
+    <div class="site-footer">
+      <div class="footer-inner">
+        <div>VISVESVARAYA NATIONAL INSTITUTE OF TECHNOLOGY · EST. 1960 (FORMERLY VRCE NAGPUR)</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SUBMISSION MODAL (Variation 01: Architectural Studio Ledger) -->
+  <div class="modal-backdrop" id="submissionModal" onclick="closeSubmissionModal(event)">
+    <div class="modal-container modal-studio" role="dialog" aria-modal="true" aria-labelledby="submissionModalTitle"
+      onclick="event.stopPropagation()">
+      <button type="button" class="studio-close-btn" onclick="closeSubmissionModal()" aria-label="Close">&times;</button>
+
+      <!-- Left Rail: Architectural Context (No Quality Verified block) -->
+      <div class="studio-left">
+        <div>
+          <div class="studio-crest">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+            VNIT NAGPUR
+          </div>
+          <h2 class="studio-title" id="submissionModalTitle">Submit your startup.</h2>
+          <p class="studio-sub" id="submissionModalSub">Join the curated registry of companies built by VNIT alumni.</p>
+        </div>
+      </div>
+
+      <!-- Right Rail: Form and In-Situ Success Transition -->
+      <div class="studio-right">
+        <!-- Step 1: four details, top to bottom -->
+        <form id="submissionForm" onsubmit="handleStartupSubmission(event)">
+          <!-- Honeypot -->
+          <input type="text" id="anti_spam_fax" style="display:none;" tabindex="-1" autocomplete="off">
+
+          <div class="studio-group">
+            <div class="studio-label-row">
+              <label class="studio-label" for="sub_name">Your name</label>
+              <span class="studio-hint">01</span>
+            </div>
+            <input type="text" id="sub_name" class="studio-input" required maxlength="80" autocomplete="name"
+              placeholder="e.g. Rahul Sharma">
+          </div>
+
+          <div class="studio-group">
+            <div class="studio-label-row">
+              <label class="studio-label" for="sub_company_name">Startup name</label>
+              <span class="studio-hint">02</span>
+            </div>
+            <input type="text" id="sub_company_name" class="studio-input" required maxlength="120"
+              autocomplete="organization" placeholder="e.g. Orbital Dynamics">
+          </div>
+
+          <div class="studio-group">
+            <div class="studio-label-row">
+              <label class="studio-label" for="sub_website">Website link</label>
+              <span class="studio-hint">03</span>
+            </div>
+            <input type="text" inputmode="url" id="sub_website" class="studio-input" required maxlength="200"
+              autocomplete="url" placeholder="orbitaldynamics.space" oninput="this.setCustomValidity('')">
+          </div>
+
+          <div class="studio-group">
+            <div class="studio-label-row">
+              <label class="studio-label" for="sub_email">Your Gmail / email</label>
+              <span class="studio-hint">04</span>
+            </div>
+            <input type="email" id="sub_email" class="studio-input" required maxlength="120" autocomplete="email"
+              placeholder="rahul@gmail.com">
+          </div>
+
+          <div class="form-error" id="submissionError" role="alert" hidden></div>
+
+          <button type="submit" class="studio-btn" id="submitFormBtn">
+            <span>Submit Startup</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+          </button>
+        </form>
+
+        <!-- Step 2: confirmation, shown in place of the form -->
+        <div class="submit-success" id="submissionSuccess" hidden>
+          <!-- Visual Trust Symbol 1: Encapsulated Emerald Checkmark with soft halo -->
+          <div class="submit-success-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4.5 12.75l6 6 9-11.5"></path>
+            </svg>
+          </div>
+
+          <!-- Personal Warm Gratitude -->
+          <div class="submit-success-head">
+            <h3 class="submit-success-title" id="submissionSuccessTitle">Thanks!</h3>
+            <p class="submit-success-meta">We've received <strong class="submit-success-company" id="submissionSuccessCompany">Your Startup</strong></p>
+          </div>
+
+          <!-- 3-Stage Progress Timeline / Stepper -->
+          <div class="submission-stepper" aria-label="Submission progress lifecycle">
+            <div class="stepper-step step-done">
+              <div class="step-badge" title="Completed">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <div class="step-name">Submitted</div>
+            </div>
+            <div class="stepper-connector connector-done"></div>
+            <div class="stepper-step step-active">
+              <div class="step-badge" title="In Progress">
+                <span class="step-pulse-dot"></span>
+              </div>
+              <div class="step-name">Alumni Review</div>
+            </div>
+            <div class="stepper-connector connector-pending"></div>
+            <div class="stepper-step step-pending">
+              <div class="step-badge" title="Upcoming">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                  <path d="M2 12h20"></path>
+                </svg>
+              </div>
+              <div class="step-name">Published Live</div>
+            </div>
+          </div>
+
+          <!-- Direct Notification Channel Card -->
+          <div class="submission-email-card">
+            <div class="email-card-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+            </div>
+            <div class="email-card-body">
+              <div class="email-card-label">Direct Notification Channel</div>
+              <div class="email-card-target" id="submissionSuccessEmail">you@gmail.com</div>
+              <div class="email-card-hint">We'll email you here once your startup goes live.</div>
+            </div>
+          </div>
+
+          <!-- Terminal Action Button -->
+          <button type="button" class="studio-btn" id="submissionDoneBtn" onclick="closeSubmissionModal()">
+            Done · Explore Directory
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT APPLICATION CORE -->
+  <!-- Core Client Application Engine -->
+  <script src="js/app.js"></script>
+</body>
+
+</html>

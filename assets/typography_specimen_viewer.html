@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VNIT Startups Directory — Typography & Font System Specimen</title>
+  
+  <!-- Google Fonts Preconnect & Optimized Multi-Weight Import -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* ==========================================================================
+         TYPOGRAPHY FAMILY TOKENS (STRICT 2-FONT SYSTEM)
+         ========================================================================== */
+      --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+      /* ==========================================================================
+         MODULAR TYPE SCALE
+         ========================================================================== */
+      --text-hero: 2.625rem;     /* 42px */
+      --text-h1: 1.75rem;        /* 28px */
+      --text-h2: 1.25rem;        /* 20px */
+      --text-h3: 1.125rem;       /* 18px */
+      --text-body-lg: 1rem;      /* 16px */
+      --text-body: 0.875rem;     /* 14px */
+      --text-body-sm: 0.8125rem; /* 13px */
+      --text-caption: 0.75rem;   /* 12px */
+      --text-micro: 0.6875rem;   /* 11px */
+      --text-nano: 0.625rem;     /* 10px */
+
+      /* ==========================================================================
+         PROPORTIONAL LINE HEIGHTS & TRACKING
+         ========================================================================== */
+      --lh-tight: 1.18;
+      --lh-heading: 1.25;
+      --lh-body: 1.50;
+      --lh-compact: 1.25;
+
+      --tracking-hero: -0.035em;
+      --tracking-tight: -0.02em;
+      --tracking-normal: 0em;
+      --tracking-badge: 0.04em;
+      --tracking-mono-seal: 0.08em;
+
+      /* Color Tokens */
+      --canvas: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --ink-primary: #0F172A;
+      --ink-secondary: #475569;
+      --ink-muted: #64748B;
+      --border-subtle: #E2E8F0;
+      --border-strong: #0F172A;
+      --accent-black: #090D16;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      background: var(--canvas);
+      color: var(--ink-primary);
+      line-height: var(--lh-body);
+      padding: 40px 24px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header.specimen-header {
+      border-bottom: 2px solid var(--border-strong);
+      padding-bottom: 24px;
+      margin-bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .badge-system {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: #0F172A;
+      color: #FFF;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: var(--tracking-mono-seal);
+      text-transform: uppercase;
+      border-radius: 4px;
+    }
+
+    .specimen-title {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: var(--tracking-tight);
+      margin-top: 12px;
+      color: var(--ink-primary);
+    }
+
+    .specimen-subtitle {
+      font-size: 15px;
+      color: var(--ink-secondary);
+      margin-top: 4px;
+    }
+
+    .section-block {
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 28px;
+      margin-bottom: 32px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      letter-spacing: var(--tracking-mono-seal);
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border-subtle);
+    }
+
+    /* Font Family Cards */
+    .families-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .families-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .font-card {
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 20px;
+      background: #FAFAFA;
+    }
+
+    .font-card-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .font-name {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--ink-primary);
+    }
+
+    .font-role {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 3px;
+      background: #E2E8F0;
+      color: #334155;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .font-alphabet {
+      font-size: 20px;
+      line-height: 1.4;
+      margin: 14px 0;
+      letter-spacing: -0.01em;
+      color: #1E293B;
+    }
+
+    .font-meta {
+      font-size: 12px;
+      color: var(--ink-secondary);
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 10px;
+    }
+
+    /* Modular Scale Table */
+    .scale-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .scale-table th {
+      text-align: left;
+      padding: 10px 14px;
+      background: #F1F5F9;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .scale-table td {
+      padding: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      vertical-align: middle;
+    }
+
+    .code-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 2px 6px;
+      background: #E2E8F0;
+      border-radius: 3px;
+      color: #0F172A;
+    }
+
+    /* Live Component Samples */
+    .live-sample-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .live-sample-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Stage 1 Winner Card Sample */
+    .stage1-sample {
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      background: #FFFFFF;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .stage1-body {
+      padding: 18px 20px;
+      display: flex;
+      gap: 16px;
+    }
+
+    .monogram-tile {
+      width: 56px;
+      height: 56px;
+      background: var(--accent-black);
+      color: #FFF;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-primary);
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+
+    .stage1-content {
+      flex: 1;
+    }
+
+    .stage1-topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .company-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: var(--tracking-tight);
+      color: var(--ink-primary);
+    }
+
+    .linkedin-chip {
+      font-family: var(--font-primary);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border: 1px solid #CBD5E1;
+      border-radius: 4px;
+      color: #0F172A;
+      background: #FFF;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .pills-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+      align-items: center;
+    }
+
+    .pill-sector {
+      font-size: 11px;
+      font-weight: 600;
+      background: #F1F5F9;
+      color: #0F172A;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .pill-funding {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      background: #EEF2F6;
+      color: #1E293B;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .pitch-text {
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      line-height: 1.48;
+      max-width: 65ch;
+    }
+
+    .stage1-footer {
+      background: #F8FAFC;
+      border-top: 1px solid #E2E8F0;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .founder-attr {
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    .founder-attr strong {
+      color: var(--ink-primary);
+      font-weight: 600;
+    }
+
+    .batch-mono-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      background: #E2E8F0;
+      color: #0F172A;
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-left: 4px;
+    }
+
+    .location-text {
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    /* Stage 2 Winner Enclosure Sample */
+    .stage2-sample {
+      border: 1.5px solid var(--border-strong);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #FFFFFF;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+
+    .stage2-seal-banner {
+      background: var(--accent-black);
+      color: #FFFFFF;
+      padding: 8px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .seal-left {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: var(--tracking-mono-seal);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .seal-right {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      opacity: 0.85;
+    }
+
+    .stage2-body-preview {
+      padding: 16px;
+    }
+
+    .drawer-title-group {
+      margin-bottom: 12px;
+    }
+
+    .drawer-company-name {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: var(--tracking-tight);
+      color: var(--ink-primary);
+    }
+
+    .drawer-meta-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    .founder-mini-card {
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      padding: 10px;
+      margin-top: 10px;
+      background: #FAFAFA;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .f-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .f-role {
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    .f-batch {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: #1E293B;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header class="specimen-header">
+      <div>
+        <div class="badge-system">Institutional Typographic System</div>
+        <h1 class="specimen-title">VNIT Startups Directory — Typography Specimen</h1>
+        <p class="specimen-subtitle">Rigorous 2-font system: Plus Jakarta Sans (Primary UI) + JetBrains Mono (Institutional Provenance & Tabular Numbers)</p>
+      </div>
+      <div>
+        <span class="code-tag">WCAG AAA / High Density / Zero Jitter</span>
+      </div>
+    </header>
+
+    <!-- SECTION 1: THE TWO FAMILIES -->
+    <div class="section-block">
+      <div class="section-title">01 / The Approved 2-Font Standard</div>
+      
+      <div class="families-grid">
+        <!-- FONT 1 -->
+        <div class="font-card">
+          <div class="font-card-header">
+            <div>
+              <div class="font-name" style="font-family: var(--font-primary);">Plus Jakarta Sans</div>
+              <div style="font-size: 12px; color: #64748B;">Rasmus Andersson / Tokotype</div>
+            </div>
+            <span class="font-role">Primary UI (90%)</span>
+          </div>
+          <div class="font-alphabet" style="font-family: var(--font-primary);">
+            Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz<br>
+            0123456789 &middot; !@#$%^&*()
+          </div>
+          <div class="font-meta">
+            Weights used: <strong>400</strong> (Pitch body), <strong>500</strong> (Context), <strong>600</strong> (Pills), <strong>700</strong> (Headings), <strong>800</strong> (Hero/Monogram)
+          </div>
+        </div>
+
+        <!-- FONT 2 -->
+        <div class="font-card">
+          <div class="font-card-header">
+            <div>
+              <div class="font-name" style="font-family: var(--font-mono);">JetBrains Mono</div>
+              <div style="font-size: 12px; color: #64748B;">Philipp Nurullin / JetBrains</div>
+            </div>
+            <span class="font-role">Provenance & Numbers (10%)</span>
+          </div>
+          <div class="font-alphabet" style="font-family: var(--font-mono);">
+            Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz<br>
+            0123456789 &middot; $4.2M &middot; '16
+          </div>
+          <div class="font-meta">
+            Weights used: <strong>500</strong> (Specs figures), <strong>600</strong> (Batch chips), <strong>700</strong> (Verified seal & Tabular counts)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: MODULAR SCALE -->
+    <div class="section-block">
+      <div class="section-title">02 / Mathematical Scale & Optical Tracking</div>
+      <table class="scale-table">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Typeface</th>
+            <th>Size & Weight</th>
+            <th>Tracking / Letter-spacing</th>
+            <th>Live Sample</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Display Hero</strong></td>
+            <td><span class="code-tag">Plus Jakarta Sans</span></td>
+            <td>42px · Bold 800</td>
+            <td><code>-0.035em</code></td>
+            <td><span style="font-size: 26px; font-weight: 800; letter-spacing: -0.035em;">VNIT Founders Index</span></td>
+          </tr>
+          <tr>
+            <td><strong>Card Title</strong></td>
+            <td><span class="code-tag">Plus Jakarta Sans</span></td>
+            <td>18px · Bold 800</td>
+            <td><code>-0.020em</code></td>
+            <td><span style="font-size: 18px; font-weight: 800; letter-spacing: -0.020em;">Atheer Robotics</span></td>
+          </tr>
+          <tr>
+            <td><strong>Reading Pitch</strong></td>
+            <td><span class="code-tag">Plus Jakarta Sans</span></td>
+            <td>13.5px · Regular 400</td>
+            <td><code>0.000em</code></td>
+            <td><span style="font-size: 13.5px; color: #475569;">Autonomous indoor logistics fleet powered by spatial SLAM.</span></td>
+          </tr>
+          <tr>
+            <td><strong>Verified Seal</strong></td>
+            <td><span class="code-tag">JetBrains Mono</span></td>
+            <td>10.5px · Bold 700</td>
+            <td><code>+0.080em</code></td>
+            <td><span style="font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">VERIFIED VNIT ALUMNI ROSTER</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tabular Figures</strong></td>
+            <td><span class="code-tag">JetBrains Mono</span></td>
+            <td>12px · SemiBold 600</td>
+            <td><code>tnum active</code></td>
+            <td><span style="font-family: var(--font-mono); font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums;">$4,200,000 &middot; 38 FTE &middot; Mech '16</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION 3: LIVE INTEGRATION OF STAGE 1 & STAGE 2 WINNERS -->
+    <div class="section-block">
+      <div class="section-title">03 / In-Situ Verification: Approved Stage 1 & Stage 2 Winners</div>
+      
+      <div class="live-sample-grid">
+        <!-- STAGE 1 CARD SAMPLE -->
+        <div>
+          <div style="font-size: 12px; font-weight: 700; color: #64748B; margin-bottom: 8px; text-transform: uppercase; font-family: var(--font-mono);">
+            Stage 1 Feed Card (Variation 7)
+          </div>
+          <div class="stage1-sample">
+            <div class="stage1-body">
+              <div class="monogram-tile">AR</div>
+              <div class="stage1-content">
+                <div class="stage1-topline">
+                  <h3 class="company-title">Atheer Robotics</h3>
+                  <a href="#" class="linkedin-chip" onclick="return false;">
+                    <span>LinkedIn</span> ↗
+                  </a>
+                </div>
+                <div class="pills-row">
+                  <span class="pill-sector">Industrial Robotics</span>
+                  <span class="pill-funding">Series A ($4.2M)</span>
+                </div>
+                <p class="pitch-text">
+                  Autonomous mobile robots (AMR) and fleet intelligence for high-throughput automotive manufacturing plants.
+                </p>
+              </div>
+            </div>
+            <div class="stage1-footer">
+              <div class="founder-attr">
+                Founded by <strong>Vikram Deshmukh</strong> <span class="batch-mono-pill">Mech '16</span> &amp; <strong>Rohit K.</strong> <span class="batch-mono-pill">CSE '17</span>
+              </div>
+              <div class="location-text">📍 Bengaluru, IN</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STAGE 2 DRAWER SAMPLE -->
+        <div>
+          <div style="font-size: 12px; font-weight: 700; color: #64748B; margin-bottom: 8px; text-transform: uppercase; font-family: var(--font-mono);">
+            Stage 2 Inspection Header (Option 02)
+          </div>
+          <div class="stage2-sample">
+            <div class="stage2-seal-banner">
+              <div class="seal-left">🏛️ VERIFIED VNIT ALUMNI ROSTER</div>
+              <div class="seal-right">COHORT 2016</div>
+            </div>
+            <div class="stage2-body-preview">
+              <div class="drawer-title-group">
+                <div class="drawer-company-name">Atheer Robotics Systems</div>
+                <div class="drawer-meta-sub">Series A &middot; 38 FTE &middot; Bengaluru, Karnataka</div>
+              </div>
+              
+              <div class="founder-mini-card">
+                <div>
+                  <div class="f-name">Vikram Deshmukh</div>
+                  <div class="f-role">Co-Founder &amp; Chief Executive Officer</div>
+                </div>
+                <div class="f-batch">Mech '16</div>
+              </div>
+
+              <div class="founder-mini-card">
+                <div>
+                  <div class="f-name">Rohit Kulkarni</div>
+                  <div class="f-role">Co-Founder &amp; Chief Technology Officer</div>
+                </div>
+                <div class="f-batch">CSE '17</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
