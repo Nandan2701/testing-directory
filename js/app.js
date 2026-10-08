@@ -1684,17 +1684,21 @@
       const bodyEl = document.getElementById('drawerBodyContent');
       const footerEl = document.getElementById('drawerFooterContent');
       if (!wasOpen) {
-        // Opening: the sheet floats in from the right and settles, then its blocks follow
-        drawerEnter(drawerSheet, { opacity: 0.6, transform: 'translateX(44px)' }, { duration: 460, easing: DRAWER_SPRING });
-        [...bodyEl.children, footerEl].forEach((el, i) => {
-          drawerEnter(el, { opacity: 0, transform: 'translateX(14px)' }, { duration: 380, delay: 60 + i * 40, easing: DRAWER_SPRING });
-        });
+        if (window.innerWidth > 960) {
+          // Opening: the sheet floats in from the right and settles, then its blocks follow
+          drawerEnter(drawerSheet, { opacity: 0.6, transform: 'translateX(44px)' }, { duration: 460, easing: DRAWER_SPRING });
+          [...bodyEl.children, footerEl].forEach((el, i) => {
+            drawerEnter(el, { opacity: 0, transform: 'translateX(14px)' }, { duration: 380, delay: 60 + i * 40, easing: DRAWER_SPRING });
+          });
+        }
       } else {
-        // Switching startup: a small spring nudge while the new details fade in (name + subheadline change instantly)
-        drawerEnter(drawerSheet, { transform: 'translateX(10px)' }, { duration: 340, easing: DRAWER_SPRING });
-        [bodyEl, footerEl].forEach(el => {
-          drawerEnter(el, { opacity: 0 }, { duration: 200 });
-        });
+        if (window.innerWidth > 960) {
+          // Switching startup: a small spring nudge while the new details fade in (name + subheadline change instantly)
+          drawerEnter(drawerSheet, { transform: 'translateX(10px)' }, { duration: 340, easing: DRAWER_SPRING });
+          [bodyEl, footerEl].forEach(el => {
+            drawerEnter(el, { opacity: 0 }, { duration: 200 });
+          });
+        }
       }
     }
 
@@ -1716,14 +1720,16 @@
     function closeDrawer() {
       if (isDrawerOpen()) {
         clearDrawerMotion();
-        drawerExit(drawerSheet, { opacity: 0, transform: 'translateX(70px)' }, { duration: 190 });
+        if (window.innerWidth > 960) {
+          drawerExit(drawerSheet, { opacity: 0, transform: 'translateX(70px)' }, { duration: 190 });
+        }
       }
       resetDrawerState();
     }
 
     /* Press hint: pressing a card with the mouse nudges the sheet edge into view; releasing opens it */
     document.getElementById('cardsContainer').addEventListener('pointerdown', (e) => {
-      if (e.button !== 0 || e.pointerType !== 'mouse') return;
+      if (window.innerWidth <= 960 || e.button !== 0 || e.pointerType !== 'mouse') return;
       const card = e.target.closest('.venture-card');
       if (!card || e.target.closest('.btn-company-outbound') || e.target.closest('.card-logo-tile')) return;
       const id = card.getAttribute('data-id');
@@ -1760,9 +1766,9 @@
     window.addEventListener('pointerup', releaseCardPress);
     window.addEventListener('pointercancel', releaseCardPress);
 
-    /* Drag to dismiss: grab the sheet by its header and throw it to the right */
+    /* Desktop drag to dismiss: grab the sheet by its header and throw it to the right */
     document.getElementById('drawerHeader').addEventListener('pointerdown', (e) => {
-      if (e.button !== 0 || !isDrawerOpen() || e.target.closest('.stage2-close-btn')) return;
+      if (window.innerWidth <= 960 || e.button !== 0 || !isDrawerOpen() || e.target.closest('.stage2-close-btn')) return;
       drawerDrag = { x0: e.clientX, lastX: e.clientX, lastT: performance.now(), v: 0, dx: 0 };
       drawerSheet.getAnimations().forEach(a => a.cancel());
       drawerSheet.classList.add('dragging');
@@ -1802,6 +1808,39 @@
     }
     window.addEventListener('pointerup', endDrawerDrag);
     window.addEventListener('pointercancel', endDrawerDrag);
+
+    /* Mobile Bottom Sheet touch swipe-to-dismiss */
+    let mobileTouchStartY = 0;
+    let mobileTouchDeltaY = 0;
+    const gripEl = document.querySelector('.stage2-grip');
+    const drawerHeaderEl = document.getElementById('drawerHeader');
+
+    [gripEl, drawerHeaderEl].forEach(el => {
+      if (!el) return;
+      el.addEventListener('touchstart', (e) => {
+        if (window.innerWidth > 960) return;
+        mobileTouchStartY = e.touches[0].clientY;
+        mobileTouchDeltaY = 0;
+      }, { passive: true });
+
+      el.addEventListener('touchmove', (e) => {
+        if (window.innerWidth > 960 || !isDrawerOpen()) return;
+        const currentY = e.touches[0].clientY;
+        mobileTouchDeltaY = currentY - mobileTouchStartY;
+        if (mobileTouchDeltaY > 0) {
+          drawerSheet.style.transform = `translateY(${mobileTouchDeltaY}px)`;
+        }
+      }, { passive: true });
+
+      el.addEventListener('touchend', () => {
+        if (window.innerWidth > 960 || !isDrawerOpen()) return;
+        drawerSheet.style.transform = '';
+        if (mobileTouchDeltaY > 70) {
+          closeDrawer();
+        }
+        mobileTouchDeltaY = 0;
+      }, { passive: true });
+    });
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {

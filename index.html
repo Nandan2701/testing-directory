@@ -235,10 +235,10 @@
       </div>
     </section>
 
-    <!-- 3. RIGHT STAGE 2 IN-PLACE INSPECTION PANE (No Backdrop, No Blur, Adaptive Width) -->
-    <aside class="inspection-column" id="inspectionDrawer" aria-label="Startup Details Inspection Panel">
-      <div class="inspection-column-inner" id="drawerSheet">
-        <div class="stage2-grip" aria-hidden="true"></div>
+    <!-- 3. RIGHT STAGE 2 IN-PLACE INSPECTION PANE (Desktop Side-Column / Mobile Native Bottom Sheet) -->
+    <aside class="inspection-column" id="inspectionDrawer" aria-label="Startup Details Inspection Panel" onclick="if (event.target === this) closeDrawer();">
+      <div class="inspection-column-inner" id="drawerSheet" onclick="event.stopPropagation();">
+        <div class="stage2-grip" aria-hidden="true" onclick="if (window.innerWidth <= 960) closeDrawer();"></div>
         <!-- Header -->
         <div class="stage2-header" id="drawerHeader">
           <div id="drawerTitleBlock" style="display: flex; align-items: center; gap: 14px;">
