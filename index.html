@@ -275,8 +275,11 @@
         <!-- Left: Editorial Context & Narrative -->
         <div class="dispatch-left">
           <div class="dispatch-kicker">
-            <span class="pulse-beacon" id="dispatchKickerDot"></span>
-            <span id="dispatchKickerText">VNIT Founder Registry · Monthly Briefing</span>
+            <div style="display: inline-flex; align-items: center; gap: 8px;">
+              <span class="pulse-beacon" id="dispatchKickerDot"></span>
+              <span id="dispatchKickerText">VNIT Founder Registry · Monthly Briefing</span>
+            </div>
+            <span class="dispatch-subscriber-badge">420+ ALUMNI</span>
           </div>
           <h2 class="dispatch-title">Stay in the loop with VNIT's startup ecosystem.</h2>
           <p class="dispatch-sub" id="dispatchSubText">
@@ -297,7 +300,8 @@
             <input type="email" id="newsletterEmail" class="dispatch-input" required
               placeholder="Enter your email address..." autocomplete="email">
             <button type="submit" class="dispatch-action-btn" id="newsletterSubmitBtn">
-              <span>Get Monthly Updates</span>
+              <span class="desktop-btn-label">Get Monthly Updates</span>
+              <span class="mobile-btn-label">Notify Me</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
             </button>
           </form>
