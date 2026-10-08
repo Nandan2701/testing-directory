@@ -2889,4 +2889,9 @@
         overflow: hidden !important;
         overscroll-behavior: none !important;
       }
+      
+      /* 10. Navbar Variation 07 (The Monogram Focus) */
+      .brand-group > div:not(.hallmark-tile) {
+        display: none !important;
+      }
     }
