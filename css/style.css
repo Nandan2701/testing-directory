@@ -2894,4 +2894,7 @@
       .brand-group > div:not(.hallmark-tile) {
         display: none !important;
       }
+      .hide-mobile {
+        display: none !important;
+      }
     }
