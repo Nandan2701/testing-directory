@@ -2591,8 +2591,6 @@
     ];
 
     let mfActiveTabId = "branch";
-    let isProgrammaticMfScroll = false;
-    let mfScrollSpyBound = false;
 
     window.openMobileFilterModal = function() {
       const overlay = document.getElementById("mfOverlay");
@@ -2604,7 +2602,6 @@
       document.body.classList.add("mobile-filter-open");
 
       renderMobileFilterUI();
-      initMobileFilterScrollSpy();
     };
 
     window.closeMobileFilterModal = function() {
@@ -2619,65 +2616,8 @@
 
     window.switchMobileTab = function(groupId) {
       mfActiveTabId = groupId;
-      updateLeftTabsActiveState();
-
-      const container = document.getElementById("mfOptionsList");
-      const targetSec = document.getElementById(`mf-group-${groupId}`);
-      if (container && targetSec) {
-        isProgrammaticMfScroll = true;
-        const targetTop = targetSec.offsetTop - container.offsetTop;
-        container.scrollTo({ top: targetTop, behavior: 'smooth' });
-        setTimeout(() => { isProgrammaticMfScroll = false; }, 400);
-      }
+      renderMobileFilterUI();
     };
-
-    function updateLeftTabsActiveState() {
-      document.querySelectorAll(".mf-tab-item").forEach(tab => {
-        const tId = tab.getAttribute("data-tab-id");
-        if (tId === mfActiveTabId) {
-          tab.classList.add("active");
-        } else {
-          tab.classList.remove("active");
-        }
-      });
-    }
-
-    function initMobileFilterScrollSpy() {
-      const container = document.getElementById("mfOptionsList");
-      const overlay = document.getElementById("mfOverlay");
-
-      if (overlay && !overlay._touchBound) {
-        overlay._touchBound = true;
-        overlay.addEventListener("touchmove", (e) => {
-          e.preventDefault();
-        }, { passive: false });
-      }
-
-      if (!container || mfScrollSpyBound) return;
-      mfScrollSpyBound = true;
-
-      container.addEventListener("scroll", () => {
-        if (isProgrammaticMfScroll) return;
-        const scrollTop = container.scrollTop;
-        const containerTop = container.offsetTop;
-        let detectedGroup = mobileFilterData[0].id;
-
-        mobileFilterData.forEach(group => {
-          const sec = document.getElementById(`mf-group-${group.id}`);
-          if (sec) {
-            const relTop = sec.offsetTop - containerTop - 30;
-            if (scrollTop >= relTop) {
-              detectedGroup = group.id;
-            }
-          }
-        });
-
-        if (detectedGroup !== mfActiveTabId) {
-          mfActiveTabId = detectedGroup;
-          updateLeftTabsActiveState();
-        }
-      }, { passive: true });
-    }
 
     window.toggleMobileOption = function(tabId, optVal) {
       currentFilter[tabId] = optVal;
@@ -2693,11 +2633,7 @@
         if (activeItem) activeItem.classList.add('active');
       }
 
-      // Preserve scroll position inside right options container
-      const container = document.getElementById("mfOptionsList");
-      const savedScroll = container ? container.scrollTop : 0;
       renderMobileFilterUI();
-      if (container) container.scrollTop = savedScroll;
     };
 
     window.clearMobileFilters = function() {
@@ -2723,45 +2659,35 @@
     };
 
     function renderMobileFilterUI() {
-      // 1. Render Left Tabs (Partition 1 with square brackets)
+      // 1. Render Left Tabs (Clean, NO square brackets)
       const tabsEl = document.getElementById("mfTabsList");
       if (tabsEl) {
         tabsEl.innerHTML = mobileFilterData.map(group => {
           const isFilterActive = currentFilter[group.id] && currentFilter[group.id] !== 'ALL';
           const isCurrentTab = group.id === mfActiveTabId;
-          const bracketBadge = isFilterActive
-            ? `<span class="mf-tab-count has-active">[ 1 ]</span>`
-            : `<span class="mf-tab-count">[ ALL ]</span>`;
+          const countBadge = isFilterActive ? `<span class="mf-tab-count">1</span>` : '';
 
           return `
-            <div class="mf-tab-item ${isCurrentTab ? 'active' : ''}" data-tab-id="${group.id}" onclick="switchMobileTab('${group.id}')">
-              <span class="mf-tab-label">${group.name}</span>
-              ${bracketBadge}
+            <div class="mf-tab-item ${isCurrentTab ? 'active' : ''}" onclick="switchMobileTab('${group.id}')">
+              <span>${group.name}</span>
+              ${countBadge}
             </div>
           `;
         }).join('');
       }
 
-      // 2. Render Right Continuous Checkbox Options (Partition 2)
+      // 2. Render Right Options: ONLY for the currently active tab!
       const optionsEl = document.getElementById("mfOptionsList");
-      if (optionsEl) {
-        optionsEl.innerHTML = mobileFilterData.map(group => {
-          const selectedVal = currentFilter[group.id] || 'ALL';
+      const currentGroup = mobileFilterData.find(g => g.id === mfActiveTabId) || mobileFilterData[0];
+      if (optionsEl && currentGroup) {
+        const selectedVal = currentFilter[currentGroup.id] || 'ALL';
 
-          const optionsMarkup = group.options.map(opt => {
-            const isSelected = selectedVal === opt.val;
-            return `
-              <div class="mf-option-item ${isSelected ? 'selected' : ''}" onclick="toggleMobileOption('${group.id}', '${opt.val}')">
-                <span>${opt.label}</span>
-                <div class="mf-checkbox-square"></div>
-              </div>
-            `;
-          }).join('');
-
+        optionsEl.innerHTML = currentGroup.options.map(opt => {
+          const isSelected = selectedVal === opt.val;
           return `
-            <div class="mf-category-group" id="mf-group-${group.id}">
-              <div class="mf-category-group-header">${group.name}</div>
-              ${optionsMarkup}
+            <div class="mf-option-item ${isSelected ? 'selected' : ''}" onclick="toggleMobileOption('${currentGroup.id}', '${opt.val}')">
+              <span>${opt.label}</span>
+              <div class="mf-checkbox-square"></div>
             </div>
           `;
         }).join('');

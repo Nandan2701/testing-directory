@@ -3425,7 +3425,7 @@
     background: #FFFFFF !important;
   }
 
-  /* Left Side: Gray Background Tabs with Square Brackets */
+  /* Left Side: Gray Background Tabs (Clean without brackets) */
   .mf-tabs-left {
     width: 38% !important;
     background: #F8FAFC !important;
@@ -3449,7 +3449,8 @@
     user-select: none !important;
     -webkit-tap-highlight-color: transparent !important;
     display: flex !important;
-    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-between !important;
     gap: 4px !important;
   }
   .mf-tab-item.active {
@@ -3466,26 +3467,21 @@
     width: 4px !important;
     background: #2563EB !important;
   }
-  .mf-tab-label {
-    line-height: 1.25 !important;
-  }
   .mf-tab-count {
-    font-family: var(--font-mono, monospace) !important;
-    font-size: 11px !important;
-    font-weight: 700 !important;
+    background: #E2E8F0 !important;
     color: #475569 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 1px !important;
+    font-size: 11px !important;
+    padding: 2px 6px !important;
+    border-radius: 6px !important;
+    margin-left: 4px !important;
+    font-weight: 700 !important;
   }
   .mf-tab-item.active .mf-tab-count {
-    color: #2563EB !important;
-  }
-  .mf-tab-count.has-active {
+    background: #EFF6FF !important;
     color: #2563EB !important;
   }
 
-  /* Right Side: Continuous Scrolling Options with Checkboxes */
+  /* Right Side: Options Specific to the Active Filter Tab */
   .mf-options-right {
     width: 62% !important;
     padding: 0 !important;
@@ -3497,34 +3493,9 @@
     background: #FFFFFF !important;
   }
 
-  .mf-category-group {
-    display: flex !important;
-    flex-direction: column !important;
-    border-bottom: 2px solid #F1F5F9 !important;
-  }
-  .mf-category-group:last-child {
-    border-bottom: none !important;
-    padding-bottom: 28px !important;
-  }
-
-  .mf-category-group-header {
-    padding: 12px 18px 8px 18px !important;
-    font-size: 11px !important;
-    font-weight: 800 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
-    color: #64748B !important;
-    background: #F8FAFC !important;
-    border-bottom: 1px solid #E2E8F0 !important;
-    font-family: var(--font-mono, monospace) !important;
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 2 !important;
-  }
-
   .mf-option-item {
-    padding: 15px 18px !important;
-    border-bottom: 1px solid #F1F5F9 !important;
+    padding: 16px 18px !important;
+    border-bottom: 1px solid #E2E8F0 !important;
     font-size: 13.5px !important;
     display: flex !important;
     justify-content: space-between !important;
@@ -3542,14 +3513,14 @@
   .mf-option-item.selected {
     font-weight: 700 !important;
     color: #2563EB !important;
-    background: #F0F7FF !important;
+    background: #FAFAFA !important;
   }
 
   .mf-checkbox-square {
-    width: 20px !important;
-    height: 20px !important;
+    width: 22px !important;
+    height: 22px !important;
     border: 2px solid #CBD5E1 !important;
-    border-radius: 5px !important;
+    border-radius: 6px !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
@@ -3564,8 +3535,8 @@
   .mf-option-item.selected .mf-checkbox-square::after {
     content: '✓' !important;
     color: #FFFFFF !important;
-    font-size: 13px !important;
-    font-weight: 800 !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
     line-height: 1 !important;
   }
 
