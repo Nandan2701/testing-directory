@@ -2451,3 +2451,139 @@
     window.addEventListener('resize', syncBaselineHeight);
     setTimeout(syncBaselineHeight, 150);
 
+
+    /* =========================================================
+       MOBILE FILTER MODAL CONTROLLER
+       ========================================================= */
+    const mobileFilterData = [
+      { id: "branch", name: "Branch / Dept", options: [
+        { label: "All Departments", val: "ALL" },
+        { label: "Mechanical", val: "Mechanical" },
+        { label: "Computer Science", val: "Computer Science" },
+        { label: "Electronics & Comm.", val: "Electronics" },
+        { label: "Electrical & Electronics", val: "Electrical" },
+        { label: "Chemical", val: "Chemical" },
+        { label: "Metallurgy", val: "Metallurgy" },
+        { label: "Civil", val: "Civil" },
+        { label: "Architecture", val: "Architecture" },
+        { label: "Mining", val: "Mining" }
+      ]},
+      { id: "stage", name: "Funding Status", options: [
+        { label: "All", val: "ALL" },
+        { label: "Funded (VC / Angel)", val: "Series" },
+        { label: "Bootstrapped / Profitable", val: "Bootstrapped" }
+      ]},
+      { id: "team", name: "Team Size", options: [
+        { label: "All Sizes", val: "ALL" },
+        { label: "Early Stage (1–10)", val: "1-10" },
+        { label: "Growth (11–50)", val: "11-50" },
+        { label: "Scaleup (50+)", val: "50+" }
+      ]},
+      { id: "location", name: "Headquarters", options: [
+        { label: "All Locations", val: "ALL" },
+        { label: "Bengaluru, IN", val: "Bengaluru" },
+        { label: "SF Bay Area, US", val: "San Francisco" },
+        { label: "Pune & Mumbai", val: "Pune" }
+      ]}
+    ];
+
+    let mfActiveTabId = "branch";
+
+    // Expose functions globally since they are called from inline HTML
+    window.openMobileFilterModal = function() {
+      document.getElementById("mfOverlay").classList.add("active");
+      document.getElementById("mfModal").classList.add("active");
+      document.body.style.overflow = "hidden";
+      renderMobileFilterUI();
+    };
+    
+    window.closeMobileFilterModal = function() {
+      document.getElementById("mfOverlay").classList.remove("active");
+      document.getElementById("mfModal").classList.remove("active");
+      document.body.style.overflow = "";
+    };
+
+    window.switchMobileTab = function(id) {
+      mfActiveTabId = id;
+      renderMobileFilterUI();
+    };
+
+    window.toggleMobileOption = function(tabId, optVal) {
+      // In this app, filters are single-select per category (like the desktop facet-rail)
+      // We directly update the currentFilter state
+      currentFilter[tabId] = optVal;
+      
+      // Also sync desktop active state
+      const desktopList = Array.from(document.querySelectorAll('.facet-list')).find(list => {
+        const item = list.querySelector(`[onclick="toggleFacet('${tabId}', '${optVal}')"]`);
+        return item != null;
+      });
+      if (desktopList) {
+        desktopList.querySelectorAll('.facet-item').forEach(el => el.classList.remove('active'));
+        const activeItem = desktopList.querySelector(`[onclick="toggleFacet('${tabId}', '${optVal}')"]`);
+        if (activeItem) activeItem.classList.add('active');
+      }
+
+      renderMobileFilterUI();
+    };
+    
+    window.clearMobileFilters = function() {
+      currentFilter.branch = 'ALL';
+      currentFilter.stage = 'ALL';
+      currentFilter.team = 'ALL';
+      currentFilter.location = 'ALL';
+      renderMobileFilterUI();
+    };
+
+    window.applyMobileFilters = function() {
+      // Because we directly updated currentFilter, we just need to re-render the list
+      applyFiltersAndRender();
+      closeMobileFilterModal();
+    };
+
+    function renderMobileFilterUI() {
+      // Render Left Tabs
+      const tabsEl = document.getElementById("mfTabsList");
+      if (!tabsEl) return;
+      tabsEl.innerHTML = mobileFilterData.map(group => {
+        // Count active filter for this group (only if not 'ALL')
+        const isActive = currentFilter[group.id] !== 'ALL';
+        const countBadge = isActive ? `<span class="mf-tab-count">1</span>` : '';
+        return `
+          <div class="mf-tab-item ${group.id === mfActiveTabId ? 'active' : ''}" onclick="switchMobileTab('${group.id}')">
+            ${group.name} ${countBadge}
+          </div>
+        `;
+      }).join('');
+      
+      // Render Right Options
+      const optionsEl = document.getElementById("mfOptionsList");
+      const currentGroup = mobileFilterData.find(g => g.id === mfActiveTabId);
+      
+      optionsEl.innerHTML = currentGroup.options.map(opt => {
+        const isSelected = currentFilter[mfActiveTabId] === opt.val;
+        return `
+          <div class="mf-option-item ${isSelected ? 'selected' : ''}" onclick="toggleMobileOption('${currentGroup.id}', '${opt.val}')">
+            ${opt.label}
+            <div class="mf-checkbox-square"></div>
+          </div>
+        `;
+      }).join('');
+      
+      // Update Main Filter Button count
+      let totalSelected = 0;
+      if (currentFilter.branch !== 'ALL') totalSelected++;
+      if (currentFilter.stage !== 'ALL') totalSelected++;
+      if (currentFilter.team !== 'ALL') totalSelected++;
+      if (currentFilter.location !== 'ALL') totalSelected++;
+      
+      const countEl = document.getElementById("mobileActiveCount");
+      if (countEl) {
+        if (totalSelected > 0) {
+          countEl.innerText = totalSelected;
+          countEl.style.display = "inline-block";
+        } else {
+          countEl.style.display = "none";
+        }
+      }
+    }
