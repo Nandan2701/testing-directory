@@ -24,7 +24,10 @@
     "is_verified": true,
     "is_published": true,
     "display_order": 1,
-    "about": "Truemeds is a telehealth and e-pharmacy platform that uses proprietary medicine-matching algorithms to help chronic patients substitute expensive branded drugs with certified generic alternatives, saving households up to 72% on monthly healthcare bills."
+    "about": "Truemeds is a telehealth and e-pharmacy platform that uses proprietary medicine-matching algorithms to help chronic patients substitute expensive branded drugs with certified generic alternatives, saving households up to 72% on monthly healthcare bills.",
+    "slug": "truemeds-india",
+    "monogram": "TR",
+    "logo_url": "./assets/logos/truemeds-india.png"
   },
   {
     "id": "0dc44a5d-d1f9-41c3-953f-44017e4ccc25",
@@ -45,13 +48,16 @@
         "name": "Vikram Gupta",
         "role": "Founder",
         "degree": "B.Tech Elec '07",
-        "linkedin": "linkedin.com/in/vkrmgpta"
+        "linkedin": "https://linkedin.com/in/vkrmgpta"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 2,
-    "about": "Awiros is a computer vision operating system and app marketplace that allows enterprises and public infrastructure operators to run video intelligence apps on standard CCTV cameras for automated perimeter security, HSE compliance, and operational monitoring."
+    "about": "Awiros is a computer vision operating system and app marketplace that allows enterprises and public infrastructure operators to run video intelligence apps on standard CCTV cameras for automated perimeter security, HSE compliance, and operational monitoring.",
+    "slug": "awiros",
+    "monogram": "AW",
+    "logo_url": "./assets/logos/awiros.png"
   },
   {
     "id": "18707af1-cf1d-4b6c-94d3-b4f3cf32ab4a",
@@ -72,19 +78,22 @@
         "name": "Lakshya Shukla",
         "role": "Co-Founder",
         "degree": "B.Tech Chem '21",
-        "linkedin": "linkedin.com/in/lakshya-shukla"
+        "linkedin": "https://linkedin.com/in/lakshya-shukla"
       },
       {
         "name": "Nishant Singh Didawat",
         "role": "Co founder",
         "degree": "B.Tech Civil '13",
-        "linkedin": "linkedin.com/in/nishantsinghdidawat"
+        "linkedin": "https://linkedin.com/in/nishantsinghdidawat"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 3,
-    "about": "Human Capitalists is an AI-powered talent infrastructure firm that combines autonomous sourcing agents with expert recruiters to screen, interview, and place top-tier engineering talent into high-growth technology companies within 72 hours."
+    "about": "Human Capitalists is an AI-powered talent infrastructure firm that combines autonomous sourcing agents with expert recruiters to screen, interview, and place top-tier engineering talent into high-growth technology companies within 72 hours.",
+    "slug": "human-capitalists",
+    "monogram": "HU",
+    "logo_url": "./assets/logos/human-capitalists.png"
   },
   {
     "id": "1abc2e4a-2b93-4641-8181-c46e66b0e41e",
@@ -105,13 +114,16 @@
         "name": "Sarang Aloni",
         "role": "Founder",
         "degree": "B.Tech",
-        "linkedin": "linkedin.com/in/sarang-aloni"
+        "linkedin": "https://linkedin.com/in/sarang-aloni"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 4,
-    "about": "Circullence Solutions is an enterprise data and cloud engineering consultancy that builds scalable data warehouses, automated ETL pipelines, and predictive analytics infrastructure to turn fragmented business data into actionable decision systems."
+    "about": "Circullence Solutions is an enterprise data and cloud engineering consultancy that builds scalable data warehouses, automated ETL pipelines, and predictive analytics infrastructure to turn fragmented business data into actionable decision systems.",
+    "slug": "circullence-solutions",
+    "monogram": "CI",
+    "logo_url": "./assets/logos/circullence-solutions.png"
   },
   {
     "id": "1bc36d57-959d-4249-8c9e-bd468246a198",
@@ -132,13 +144,16 @@
         "name": "Ruchir",
         "role": "Co-Founder and CEO",
         "degree": "B.Tech Mech '01",
-        "linkedin": "linkedin.com/in/aroraruchir"
+        "linkedin": "https://linkedin.com/in/aroraruchir"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 5,
-    "about": "CollegeDekho is India's leading higher education discovery and student counseling marketplace, guiding millions of applicants through course selection, competitive exam prep, and college admissions across thousands of institutional partners."
+    "about": "CollegeDekho is India's leading higher education discovery and student counseling marketplace, guiding millions of applicants through course selection, competitive exam prep, and college admissions across thousands of institutional partners.",
+    "slug": "collegedekho",
+    "monogram": "CO",
+    "logo_url": "./assets/logos/collegedekho.png"
   },
   {
     "id": "1d25485c-7ac9-4a63-a618-0bdeb63ab2c9",
@@ -159,25 +174,28 @@
         "name": "Mayank Gupta",
         "role": "Co-Founder",
         "degree": "B.Tech Mining Eningeering '18",
-        "linkedin": "linkedin.com/in/i-mayank-gupta"
+        "linkedin": "https://linkedin.com/in/i-mayank-gupta"
       },
       {
         "name": "Tushar Jagadale",
         "role": "Co-founder & Head of AI and Data Science",
         "degree": "B.Tech ECE '16",
-        "linkedin": "linkedin.com/in/tushar-jagadale"
+        "linkedin": "https://linkedin.com/in/tushar-jagadale"
       },
       {
         "name": "Madhusudhan Naik",
         "role": "Founder - CEO",
         "degree": "B.Tech ECE '17",
-        "linkedin": "linkedin.com/in/madhusudhan-naik"
+        "linkedin": "https://linkedin.com/in/madhusudhan-naik"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 6,
-    "about": "Living Things is a smart energy IoT platform that deploys edge sensors and automated control algorithms across commercial air-conditioning and HVAC infrastructure, reducing corporate facility energy consumption and power bills by up to 35%."
+    "about": "Living Things is a smart energy IoT platform that deploys edge sensors and automated control algorithms across commercial air-conditioning and HVAC infrastructure, reducing corporate facility energy consumption and power bills by up to 35%.",
+    "slug": "living-things",
+    "monogram": "LI",
+    "logo_url": "./assets/logos/living-things.png"
   },
   {
     "id": "1de1faab-2e06-43aa-a0a1-9732104032c3",
@@ -198,13 +216,16 @@
         "name": "Pranav Chinsabwar",
         "role": "Founder",
         "degree": "B.Tech Comp '16",
-        "linkedin": "linkedin.com/in/pranav-chinsabwar"
+        "linkedin": "https://linkedin.com/in/pranav-chinsabwar"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 7,
-    "about": "Collegise is a campus distribution and youth activation network that enables consumer brands and startups to launch student ambassador programs, drive word-of-mouth adoption, and acquire collegiate users across university campuses in India."
+    "about": "Collegise is a campus distribution and youth activation network that enables consumer brands and startups to launch student ambassador programs, drive word-of-mouth adoption, and acquire collegiate users across university campuses in India.",
+    "slug": "collegise",
+    "monogram": "CO",
+    "logo_url": "./assets/logos/collegise.png"
   },
   {
     "id": "1e420442-1cc4-40f7-8bda-a0fe451fa4be",
@@ -225,13 +246,16 @@
         "name": "Vishal Goswami",
         "role": "Co-Founder",
         "degree": "B.Tech EEE",
-        "linkedin": "linkedin.com/in/vishal-goswami-33349b73"
+        "linkedin": "https://linkedin.com/in/vishal-goswami-33349b73"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 8,
-    "about": "ettaflow is a high-speed data streaming and database replication engine built on Apache Arrow that captures production database changes and streams them into cloud warehouses with sub-second latency and zero query degradation."
+    "about": "ettaflow is a high-speed data streaming and database replication engine built on Apache Arrow that captures production database changes and streams them into cloud warehouses with sub-second latency and zero query degradation.",
+    "slug": "ettaflow",
+    "monogram": "ET",
+    "logo_url": "./assets/logos/ettaflow.png"
   },
   {
     "id": "253a56da-0cbd-4967-9258-19ec2e45bcad",
@@ -252,13 +276,16 @@
         "name": "Shantanu Deshpande",
         "role": "Co-Founder",
         "degree": "B.Tech CSE '09",
-        "linkedin": "linkedin.com/in/shantanudeshpandebsc"
+        "linkedin": "https://linkedin.com/in/shantanudeshpandebsc"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 9,
-    "about": "Bombay Shaving Company is an omnichannel personal care and grooming brand that designs precision razors, trimmers, and skin-friendly personal care essentials trusted by millions of consumers across thousands of retail stores and online channels."
+    "about": "Bombay Shaving Company is an omnichannel personal care and grooming brand that designs precision razors, trimmers, and skin-friendly personal care essentials trusted by millions of consumers across thousands of retail stores and online channels.",
+    "slug": "bombay-shaving-company",
+    "monogram": "BO",
+    "logo_url": "./assets/logos/bombay-shaving-company.png"
   },
   {
     "id": "08ba9fc5-212e-401d-bc5d-09f8348d3aa6",
@@ -266,7 +293,7 @@
     "sector": null,
     "pitch": "First-party behavioral telemetry platform that captures granular product usage data inside cloud data warehouses to power predictive customer journey and retention models.",
     "website_url": "https://www.delphianalytics.ai/",
-    "linkedin_url": "linkedin.com/company/sdsm-analytics",
+    "linkedin_url": "https://linkedin.com/company/sdsm-analytics",
     "department": null,
     "batch_year": null,
     "location": "Nagpur, Maharashtra, India",
@@ -279,13 +306,16 @@
         "name": "Shreyas Mokadam",
         "role": "Founder",
         "degree": "B.Tech Mining Engineering '16",
-        "linkedin": "linkedin.com/in/shreyas-mokadam-a451b8120"
+        "linkedin": "https://linkedin.com/in/shreyas-mokadam-a451b8120"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 10,
-    "about": "Delphi Analytics is a customer data and behavioral telemetry platform that tracks granular product usage events directly inside enterprise cloud warehouses to build predictive user journey, retention, and conversion models without third-party tracking cookies."
+    "about": "Delphi Analytics is a customer data and behavioral telemetry platform that tracks granular product usage events directly inside enterprise cloud warehouses to build predictive user journey, retention, and conversion models without third-party tracking cookies.",
+    "slug": "delphi-analytics",
+    "monogram": "DE",
+    "logo_url": "./assets/logos/delphi-analytics.png"
   },
   {
     "id": "39a9c53a-c55b-4e3c-96de-59e2f966bd9d",
@@ -306,19 +336,22 @@
         "name": "Suyog Joshi",
         "role": "Co-Founder & CPO",
         "degree": "B.Tech ECE '97",
-        "linkedin": "linkedin.com/in/suyog-joshi-25541016"
+        "linkedin": "https://linkedin.com/in/suyog-joshi-25541016"
       },
       {
         "name": "Harsimrat Bhasin",
         "role": "Co-Founder & CEO",
         "degree": "B.Tech Architecture '93",
-        "linkedin": "linkedin.com/in/harsimrat-bhasin"
+        "linkedin": "https://linkedin.com/in/harsimrat-bhasin"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 11,
-    "about": "Neewee is an industrial AI software provider whose flagship platform, Bodhee, ingests real-time shop-floor operational data to generate constraint-aware production schedules, optimize machine uptime, and reduce manufacturing bottlenecks."
+    "about": "Neewee is an industrial AI software provider whose flagship platform, Bodhee, ingests real-time shop-floor operational data to generate constraint-aware production schedules, optimize machine uptime, and reduce manufacturing bottlenecks.",
+    "slug": "neewee",
+    "monogram": "NE",
+    "logo_url": "./assets/logos/neewee.png"
   },
   {
     "id": "3e02e369-09cf-48e0-b908-eb1ec5a6a898",
@@ -339,13 +372,16 @@
         "name": "Pankaj Kulshreshtha",
         "role": "Founder & CEO",
         "degree": "B.Tech  '91",
-        "linkedin": "linkedin.com/in/pankaj-kulshreshtha-1452441"
+        "linkedin": "https://linkedin.com/in/pankaj-kulshreshtha-1452441"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 12,
-    "about": "Scienaptic AI is an explainable credit decisioning and underwriting engine used by financial institutions and fintech lenders to evaluate borrower risk accurately, increase loan approvals, and reduce credit defaults through transparent machine learning models."
+    "about": "Scienaptic AI is an explainable credit decisioning and underwriting engine used by financial institutions and fintech lenders to evaluate borrower risk accurately, increase loan approvals, and reduce credit defaults through transparent machine learning models.",
+    "slug": "scienaptic-ai",
+    "monogram": "SC",
+    "logo_url": "./assets/logos/scienaptic-ai.png"
   },
   {
     "id": "43346072-4883-4bc9-b602-bc70581311de",
@@ -366,13 +402,16 @@
         "name": "Vinay Gunasekaran",
         "role": "Founder",
         "degree": "B.Tech ECE '08",
-        "linkedin": "linkedin.com/in/vinaygunasekaran"
+        "linkedin": "https://linkedin.com/in/vinaygunasekaran"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 13,
-    "about": "Autoven is an electric mobility technology firm engineering custom high-voltage powertrains, battery management systems, and smart fleet telematics that power light electric vehicles and commercial urban logistics fleets."
+    "about": "Autoven is an electric mobility technology firm engineering custom high-voltage powertrains, battery management systems, and smart fleet telematics that power light electric vehicles and commercial urban logistics fleets.",
+    "slug": "autoven",
+    "monogram": "AU",
+    "logo_url": "./assets/logos/autoven.png"
   },
   {
     "id": "546625f7-6b89-4203-a46d-8858545c722a",
@@ -393,13 +432,16 @@
         "name": "Ketan Kaore",
         "role": "Founder",
         "degree": "B.Tech ECE '01",
-        "linkedin": "linkedin.com/in/ketan-kaore"
+        "linkedin": "https://linkedin.com/in/ketan-kaore"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 14,
-    "about": "Well Played Sports is a sports training and athletic development platform that combines biomechanical analytics, video coaching tools, and academy training programs to help cricketers systematically measure and elevate their on-field performance."
+    "about": "Well Played Sports is a sports training and athletic development platform that combines biomechanical analytics, video coaching tools, and academy training programs to help cricketers systematically measure and elevate their on-field performance.",
+    "slug": "well-played-sports",
+    "monogram": "WE",
+    "logo_url": "./assets/logos/well-played-sports.png"
   },
   {
     "id": "56c39aa6-f7fd-427b-975a-08d516bb6dcc",
@@ -420,19 +462,22 @@
         "name": "Sonal Gole",
         "role": "Founder",
         "degree": "B.Tech CSE '05",
-        "linkedin": "linkedin.com/in/sonal-gole-58490b192"
+        "linkedin": "https://linkedin.com/in/sonal-gole-58490b192"
       },
       {
         "name": "Sameer Ughade",
         "role": "Founder",
         "degree": "B.Tech EEE",
-        "linkedin": "linkedin.com/in/sameerughade"
+        "linkedin": "https://linkedin.com/in/sameerughade"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 15,
-    "about": "BizTranSights is an enterprise digital transformation consultancy that designs and deploys custom cloud architectures, ERP integrations, and enterprise web solutions to modernize core business operations for mid-market and corporate clients."
+    "about": "BizTranSights is an enterprise digital transformation consultancy that designs and deploys custom cloud architectures, ERP integrations, and enterprise web solutions to modernize core business operations for mid-market and corporate clients.",
+    "slug": "biztransights",
+    "monogram": "BI",
+    "logo_url": "./assets/logos/biztransights.png"
   },
   {
     "id": "5b28c2e7-aa5e-42fa-9a27-2cd0a95a422f",
@@ -453,13 +498,16 @@
         "name": "Sham Somani",
         "role": "Founder & Managing Director",
         "degree": "B.Tech EEE '86",
-        "linkedin": "linkedin.com/in/mastersoftware"
+        "linkedin": "https://linkedin.com/in/mastersoftware"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 16,
-    "about": "MasterSoft is India's leading educational ERP software provider, automating academic operations, student lifecycles, fee management, and accreditation compliance for over 2,000 universities, colleges, and educational institutes nationwide."
+    "about": "MasterSoft is India's leading educational ERP software provider, automating academic operations, student lifecycles, fee management, and accreditation compliance for over 2,000 universities, colleges, and educational institutes nationwide.",
+    "slug": "mastersoft",
+    "monogram": "MA",
+    "logo_url": "./assets/logos/mastersoft.png"
   },
   {
     "id": "6dd22e0a-6116-48ae-90ad-820c00c15afa",
@@ -480,13 +528,16 @@
         "name": "Rahul Nagar",
         "role": "Co-Founder",
         "degree": "B.Tech",
-        "linkedin": "linkedin.com/in/rahul-nagar-5a76834"
+        "linkedin": "https://linkedin.com/in/rahul-nagar-5a76834"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 17,
-    "about": "str8bat is a sports IoT wearable that clips directly onto any cricket bat to capture real-time, sensor-driven swing speed, impact angles, and 3D batting trajectories directly to a mobile app without requiring camera setups."
+    "about": "str8bat is a sports IoT wearable that clips directly onto any cricket bat to capture real-time, sensor-driven swing speed, impact angles, and 3D batting trajectories directly to a mobile app without requiring camera setups.",
+    "slug": "str8bat",
+    "monogram": "ST",
+    "logo_url": "./assets/logos/str8bat.png"
   },
   {
     "id": "7151f9ce-4e6f-41ed-ba34-4fd4d2c81d34",
@@ -507,13 +558,16 @@
         "name": "Shashank Garg",
         "role": "Co-Founder & CEO",
         "degree": "B.Tech MME '96",
-        "linkedin": "linkedin.com/in/shashankgarg"
+        "linkedin": "https://linkedin.com/in/shashankgarg"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 18,
-    "about": "InfoCepts is a global data and AI solutions firm that helps Fortune 500 enterprises design, build, and scale modern cloud data platforms, generative AI systems, and enterprise business intelligence to maximize return on data investments."
+    "about": "InfoCepts is a global data and AI solutions firm that helps Fortune 500 enterprises design, build, and scale modern cloud data platforms, generative AI systems, and enterprise business intelligence to maximize return on data investments.",
+    "slug": "infocepts",
+    "monogram": "IN",
+    "logo_url": "./assets/logos/infocepts.png"
   },
   {
     "id": "7b746153-3003-4c86-a0d5-4604fcaa4c66",
@@ -534,13 +588,16 @@
         "name": "Sakshi Yadav",
         "role": "Co-Founder",
         "degree": "B.Tech EEE",
-        "linkedin": "linkedin.com/in/sakshi--yadav"
+        "linkedin": "https://linkedin.com/in/sakshi--yadav"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 19,
-    "about": "The Product Space is a cohort-based EdTech academy and community that trains aspiring product managers and growth leaders through live case studies, hands-on product tear-downs, and direct mentorship from senior tech executives."
+    "about": "The Product Space is a cohort-based EdTech academy and community that trains aspiring product managers and growth leaders through live case studies, hands-on product tear-downs, and direct mentorship from senior tech executives.",
+    "slug": "product-space",
+    "monogram": "PR",
+    "logo_url": "./assets/logos/product-space.png"
   },
   {
     "id": "7d1aaff0-51b9-48ac-989c-803274a2456e",
@@ -561,13 +618,16 @@
         "name": "Akshit Shah",
         "role": "Co-Founder",
         "degree": "B.Tech Comp '16",
-        "linkedin": "linkedin.com/in/ar-akshit-shah"
+        "linkedin": "https://linkedin.com/in/ar-akshit-shah"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 20,
-    "about": "GeoAnalytica is a spatial intelligence and architectural analytics firm that leverages GIS mapping, drone surveying, and urban data modeling to assist infrastructure planners and real estate developers with site feasibility and spatial insights."
+    "about": "GeoAnalytica is a spatial intelligence and architectural analytics firm that leverages GIS mapping, drone surveying, and urban data modeling to assist infrastructure planners and real estate developers with site feasibility and spatial insights.",
+    "slug": "geoanalytica",
+    "monogram": "GE",
+    "logo_url": "./assets/logos/geoanalytica.png"
   },
   {
     "id": "7f8feb17-4b91-4991-87de-6cb6380a2f27",
@@ -588,13 +648,16 @@
         "name": "Hariharan Kolam",
         "role": "Founder and CEO",
         "degree": "B.Tech '03",
-        "linkedin": "linkedin.com/in/hkolam"
+        "linkedin": "https://linkedin.com/in/hkolam"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 21,
-    "about": "Findem is an enterprise talent intelligence platform that uses attribute-based AI to analyze millions of candidate career trajectories, helping corporate recruiting teams find, evaluate, and engage qualified talent across passive networks."
+    "about": "Findem is an enterprise talent intelligence platform that uses attribute-based AI to analyze millions of candidate career trajectories, helping corporate recruiting teams find, evaluate, and engage qualified talent across passive networks.",
+    "slug": "findem",
+    "monogram": "FI",
+    "logo_url": "./assets/logos/findem.png"
   },
   {
     "id": "8a6e3bda-7cb7-4fba-8721-19d26932b5a0",
@@ -615,13 +678,16 @@
         "name": "Shreyas Mokadam",
         "role": "Founder",
         "degree": "B.Tech Mining Engineering '16",
-        "linkedin": "linkedin.com/in/shreyas-mokadam-a451b8120"
+        "linkedin": "https://linkedin.com/in/shreyas-mokadam-a451b8120"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 22,
-    "about": "Delphi Cloud is a specialized cloud infrastructure and DevOps consultancy that architects secure Kubernetes clusters, multi-cloud deployments, and high-throughput data processing environments for fast-growing digital enterprises."
+    "about": "Delphi Cloud is a specialized cloud infrastructure and DevOps consultancy that architects secure Kubernetes clusters, multi-cloud deployments, and high-throughput data processing environments for fast-growing digital enterprises.",
+    "slug": "delphi-cloud",
+    "monogram": "DE",
+    "logo_url": "./assets/logos/delphi-cloud.png"
   },
   {
     "id": "8ebd47ac-4a65-4523-bcf7-01afe2ea5f9f",
@@ -642,19 +708,22 @@
         "name": "Sagar Ghonge",
         "role": "Co-Founder and Chief Operating Officer",
         "degree": "B.Tech Civil Engineering '09",
-        "linkedin": "linkedin.com/in/sagarghonge"
+        "linkedin": "https://linkedin.com/in/sagarghonge"
       },
       {
-        "name": "Rakesh Rallapalli",
-        "role": "Core Team / Alumnus",
-        "degree": "B.Tech Comp '14",
-        "linkedin": "https://linkedin.com/in/rakesh-rallapalli"
+        "name": "Prateek Chandrayan",
+        "role": "Co-FOunder",
+        "degree": "B.Tech Civil Engineering '09",
+        "linkedin": "https://linkedin.com/in/prateekchandrayan"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 23,
-    "about": "Konverge AI is an applied artificial intelligence engineering firm that builds and deploys custom generative AI workflows, computer vision models, and automated machine learning systems for enterprise clients across healthcare, logistics, and finance."
+    "about": "Konverge AI is an applied artificial intelligence engineering firm that builds and deploys custom generative AI workflows, computer vision models, and automated machine learning systems for enterprise clients across healthcare, logistics, and finance.",
+    "slug": "konverge-ai",
+    "monogram": "KO",
+    "logo_url": "./assets/logos/konverge-ai.png"
   },
   {
     "id": "96ce868b-f3bd-40b1-be72-ab589330cf2a",
@@ -675,13 +744,16 @@
         "name": "Pravin Kamble",
         "role": "Co-Founder and CEO",
         "degree": "B.Tech ECE",
-        "linkedin": "linkedin.com/in/pravinkamble"
+        "linkedin": "https://linkedin.com/in/pravinkamble"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 24,
-    "about": "99minds is an omnichannel customer loyalty and promotions platform that allows retail and eCommerce brands to launch digital gift cards, personalized coupon campaigns, and referral reward programs that integrate seamlessly with major storefronts."
+    "about": "99minds is an omnichannel customer loyalty and promotions platform that allows retail and eCommerce brands to launch digital gift cards, personalized coupon campaigns, and referral reward programs that integrate seamlessly with major storefronts.",
+    "slug": "99minds",
+    "monogram": "99",
+    "logo_url": "./assets/logos/99minds.png"
   },
   {
     "id": "98cb4431-8b01-48a1-b9b0-a988d4a7213a",
@@ -692,7 +764,7 @@
     "linkedin_url": "https://www.linkedin.com/company/synthesispartners/",
     "department": "",
     "batch_year": "",
-    "location": "Singapore\n\n",
+    "location": "Singapore",
     "funding_stage": "",
     "funding_amount": "",
     "headcount": 84,
@@ -702,13 +774,16 @@
         "name": "Ankit Kalkar",
         "role": "Founder",
         "degree": "B.Tech MME '10",
-        "linkedin": "linkedin.com/in/kalkar"
+        "linkedin": "https://linkedin.com/in/kalkar"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 25,
-    "about": "Synthesis is a global cultural data consultancy that combines open-web data mining, consumer telemetry, and predictive modeling to help global consumer brands uncover market trends and design future-proof product strategies."
+    "about": "Synthesis is a global cultural data consultancy that combines open-web data mining, consumer telemetry, and predictive modeling to help global consumer brands uncover market trends and design future-proof product strategies.",
+    "slug": "synthesis",
+    "monogram": "SY",
+    "logo_url": "./assets/logos/synthesis.png"
   },
   {
     "id": "a85d133c-fb2d-4c36-93e3-872714868d37",
@@ -729,13 +804,16 @@
         "name": "Indraneel Fuke",
         "role": "Founder & CEO",
         "degree": "B.Tech Mechanical Engineering '98",
-        "linkedin": "linkedin.com/in/indraneelfuke"
+        "linkedin": "https://linkedin.com/in/indraneelfuke"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 26,
-    "about": "SimpleWorks is a digital product engineering studio that partners with startups and mid-market businesses to design, develop, and scale modern web applications, microservices, and cloud-native software products."
+    "about": "SimpleWorks is a digital product engineering studio that partners with startups and mid-market businesses to design, develop, and scale modern web applications, microservices, and cloud-native software products.",
+    "slug": "simpleworks",
+    "monogram": "SI",
+    "logo_url": "./assets/logos/simpleworks.png"
   },
   {
     "id": "ae36c5c3-7f41-486c-b9ec-327a020af324",
@@ -762,7 +840,10 @@
     "is_verified": true,
     "is_published": true,
     "display_order": 27,
-    "about": "TeemGenie is an employee engagement and workforce productivity platform designed to help modern organizations manage distributed teams through peer recognition, goal alignment, and structured performance feedback."
+    "about": "TeemGenie is an employee engagement and workforce productivity platform designed to help modern organizations manage distributed teams through peer recognition, goal alignment, and structured performance feedback.",
+    "slug": "teemgenie",
+    "monogram": "TE",
+    "logo_url": "./assets/logos/teemgenie.png"
   },
   {
     "id": "bbc0d831-e21b-4acc-997e-b9d8415079d2",
@@ -783,13 +864,16 @@
         "name": "Shreyash Kakde",
         "role": "Founder",
         "degree": "B.Tech Civil 23'",
-        "linkedin": "linkedin.com/in/shreyash-k22"
+        "linkedin": "https://linkedin.com/in/shreyash-k22"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 28,
-    "about": "Sigmantle Research is an applied AI research and engineering firm focused on developing autonomous multi-agent systems, retrieval-augmented generation (RAG) pipelines, and customized language model tools for complex data workflows."
+    "about": "Sigmantle Research is an applied AI research and engineering firm focused on developing autonomous multi-agent systems, retrieval-augmented generation (RAG) pipelines, and customized language model tools for complex data workflows.",
+    "slug": "sigmantle-research",
+    "monogram": "SI",
+    "logo_url": "./assets/logos/sigmantle-research.png"
   },
   {
     "id": "bdf99c8c-293e-4e0e-81ef-91d83cea6b19",
@@ -800,7 +884,7 @@
     "linkedin_url": "https://www.linkedin.com/company/airolabsai",
     "department": "",
     "batch_year": "",
-    "location": "New Delhi, Delhi, India\n\n",
+    "location": "New Delhi, Delhi, India",
     "funding_stage": "",
     "funding_amount": "",
     "headcount": 312,
@@ -810,13 +894,16 @@
         "name": "Sayak Das",
         "role": "Chief AI Innovation Officer",
         "degree": "B.Tech ECE '03",
-        "linkedin": "linkedin.com/in/sayak-das-"
+        "linkedin": "https://linkedin.com/in/sayak-das-"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 29,
-    "about": "AiRo Digital Labs (Airolabs.ai) is an enterprise intelligent automation and digital health services provider that deploys cognitive bots, cloud transformation, and automated clinical workflows for healthcare networks and life science enterprises."
+    "about": "AiRo Digital Labs (Airolabs.ai) is an enterprise intelligent automation and digital health services provider that deploys cognitive bots, cloud transformation, and automated clinical workflows for healthcare networks and life science enterprises.",
+    "slug": "airolabs-ai",
+    "monogram": "AI",
+    "logo_url": "./assets/logos/airolabs-ai.png"
   },
   {
     "id": "f4cf059f-cec1-4c31-a3cb-40c37e0e7825",
@@ -837,12 +924,75 @@
         "name": "Aniket Khare",
         "role": "Co-Founder",
         "degree": "B.Tech EEE '06",
-        "linkedin": "linkedin.com/in/aniket-khare-a8208022"
+        "linkedin": "https://linkedin.com/in/aniket-khare-a8208022"
       }
     ],
     "is_verified": true,
     "is_published": true,
     "display_order": 30,
-    "about": "Aristok Technologies is an IT consulting and software development company that engineers custom enterprise applications, mobile platforms, and database architectures tailored to optimize organizational workflows and digital operations."
+    "about": "Aristok Technologies is an IT consulting and software development company that engineers custom enterprise applications, mobile platforms, and database architectures tailored to optimize organizational workflows and digital operations.",
+    "slug": "aristok-technologies",
+    "monogram": "AR",
+    "logo_url": "./assets/logos/aristok-technologies.png"
+  },
+  {
+    "id": "108ed4e6-924d-486e-9d27-6cd8ad918ac6",
+    "name": "Cognizant",
+    "sector": "Technology & Enterprise Solutions",
+    "pitch": "Global enterprise technology and consulting firm engineering modern digital architectures, cloud transformations, and AI systems for Fortune 500 companies.",
+    "website_url": "https://www.cognizant.com",
+    "linkedin_url": "https://linkedin.com/company/cognizant",
+    "department": "Computer Science",
+    "batch_year": "2016",
+    "location": "Bengaluru / Pune, India",
+    "funding_stage": "Bootstrapped",
+    "funding_amount": "Bootstrapped",
+    "headcount": 15,
+    "incorporated_year": 2019,
+    "founders": [
+      {
+        "name": "Chandramouli Killi",
+        "role": "Co-Founder / Alumnus",
+        "degree": "B.Tech Comp '16",
+        "linkedin": "https://linkedin.com/in/chandramouli-killi"
+      }
+    ],
+    "is_verified": true,
+    "is_published": false,
+    "display_order": 100,
+    "about": "Cognizant is a global Fortune 500 technology services and consulting enterprise that modernizes core business infrastructure, digital applications, and cloud operations for major global companies across banking, healthcare, and retail.",
+    "slug": "cognizant",
+    "monogram": "CO",
+    "logo_url": "./assets/logos/cognizant.png"
+  },
+  {
+    "id": "e3edca99-45e0-4437-bbc0-dd5099a47060",
+    "name": "CAMS Limited",
+    "sector": "Technology & Enterprise Solutions",
+    "pitch": "Financial infrastructure and technology platform providing mutual fund transfer agency, digital KYC, and payments processing for India's capital markets.",
+    "website_url": "https://www.cams-limited.com",
+    "linkedin_url": "https://linkedin.com/company/cams-limited",
+    "department": "Computer Science",
+    "batch_year": "2016",
+    "location": "Bengaluru / Pune, India",
+    "funding_stage": "Bootstrapped",
+    "funding_amount": "Bootstrapped",
+    "headcount": 15,
+    "incorporated_year": 2019,
+    "founders": [
+      {
+        "name": "Mohit Raisinghani",
+        "role": "Co-Founder / Alumnus",
+        "degree": "B.Tech Comp '16",
+        "linkedin": "https://linkedin.com/in/mohit-raisinghani"
+      }
+    ],
+    "is_verified": true,
+    "is_published": false,
+    "display_order": 100,
+    "about": "Computer Age Management Services (CAMS) is India's premier financial infrastructure provider and mutual fund registrar, handling transaction processing, digital KYC, and registry operations for over 69% of the Indian mutual fund industry.",
+    "slug": "cams-limited",
+    "monogram": "CA",
+    "logo_url": "./assets/logos/cams-limited.png"
   }
 ]

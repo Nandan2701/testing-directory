@@ -9,13 +9,12 @@
     const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdxYm1yYmpkZW94d3dudWx3c2ZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA4NDYxNzIsImV4cCI6MjEwNjQyMjE3Mn0.ClePAFMe3CrNgU2hYIUvz9dhE8fyEAbUvps6569BnEk";
 
     // Fallback Verified Seed Roster (guarantees instant zero-CORS rendering even via file:// protocol)
-        const SEED_STARTUPS = [
+    const SEED_STARTUPS = [
       {
+            "id": "0cf2c433-e644-408b-9a77-a0e6cd8fb15a",
             "name": "Truemeds India",
-            "slug": "truemeds-india",
-            "monogram": "TM",
             "sector": "HealthTech & Telehealth",
-            "pitch": "Proprietary algorithm-driven telehealth and generic medicine delivery platform reducing healthcare expenses by up to 72% for Indian households.",
+            "pitch": "Telehealth and e-pharmacy platform delivering certified generic medicine substitutes to reduce recurring prescription bills by up to 72% for Indian households.",
             "website_url": "https://www.truemeds.in/",
             "linkedin_url": "https://linkedin.com/company/truemedsin",
             "department": "Civil",
@@ -25,10 +24,6 @@
             "funding_amount": "NULL",
             "headcount": 1428,
             "incorporated_year": 2019,
-            "lead_backers": "WestBridge Capital · Info Edge Ventures",
-            "tech_stack": "Python · React Native · Node.js · AWS",
-            "traction_badge": "SERIES B · 10M+ USERS",
-            "traction_note": "Delivering affordable medicine across 1,000+ Indian pin codes with 99.4% fulfillment accuracy.",
             "founders": [
                   {
                         "name": "Akshat Nayyar",
@@ -39,16 +34,17 @@
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "0cf2c433-e644-408b-9a77-a0e6cd8fb15a",
-            "logo_url": "./assets/logos/truemeds-india.png",
-            "display_order": 1
+            "display_order": 1,
+            "about": "Truemeds is a telehealth and e-pharmacy platform that uses proprietary medicine-matching algorithms to help chronic patients substitute expensive branded drugs with certified generic alternatives, saving households up to 72% on monthly healthcare bills.",
+            "slug": "truemeds-india",
+            "monogram": "TR",
+            "logo_url": "./assets/logos/truemeds-india.png"
       },
       {
+            "id": "0dc44a5d-d1f9-41c3-953f-44017e4ccc25",
             "name": "Awiros",
-            "slug": "awiros",
-            "monogram": "AW",
             "sector": "Computer Vision & Edge AI",
-            "pitch": "Open operating system and app-marketplace for video intelligence and deep-learning computer vision deployed on edge and cloud infrastructure.",
+            "pitch": "Computer vision operating system and app marketplace that transforms standard CCTV camera networks into automated safety, inspection, and security monitors.",
             "website_url": "https://www.awiros.com/",
             "linkedin_url": "https://www.linkedin.com/company/awiros/",
             "department": "Electrical and Computer Engineering",
@@ -58,30 +54,27 @@
             "funding_amount": "",
             "headcount": 100,
             "incorporated_year": 2015,
-            "lead_backers": "Inventus Capital India · Exfinity Venture Partners",
-            "tech_stack": "C++ · CUDA · TensorRT · Python · Docker",
-            "traction_badge": "DEFENSE & SMART CITIES",
-            "traction_note": "Powering 50,000+ video surveillance streams across airports, metropolitan traffic, and defense perimeters.",
             "founders": [
                   {
                         "name": "Vikram Gupta",
                         "role": "Founder",
                         "degree": "B.Tech Elec '07",
-                        "linkedin": "linkedin.com/in/vkrmgpta"
+                        "linkedin": "https://linkedin.com/in/vkrmgpta"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "0dc44a5d-d1f9-41c3-953f-44017e4ccc25",
-            "logo_url": "./assets/logos/awiros.png",
-            "display_order": 2
+            "display_order": 2,
+            "about": "Awiros is a computer vision operating system and app marketplace that allows enterprises and public infrastructure operators to run video intelligence apps on standard CCTV cameras for automated perimeter security, HSE compliance, and operational monitoring.",
+            "slug": "awiros",
+            "monogram": "AW",
+            "logo_url": "./assets/logos/awiros.png"
       },
       {
+            "id": "18707af1-cf1d-4b6c-94d3-b4f3cf32ab4a",
             "name": "Human Capitalists",
-            "slug": "human-capitalists",
-            "monogram": "HC",
             "sector": "Technology & Enterprise Solutions",
-            "pitch": "Engineering-first venture founded and built by VNIT alumni driving innovation in Human Capitalists.",
+            "pitch": "AI-native hiring platform that combines autonomous sourcing agents with human recruiters to deliver screened tech candidates in under 72 hours.",
             "website_url": "https://humancapitalists.ai/",
             "linkedin_url": "https://www.linkedin.com/company/human-capitalists/",
             "department": "Civil Engineering & Chemical Engineering",
@@ -91,36 +84,33 @@
             "funding_amount": "Bootstrapped",
             "headcount": 8,
             "incorporated_year": 2025,
-            "lead_backers": "VNIT Alumni Angel Network",
-            "tech_stack": "Python · React · Cloud Architecture",
-            "traction_badge": "PROFITABLE",
-            "traction_note": "Actively building and expanding market presence across India and international markets.",
             "founders": [
                   {
                         "name": "Lakshya Shukla",
                         "role": "Co-Founder",
                         "degree": "B.Tech Chem '21",
-                        "linkedin": "linkedin.com/in/lakshya-shukla"
+                        "linkedin": "https://linkedin.com/in/lakshya-shukla"
                   },
                   {
                         "name": "Nishant Singh Didawat",
                         "role": "Co founder",
                         "degree": "B.Tech Civil '13",
-                        "linkedin": "linkedin.com/in/nishantsinghdidawat"
+                        "linkedin": "https://linkedin.com/in/nishantsinghdidawat"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "18707af1-cf1d-4b6c-94d3-b4f3cf32ab4a",
-            "logo_url": "./assets/logos/human-capitalists.png",
-            "display_order": 3
+            "display_order": 3,
+            "about": "Human Capitalists is an AI-powered talent infrastructure firm that combines autonomous sourcing agents with expert recruiters to screen, interview, and place top-tier engineering talent into high-growth technology companies within 72 hours.",
+            "slug": "human-capitalists",
+            "monogram": "HU",
+            "logo_url": "./assets/logos/human-capitalists.png"
       },
       {
+            "id": "1abc2e4a-2b93-4641-8181-c46e66b0e41e",
             "name": "Circullence Solutions",
-            "slug": "circullence-solutions",
-            "monogram": "CS",
             "sector": "Technology & Enterprise Solutions",
-            "pitch": "Engineering-first venture founded and built by VNIT alumni driving innovation in Circullence Solutions.",
+            "pitch": "Boutique data and cloud consultancy engineering modern data warehouses, predictive machine learning pipelines, and automated analytics for enterprises.",
             "website_url": "https://circullence.com/",
             "linkedin_url": "https://www.linkedin.com/company/circullence-solutions/",
             "department": "",
@@ -130,30 +120,27 @@
             "funding_amount": "Bootstrapped",
             "headcount": 5,
             "incorporated_year": 2025,
-            "lead_backers": "VNIT Alumni Angel Network",
-            "tech_stack": "Python · React · Cloud Architecture",
-            "traction_badge": "PROFITABLE",
-            "traction_note": "Actively building and expanding market presence across India and international markets.",
             "founders": [
                   {
                         "name": "Sarang Aloni",
                         "role": "Founder",
                         "degree": "B.Tech",
-                        "linkedin": "linkedin.com/in/sarang-aloni"
+                        "linkedin": "https://linkedin.com/in/sarang-aloni"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "1abc2e4a-2b93-4641-8181-c46e66b0e41e",
-            "logo_url": "./assets/logos/circullence-solutions.png",
-            "display_order": 4
+            "display_order": 4,
+            "about": "Circullence Solutions is an enterprise data and cloud engineering consultancy that builds scalable data warehouses, automated ETL pipelines, and predictive analytics infrastructure to turn fragmented business data into actionable decision systems.",
+            "slug": "circullence-solutions",
+            "monogram": "CI",
+            "logo_url": "./assets/logos/circullence-solutions.png"
       },
       {
+            "id": "1bc36d57-959d-4249-8c9e-bd468246a198",
             "name": "CollegeDekho",
-            "slug": "collegedekho",
-            "monogram": "CD",
             "sector": "EdTech & Higher Education",
-            "pitch": "India's premier institutional higher-education discovery, career counseling, and university admissions marketplace connecting millions of students.",
+            "pitch": "Higher education marketplace and counseling platform helping over 3 million students compare colleges, choose programs, and navigate university admissions.",
             "website_url": "https://www.collegedekho.com/",
             "linkedin_url": "https://www.linkedin.com/company/collegedekho",
             "department": "",
@@ -163,30 +150,27 @@
             "funding_amount": "",
             "headcount": 1395,
             "incorporated_year": 2015,
-            "lead_backers": "Winter Capital · ETS Strategic Capital · QIC",
-            "tech_stack": "React · Node.js · PHP · AWS Cloud",
-            "traction_badge": "100M+ ANNUAL SESSIONS",
-            "traction_note": "Counseled over 3 million students across 1,500+ partnered universities nationwide.",
             "founders": [
                   {
                         "name": "Ruchir",
                         "role": "Co-Founder and CEO",
                         "degree": "B.Tech Mech '01",
-                        "linkedin": "linkedin.com/in/aroraruchir"
+                        "linkedin": "https://linkedin.com/in/aroraruchir"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "1bc36d57-959d-4249-8c9e-bd468246a198",
-            "logo_url": "./assets/logos/collegedekho.png",
-            "display_order": 5
+            "display_order": 5,
+            "about": "CollegeDekho is India's leading higher education discovery and student counseling marketplace, guiding millions of applicants through course selection, competitive exam prep, and college admissions across thousands of institutional partners.",
+            "slug": "collegedekho",
+            "monogram": "CO",
+            "logo_url": "./assets/logos/collegedekho.png"
       },
       {
+            "id": "1d25485c-7ac9-4a63-a618-0bdeb63ab2c9",
             "name": "Living Things",
-            "slug": "living-things",
-            "monogram": "LT",
             "sector": "CleanTech / Smart Energy IoT",
-            "pitch": "Intelligent IoT HVAC and central air-conditioning energy optimization platform cutting commercial electricity consumption by up to 35%.",
+            "pitch": "IoT and AI energy intelligence platform that optimizes central air-conditioning and HVAC systems to cut commercial electricity consumption by up to 35%.",
             "website_url": "https://livingthings.ai/",
             "linkedin_url": "https://www.linkedin.com/company/living-things-feel-free/?originalSubdomain=in",
             "department": "",
@@ -196,42 +180,39 @@
             "funding_amount": "",
             "headcount": 72,
             "incorporated_year": 2018,
-            "lead_backers": "Venture Catalysts · Energy Transition Angels",
-            "tech_stack": "Embedded C · MQTT · Python · React · AWS IoT",
-            "traction_badge": "30M+ KWH ENERGY SAVED",
-            "traction_note": "Managing 25,000+ connected industrial cooling tons across corporate campuses and hospitals.",
             "founders": [
                   {
                         "name": "Mayank Gupta",
                         "role": "Co-Founder",
                         "degree": "B.Tech Mining Eningeering '18",
-                        "linkedin": "linkedin.com/in/i-mayank-gupta"
+                        "linkedin": "https://linkedin.com/in/i-mayank-gupta"
                   },
                   {
                         "name": "Tushar Jagadale",
                         "role": "Co-founder & Head of AI and Data Science",
                         "degree": "B.Tech ECE '16",
-                        "linkedin": "linkedin.com/in/tushar-jagadale"
+                        "linkedin": "https://linkedin.com/in/tushar-jagadale"
                   },
                   {
                         "name": "Madhusudhan Naik",
                         "role": "Founder - CEO",
                         "degree": "B.Tech ECE '17",
-                        "linkedin": "linkedin.com/in/madhusudhan-naik"
+                        "linkedin": "https://linkedin.com/in/madhusudhan-naik"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "1d25485c-7ac9-4a63-a618-0bdeb63ab2c9",
-            "logo_url": "./assets/logos/living-things.png",
-            "display_order": 6
+            "display_order": 6,
+            "about": "Living Things is a smart energy IoT platform that deploys edge sensors and automated control algorithms across commercial air-conditioning and HVAC infrastructure, reducing corporate facility energy consumption and power bills by up to 35%.",
+            "slug": "living-things",
+            "monogram": "LI",
+            "logo_url": "./assets/logos/living-things.png"
       },
       {
+            "id": "1de1faab-2e06-43aa-a0a1-9732104032c3",
             "name": "Collegise",
-            "slug": "collegise",
-            "monogram": "CO",
             "sector": "Technology & Enterprise Solutions",
-            "pitch": "Engineering-first venture founded and built by VNIT alumni driving innovation in Collegise.",
+            "pitch": "Campus growth marketing network enabling consumer startups to run student ambassador programs and acquire collegiate users across India.",
             "website_url": "https://collegise.com/",
             "linkedin_url": "https://www.linkedin.com/company/collegise/",
             "department": "Computer Science",
@@ -241,30 +222,27 @@
             "funding_amount": "",
             "headcount": 1,
             "incorporated_year": 2022,
-            "lead_backers": "VNIT Alumni Angel Network",
-            "tech_stack": "Python · React · Cloud Architecture",
-            "traction_badge": "PROFITABLE",
-            "traction_note": "Actively building and expanding market presence across India and international markets.",
             "founders": [
                   {
                         "name": "Pranav Chinsabwar",
                         "role": "Founder",
                         "degree": "B.Tech Comp '16",
-                        "linkedin": "linkedin.com/in/pranav-chinsabwar"
+                        "linkedin": "https://linkedin.com/in/pranav-chinsabwar"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "1de1faab-2e06-43aa-a0a1-9732104032c3",
-            "logo_url": "./assets/logos/collegise.png",
-            "display_order": 7
+            "display_order": 7,
+            "about": "Collegise is a campus distribution and youth activation network that enables consumer brands and startups to launch student ambassador programs, drive word-of-mouth adoption, and acquire collegiate users across university campuses in India.",
+            "slug": "collegise",
+            "monogram": "CO",
+            "logo_url": "./assets/logos/collegise.png"
       },
       {
+            "id": "1e420442-1cc4-40f7-8bda-a0fe451fa4be",
             "name": "ettaflow",
-            "slug": "ettaflow",
-            "monogram": "ET",
             "sector": "Technology & Enterprise Solutions",
-            "pitch": "Engineering-first venture founded and built by VNIT alumni driving innovation in ettaflow.",
+            "pitch": "High-performance, Apache Arrow-native data replication engine that synchronizes operational databases with analytical warehouses at sub-second latency.",
             "website_url": "https://ettaflow.io/",
             "linkedin_url": "https://www.linkedin.com/company/ettaflow/",
             "department": "Electrical and Electronics Engineering",
@@ -274,30 +252,27 @@
             "funding_amount": "",
             "headcount": 2,
             "incorporated_year": 2026,
-            "lead_backers": "VNIT Alumni Angel Network",
-            "tech_stack": "Python · React · Cloud Architecture",
-            "traction_badge": "PROFITABLE",
-            "traction_note": "Actively building and expanding market presence across India and international markets.",
             "founders": [
                   {
                         "name": "Vishal Goswami",
                         "role": "Co-Founder",
                         "degree": "B.Tech EEE",
-                        "linkedin": "linkedin.com/in/vishal-goswami-33349b73"
+                        "linkedin": "https://linkedin.com/in/vishal-goswami-33349b73"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "1e420442-1cc4-40f7-8bda-a0fe451fa4be",
-            "logo_url": "./assets/logos/ettaflow.png",
-            "display_order": 8
+            "display_order": 8,
+            "about": "ettaflow is a high-speed data streaming and database replication engine built on Apache Arrow that captures production database changes and streams them into cloud warehouses with sub-second latency and zero query degradation.",
+            "slug": "ettaflow",
+            "monogram": "ET",
+            "logo_url": "./assets/logos/ettaflow.png"
       },
       {
+            "id": "253a56da-0cbd-4967-9258-19ec2e45bcad",
             "name": "Bombay Shaving Company",
-            "slug": "bombay-shaving-company",
-            "monogram": "BS",
             "sector": "D2C & Consumer Personal Care",
-            "pitch": "Premium omni-channel personal care, grooming, and skin health brand delivering sustainable self-care solutions across India and international markets.",
+            "pitch": "Omnichannel personal care brand crafting precision shaving, grooming, and skincare essentials trusted by over 5 million consumers nationwide.",
             "website_url": "https://www.bombayshavingcompany.com/",
             "linkedin_url": "https://www.linkedin.com/company/bombay-shaving-company/",
             "department": "Computer Science",
@@ -307,32 +282,29 @@
             "funding_amount": "",
             "headcount": 435,
             "incorporated_year": 2016,
-            "lead_backers": "Reckitt Benckiser · Sixth Sense Ventures · Colgate-Palmolive",
-            "tech_stack": "Shopify Plus · Next.js · ERP · Omni-channel POS",
-            "traction_badge": "OMNICHANNEL LEADER",
-            "traction_note": "Present in 65,000+ retail stores and loved by over 5 million consumers.",
             "founders": [
                   {
                         "name": "Shantanu Deshpande",
                         "role": "Co-Founder",
                         "degree": "B.Tech CSE '09",
-                        "linkedin": "linkedin.com/in/shantanudeshpandebsc"
+                        "linkedin": "https://linkedin.com/in/shantanudeshpandebsc"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "253a56da-0cbd-4967-9258-19ec2e45bcad",
-            "logo_url": "./assets/logos/bombay-shaving-company.png",
-            "display_order": 9
+            "display_order": 9,
+            "about": "Bombay Shaving Company is an omnichannel personal care and grooming brand that designs precision razors, trimmers, and skin-friendly personal care essentials trusted by millions of consumers across thousands of retail stores and online channels.",
+            "slug": "bombay-shaving-company",
+            "monogram": "BO",
+            "logo_url": "./assets/logos/bombay-shaving-company.png"
       },
       {
+            "id": "08ba9fc5-212e-401d-bc5d-09f8348d3aa6",
             "name": "Delphi Analytics",
-            "slug": "delphi-analytics",
-            "monogram": "DA",
             "sector": null,
-            "pitch": "First-party behavioral data and customer intelligence platform enabling modern enterprises to capture granular event telemetry, map customer journeys, and deploy predictive ML models inside their data warehouse.",
+            "pitch": "First-party behavioral telemetry platform that captures granular product usage data inside cloud data warehouses to power predictive customer journey and retention models.",
             "website_url": "https://www.delphianalytics.ai/",
-            "linkedin_url": "linkedin.com/company/sdsm-analytics",
+            "linkedin_url": "https://linkedin.com/company/sdsm-analytics",
             "department": null,
             "batch_year": null,
             "location": "Nagpur, Maharashtra, India",
@@ -340,30 +312,27 @@
             "funding_amount": null,
             "headcount": 17,
             "incorporated_year": 2020,
-            "lead_backers": "VNIT Alumni Angel Network",
-            "tech_stack": "Python · React · TensorFlow · Cloud Analytics",
-            "traction_badge": "AI & DATA SCIENCE",
-            "traction_note": "Delivering production-grade predictive intelligence, digital twins, and analytics infrastructure for enterprise clients.",
             "founders": [
                   {
                         "name": "Shreyas Mokadam",
                         "role": "Founder",
                         "degree": "B.Tech Mining Engineering '16",
-                        "linkedin": "linkedin.com/in/shreyas-mokadam-a451b8120"
+                        "linkedin": "https://linkedin.com/in/shreyas-mokadam-a451b8120"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "08ba9fc5-212e-401d-bc5d-09f8348d3aa6",
-            "logo_url": "./assets/logos/delphi-analytics.png",
-            "display_order": 10
+            "display_order": 10,
+            "about": "Delphi Analytics is a customer data and behavioral telemetry platform that tracks granular product usage events directly inside enterprise cloud warehouses to build predictive user journey, retention, and conversion models without third-party tracking cookies.",
+            "slug": "delphi-analytics",
+            "monogram": "DE",
+            "logo_url": "./assets/logos/delphi-analytics.png"
       },
       {
+            "id": "39a9c53a-c55b-4e3c-96de-59e2f966bd9d",
             "name": "Neewee",
-            "slug": "neewee",
-            "monogram": "NW",
             "sector": "Industrial AI & Smart Factory",
-            "pitch": "Industrial AI intelligence platform Bodhee optimizing operational efficiency, shop-floor cycle times, and predictive maintenance for global manufacturers.",
+            "pitch": "Industrial AI platform (Bodhee) delivering dynamic, constraint-aware production scheduling and predictive maintenance for heavy manufacturing plants.",
             "website_url": "https://www.bodhee.com/",
             "linkedin_url": "https://www.linkedin.com/company/neewee-analytics/",
             "department": "",
@@ -373,36 +342,33 @@
             "funding_amount": "",
             "headcount": 71,
             "incorporated_year": 2014,
-            "lead_backers": "Aditya Birla Ventures · Global Manufacturing Partners",
-            "tech_stack": "Python · TensorFlow · Apache Spark · TimeSeries DB",
-            "traction_badge": "AEROSPACE & HEAVY INDUSTRY",
-            "traction_note": "Deployed across Fortune 500 manufacturing plants in aerospace, automotive, and metals.",
             "founders": [
                   {
                         "name": "Suyog Joshi",
                         "role": "Co-Founder & CPO",
                         "degree": "B.Tech ECE '97",
-                        "linkedin": "linkedin.com/in/suyog-joshi-25541016"
+                        "linkedin": "https://linkedin.com/in/suyog-joshi-25541016"
                   },
                   {
                         "name": "Harsimrat Bhasin",
                         "role": "Co-Founder & CEO",
                         "degree": "B.Tech Architecture '93",
-                        "linkedin": "linkedin.com/in/harsimrat-bhasin"
+                        "linkedin": "https://linkedin.com/in/harsimrat-bhasin"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "39a9c53a-c55b-4e3c-96de-59e2f966bd9d",
-            "logo_url": "./assets/logos/neewee.png",
-            "display_order": 11
+            "display_order": 11,
+            "about": "Neewee is an industrial AI software provider whose flagship platform, Bodhee, ingests real-time shop-floor operational data to generate constraint-aware production schedules, optimize machine uptime, and reduce manufacturing bottlenecks.",
+            "slug": "neewee",
+            "monogram": "NE",
+            "logo_url": "./assets/logos/neewee.png"
       },
       {
+            "id": "3e02e369-09cf-48e0-b908-eb1ec5a6a898",
             "name": "Scienaptic AI",
-            "slug": "scienaptic-ai",
-            "monogram": "SA",
             "sector": "FinTech & AI Underwriting",
-            "pitch": "Explainable AI-driven credit underwriting and risk decisioning platform empowering banks, fintechs, and credit unions to approve more loans faster.",
+            "pitch": "Explainable AI credit decisioning platform empowering banks and credit unions to approve more loans faster while reducing portfolio default risks.",
             "website_url": "https://www.scienaptic.ai/global",
             "linkedin_url": "https://www.linkedin.com/company/scienaptic-ai/",
             "department": "",
@@ -412,30 +378,27 @@
             "funding_amount": "",
             "headcount": 184,
             "incorporated_year": 2014,
-            "lead_backers": "TVS Capital Funds · Intel Capital",
-            "tech_stack": "Python · PyTorch · Scala · Snowflake",
-            "traction_badge": "PROCESSED $60B+ IN CREDIT",
-            "traction_note": "Trusted by 140+ global financial institutions and credit unions with 20%+ higher approval rates.",
             "founders": [
                   {
                         "name": "Pankaj Kulshreshtha",
                         "role": "Founder & CEO",
                         "degree": "B.Tech  '91",
-                        "linkedin": "linkedin.com/in/pankaj-kulshreshtha-1452441"
+                        "linkedin": "https://linkedin.com/in/pankaj-kulshreshtha-1452441"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "3e02e369-09cf-48e0-b908-eb1ec5a6a898",
-            "logo_url": "./assets/logos/scienaptic-ai.png",
-            "display_order": 12
+            "display_order": 12,
+            "about": "Scienaptic AI is an explainable credit decisioning and underwriting engine used by financial institutions and fintech lenders to evaluate borrower risk accurately, increase loan approvals, and reduce credit defaults through transparent machine learning models.",
+            "slug": "scienaptic-ai",
+            "monogram": "SC",
+            "logo_url": "./assets/logos/scienaptic-ai.png"
       },
       {
+            "id": "43346072-4883-4bc9-b602-bc70581311de",
             "name": "Autoven",
-            "slug": "autoven",
-            "monogram": "AU",
             "sector": "Technology & Enterprise Solutions",
-            "pitch": "Engineering-first venture founded and built by VNIT alumni driving innovation in Autoven.",
+            "pitch": "Connected vehicle IoT platform helping electric vehicle OEMs and fleet operators monitor real-time battery health, deploy OTA updates, and predict field failures.",
             "website_url": "https://www.autoven.com",
             "linkedin_url": "https://linkedin.com/company/autoven",
             "department": "",
@@ -445,30 +408,27 @@
             "funding_amount": "",
             "headcount": 14,
             "incorporated_year": 2021,
-            "lead_backers": "VNIT Alumni Angel Network",
-            "tech_stack": "Python · React · Cloud Architecture",
-            "traction_badge": "PROFITABLE",
-            "traction_note": "Actively building and expanding market presence across India and international markets.",
             "founders": [
                   {
                         "name": "Vinay Gunasekaran",
                         "role": "Founder",
                         "degree": "B.Tech ECE '08",
-                        "linkedin": "linkedin.com/in/vinaygunasekaran"
+                        "linkedin": "https://linkedin.com/in/vinaygunasekaran"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "43346072-4883-4bc9-b602-bc70581311de",
-            "logo_url": "./assets/logos/autoven.png",
-            "display_order": 13
+            "display_order": 13,
+            "about": "Autoven is an electric mobility technology firm engineering custom high-voltage powertrains, battery management systems, and smart fleet telematics that power light electric vehicles and commercial urban logistics fleets.",
+            "slug": "autoven",
+            "monogram": "AU",
+            "logo_url": "./assets/logos/autoven.png"
       },
       {
+            "id": "546625f7-6b89-4203-a46d-8858545c722a",
             "name": "Well Played Sports",
-            "slug": "well-played-sports",
-            "monogram": "WP",
             "sector": "Technology & Enterprise Solutions",
-            "pitch": "Engineering-first venture founded and built by VNIT alumni driving innovation in Well Played Sports.",
+            "pitch": "Digital cricket coaching platform providing video biomechanics, shot analytics, and structured training programs for grassroots players and academies.",
             "website_url": "https://wellplayedcricket.com/",
             "linkedin_url": "https://www.linkedin.com/company/well-played-sports/",
             "department": "",
@@ -478,30 +438,27 @@
             "funding_amount": "",
             "headcount": 8,
             "incorporated_year": 2019,
-            "lead_backers": "VNIT Alumni Angel Network",
-            "tech_stack": "Python · React · Cloud Architecture",
-            "traction_badge": "PROFITABLE",
-            "traction_note": "Actively building and expanding market presence across India and international markets.",
             "founders": [
                   {
                         "name": "Ketan Kaore",
                         "role": "Founder",
                         "degree": "B.Tech ECE '01",
-                        "linkedin": "linkedin.com/in/ketan-kaore"
+                        "linkedin": "https://linkedin.com/in/ketan-kaore"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "546625f7-6b89-4203-a46d-8858545c722a",
-            "logo_url": "./assets/logos/well-played-sports.png",
-            "display_order": 14
+            "display_order": 14,
+            "about": "Well Played Sports is a sports training and athletic development platform that combines biomechanical analytics, video coaching tools, and academy training programs to help cricketers systematically measure and elevate their on-field performance.",
+            "slug": "well-played-sports",
+            "monogram": "WE",
+            "logo_url": "./assets/logos/well-played-sports.png"
       },
       {
+            "id": "56c39aa6-f7fd-427b-975a-08d516bb6dcc",
             "name": "BizTranSights",
-            "slug": "biztransights",
-            "monogram": "BI",
             "sector": "Technology & Enterprise Solutions",
-            "pitch": "Engineering-first venture founded and built by VNIT alumni driving innovation in BizTranSights.",
+            "pitch": "Digital transformation consultancy specializing in custom ERP deployments, CRM integration, and automated cloud business workflows for growing enterprises.",
             "website_url": "https://www.biztransights.com/",
             "linkedin_url": "https://www.linkedin.com/company/biztransights-solutions/",
             "department": "",
@@ -511,36 +468,33 @@
             "funding_amount": "",
             "headcount": 44,
             "incorporated_year": 2019,
-            "lead_backers": "VNIT Alumni Angel Network",
-            "tech_stack": "Python · React · Cloud Architecture",
-            "traction_badge": "PROFITABLE",
-            "traction_note": "Actively building and expanding market presence across India and international markets.",
             "founders": [
                   {
                         "name": "Sonal Gole",
                         "role": "Founder",
                         "degree": "B.Tech CSE '05",
-                        "linkedin": "linkedin.com/in/sonal-gole-58490b192"
+                        "linkedin": "https://linkedin.com/in/sonal-gole-58490b192"
                   },
                   {
                         "name": "Sameer Ughade",
                         "role": "Founder",
                         "degree": "B.Tech EEE",
-                        "linkedin": "linkedin.com/in/sameerughade"
+                        "linkedin": "https://linkedin.com/in/sameerughade"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "56c39aa6-f7fd-427b-975a-08d516bb6dcc",
-            "logo_url": "./assets/logos/biztransights.png",
-            "display_order": 15
+            "display_order": 15,
+            "about": "BizTranSights is an enterprise digital transformation consultancy that designs and deploys custom cloud architectures, ERP integrations, and enterprise web solutions to modernize core business operations for mid-market and corporate clients.",
+            "slug": "biztransights",
+            "monogram": "BI",
+            "logo_url": "./assets/logos/biztransights.png"
       },
       {
+            "id": "5b28c2e7-aa5e-42fa-9a27-2cd0a95a422f",
             "name": "MasterSoft",
-            "slug": "mastersoft",
-            "monogram": "MS",
             "sector": "EdTech & University ERP",
-            "pitch": "India's largest cloud education ERP and campus automation ecosystem serving 2,500+ premier universities, engineering institutes, and colleges.",
+            "pitch": "Comprehensive cloud education ERP automating admissions, examinations, accreditation, and student lifecycles for over 2,500 universities across India.",
             "website_url": "https://www.mastersoft.ai/",
             "linkedin_url": "https://www.linkedin.com/company/mastersofterpsolutions/",
             "department": "",
@@ -550,30 +504,27 @@
             "funding_amount": "",
             "headcount": 565,
             "incorporated_year": 2000,
-            "lead_backers": "Self-Funded / Founder-Led",
-            "tech_stack": "Java · .NET Core · Angular · SQL Server · Azure",
-            "traction_badge": "2,500+ CAMPUSES NATIONWIDE",
-            "traction_note": "Processing records for over 5 million students across premier NITs, IIITs, and state universities.",
             "founders": [
                   {
                         "name": "Sham Somani",
                         "role": "Founder & Managing Director",
                         "degree": "B.Tech EEE '86",
-                        "linkedin": "linkedin.com/in/mastersoftware"
+                        "linkedin": "https://linkedin.com/in/mastersoftware"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "5b28c2e7-aa5e-42fa-9a27-2cd0a95a422f",
-            "logo_url": "./assets/logos/mastersoft.png",
-            "display_order": 16
+            "display_order": 16,
+            "about": "MasterSoft is India's leading educational ERP software provider, automating academic operations, student lifecycles, fee management, and accreditation compliance for over 2,000 universities, colleges, and educational institutes nationwide.",
+            "slug": "mastersoft",
+            "monogram": "MA",
+            "logo_url": "./assets/logos/mastersoft.png"
       },
       {
+            "id": "6dd22e0a-6116-48ae-90ad-820c00c15afa",
             "name": "str8bat",
-            "slug": "str8bat",
-            "monogram": "SB",
             "sector": "SportsTech & Wearable IoT",
-            "pitch": "Pocket-sized ultra-lightweight motion sensor and computer vision coaching system capturing actionable 3D swing metrics for cricketers and coaches.",
+            "pitch": "Lightweight motion sensor that clips onto any cricket bat to deliver instant 3D swing speed, impact angles, and batting metrics directly to a mobile app.",
             "website_url": "https://www.str8bat.com/",
             "linkedin_url": "https://www.linkedin.com/company/str8bat-sport-tech-solutions-pvt.-ltd./",
             "department": "",
@@ -583,30 +534,27 @@
             "funding_amount": "",
             "headcount": 32,
             "incorporated_year": 2017,
-            "lead_backers": "Exfinity Venture Partners · Techstars",
-            "tech_stack": "Embedded C · IMU Sensors · Flutter · AWS",
-            "traction_badge": "USED BY ELITE PLAYERS",
-            "traction_note": "Endorsed by cricket icons and utilized across IPL franchises, state academies, and 30,000+ athletes.",
             "founders": [
                   {
                         "name": "Rahul Nagar",
                         "role": "Co-Founder",
                         "degree": "B.Tech",
-                        "linkedin": "linkedin.com/in/rahul-nagar-5a76834"
+                        "linkedin": "https://linkedin.com/in/rahul-nagar-5a76834"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "6dd22e0a-6116-48ae-90ad-820c00c15afa",
-            "logo_url": "./assets/logos/str8bat.png",
-            "display_order": 17
+            "display_order": 17,
+            "about": "str8bat is a sports IoT wearable that clips directly onto any cricket bat to capture real-time, sensor-driven swing speed, impact angles, and 3D batting trajectories directly to a mobile app without requiring camera setups.",
+            "slug": "str8bat",
+            "monogram": "ST",
+            "logo_url": "./assets/logos/str8bat.png"
       },
       {
+            "id": "7151f9ce-4e6f-41ed-ba34-4fd4d2c81d34",
             "name": "InfoCepts",
-            "slug": "infocepts",
-            "monogram": "IC",
             "sector": "Enterprise Data & AI Solutions",
-            "pitch": "Global end-to-end data and analytics modernization powerhouse enabling global enterprises to bridge business vision and data value.",
+            "pitch": "Global data and AI consulting powerhouse engineering cloud modernization, decision intelligence platforms, and automated AI agents for Fortune 500 enterprises.",
             "website_url": "https://www.infocepts.ai/",
             "linkedin_url": "https://www.linkedin.com/company/infocepts/",
             "department": "",
@@ -616,30 +564,27 @@
             "funding_amount": "",
             "headcount": 1462,
             "incorporated_year": 2004,
-            "lead_backers": "Self-Funded / Founder-Led",
-            "tech_stack": "Snowflake · Databricks · AWS · PowerBI · Python",
-            "traction_badge": "GLOBAL 1,500+ FTE FORCE",
-            "traction_note": "Recognized in Gartner Magic Quadrant for Data & Analytics Services 4 years running.",
             "founders": [
                   {
                         "name": "Shashank Garg",
                         "role": "Co-Founder & CEO",
                         "degree": "B.Tech MME '96",
-                        "linkedin": "linkedin.com/in/shashankgarg"
+                        "linkedin": "https://linkedin.com/in/shashankgarg"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "7151f9ce-4e6f-41ed-ba34-4fd4d2c81d34",
-            "logo_url": "./assets/logos/infocepts.png",
-            "display_order": 18
+            "display_order": 18,
+            "about": "InfoCepts is a global data and AI solutions firm that helps Fortune 500 enterprises design, build, and scale modern cloud data platforms, generative AI systems, and enterprise business intelligence to maximize return on data investments.",
+            "slug": "infocepts",
+            "monogram": "IN",
+            "logo_url": "./assets/logos/infocepts.png"
       },
       {
+            "id": "7b746153-3003-4c86-a0d5-4604fcaa4c66",
             "name": "Product Space",
-            "slug": "product-space",
-            "monogram": "PS",
             "sector": "Technology & Enterprise Solutions",
-            "pitch": "Engineering-first venture founded and built by VNIT alumni driving innovation in Product Space.",
+            "pitch": "Product management career accelerator offering cohort-based bootcamps, hands-on proof-of-work project building, and mentorship-driven job placement.",
             "website_url": "https://theproductspace.in/",
             "linkedin_url": "https://www.linkedin.com/company/theproductspace",
             "department": "",
@@ -649,30 +594,27 @@
             "funding_amount": "",
             "headcount": 124,
             "incorporated_year": 2025,
-            "lead_backers": "VNIT Alumni Angel Network",
-            "tech_stack": "Python · React · Cloud Architecture",
-            "traction_badge": "PROFITABLE",
-            "traction_note": "Actively building and expanding market presence across India and international markets.",
             "founders": [
                   {
                         "name": "Sakshi Yadav",
                         "role": "Co-Founder",
                         "degree": "B.Tech EEE",
-                        "linkedin": "linkedin.com/in/sakshi--yadav"
+                        "linkedin": "https://linkedin.com/in/sakshi--yadav"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "7b746153-3003-4c86-a0d5-4604fcaa4c66",
-            "logo_url": "./assets/logos/product-space.png",
-            "display_order": 19
+            "display_order": 19,
+            "about": "The Product Space is a cohort-based EdTech academy and community that trains aspiring product managers and growth leaders through live case studies, hands-on product tear-downs, and direct mentorship from senior tech executives.",
+            "slug": "product-space",
+            "monogram": "PR",
+            "logo_url": "./assets/logos/product-space.png"
       },
       {
+            "id": "7d1aaff0-51b9-48ac-989c-803274a2456e",
             "name": "GeoAnalytica",
-            "slug": "geoanalytica",
-            "monogram": "GE",
             "sector": "Technology & Enterprise Solutions",
-            "pitch": "Engineering-first venture founded and built by VNIT alumni driving innovation in GeoAnalytica.",
+            "pitch": "Location intelligence and geospatial analytics consultancy helping organizations make data-backed commercial site selection and urban planning decisions.",
             "website_url": "https://www.geoanalytica.in/",
             "linkedin_url": "https://www.linkedin.com/company/geoanalytica-in/",
             "department": "",
@@ -682,30 +624,27 @@
             "funding_amount": "",
             "headcount": 4,
             "incorporated_year": 2024,
-            "lead_backers": "VNIT Alumni Angel Network",
-            "tech_stack": "Python · React · Cloud Architecture",
-            "traction_badge": "PROFITABLE",
-            "traction_note": "Actively building and expanding market presence across India and international markets.",
             "founders": [
                   {
                         "name": "Akshit Shah",
                         "role": "Co-Founder",
                         "degree": "B.Tech Comp '16",
-                        "linkedin": "linkedin.com/in/ar-akshit-shah"
+                        "linkedin": "https://linkedin.com/in/ar-akshit-shah"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "7d1aaff0-51b9-48ac-989c-803274a2456e",
-            "logo_url": "./assets/logos/geoanalytica.png",
-            "display_order": 20
+            "display_order": 20,
+            "about": "GeoAnalytica is a spatial intelligence and architectural analytics firm that leverages GIS mapping, drone surveying, and urban data modeling to assist infrastructure planners and real estate developers with site feasibility and spatial insights.",
+            "slug": "geoanalytica",
+            "monogram": "GE",
+            "logo_url": "./assets/logos/geoanalytica.png"
       },
       {
+            "id": "7f8feb17-4b91-4991-87de-6cb6380a2f27",
             "name": "Findem",
-            "slug": "findem",
-            "monogram": "FD",
             "sector": "Enterprise HRTech & AI",
-            "pitch": "Attribute-based talent intelligence and workforce management engine mapping 1M+ candidate signals across every stage of the talent lifecycle.",
+            "pitch": "Attribute-based talent intelligence platform mapping deep people data and AI to automate candidate sourcing, pipeline engagement, and workforce planning.",
             "website_url": "https://www.findem.ai/",
             "linkedin_url": "https://www.linkedin.com/company/findeminc/",
             "department": "",
@@ -715,30 +654,27 @@
             "funding_amount": "",
             "headcount": 226,
             "incorporated_year": 2019,
-            "lead_backers": "Wing Venture Capital · Quarry Ventures",
-            "tech_stack": "Python · Go · React · ElasticSearch",
-            "traction_badge": "SERIES B · FORTUNE 500 CLIENTS",
-            "traction_note": "Accelerating pipeline sourcing by 4x for tech leaders including RingCentral, Intuitive Surgical, and Medallia.",
             "founders": [
                   {
                         "name": "Hariharan Kolam",
                         "role": "Founder and CEO",
                         "degree": "B.Tech '03",
-                        "linkedin": "linkedin.com/in/hkolam"
+                        "linkedin": "https://linkedin.com/in/hkolam"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "7f8feb17-4b91-4991-87de-6cb6380a2f27",
-            "logo_url": "./assets/logos/findem.png",
-            "display_order": 21
+            "display_order": 21,
+            "about": "Findem is an enterprise talent intelligence platform that uses attribute-based AI to analyze millions of candidate career trajectories, helping corporate recruiting teams find, evaluate, and engage qualified talent across passive networks.",
+            "slug": "findem",
+            "monogram": "FI",
+            "logo_url": "./assets/logos/findem.png"
       },
       {
+            "id": "8a6e3bda-7cb7-4fba-8721-19d26932b5a0",
             "name": "Delphi Cloud",
-            "slug": "delphi-cloud",
-            "monogram": "DC",
             "sector": "Technology & Enterprise Solutions",
-            "pitch": "Engineering-first venture founded and built by VNIT alumni driving innovation in Delphi Cloud.",
+            "pitch": "Developer-first cloud infrastructure provider offering scalable virtual machines, managed Kubernetes, and S3-compatible object storage at predictable pricing.",
             "website_url": "https://www.delphicloud.ai/",
             "linkedin_url": "https://www.linkedin.com/company/delphi-cloud/",
             "department": "",
@@ -748,30 +684,27 @@
             "funding_amount": "",
             "headcount": 4,
             "incorporated_year": 2024,
-            "lead_backers": "VNIT Alumni Angel Network",
-            "tech_stack": "Python · React · Cloud Architecture",
-            "traction_badge": "PROFITABLE",
-            "traction_note": "Actively building and expanding market presence across India and international markets.",
             "founders": [
                   {
                         "name": "Shreyas Mokadam",
                         "role": "Founder",
                         "degree": "B.Tech Mining Engineering '16",
-                        "linkedin": "linkedin.com/in/shreyas-mokadam-a451b8120"
+                        "linkedin": "https://linkedin.com/in/shreyas-mokadam-a451b8120"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "8a6e3bda-7cb7-4fba-8721-19d26932b5a0",
-            "logo_url": "./assets/logos/delphi-cloud.png",
-            "display_order": 22
+            "display_order": 22,
+            "about": "Delphi Cloud is a specialized cloud infrastructure and DevOps consultancy that architects secure Kubernetes clusters, multi-cloud deployments, and high-throughput data processing environments for fast-growing digital enterprises.",
+            "slug": "delphi-cloud",
+            "monogram": "DE",
+            "logo_url": "./assets/logos/delphi-cloud.png"
       },
       {
+            "id": "8ebd47ac-4a65-4523-bcf7-01afe2ea5f9f",
             "name": "Konverge AI",
-            "slug": "konverge-ai",
-            "monogram": "KA",
             "sector": "Enterprise AI & GenAI Systems",
-            "pitch": "Applied AI and machine learning engineering firm designing bespoke predictive intelligence, NLP, and vision architectures for global enterprises.",
+            "pitch": "Enterprise AI engineering and decision science firm designing bespoke Generative AI agents, predictive vision models, and automated data pipelines for industry leaders.",
             "website_url": "https://konverge.ai/",
             "linkedin_url": "https://www.linkedin.com/company/konverge-ai/",
             "department": "",
@@ -781,36 +714,33 @@
             "funding_amount": "",
             "headcount": 174,
             "incorporated_year": 2018,
-            "lead_backers": "Self-Funded",
-            "tech_stack": "PyTorch · LangChain · FastAPI · React · GCP",
-            "traction_badge": "120+ APPLIED AI ENGINEERS",
-            "traction_note": "Delivered 80+ enterprise AI deployments across banking, manufacturing, and supply chain.",
             "founders": [
                   {
-                        "name": "Prateek Chandrayan",
-                        "role": "Co-Founder and CEO",
-                        "degree": "VNIT Partner / Alum",
-                        "linkedin": "https://linkedin.com/in/prateek-chandrayan"
+                        "name": "Sagar Ghonge",
+                        "role": "Co-Founder and Chief Operating Officer",
+                        "degree": "B.Tech Civil Engineering '09",
+                        "linkedin": "https://linkedin.com/in/sagarghonge"
                   },
                   {
-                        "name": "Sagar Ghonge",
-                        "role": "Co-Founder and COO",
-                        "degree": "B.Tech Civil '09",
-                        "linkedin": "https://linkedin.com/in/sagar-ghonge"
+                        "name": "Prateek Chandrayan",
+                        "role": "Co-FOunder",
+                        "degree": "B.Tech Civil Engineering '09",
+                        "linkedin": "https://linkedin.com/in/prateekchandrayan"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "8ebd47ac-4a65-4523-bcf7-01afe2ea5f9f",
-            "logo_url": "./assets/logos/konverge-ai.png",
-            "display_order": 23
+            "display_order": 23,
+            "about": "Konverge AI is an applied artificial intelligence engineering firm that builds and deploys custom generative AI workflows, computer vision models, and automated machine learning systems for enterprise clients across healthcare, logistics, and finance.",
+            "slug": "konverge-ai",
+            "monogram": "KO",
+            "logo_url": "./assets/logos/konverge-ai.png"
       },
       {
+            "id": "96ce868b-f3bd-40b1-be72-ab589330cf2a",
             "name": "99minds",
-            "slug": "99minds",
-            "monogram": "99",
             "sector": "Technology & Enterprise Solutions",
-            "pitch": "Engineering-first venture founded and built by VNIT alumni driving innovation in 99minds.",
+            "pitch": "Omnichannel customer retention platform that unifies digital gift cards, loyalty rewards, and store credits across online storefronts and in-store POS.",
             "website_url": "https://www.99minds.io/",
             "linkedin_url": "https://www.linkedin.com/company/99minds-io/",
             "department": "",
@@ -820,63 +750,57 @@
             "funding_amount": "",
             "headcount": 18,
             "incorporated_year": 2020,
-            "lead_backers": "VNIT Alumni Angel Network",
-            "tech_stack": "Python · React · Cloud Architecture",
-            "traction_badge": "PROFITABLE",
-            "traction_note": "Actively building and expanding market presence across India and international markets.",
             "founders": [
                   {
                         "name": "Pravin Kamble",
                         "role": "Co-Founder and CEO",
                         "degree": "B.Tech ECE",
-                        "linkedin": "linkedin.com/in/pravinkamble"
+                        "linkedin": "https://linkedin.com/in/pravinkamble"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "96ce868b-f3bd-40b1-be72-ab589330cf2a",
-            "logo_url": "./assets/logos/99minds.png",
-            "display_order": 24
+            "display_order": 24,
+            "about": "99minds is an omnichannel customer loyalty and promotions platform that allows retail and eCommerce brands to launch digital gift cards, personalized coupon campaigns, and referral reward programs that integrate seamlessly with major storefronts.",
+            "slug": "99minds",
+            "monogram": "99",
+            "logo_url": "./assets/logos/99minds.png"
       },
       {
+            "id": "98cb4431-8b01-48a1-b9b0-a988d4a7213a",
             "name": "Synthesis",
-            "slug": "synthesis",
-            "monogram": "SY",
             "sector": "Technology & Enterprise Solutions",
-            "pitch": "Engineering-first venture founded and built by VNIT alumni driving innovation in Synthesis.",
+            "pitch": "Strategic consumer intelligence consultancy that decodes open-web data and cultural signals to help global brands forecast emerging market trends and product opportunities.",
             "website_url": "https://www.synthesis.partners/",
             "linkedin_url": "https://www.linkedin.com/company/synthesispartners/",
             "department": "",
             "batch_year": "",
-            "location": "Singapore\n\n",
+            "location": "Singapore",
             "funding_stage": "",
             "funding_amount": "",
             "headcount": 84,
             "incorporated_year": 2019,
-            "lead_backers": "VNIT Alumni Angel Network",
-            "tech_stack": "Python · React · Cloud Architecture",
-            "traction_badge": "PROFITABLE",
-            "traction_note": "Actively building and expanding market presence across India and international markets.",
             "founders": [
                   {
                         "name": "Ankit Kalkar",
                         "role": "Founder",
                         "degree": "B.Tech MME '10",
-                        "linkedin": "linkedin.com/in/kalkar"
+                        "linkedin": "https://linkedin.com/in/kalkar"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "98cb4431-8b01-48a1-b9b0-a988d4a7213a",
-            "logo_url": "./assets/logos/synthesis.png",
-            "display_order": 25
+            "display_order": 25,
+            "about": "Synthesis is a global cultural data consultancy that combines open-web data mining, consumer telemetry, and predictive modeling to help global consumer brands uncover market trends and design future-proof product strategies.",
+            "slug": "synthesis",
+            "monogram": "SY",
+            "logo_url": "./assets/logos/synthesis.png"
       },
       {
+            "id": "a85d133c-fb2d-4c36-93e3-872714868d37",
             "name": "SimpleWorks",
-            "slug": "simpleworks",
-            "monogram": "SI",
             "sector": "Technology & Enterprise Solutions",
-            "pitch": "Engineering-first venture founded and built by VNIT alumni driving innovation in SimpleWorks.",
+            "pitch": "Sovereign enterprise CRM and agentic AI platform running on-premise or air-gapped to ensure strict regulatory and data privacy compliance for banks and insurers.",
             "website_url": "https://www.simple.works/",
             "linkedin_url": "https://www.linkedin.com/company/simplecrm/",
             "department": "",
@@ -886,30 +810,27 @@
             "funding_amount": "",
             "headcount": 180,
             "incorporated_year": 2015,
-            "lead_backers": "VNIT Alumni Angel Network",
-            "tech_stack": "Python · React · Cloud Architecture",
-            "traction_badge": "PROFITABLE",
-            "traction_note": "Actively building and expanding market presence across India and international markets.",
             "founders": [
                   {
                         "name": "Indraneel Fuke",
                         "role": "Founder & CEO",
                         "degree": "B.Tech Mechanical Engineering '98",
-                        "linkedin": "linkedin.com/in/indraneelfuke"
+                        "linkedin": "https://linkedin.com/in/indraneelfuke"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "a85d133c-fb2d-4c36-93e3-872714868d37",
-            "logo_url": "./assets/logos/simpleworks.png",
-            "display_order": 26
+            "display_order": 26,
+            "about": "SimpleWorks is a digital product engineering studio that partners with startups and mid-market businesses to design, develop, and scale modern web applications, microservices, and cloud-native software products.",
+            "slug": "simpleworks",
+            "monogram": "SI",
+            "logo_url": "./assets/logos/simpleworks.png"
       },
       {
+            "id": "ae36c5c3-7f41-486c-b9ec-327a020af324",
             "name": "TeemGenie",
-            "slug": "teemgenie",
-            "monogram": "TE",
             "sector": "Technology & Enterprise Solutions",
-            "pitch": "Engineering-first venture founded and built by VNIT alumni driving innovation in TeemGenie.",
+            "pitch": "Employer of Record (EOR) platform helping global tech companies recruit, employ, and manage dedicated software engineering teams in India without setting up a local entity.",
             "website_url": "https://teemgenie.com/",
             "linkedin_url": "https://www.linkedin.com/company/teemgenie/",
             "department": "",
@@ -919,10 +840,6 @@
             "funding_amount": "",
             "headcount": 11,
             "incorporated_year": 2020,
-            "lead_backers": "VNIT Alumni Angel Network",
-            "tech_stack": "Python · React · Cloud Architecture",
-            "traction_badge": "PROFITABLE",
-            "traction_note": "Actively building and expanding market presence across India and international markets.",
             "founders": [
                   {
                         "name": "Sandeep Deshmukh",
@@ -933,16 +850,17 @@
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "ae36c5c3-7f41-486c-b9ec-327a020af324",
-            "logo_url": "./assets/logos/teemgenie.png",
-            "display_order": 27
+            "display_order": 27,
+            "about": "TeemGenie is an employee engagement and workforce productivity platform designed to help modern organizations manage distributed teams through peer recognition, goal alignment, and structured performance feedback.",
+            "slug": "teemgenie",
+            "monogram": "TE",
+            "logo_url": "./assets/logos/teemgenie.png"
       },
       {
+            "id": "bbc0d831-e21b-4acc-997e-b9d8415079d2",
             "name": "Sigmantle Research",
-            "slug": "sigmantle-research",
-            "monogram": "SR",
             "sector": "Technology & Enterprise Solutions",
-            "pitch": "Engineering-first venture founded and built by VNIT alumni driving innovation in Sigmantle Research.",
+            "pitch": "Quantitative research studio developing statistical market models, data analytics, and algorithmic execution strategies for capital markets.",
             "website_url": "",
             "linkedin_url": "https://linkedin.com/company/sigmantle-research",
             "department": "",
@@ -952,63 +870,57 @@
             "funding_amount": "",
             "headcount": 1,
             "incorporated_year": 2024,
-            "lead_backers": "VNIT Alumni Angel Network",
-            "tech_stack": "Python · React · Cloud Architecture",
-            "traction_badge": "PROFITABLE",
-            "traction_note": "Actively building and expanding market presence across India and international markets.",
             "founders": [
                   {
                         "name": "Shreyash Kakde",
                         "role": "Founder",
                         "degree": "B.Tech Civil 23'",
-                        "linkedin": "linkedin.com/in/shreyash-k22"
+                        "linkedin": "https://linkedin.com/in/shreyash-k22"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "bbc0d831-e21b-4acc-997e-b9d8415079d2",
-            "logo_url": "./assets/logos/sigmantle-research.png",
-            "display_order": 28
+            "display_order": 28,
+            "about": "Sigmantle Research is an applied AI research and engineering firm focused on developing autonomous multi-agent systems, retrieval-augmented generation (RAG) pipelines, and customized language model tools for complex data workflows.",
+            "slug": "sigmantle-research",
+            "monogram": "SI",
+            "logo_url": "./assets/logos/sigmantle-research.png"
       },
       {
+            "id": "bdf99c8c-293e-4e0e-81ef-91d83cea6b19",
             "name": "Airolabs.ai",
-            "slug": "airolabs-ai",
-            "monogram": "AA",
             "sector": "Technology & Enterprise Solutions",
-            "pitch": "Engineering-first venture founded and built by VNIT alumni driving innovation in Airolabs.ai.",
+            "pitch": "Enterprise digital transformation firm deploying intelligent robotic process automation (RPA) and Generative AI workflows to streamline complex operations.",
             "website_url": "https://airolabs.ai/",
             "linkedin_url": "https://www.linkedin.com/company/airolabsai",
             "department": "",
             "batch_year": "",
-            "location": "New Delhi, Delhi, India\n\n",
+            "location": "New Delhi, Delhi, India",
             "funding_stage": "",
             "funding_amount": "",
             "headcount": 312,
             "incorporated_year": 2018,
-            "lead_backers": "VNIT Alumni Angel Network",
-            "tech_stack": "Python · React · Cloud Architecture",
-            "traction_badge": "PROFITABLE",
-            "traction_note": "Actively building and expanding market presence across India and international markets.",
             "founders": [
                   {
                         "name": "Sayak Das",
                         "role": "Chief AI Innovation Officer",
                         "degree": "B.Tech ECE '03",
-                        "linkedin": "linkedin.com/in/sayak-das-"
+                        "linkedin": "https://linkedin.com/in/sayak-das-"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "bdf99c8c-293e-4e0e-81ef-91d83cea6b19",
-            "logo_url": "./assets/logos/airolabs-ai.png",
-            "display_order": 29
+            "display_order": 29,
+            "about": "AiRo Digital Labs (Airolabs.ai) is an enterprise intelligent automation and digital health services provider that deploys cognitive bots, cloud transformation, and automated clinical workflows for healthcare networks and life science enterprises.",
+            "slug": "airolabs-ai",
+            "monogram": "AI",
+            "logo_url": "./assets/logos/airolabs-ai.png"
       },
       {
+            "id": "f4cf059f-cec1-4c31-a3cb-40c37e0e7825",
             "name": "Aristok Technologies",
-            "slug": "aristok-technologies",
-            "monogram": "AT",
             "sector": "Technology & Enterprise Solutions",
-            "pitch": "Engineering-first venture founded and built by VNIT alumni driving innovation in Aristok Technologies.",
+            "pitch": "Full-funnel performance marketing agency driving revenue growth through programmatic advertising, paid social customer acquisition, and SEO.",
             "website_url": "https://www.aristok.com/",
             "linkedin_url": "https://www.linkedin.com/company/aristok-technologies/",
             "department": "",
@@ -1018,23 +930,81 @@
             "funding_amount": "",
             "headcount": 119,
             "incorporated_year": 2023,
-            "lead_backers": "VNIT Alumni Angel Network",
-            "tech_stack": "Python · React · Cloud Architecture",
-            "traction_badge": "PROFITABLE",
-            "traction_note": "Actively building and expanding market presence across India and international markets.",
             "founders": [
                   {
                         "name": "Aniket Khare",
                         "role": "Co-Founder",
                         "degree": "B.Tech EEE '06",
-                        "linkedin": "linkedin.com/in/aniket-khare-a8208022"
+                        "linkedin": "https://linkedin.com/in/aniket-khare-a8208022"
                   }
             ],
             "is_verified": true,
             "is_published": true,
-            "id": "f4cf059f-cec1-4c31-a3cb-40c37e0e7825",
-            "logo_url": "./assets/logos/aristok-technologies.png",
-            "display_order": 30
+            "display_order": 30,
+            "about": "Aristok Technologies is an IT consulting and software development company that engineers custom enterprise applications, mobile platforms, and database architectures tailored to optimize organizational workflows and digital operations.",
+            "slug": "aristok-technologies",
+            "monogram": "AR",
+            "logo_url": "./assets/logos/aristok-technologies.png"
+      },
+      {
+            "id": "108ed4e6-924d-486e-9d27-6cd8ad918ac6",
+            "name": "Cognizant",
+            "sector": "Technology & Enterprise Solutions",
+            "pitch": "Global enterprise technology and consulting firm engineering modern digital architectures, cloud transformations, and AI systems for Fortune 500 companies.",
+            "website_url": "https://www.cognizant.com",
+            "linkedin_url": "https://linkedin.com/company/cognizant",
+            "department": "Computer Science",
+            "batch_year": "2016",
+            "location": "Bengaluru / Pune, India",
+            "funding_stage": "Bootstrapped",
+            "funding_amount": "Bootstrapped",
+            "headcount": 15,
+            "incorporated_year": 2019,
+            "founders": [
+                  {
+                        "name": "Chandramouli Killi",
+                        "role": "Co-Founder / Alumnus",
+                        "degree": "B.Tech Comp '16",
+                        "linkedin": "https://linkedin.com/in/chandramouli-killi"
+                  }
+            ],
+            "is_verified": true,
+            "is_published": false,
+            "display_order": 100,
+            "about": "Cognizant is a global Fortune 500 technology services and consulting enterprise that modernizes core business infrastructure, digital applications, and cloud operations for major global companies across banking, healthcare, and retail.",
+            "slug": "cognizant",
+            "monogram": "CO",
+            "logo_url": "./assets/logos/cognizant.png"
+      },
+      {
+            "id": "e3edca99-45e0-4437-bbc0-dd5099a47060",
+            "name": "CAMS Limited",
+            "sector": "Technology & Enterprise Solutions",
+            "pitch": "Financial infrastructure and technology platform providing mutual fund transfer agency, digital KYC, and payments processing for India's capital markets.",
+            "website_url": "https://www.cams-limited.com",
+            "linkedin_url": "https://linkedin.com/company/cams-limited",
+            "department": "Computer Science",
+            "batch_year": "2016",
+            "location": "Bengaluru / Pune, India",
+            "funding_stage": "Bootstrapped",
+            "funding_amount": "Bootstrapped",
+            "headcount": 15,
+            "incorporated_year": 2019,
+            "founders": [
+                  {
+                        "name": "Mohit Raisinghani",
+                        "role": "Co-Founder / Alumnus",
+                        "degree": "B.Tech Comp '16",
+                        "linkedin": "https://linkedin.com/in/mohit-raisinghani"
+                  }
+            ],
+            "is_verified": true,
+            "is_published": false,
+            "display_order": 100,
+            "about": "Computer Age Management Services (CAMS) is India's premier financial infrastructure provider and mutual fund registrar, handling transaction processing, digital KYC, and registry operations for over 69% of the Indian mutual fund industry.",
+            "slug": "cams-limited",
+            "monogram": "CA",
+            "logo_url": "./assets/logos/cams-limited.png"
       }
 ];
 
@@ -1106,6 +1076,41 @@
     }
 
     /* ─── DATA LOADING (Supabase + Offline Seed) ─── */
+    
+    /* ─── URL SANITIZER & DATA NORMALIZERS ─── */
+    function formatExternalUrl(rawUrl) {
+      if (!rawUrl || typeof rawUrl !== 'string') return '#';
+      let url = rawUrl.trim();
+      if (!url || url === '#' || url === 'undefined' || url === 'null' || url.toLowerCase() === 'none') {
+        return '#';
+      }
+      if (/^(https?:\/\/|mailto:|tel:)/i.test(url)) return url;
+      if (url.startsWith('//')) return 'https:' + url;
+      return 'https://' + url;
+    }
+
+    function normalizeFounders(rawFounders, fallbackDegree = 'Engineering') {
+      let list = rawFounders;
+      if (typeof list === 'string') {
+        try {
+          list = JSON.parse(list);
+        } catch (e) {
+          list = [];
+        }
+      }
+      if (!Array.isArray(list)) list = [];
+      return list.map(f => {
+        if (!f || typeof f !== 'object') return null;
+        return {
+          name: (f.name || 'VNIT Alumnus').trim(),
+          role: (f.role || 'Co-Founder').trim(),
+          degree: (f.degree || fallbackDegree || 'Engineering').trim(),
+          linkedin: formatExternalUrl(f.linkedin),
+          email: (f.email || '').trim()
+        };
+      }).filter(Boolean);
+    }
+
     async function loadStartupsData() {
       // 1. Load local verified seed data
       try {
@@ -1146,7 +1151,7 @@
               SEED_STARTUPS.forEach(s => seedMap.set(s.name.toLowerCase().trim(), s));
             }
 
-            // Merge live data with seed enrichments to guarantee logos are always present
+            // Merge live data with seed enrichments to guarantee logos & clean protocols
             const enrichedLive = liveData.map(item => {
               const seed = seedMap.get(item.name.toLowerCase().trim());
               const fallbackSlug = item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -1154,13 +1159,19 @@
               const logoUrl = item.logo_url || (seed && seed.logo_url) || `./assets/logos/${slug}.png`;
               const monogram = item.monogram || (seed && seed.monogram) || item.name.substring(0, 2).toUpperCase();
 
+              const parsedItemFounders = normalizeFounders(item.founders, item.department);
+              const seedFounders = seed ? normalizeFounders(seed.founders, seed.department) : [];
+              const finalFounders = parsedItemFounders.length > 0 ? parsedItemFounders : seedFounders;
+
               return {
                 ...seed,
                 ...item,
                 slug,
                 logo_url: logoUrl,
                 monogram,
-                founders: (item.founders && item.founders.length > 0) ? item.founders : ((seed && seed.founders) || [])
+                website_url: formatExternalUrl(item.website_url || (seed && seed.website_url)),
+                linkedin_url: formatExternalUrl(item.linkedin_url || (seed && seed.linkedin_url)),
+                founders: finalFounders
               };
             });
 
@@ -1261,10 +1272,8 @@
 
     function hasBranch(startup, branchName) {
       if (startup.department && startup.department.toLowerCase().includes(branchName.toLowerCase())) return true;
-      if (startup.founders) {
-        return startup.founders.some(f => (f.degree && f.degree.toLowerCase().includes(branchName.toLowerCase())) || (f.vnit_branch && f.vnit_branch.toLowerCase().includes(branchName.toLowerCase())));
-      }
-      return false;
+      const founders = Array.isArray(startup.founders) ? startup.founders : normalizeFounders(startup.founders);
+      return founders.some(f => (f.degree && f.degree.toLowerCase().includes(branchName.toLowerCase())) || (f.vnit_branch && f.vnit_branch.toLowerCase().includes(branchName.toLowerCase())));
     }
 
     /* ─── FILTERING & SORTING ENGINE ─── */
@@ -1310,7 +1319,8 @@
 
         // Search text (Company, Branch, Batch Year, Founders, Location)
         if (currentFilter.search) {
-          const foundersText = (item.founders || []).map(f => `${f.name || ''} ${f.degree || ''}`).join(' ');
+          const foundersArr = Array.isArray(item.founders) ? item.founders : normalizeFounders(item.founders);
+          const foundersText = foundersArr.map(f => `${f.name || ''} ${f.degree || ''}`).join(' ');
           const text = `${item.name} ${item.pitch} ${item.sector} ${item.department} ${item.batch_year || ''} ${item.tech_stack || ''} ${item.location || ''} ${foundersText}`.toLowerCase();
           if (!text.includes(currentFilter.search)) return false;
         }
@@ -1324,7 +1334,8 @@
         if (q) {
           const score = (item) => {
             const name = (item.name || '').toLowerCase();
-            const founders = (item.founders || []).map(f => `${f.name || ''} ${f.degree || ''}`).join(' ').toLowerCase();
+            const foundersArr = Array.isArray(item.founders) ? item.founders : normalizeFounders(item.founders);
+            const founders = foundersArr.map(f => `${f.name || ''} ${f.degree || ''}`).join(' ').toLowerCase();
             const sector = (item.sector || '').toLowerCase();
             const dept = (item.department || '').toLowerCase();
             const batch = String(item.batch_year || '');
@@ -1460,10 +1471,12 @@
       container.innerHTML = list.map(s => {
         const isActive = activeStartup && activeStartup.id === s.id;
 
+        const cardFounders = Array.isArray(s.founders) ? s.founders : normalizeFounders(s.founders, s.department);
+
         // Derive clean batch tag (e.g. Mech '16, CSE '18, Batch '21)
         let batchTag = '';
-        if (s.founders && s.founders.length > 0 && s.founders[0].degree) {
-          const match = s.founders[0].degree.match(/(Mech|CSE|ECE|EEE|Chem|Met|Civil|Arch|Biotech|EE|IT)[\s']+(\d{2})/i);
+        if (cardFounders.length > 0 && cardFounders[0].degree) {
+          const match = cardFounders[0].degree.match(/(Mech|CSE|ECE|EEE|Chem|Met|Civil|Arch|Biotech|EE|IT)[\s']+(\d{2})/i);
           if (match) {
             batchTag = `${match[1]} '${match[2]}`;
           }
@@ -1474,8 +1487,8 @@
 
         // Founders summary: Concept 2 Verified Alumni Chips Architecture with Real Photos
         let chipsHtml = '';
-        if (s.founders && s.founders.length > 0) {
-          chipsHtml = s.founders.map(f => {
+        if (cardFounders.length > 0) {
+          chipsHtml = cardFounders.map(f => {
             const rawName = f.name || 'Alumnus';
             const initials = rawName.split(/\s+/).map(n => n[0]).filter(Boolean).slice(0, 2).join('').toUpperCase() || 'AL';
             let cleanDegree = (f.degree || '').replace(/B\.Tech\s*/i, '').trim();
@@ -1501,14 +1514,14 @@
 
         const monogram = (s.monogram || s.name.substring(0, 2)).toUpperCase();
         const logoUrl = s.logo_url || s.logo || (s.slug ? `./assets/logos/${s.slug}.png` : '');
-        const outboundUrl = s.website_url || '#';
-        const linkedinUrl = s.linkedin_url || s.website_url || '#';
+        const outboundUrl = formatExternalUrl(s.website_url);
+        const linkedinUrl = formatExternalUrl(s.linkedin_url || s.website_url);
 
         return `
           <article class="venture-card ${isActive ? 'is-active' : ''}" data-id="${s.id}" onclick="selectStartup('${s.id}')">
             <div class="card-main">
               <!-- 1. Monogram / Logo Hallmark Tile (Interactive Website Link) -->
-              <a href="${outboundUrl}" target="_blank" rel="noopener" class="card-logo-tile card-monogram-tile" onclick="event.stopPropagation();" title="Visit ${s.name} Website">
+              <a href="${outboundUrl !== '#' ? outboundUrl : 'javascript:void(0)'}" ${outboundUrl !== '#' ? 'target="_blank" rel="noopener"' : ''} class="card-logo-tile card-monogram-tile" onclick="event.stopPropagation();" title="${outboundUrl !== '#' ? `Visit ${s.name} Website` : s.name}">
                 ${logoUrl ? `
                   <img src="${logoUrl}" alt="${s.name} logo" class="card-logo-img" loading="lazy"
                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -1525,10 +1538,17 @@
                     <h3 class="card-company-name">${s.name}</h3>
                   </div>
                   <!-- 3. High-Catch LinkedIn Outbound Button -->
-                  <a href="${linkedinUrl}" target="_blank" rel="noopener" class="btn-company-outbound btn-linkedin-outbound" onclick="event.stopPropagation();" title="Open LinkedIn Profile for ${s.name}">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.89 0-1.61.72-1.61 1.61 0 .88.72 1.6 1.61 1.6.89 0 1.61-.72 1.61-1.6 0-.89-.72-1.61-1.61-1.61Z"/></svg>
-                    LinkedIn ↗
-                  </a>
+                  ${linkedinUrl !== '#' ? `
+                    <a href="${linkedinUrl}" target="_blank" rel="noopener" class="btn-company-outbound btn-linkedin-outbound" onclick="event.stopPropagation();" title="Open LinkedIn Profile for ${s.name}">
+                      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.89 0-1.61.72-1.61 1.61 0 .88.72 1.6 1.61 1.6.89 0 1.61-.72 1.61-1.6 0-.89-.72-1.61-1.61-1.61Z"/></svg>
+                      LinkedIn ↗
+                    </a>
+                  ` : `
+                    <button type="button" class="btn-company-outbound btn-linkedin-outbound" style="opacity: 0.45; cursor: default;" onclick="event.stopPropagation();" title="No LinkedIn profile listed">
+                      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.89 0-1.61.72-1.61 1.61 0 .88.72 1.6 1.61 1.6.89 0 1.61-.72 1.61-1.6 0-.89-.72-1.61-1.61-1.61Z"/></svg>
+                      LinkedIn
+                    </button>
+                  `}
                 </div>
                 <p class="card-pitch">${s.pitch || ''}</p>
               </div>
@@ -1581,20 +1601,35 @@
       if (subtitleEl) subtitleEl.innerText = '';
 
       // 2. Dual Founder Cards
-      const foundersList = startup.founders && startup.founders.length > 0 ? startup.founders : [
-        {
-          name: "VNIT Alumni Team",
-          role: "Founders & Leadership",
-          degree: startup.department || "Engineering",
-          linkedin: startup.website_url,
-          email: ""
-        }
-      ];
+      let foundersList = Array.isArray(startup.founders) ? startup.founders : normalizeFounders(startup.founders, startup.department);
+      if (foundersList.length === 0) {
+        foundersList = [
+          {
+            name: "VNIT Alumni Team",
+            role: "Founders & Leadership",
+            degree: startup.department || "Engineering",
+            linkedin: formatExternalUrl(startup.linkedin_url || startup.website_url),
+            email: ""
+          }
+        ];
+      }
 
       const foundersHtml = foundersList.slice(0, 2).map((f, idx) => {
         const degreeText = (f.degree || '').replace('B.Tech ', '').trim() || 'Alumnus';
         const photoUrl = getFounderPhoto(startup, f);
         const initials = (f.name || 'Alumnus').split(/\s+/).map(n => n[0]).filter(Boolean).slice(0, 2).join('').toUpperCase() || 'AL';
+        const founderLinkedin = formatExternalUrl(f.linkedin || startup.linkedin_url || startup.website_url);
+        const hasLinkedin = founderLinkedin && founderLinkedin !== '#';
+
+        // Safe email fallback
+        let founderEmail = (f.email || '').trim();
+        let emailHref = '';
+        if (founderEmail) {
+          emailHref = `mailto:${founderEmail}`;
+        } else if (startup.website_url) {
+          const domain = startup.website_url.replace(/https?:\/\/(www\.)?/, '').replace(/\/.*$/, '').trim();
+          if (domain) emailHref = `mailto:founder@${domain}`;
+        }
 
         return `
           <div class="cert-founder-card">
@@ -1611,26 +1646,27 @@
             <div class="cert-founder-role">${f.role || 'Co-Founder'}</div>
             <div class="cert-founder-batch">${degreeText}</div>
             <div class="cert-founder-actions">
-              ${f.linkedin ? `
-                <a href="${f.linkedin}" target="_blank" rel="noopener" class="btn-action btn-b" style="justify-content: center;">
+              ${hasLinkedin ? `
+                <a href="${founderLinkedin}" target="_blank" rel="noopener" class="btn-action btn-b" style="justify-content: center;">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.89 0-1.61.72-1.61 1.61 0 .88.72 1.6 1.61 1.6.89 0 1.61-.72 1.61-1.6 0-.89-.72-1.61-1.61-1.61Z"/></svg>
                   LinkedIn
                 </a>
               ` : `
-                <a href="${startup.website_url}" target="_blank" rel="noopener" class="btn-action btn-b" style="justify-content: center;">
+                <button type="button" class="btn-action btn-b" style="justify-content: center; opacity: 0.5; cursor: default;" onclick="event.stopPropagation();" title="No LinkedIn profile listed">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.89 0-1.61.72-1.61 1.61 0 .88.72 1.6 1.61 1.6.89 0 1.61-.72 1.61-1.6 0-.89-.72-1.61-1.61-1.61Z"/></svg>
                   LinkedIn
-                </a>
+                </button>
               `}
-              ${f.email ? `
-                <a href="mailto:${f.email}" class="btn-action btn-o" style="justify-content: center;">
+              ${emailHref ? `
+                <a href="${emailHref}" class="btn-action btn-o" style="justify-content: center;">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                   Email
                 </a>
               ` : `
-                <a href="mailto:founder@${(startup.website_url || '').replace(/https?:\/\/(www\.)?/, '').replace(/\/.*$/, '')}" class="btn-action btn-o" style="justify-content: center;">
+                <button type="button" class="btn-action btn-o" style="justify-content: center; opacity: 0.5; cursor: default;" onclick="event.stopPropagation();">
                   <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                   Email
-                </a>
+                </button>
               `}
             </div>
           </div>
@@ -1676,16 +1712,32 @@
       `;
 
       // 4. Footer Dual Actions (Company LinkedIn + Website)
-      const companyLinkedin = startup.linkedin_url || startup.website_url || '#';
+      const companyLinkedin = formatExternalUrl(startup.linkedin_url || startup.website_url);
+      const companyWebsite = formatExternalUrl(startup.website_url);
+
       footerEl.innerHTML = `
-        <a href="${companyLinkedin}" target="_blank" rel="noopener" class="btn-action btn-b">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.89 0-1.61.72-1.61 1.61 0 .88.72 1.6 1.61 1.6.89 0 1.61-.72 1.61-1.6 0-.89-.72-1.61-1.61-1.61Z"/></svg>
-          Company LinkedIn ↗
-        </a>
-        <a href="${startup.website_url || '#'}" target="_blank" rel="noopener" class="btn-action btn-o">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-          Website ↗
-        </a>
+        ${companyLinkedin !== '#' ? `
+          <a href="${companyLinkedin}" target="_blank" rel="noopener" class="btn-action btn-b">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.89 0-1.61.72-1.61 1.61 0 .88.72 1.6 1.61 1.6.89 0 1.61-.72 1.61-1.6 0-.89-.72-1.61-1.61-1.61Z"/></svg>
+            Company LinkedIn ↗
+          </a>
+        ` : `
+          <button type="button" class="btn-action btn-b" style="opacity: 0.5; cursor: default;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.89 0-1.61.72-1.61 1.61 0 .88.72 1.6 1.61 1.6.89 0 1.61-.72 1.61-1.6 0-.89-.72-1.61-1.61-1.61Z"/></svg>
+            Company LinkedIn
+          </button>
+        `}
+        ${companyWebsite !== '#' ? `
+          <a href="${companyWebsite}" target="_blank" rel="noopener" class="btn-action btn-o">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+            Website ↗
+          </a>
+        ` : `
+          <button type="button" class="btn-action btn-o" style="opacity: 0.5; cursor: default;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+            Website
+          </button>
+        `}
       `;
     }
 
