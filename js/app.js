@@ -787,16 +787,16 @@
             "traction_note": "Delivered 80+ enterprise AI deployments across banking, manufacturing, and supply chain.",
             "founders": [
                   {
-                        "name": "Sagar Ghonge",
-                        "role": "Co-Founder and Chief Operating Officer",
-                        "degree": "B.Tech Civil Engineering '09",
-                        "linkedin": "linkedin.com/in/sagarghonge"
+                        "name": "Prateek Chandrayan",
+                        "role": "Co-Founder and CEO",
+                        "degree": "VNIT Partner / Alum",
+                        "linkedin": "https://linkedin.com/in/prateek-chandrayan"
                   },
                   {
-                        "name": "Rakesh Rallapalli",
-                        "role": "Core Team / Alumnus",
-                        "degree": "B.Tech Comp '14",
-                        "linkedin": "https://linkedin.com/in/rakesh-rallapalli"
+                        "name": "Sagar Ghonge",
+                        "role": "Co-Founder and COO",
+                        "degree": "B.Tech Civil '09",
+                        "linkedin": "https://linkedin.com/in/sagar-ghonge"
                   }
             ],
             "is_verified": true,
@@ -1387,6 +1387,62 @@
       }
     }
 
+    /* ─── FOUNDER PROFILE PHOTO LOOKUP ─── */
+    function getFounderPhoto(startup, founder) {
+      if (!founder || !founder.name) return null;
+      const clean = (str) => (str || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      const sSlug = clean(startup.slug || startup.name);
+      const fSlug = clean(founder.name);
+
+      const photoMap = {
+        '99minds_pravin-kamble': './assets/Profile Pics/99minds_pravin-kamble.jpg',
+        'airolabs-ai_sayak-das': './assets/Profile Pics/airolabsai_sayak-das.jpg',
+        'airolabsai_sayak-das': './assets/Profile Pics/airolabsai_sayak-das.jpg',
+        'aristok-technologies_aniket-khare': './assets/Profile Pics/aristok-technologies_aniket-khare.jpg',
+        'autoven_vinay-gunasekaran': './assets/Profile Pics/autoven_vinay-gunasekaran.jpg',
+        'awiros_vikram-gupta': './assets/Profile Pics/awiros_vikram-gupta.jpg',
+        'biztransights_sameer-ughade': './assets/Profile Pics/biztransights_sameer-ughade.jpg',
+        'bombay-shaving-company_shantanu-deshpande': './assets/Profile Pics/bombay-shaving-company_shantanu-deshpande.jpg',
+        'circullence-solutions_sarang-aloni': './assets/Profile Pics/circullence-solutions_sarang-aloni.jpg',
+        'collegedekho_ruchir': './assets/Profile Pics/collegedekho_ruchir.jpg',
+        'collegise_pranav-chinsabwar': './assets/Profile Pics/collegise_pranav-chinsabwar.jpg',
+        'ettaflow_vishal-goswami': './assets/Profile Pics/ettaflow_vishal-goswami.jpg',
+        'findem_hariharan-kolam': './assets/Profile Pics/findem_hariharan-kolam.jpg',
+        'geoanalytica_akshit-shah': './assets/Profile Pics/geoanalytica_akshit-shah.jpg',
+        'human-capitalists_lakshya-shukla': './assets/Profile Pics/human-capitalists_lakshya-shukla.jpg',
+        'human-capitalists_nishant-singh-didawat': './assets/Profile Pics/human-capitalists_nishant-singh-didawat.jpg',
+        'infocepts_shashank-garg': './assets/Profile Pics/infocepts_shashank-garg.jpg',
+        'konverge-ai_prateek-chandrayan': './assets/Profile Pics/konverge-ai_prateek-chandrayan.jpg',
+        'konverge-ai_sagar-ghonge': './assets/Profile Pics/konverge-ai_sagar-ghonge.jpg',
+        'living-things_madhusudhan-naik': './assets/Profile Pics/living-things_madhusudhan-naik.jpg',
+        'living-things_madhusudan-nayak': './assets/Profile Pics/living-things_madhusudhan-naik.jpg',
+        'living-things_mayank-gupta': './assets/Profile Pics/living-things_mayank-gupta.jpg',
+        'living-things_tushar-jagadale': './assets/Profile Pics/living-things_tushar-jagadale.jpg',
+        'mastersoft_sham-somani': './assets/Profile Pics/mastersoft_sham-somani.jpg',
+        'neewee_harsimrat-bhasin': './assets/Profile Pics/neewee_harsimrat-bhasin.jpg',
+        'product-space_sakshi-yadav': './assets/Profile Pics/product-space_sakshi-yadav.jpg',
+        'sigmantle-research_shreyash-kakde': './assets/Profile Pics/sigmantle-research_shreyash-kakde.jpg',
+        'simpleworks_indraneel-fuke': './assets/Profile Pics/simpleworks_indraneel-fuke.jpg',
+        'str8bat_rahul-nagar': './assets/Profile Pics/str8bat_rahul-nagar.jpg',
+        'synthesis_ankit-kalkar': './assets/Profile Pics/synthesis_ankit-kalkar.jpg',
+        'synthesis_aniket-kalkar': './assets/Profile Pics/synthesis_ankit-kalkar.jpg',
+        'teemgenie_sandeep-deshmukh': './assets/Profile Pics/teemgenie_sandeep-deshmukh.jpg',
+        'truemeds-india_akshat-nayyar': './assets/Profile Pics/truemeds-india_akshat-nayyar.jpg',
+        'well-played-sports_ketan-kaore': './assets/Profile Pics/well-played-sports_ketan-kaore.jpg'
+      };
+
+      const key = `${sSlug}_${fSlug}`;
+      if (photoMap[key]) return photoMap[key];
+
+      const companyMap = {
+        'delphi-analytics': './assets/Profile Pics/delphi-analytics.jpg',
+        'delphi-cloud': './assets/Profile Pics/delphi-cloud.jpg',
+        'scienaptic-ai': './assets/Profile Pics/scienaptic-ai.jpg'
+      };
+      if (companyMap[sSlug]) return companyMap[sSlug];
+      return `./assets/Profile Pics/${key}.jpg`;
+    }
+
     /* ─── CARD RENDERER (Variation 7 Architecture) ─── */
     function renderCards(list) {
       const container = document.getElementById('cardsContainer');
@@ -1416,7 +1472,7 @@
           batchTag = s.batch_year ? `Batch '${String(s.batch_year).slice(-2)}` : (s.department || 'VNIT Alumni');
         }
 
-        // Founders summary: Concept 2 Verified Alumni Chips Architecture (No 'and' or ampersand)
+        // Founders summary: Concept 2 Verified Alumni Chips Architecture with Real Photos
         let chipsHtml = '';
         if (s.founders && s.founders.length > 0) {
           chipsHtml = s.founders.map(f => {
@@ -1424,7 +1480,20 @@
             const initials = rawName.split(/\s+/).map(n => n[0]).filter(Boolean).slice(0, 2).join('').toUpperCase() || 'AL';
             let cleanDegree = (f.degree || '').replace(/B\.Tech\s*/i, '').trim();
             const degreeHtml = cleanDegree ? `<span class="chip-degree">· ${cleanDegree}</span>` : '';
-            return `<div class="alumni-chip"><span class="chip-avatar">${initials}</span><span class="chip-name">${rawName}</span>${degreeHtml}</div>`;
+            const photoUrl = getFounderPhoto(s, f);
+            return `
+              <div class="alumni-chip" title="${rawName} (${cleanDegree || 'Alumnus'})">
+                <span class="chip-avatar">
+                  ${photoUrl ? `
+                    <img src="${photoUrl}" alt="${rawName}" class="chip-avatar-img" loading="lazy"
+                      onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span style="display:none;">${initials}</span>
+                  ` : `
+                    <span>${initials}</span>
+                  `}
+                </span>
+                <span class="chip-name">${rawName}</span>${degreeHtml}
+              </div>`;
           }).join('');
         } else {
           chipsHtml = `<div class="alumni-chip"><span class="chip-avatar">VN</span><span class="chip-name">VNIT Alumni</span><span class="chip-degree">· ${s.department || 'Engineering'}</span></div>`;
@@ -1523,18 +1592,20 @@
       ];
 
       const foundersHtml = foundersList.slice(0, 2).map((f, idx) => {
-        const avatarBg = idx === 0 ? '#E2E8F0' : '#CBD5E1';
-        const avatarFill = idx === 0 ? '#1E293B' : '#334155';
         const degreeText = (f.degree || '').replace('B.Tech ', '').trim() || 'Alumnus';
+        const photoUrl = getFounderPhoto(startup, f);
+        const initials = (f.name || 'Alumnus').split(/\s+/).map(n => n[0]).filter(Boolean).slice(0, 2).join('').toUpperCase() || 'AL';
 
         return `
           <div class="cert-founder-card">
             <div class="cert-founder-avatar">
-              <svg width="32" height="32" viewBox="0 0 52 52" fill="none">
-                <rect width="52" height="52" rx="26" fill="${avatarBg}"/>
-                <circle cx="26" cy="19" r="10" fill="${avatarFill}"/>
-                <path d="M12 45C12 36 17 32 26 32C35 32 40 36 40 45" fill="${avatarFill}"/>
-              </svg>
+              ${photoUrl ? `
+                <img src="${photoUrl}" alt="${f.name}" class="cert-founder-avatar-img"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <span class="cert-founder-avatar-fallback" style="display:none;">${initials}</span>
+              ` : `
+                <span class="cert-founder-avatar-fallback">${initials}</span>
+              `}
             </div>
             <div class="cert-founder-name">${f.name}</div>
             <div class="cert-founder-role">${f.role || 'Co-Founder'}</div>
