@@ -367,9 +367,9 @@
               <span class="dock-badge-pill amber">100% FREE PROJECT</span>
             </div>
 
-            <h3 class="dock-contribute-headline">A free public project. Help us document every founder our college ever produced.</h3>
+            <h3 class="dock-contribute-headline">100% Free Project. Help us keep it alive.</h3>
             <p class="dock-contribute-desc">
-              To keep this directory credible and uncompromised, we refuse commercial sponsors and paywalls. If this directory inspired you or helped you find an alumnus, consider backing the next month of research.
+              We refuse ads, paywalls, and corporate sponsors. A small contribution of ₹50 or ₹150 covers hosting, domain fees, and continuous data verification. Pay whatever amount feels right.
             </p>
 
             <div class="dock-qr-card">
@@ -404,16 +404,20 @@
                 </div>
                 <div class="dock-qr-sub">Scan with any UPI app · Razorpay Verified</div>
                 <div class="dock-amt-pills">
-                  <button type="button" class="dock-amt-pill" onclick="selectDonationAmt(150)">₹150</button>
-                  <button type="button" class="dock-amt-pill" onclick="selectDonationAmt(500)">₹500</button>
-                  <button type="button" class="dock-amt-pill" onclick="selectDonationAmt(1000)">₹1,000</button>
+                  <button type="button" class="dock-amt-pill" id="amtPill50" onclick="selectDonationAmt(50)">₹50 · Chai</button>
+                  <button type="button" class="dock-amt-pill is-active" id="amtPill150" onclick="selectDonationAmt(150)">₹150 · Server</button>
+                  <button type="button" class="dock-amt-pill" id="amtPill500" onclick="selectDonationAmt(500)">₹500 · Month</button>
                 </div>
               </div>
             </div>
 
-            <a href="https://github.com" target="_blank" rel="noopener" class="dock-btn-support">
-              Support This Project (UPI) ↗
+            <a href="javascript:void(0)" onclick="triggerUpiPay()" class="dock-btn-support" id="dockSupportBtn">
+              Back This Project (UPI) ↗
             </a>
+            <div class="dock-support-trust-row">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              <span>100% goes to hosting & research · Zero pressure</span>
+            </div>
           </div>
 
         </div>
