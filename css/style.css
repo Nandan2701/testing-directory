@@ -1169,6 +1169,13 @@
       gap: 8px;
     }
 
+    .cert-founders-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+      width: 100%;
+    }
+
     .cert-founder-card {
       flex: 1;
       border: 1px solid var(--border-card);
@@ -1179,6 +1186,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-width: 0;
+      box-sizing: border-box;
+      height: 100%;
     }
 
     .cert-founder-avatar {
@@ -1243,7 +1253,61 @@
       flex-direction: column;
       gap: 3px;
       width: 100%;
-      margin-top: 5px;
+      margin-top: auto;
+      padding-top: 5px;
+    }
+
+    /* Compact founder card for startups with 3+ founders */
+    .cert-founder-card.is-compact {
+      padding: 6px 3px;
+    }
+
+    .cert-founder-card.is-compact .cert-founder-avatar {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 4px;
+    }
+
+    .cert-founder-card.is-compact .cert-founder-avatar-fallback {
+      font-size: 12px;
+    }
+
+    .cert-founder-card.is-compact .cert-founder-name {
+      font-size: 10.5px;
+      line-height: 1.15;
+      word-break: break-word;
+    }
+
+    .cert-founder-card.is-compact .cert-founder-role {
+      font-size: 8px;
+      line-height: 1.15;
+    }
+
+    .cert-founder-card.is-compact .cert-founder-batch {
+      font-size: 7.5px;
+      padding: 1px 3px;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .cert-founder-card.is-compact .cert-founder-actions {
+      gap: 2.5px;
+      margin-top: auto;
+      padding-top: 4px;
+    }
+
+    .cert-founder-card.is-compact .btn-action {
+      font-size: 8.5px;
+      padding: 3px 2px;
+      gap: 2px;
+      justify-content: center;
+    }
+
+    .cert-founder-card.is-compact .btn-action svg {
+      width: 9.5px;
+      height: 9.5px;
     }
 
     /* Option 02 Action Buttons */

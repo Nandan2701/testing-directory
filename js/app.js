@@ -1614,8 +1614,11 @@
         ];
       }
 
-      const foundersHtml = foundersList.slice(0, 2).map((f, idx) => {
-        const degreeText = (f.degree || '').replace('B.Tech ', '').trim() || 'Alumnus';
+      const colCount = foundersList.length === 1 ? 1 : (foundersList.length === 2 ? 2 : (foundersList.length === 3 ? 3 : 2));
+      const isCompact = foundersList.length >= 3;
+
+      const foundersHtml = foundersList.map((f, idx) => {
+        let degreeText = (f.degree || '').replace(/B\.Tech\s*/i, '').replace(/Engineering|Eningeering/i, 'Eng.').trim() || 'Alumnus';
         const photoUrl = getFounderPhoto(startup, f);
         const initials = (f.name || 'Alumnus').split(/\s+/).map(n => n[0]).filter(Boolean).slice(0, 2).join('').toUpperCase() || 'AL';
         const founderLinkedin = formatExternalUrl(f.linkedin || startup.linkedin_url || startup.website_url);
@@ -1632,7 +1635,7 @@
         }
 
         return `
-          <div class="cert-founder-card">
+          <div class="cert-founder-card ${isCompact ? 'is-compact' : ''}">
             <div class="cert-founder-avatar">
               ${photoUrl ? `
                 <img src="${photoUrl}" alt="${f.name}" class="cert-founder-avatar-img"
@@ -1644,7 +1647,7 @@
             </div>
             <div class="cert-founder-name">${f.name}</div>
             <div class="cert-founder-role">${f.role || 'Co-Founder'}</div>
-            <div class="cert-founder-batch">${degreeText}</div>
+            <div class="cert-founder-batch" title="${f.degree || degreeText}">${degreeText}</div>
             <div class="cert-founder-actions">
               ${hasLinkedin ? `
                 <a href="${founderLinkedin}" target="_blank" rel="noopener" class="btn-action btn-b" style="justify-content: center;">
@@ -1678,7 +1681,7 @@
         <!-- Founders Section -->
         <div class="vital-specs-card">
           <div class="vital-specs-title">Founders</div>
-          <div style="display: flex; gap: 12px; margin-top: 10px;">
+          <div class="cert-founders-grid" style="display: grid; grid-template-columns: repeat(${colCount}, minmax(0, 1fr)); gap: ${isCompact ? '6px' : '10px'}; margin-top: 10px;">
             ${foundersHtml}
           </div>
         </div>
