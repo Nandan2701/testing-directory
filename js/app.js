@@ -2528,10 +2528,10 @@
 
 
     /* =========================================================
-       MOBILE FILTER MODAL CONTROLLER
+       MOBILE CONTINUOUS LEFT-DRAWER FILTER CONTROLLER
        ========================================================= */
     const mobileFilterData = [
-      { id: "branch", name: "Branch / Dept", options: [
+      { id: "branch", name: "Branch / Dept", shortName: "Branch", options: [
         { label: "All Departments", val: "ALL" },
         { label: "Mechanical", val: "Mechanical" },
         { label: "Computer Science", val: "Computer Science" },
@@ -2543,18 +2543,18 @@
         { label: "Architecture", val: "Architecture" },
         { label: "Mining", val: "Mining" }
       ]},
-      { id: "stage", name: "Funding Status", options: [
-        { label: "All", val: "ALL" },
+      { id: "stage", name: "Funding Status", shortName: "Funding", options: [
+        { label: "All Funding Stages", val: "ALL" },
         { label: "Funded (VC / Angel)", val: "Series" },
         { label: "Bootstrapped / Profitable", val: "Bootstrapped" }
       ]},
-      { id: "team", name: "Team Size", options: [
-        { label: "All Sizes", val: "ALL" },
+      { id: "team", name: "Team Size", shortName: "Team Size", options: [
+        { label: "All Team Sizes", val: "ALL" },
         { label: "Early Stage (1–10)", val: "1-10" },
-        { label: "Growth (11–50)", val: "11-50" },
-        { label: "Scaleup (50+)", val: "50+" }
+        { label: "Growth Stage (11–50)", val: "11-50" },
+        { label: "Scaleup Stage (50+)", val: "50+" }
       ]},
-      { id: "location", name: "Headquarters", options: [
+      { id: "location", name: "Headquarters", shortName: "Location", options: [
         { label: "All Locations", val: "ALL" },
         { label: "Bengaluru, IN", val: "Bengaluru" },
         { label: "SF Bay Area, US", val: "San Francisco" },
@@ -2562,33 +2562,96 @@
       ]}
     ];
 
-    let mfActiveTabId = "branch";
+    let mfCurrentVisibleSection = "branch";
+    let mfScrollContainerInited = false;
 
-    // Expose functions globally since they are called from inline HTML
     window.openMobileFilterModal = function() {
-      document.getElementById("mfOverlay").classList.add("active");
-      document.getElementById("mfModal").classList.add("active");
-      document.body.style.overflow = "hidden";
+      const overlay = document.getElementById("mfOverlay");
+      const modal = document.getElementById("mfModal");
+      if (overlay) overlay.classList.add("active");
+      if (modal) modal.classList.add("active");
+
+      document.documentElement.classList.add("mobile-filter-open");
+      document.body.classList.add("mobile-filter-open");
+
       renderMobileFilterUI();
+      initMobileScrollSpy();
     };
     
     window.closeMobileFilterModal = function() {
-      document.getElementById("mfOverlay").classList.remove("active");
-      document.getElementById("mfModal").classList.remove("active");
-      document.body.style.overflow = "";
+      const overlay = document.getElementById("mfOverlay");
+      const modal = document.getElementById("mfModal");
+      if (overlay) overlay.classList.remove("active");
+      if (modal) modal.classList.remove("active");
+
+      document.documentElement.classList.remove("mobile-filter-open");
+      document.body.classList.remove("mobile-filter-open");
     };
 
-    window.switchMobileTab = function(id) {
-      mfActiveTabId = id;
-      renderMobileFilterUI();
+    window.jumpToMobileSection = function(sectionId) {
+      mfCurrentVisibleSection = sectionId;
+      updateQuickNavPills();
+      const targetSec = document.getElementById(`mf-sec-${sectionId}`);
+      const container = document.getElementById("mfScrollContainer");
+      if (targetSec && container) {
+        const topPos = targetSec.offsetTop - container.offsetTop;
+        container.scrollTo({ top: topPos, behavior: 'smooth' });
+      }
     };
+
+    function updateQuickNavPills() {
+      document.querySelectorAll(".mf-nav-pill").forEach(pill => {
+        const pId = pill.getAttribute("data-sec");
+        if (pId === mfCurrentVisibleSection) {
+          pill.classList.add("active");
+          pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        } else {
+          pill.classList.remove("active");
+        }
+      });
+    }
+
+    function initMobileScrollSpy() {
+      const container = document.getElementById("mfScrollContainer");
+      const overlay = document.getElementById("mfOverlay");
+      
+      // Prevent touchmove on backdrop from chaining scroll to body
+      if (overlay && !overlay._touchBound) {
+        overlay._touchBound = true;
+        overlay.addEventListener("touchmove", (e) => {
+          e.preventDefault();
+        }, { passive: false });
+      }
+
+      if (!container || mfScrollContainerInited) return;
+      mfScrollContainerInited = true;
+
+      container.addEventListener("scroll", () => {
+        const scrollTop = container.scrollTop;
+        const containerTop = container.offsetTop;
+        let currentSec = mobileFilterData[0].id;
+
+        mobileFilterData.forEach(group => {
+          const el = document.getElementById(`mf-sec-${group.id}`);
+          if (el) {
+            const relTop = el.offsetTop - containerTop - 50;
+            if (scrollTop >= relTop) {
+              currentSec = group.id;
+            }
+          }
+        });
+
+        if (currentSec !== mfCurrentVisibleSection) {
+          mfCurrentVisibleSection = currentSec;
+          updateQuickNavPills();
+        }
+      }, { passive: true });
+    }
 
     window.toggleMobileOption = function(tabId, optVal) {
-      // In this app, filters are single-select per category (like the desktop facet-rail)
-      // We directly update the currentFilter state
       currentFilter[tabId] = optVal;
       
-      // Also sync desktop active state
+      // Sync desktop facet selection
       const desktopList = Array.from(document.querySelectorAll('.facet-list')).find(list => {
         const item = list.querySelector(`[onclick="toggleFacet('${tabId}', '${optVal}')"]`);
         return item != null;
@@ -2599,7 +2662,11 @@
         if (activeItem) activeItem.classList.add('active');
       }
 
+      // Preserve exact scroll position so user experience is smooth
+      const container = document.getElementById("mfScrollContainer");
+      const savedScroll = container ? container.scrollTop : 0;
       renderMobileFilterUI();
+      if (container) container.scrollTop = savedScroll;
     };
     
     window.clearMobileFilters = function() {
@@ -2607,45 +2674,70 @@
       currentFilter.stage = 'ALL';
       currentFilter.team = 'ALL';
       currentFilter.location = 'ALL';
+
+      // Reset desktop facets
+      document.querySelectorAll('.facet-list').forEach(list => {
+        list.querySelectorAll('.facet-item').forEach(el => el.classList.remove('active'));
+        const allItem = list.querySelector(`[onclick*="'ALL'"]`);
+        if (allItem) allItem.classList.add('active');
+      });
+
       renderMobileFilterUI();
+      applyFiltersAndRender();
     };
 
     window.applyMobileFilters = function() {
-      // Because we directly updated currentFilter, we just need to re-render the list
       applyFiltersAndRender();
       closeMobileFilterModal();
     };
 
     function renderMobileFilterUI() {
-      // Render Left Tabs
-      const tabsEl = document.getElementById("mfTabsList");
-      if (!tabsEl) return;
-      tabsEl.innerHTML = mobileFilterData.map(group => {
-        // Count active filter for this group (only if not 'ALL')
-        const isActive = currentFilter[group.id] !== 'ALL';
-        const countBadge = isActive ? `<span class="mf-tab-count">1</span>` : '';
-        return `
-          <div class="mf-tab-item ${group.id === mfActiveTabId ? 'active' : ''}" onclick="switchMobileTab('${group.id}')">
-            ${group.name} ${countBadge}
-          </div>
-        `;
-      }).join('');
-      
-      // Render Right Options
-      const optionsEl = document.getElementById("mfOptionsList");
-      const currentGroup = mobileFilterData.find(g => g.id === mfActiveTabId);
-      
-      optionsEl.innerHTML = currentGroup.options.map(opt => {
-        const isSelected = currentFilter[mfActiveTabId] === opt.val;
-        return `
-          <div class="mf-option-item ${isSelected ? 'selected' : ''}" onclick="toggleMobileOption('${currentGroup.id}', '${opt.val}')">
-            ${opt.label}
-            <div class="mf-checkbox-square"></div>
-          </div>
-        `;
-      }).join('');
-      
-      // Update Main Filter Button count
+      // 1. Render Top Quick Nav Pills
+      const navEl = document.getElementById("mfQuickNav");
+      if (navEl) {
+        navEl.innerHTML = mobileFilterData.map(group => {
+          const isCurrent = group.id === mfCurrentVisibleSection;
+          const isFilterActive = currentFilter[group.id] && currentFilter[group.id] !== 'ALL';
+          const dot = isFilterActive ? `<span class="pill-dot"></span>` : '';
+          return `
+            <button type="button" class="mf-nav-pill ${isCurrent ? 'active' : ''}" data-sec="${group.id}" onclick="jumpToMobileSection('${group.id}')">
+              ${group.shortName || group.name} ${dot}
+            </button>
+          `;
+        }).join('');
+      }
+
+      // 2. Render Continuous Sections
+      const containerEl = document.getElementById("mfScrollContainer");
+      if (containerEl) {
+        containerEl.innerHTML = mobileFilterData.map(group => {
+          const selectedVal = currentFilter[group.id] || 'ALL';
+          const selectedOpt = group.options.find(o => o.val === selectedVal);
+          const activeLabel = (selectedVal !== 'ALL' && selectedOpt) ? selectedOpt.label : null;
+
+          return `
+            <div class="mf-section" id="mf-sec-${group.id}">
+              <div class="mf-section-header">
+                <span class="mf-section-title">${group.name}</span>
+                ${activeLabel ? `<span class="mf-section-chip" title="${activeLabel}">${activeLabel}</span>` : ''}
+              </div>
+              <div class="mf-options-group">
+                ${group.options.map(opt => {
+                  const isSelected = selectedVal === opt.val;
+                  return `
+                    <div class="mf-option-row ${isSelected ? 'selected' : ''}" onclick="toggleMobileOption('${group.id}', '${opt.val}')">
+                      <span class="mf-opt-label">${opt.label}</span>
+                      <div class="mf-radio-circle"></div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // 3. Update Badges
       let totalSelected = 0;
       if (currentFilter.branch !== 'ALL') totalSelected++;
       if (currentFilter.stage !== 'ALL') totalSelected++;
@@ -2659,6 +2751,16 @@
           countEl.style.display = "inline-block";
         } else {
           countEl.style.display = "none";
+        }
+      }
+
+      const applyBadge = document.getElementById("mfApplyBadge");
+      if (applyBadge) {
+        if (totalSelected > 0) {
+          applyBadge.innerText = `${totalSelected} active`;
+          applyBadge.style.display = "inline-block";
+        } else {
+          applyBadge.style.display = "none";
         }
       }
     }
