@@ -196,14 +196,7 @@
     <!-- CENTER STREAM (Stage 1 Cards Feed) -->
     <section class="stream-container">
       
-      <!-- Mobile Filter Trigger -->
-      <button class="btn-filter-mobile" id="mobileFilterTriggerBtn" onclick="openMobileFilterModal()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
-        Filters <span id="mobileActiveCount" style="background:#E2E8F0; padding:2px 6px; border-radius:6px; font-size:12px; margin-left:4px; display:none;">0</span>
-      </button>
-      
       <!-- CONTEXTUAL SEARCH & SORT TOOLBAR ON TOP OF STAGE 1 LIST -->
-
       <div class="stream-toolbar">
         <div class="stream-search-wrap">
           <div class="stream-search-icon">
@@ -218,13 +211,22 @@
             oninput="executeSearch()" autocomplete="off">
           <kbd class="stream-search-kbd">/</kbd>
         </div>
-        <div class="stream-sort-wrap">
-          <select class="sort-select" id="sortSelect" onchange="handleSortChange(this.value)">
-            <option value="relevance">Sort: Relevance</option>
-            <option value="latest">Sort: Latest to Oldest</option>
-            <option value="oldest">Sort: Oldest to Latest</option>
-            <option value="alphabetical">Sort: Alphabetical (A-Z)</option>
-          </select>
+
+        <div class="mobile-controls-row">
+          <!-- Mobile Filter Trigger -->
+          <button class="btn-filter-mobile" id="mobileFilterTriggerBtn" onclick="openMobileFilterModal()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+            Filters <span id="mobileActiveCount" style="background:#E2E8F0; padding:2px 6px; border-radius:6px; font-size:12px; margin-left:4px; display:none;">0</span>
+          </button>
+
+          <div class="stream-sort-wrap">
+            <select class="sort-select" id="sortSelect" onchange="handleSortChange(this.value)">
+              <option value="relevance">Sort: Relevance</option>
+              <option value="latest">Sort: Latest to Oldest</option>
+              <option value="oldest">Sort: Oldest to Latest</option>
+              <option value="alphabetical">Sort: Alphabetical (A-Z)</option>
+            </select>
+          </div>
         </div>
       </div>
 

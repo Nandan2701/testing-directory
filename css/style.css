@@ -2900,23 +2900,171 @@
     }
 
 /* =========================================================
-   Final Mobile Filter UX (Side-by-Side)
+   Final Mobile Filter & Card UX (Side-by-Side & Enclosed Cards)
    ========================================================= */
 @media (max-width: 960px) {
   .filter-rail { display: none !important; }
-  
-  .btn-filter-mobile {
-    display: flex !important; background: white; color: #0F172A; padding: 12px 16px; border-radius: 12px; border: 1px solid #CBD5E1; font-weight: 600; font-size: 14px; cursor: pointer; align-items: center; gap: 8px; font-family: inherit; box-shadow: 0 2px 4px rgba(0,0,0,0.02); margin-bottom: 12px; width: 100%;
-  }
-  .btn-filter-mobile:active { background: #F1F5F9; }
 
+  /* Toolbar: Search on top, Filters & Sort side-by-side */
+  .stream-toolbar {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    width: 100% !important;
+    margin-bottom: 14px !important;
+  }
+  .stream-search-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 44px !important;
+  }
+  .mobile-controls-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+  .btn-filter-mobile {
+    display: flex !important;
+    width: 100% !important;
+    height: 44px !important;
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+    padding: 0 12px !important;
+    border-radius: 10px !important;
+    border: 1px solid #CBD5E1 !important;
+    font-weight: 600 !important;
+    font-size: 13.5px !important;
+    cursor: pointer !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    font-family: inherit !important;
+    box-shadow: 0 1.5px 3px rgba(15, 23, 42, 0.04) !important;
+    margin: 0 !important;
+  }
+  .btn-filter-mobile:active { background: #F1F5F9 !important; }
+  .stream-sort-wrap {
+    width: 100% !important;
+    height: 44px !important;
+  }
+  .stream-sort-wrap .sort-select {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 10px !important;
+    border: 1px solid #CBD5E1 !important;
+    padding: 0 12px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    box-shadow: 0 1.5px 3px rgba(15, 23, 42, 0.04) !important;
+  }
+
+  /* Responsive, Enclosed Startup Cards */
+  .venture-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    border-radius: 12px !important;
+    border: 1px solid var(--border-card) !important;
+    box-shadow: 0 1.5px 4px rgba(15, 23, 42, 0.04) !important;
+  }
+  .card-main {
+    padding: 14px !important;
+    gap: 12px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .card-logo-tile {
+    width: 48px !important;
+    height: 48px !important;
+    flex-shrink: 0 !important;
+    border-radius: 10px !important;
+  }
+  .card-content {
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+  .company-title-group {
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+  .card-company-name {
+    font-size: 16px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .btn-company-outbound {
+    font-size: 10.5px !important;
+    padding: 4px 8px !important;
+    border-radius: 6px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Multi-line pitch wrapping without cutoff */
+  .card-pitch {
+    font-size: 12.5px !important;
+    line-height: 1.48 !important;
+    min-height: auto !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    word-break: break-word !important;
+    margin-top: 3px !important;
+  }
+
+  /* Card Footer & Vertical Multiple Founders */
+  .card-footer-bar {
+    padding: 10px 14px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    background: #F8FAFC !important;
+  }
+  .footer-founder-chips-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+    width: 100% !important;
+    white-space: normal !important;
+    overflow: visible !important;
+  }
+  .footer-founder-label {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    color: var(--ink-muted) !important;
+    margin-bottom: 2px !important;
+  }
+  .alumni-chip {
+    max-width: 100% !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .footer-location-bold {
+    align-self: flex-start !important;
+    font-size: 11px !important;
+    color: var(--ink-muted) !important;
+    padding-top: 5px !important;
+    border-top: 1px dashed var(--border-subtle) !important;
+    width: 100% !important;
+    justify-content: flex-start !important;
+  }
+
+  /* Side-by-Side Modal Overlay & Content */
   .mobile-filter-overlay {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100dvh; background: rgba(15,23,42,0.4); z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100dvh; background: rgba(15,23,42,0.45); z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .mobile-filter-overlay.active { opacity: 1; visibility: visible; }
 
   .mobile-filter-modal {
-    position: fixed; top: 100%; left: 0; width: 100vw; height: 95dvh; background: white; z-index: 1001; display: flex; flex-direction: column; border-radius: 20px 20px 0 0; transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
+    position: fixed; top: 100%; left: 0; width: 100vw; height: 95dvh; background: white; z-index: 1001; display: flex; flex-direction: column; border-radius: 20px 20px 0 0; transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 -10px 40px rgba(0,0,0,0.15);
   }
   .mobile-filter-modal.active { top: 5dvh; }
   
@@ -2940,6 +3088,8 @@
   .mf-btn-apply { flex: 2; background: #2563EB; color: white; padding: 14px; border-radius: 12px; border: none; font-weight: 600; font-size: 15px; font-family: inherit; cursor: pointer; }
 }
 
+/* 100% Untouched Desktop View */
 @media (min-width: 961px) {
+  .mobile-controls-row { display: contents !important; }
   .btn-filter-mobile, .mobile-filter-overlay, .mobile-filter-modal { display: none !important; }
 }
