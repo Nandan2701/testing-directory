@@ -1278,24 +1278,30 @@
 
       // 2. Fetch live published startups from Supabase
       try {
-        const supaRes = await fetch(`${SUPABASE_URL}/rest/v1/startups?is_published=eq.true`, {
+        let supaRes = await fetch(`${SUPABASE_URL}/rest/v1/startups?is_published=eq.true&order=display_order.asc.nullslast,name.asc`, {
           headers: {
             'apikey': SUPABASE_ANON,
             'Authorization': `Bearer ${SUPABASE_ANON}`
           }
         });
 
+        // Graceful fallback if display_order column does not exist yet
+        if (!supaRes.ok) {
+          supaRes = await fetch(`${SUPABASE_URL}/rest/v1/startups?is_published=eq.true`, {
+            headers: {
+              'apikey': SUPABASE_ANON,
+              'Authorization': `Bearer ${SUPABASE_ANON}`
+            }
+          });
+        }
+
         if (supaRes.ok) {
           const liveData = await supaRes.json();
           if (liveData && liveData.length > 0) {
-            // Merge & deduplicate by slug or name
-            const existingNames = new Set(allStartups.map(s => s.name.toLowerCase()));
-            for (const item of liveData) {
-              if (!existingNames.has(item.name.toLowerCase())) {
-                allStartups.unshift(item);
-                existingNames.add(item.name.toLowerCase());
-              }
-            }
+            // Keep exact Supabase display_order sequence
+            const liveNames = new Set(liveData.map(s => s.name.toLowerCase()));
+            const remainingSeed = allStartups.filter(s => !liveNames.has(s.name.toLowerCase()));
+            allStartups = [...liveData, ...remainingSeed];
           }
         }
       } catch (err) {
