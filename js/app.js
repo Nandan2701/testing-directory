@@ -2590,8 +2590,9 @@
       ]}
     ];
 
-    let mfCurrentVisibleSection = "branch";
-    let mfScrollContainerInited = false;
+    let mfActiveTabId = "branch";
+    let isProgrammaticMfScroll = false;
+    let mfScrollSpyBound = false;
 
     window.openMobileFilterModal = function() {
       const overlay = document.getElementById("mfOverlay");
@@ -2603,9 +2604,9 @@
       document.body.classList.add("mobile-filter-open");
 
       renderMobileFilterUI();
-      initMobileScrollSpy();
+      initMobileFilterScrollSpy();
     };
-    
+
     window.closeMobileFilterModal = function() {
       const overlay = document.getElementById("mfOverlay");
       const modal = document.getElementById("mfModal");
@@ -2616,34 +2617,35 @@
       document.body.classList.remove("mobile-filter-open");
     };
 
-    window.jumpToMobileSection = function(sectionId) {
-      mfCurrentVisibleSection = sectionId;
-      updateQuickNavPills();
-      const targetSec = document.getElementById(`mf-sec-${sectionId}`);
-      const container = document.getElementById("mfScrollContainer");
-      if (targetSec && container) {
-        const topPos = targetSec.offsetTop - container.offsetTop;
-        container.scrollTo({ top: topPos, behavior: 'smooth' });
+    window.switchMobileTab = function(groupId) {
+      mfActiveTabId = groupId;
+      updateLeftTabsActiveState();
+
+      const container = document.getElementById("mfOptionsList");
+      const targetSec = document.getElementById(`mf-group-${groupId}`);
+      if (container && targetSec) {
+        isProgrammaticMfScroll = true;
+        const targetTop = targetSec.offsetTop - container.offsetTop;
+        container.scrollTo({ top: targetTop, behavior: 'smooth' });
+        setTimeout(() => { isProgrammaticMfScroll = false; }, 400);
       }
     };
 
-    function updateQuickNavPills() {
-      document.querySelectorAll(".mf-nav-pill").forEach(pill => {
-        const pId = pill.getAttribute("data-sec");
-        if (pId === mfCurrentVisibleSection) {
-          pill.classList.add("active");
-          pill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    function updateLeftTabsActiveState() {
+      document.querySelectorAll(".mf-tab-item").forEach(tab => {
+        const tId = tab.getAttribute("data-tab-id");
+        if (tId === mfActiveTabId) {
+          tab.classList.add("active");
         } else {
-          pill.classList.remove("active");
+          tab.classList.remove("active");
         }
       });
     }
 
-    function initMobileScrollSpy() {
-      const container = document.getElementById("mfScrollContainer");
+    function initMobileFilterScrollSpy() {
+      const container = document.getElementById("mfOptionsList");
       const overlay = document.getElementById("mfOverlay");
-      
-      // Prevent touchmove on backdrop from chaining scroll to body
+
       if (overlay && !overlay._touchBound) {
         overlay._touchBound = true;
         overlay.addEventListener("touchmove", (e) => {
@@ -2651,35 +2653,36 @@
         }, { passive: false });
       }
 
-      if (!container || mfScrollContainerInited) return;
-      mfScrollContainerInited = true;
+      if (!container || mfScrollSpyBound) return;
+      mfScrollSpyBound = true;
 
       container.addEventListener("scroll", () => {
+        if (isProgrammaticMfScroll) return;
         const scrollTop = container.scrollTop;
         const containerTop = container.offsetTop;
-        let currentSec = mobileFilterData[0].id;
+        let detectedGroup = mobileFilterData[0].id;
 
         mobileFilterData.forEach(group => {
-          const el = document.getElementById(`mf-sec-${group.id}`);
-          if (el) {
-            const relTop = el.offsetTop - containerTop - 50;
+          const sec = document.getElementById(`mf-group-${group.id}`);
+          if (sec) {
+            const relTop = sec.offsetTop - containerTop - 30;
             if (scrollTop >= relTop) {
-              currentSec = group.id;
+              detectedGroup = group.id;
             }
           }
         });
 
-        if (currentSec !== mfCurrentVisibleSection) {
-          mfCurrentVisibleSection = currentSec;
-          updateQuickNavPills();
+        if (detectedGroup !== mfActiveTabId) {
+          mfActiveTabId = detectedGroup;
+          updateLeftTabsActiveState();
         }
       }, { passive: true });
     }
 
     window.toggleMobileOption = function(tabId, optVal) {
       currentFilter[tabId] = optVal;
-      
-      // Sync desktop facet selection
+
+      // Sync desktop active state
       const desktopList = Array.from(document.querySelectorAll('.facet-list')).find(list => {
         const item = list.querySelector(`[onclick="toggleFacet('${tabId}', '${optVal}')"]`);
         return item != null;
@@ -2690,13 +2693,13 @@
         if (activeItem) activeItem.classList.add('active');
       }
 
-      // Preserve exact scroll position so user experience is smooth
-      const container = document.getElementById("mfScrollContainer");
+      // Preserve scroll position inside right options container
+      const container = document.getElementById("mfOptionsList");
       const savedScroll = container ? container.scrollTop : 0;
       renderMobileFilterUI();
       if (container) container.scrollTop = savedScroll;
     };
-    
+
     window.clearMobileFilters = function() {
       currentFilter.branch = 'ALL';
       currentFilter.stage = 'ALL';
@@ -2720,58 +2723,57 @@
     };
 
     function renderMobileFilterUI() {
-      // 1. Render Top Quick Nav Pills
-      const navEl = document.getElementById("mfQuickNav");
-      if (navEl) {
-        navEl.innerHTML = mobileFilterData.map(group => {
-          const isCurrent = group.id === mfCurrentVisibleSection;
+      // 1. Render Left Tabs (Partition 1 with square brackets)
+      const tabsEl = document.getElementById("mfTabsList");
+      if (tabsEl) {
+        tabsEl.innerHTML = mobileFilterData.map(group => {
           const isFilterActive = currentFilter[group.id] && currentFilter[group.id] !== 'ALL';
-          const dot = isFilterActive ? `<span class="pill-dot"></span>` : '';
-          return `
-            <button type="button" class="mf-nav-pill ${isCurrent ? 'active' : ''}" data-sec="${group.id}" onclick="jumpToMobileSection('${group.id}')">
-              ${group.shortName || group.name} ${dot}
-            </button>
-          `;
-        }).join('');
-      }
-
-      // 2. Render Continuous Sections
-      const containerEl = document.getElementById("mfScrollContainer");
-      if (containerEl) {
-        containerEl.innerHTML = mobileFilterData.map(group => {
-          const selectedVal = currentFilter[group.id] || 'ALL';
-          const selectedOpt = group.options.find(o => o.val === selectedVal);
-          const activeLabel = (selectedVal !== 'ALL' && selectedOpt) ? selectedOpt.label : null;
+          const isCurrentTab = group.id === mfActiveTabId;
+          const bracketBadge = isFilterActive
+            ? `<span class="mf-tab-count has-active">[ 1 ]</span>`
+            : `<span class="mf-tab-count">[ ALL ]</span>`;
 
           return `
-            <div class="mf-section" id="mf-sec-${group.id}">
-              <div class="mf-section-header">
-                <span class="mf-section-title">${group.name}</span>
-                ${activeLabel ? `<span class="mf-section-chip" title="${activeLabel}">${activeLabel}</span>` : ''}
-              </div>
-              <div class="mf-options-group">
-                ${group.options.map(opt => {
-                  const isSelected = selectedVal === opt.val;
-                  return `
-                    <div class="mf-option-row ${isSelected ? 'selected' : ''}" onclick="toggleMobileOption('${group.id}', '${opt.val}')">
-                      <span class="mf-opt-label">${opt.label}</span>
-                      <div class="mf-radio-circle"></div>
-                    </div>
-                  `;
-                }).join('')}
-              </div>
+            <div class="mf-tab-item ${isCurrentTab ? 'active' : ''}" data-tab-id="${group.id}" onclick="switchMobileTab('${group.id}')">
+              <span class="mf-tab-label">${group.name}</span>
+              ${bracketBadge}
             </div>
           `;
         }).join('');
       }
 
-      // 3. Update Badges
+      // 2. Render Right Continuous Checkbox Options (Partition 2)
+      const optionsEl = document.getElementById("mfOptionsList");
+      if (optionsEl) {
+        optionsEl.innerHTML = mobileFilterData.map(group => {
+          const selectedVal = currentFilter[group.id] || 'ALL';
+
+          const optionsMarkup = group.options.map(opt => {
+            const isSelected = selectedVal === opt.val;
+            return `
+              <div class="mf-option-item ${isSelected ? 'selected' : ''}" onclick="toggleMobileOption('${group.id}', '${opt.val}')">
+                <span>${opt.label}</span>
+                <div class="mf-checkbox-square"></div>
+              </div>
+            `;
+          }).join('');
+
+          return `
+            <div class="mf-category-group" id="mf-group-${group.id}">
+              <div class="mf-category-group-header">${group.name}</div>
+              ${optionsMarkup}
+            </div>
+          `;
+        }).join('');
+      }
+
+      // 3. Update Mobile Trigger Button count
       let totalSelected = 0;
       if (currentFilter.branch !== 'ALL') totalSelected++;
       if (currentFilter.stage !== 'ALL') totalSelected++;
       if (currentFilter.team !== 'ALL') totalSelected++;
       if (currentFilter.location !== 'ALL') totalSelected++;
-      
+
       const countEl = document.getElementById("mobileActiveCount");
       if (countEl) {
         if (totalSelected > 0) {
@@ -2779,16 +2781,6 @@
           countEl.style.display = "inline-block";
         } else {
           countEl.style.display = "none";
-        }
-      }
-
-      const applyBadge = document.getElementById("mfApplyBadge");
-      if (applyBadge) {
-        if (totalSelected > 0) {
-          applyBadge.innerText = `${totalSelected} active`;
-          applyBadge.style.display = "inline-block";
-        } else {
-          applyBadge.style.display = "none";
         }
       }
     }
