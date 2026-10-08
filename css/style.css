@@ -2905,17 +2905,44 @@
 @media (max-width: 960px) {
   .filter-rail { display: none !important; }
 
+  /* Ensure workbench, stream container, and card list fit within 100% viewport width */
+  .main-workbench {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+    padding: 10px 15px 48px 15px !important;
+  }
+  .stream-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    min-width: 0 !important;
+  }
+  .stream-cards-list {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding-right: 0 !important;
+  }
+  .stream-search-input {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
   /* Toolbar: Search on top, Filters & Sort side-by-side */
   .stream-toolbar {
     display: flex !important;
     flex-direction: column !important;
     gap: 10px !important;
     width: 100% !important;
+    box-sizing: border-box !important;
     margin-bottom: 14px !important;
   }
   .stream-search-wrap {
     width: 100% !important;
     max-width: 100% !important;
+    box-sizing: border-box !important;
     height: 44px !important;
   }
   .mobile-controls-row {
@@ -2923,6 +2950,7 @@
     grid-template-columns: 1fr 1fr !important;
     gap: 10px !important;
     width: 100% !important;
+    box-sizing: border-box !important;
   }
   .btn-filter-mobile {
     display: flex !important;
