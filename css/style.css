@@ -375,34 +375,56 @@
     .hero-container {
       position: relative;
       z-index: 5;
-      max-width: 1400px;
+      max-width: 1080px;
       width: 100%;
       margin: 0 auto;
-      padding: 0 56px;
+      padding: 0 32px;
       pointer-events: none;
-      transform-style: preserve-3d;
-      transform-origin: 15% 50%;
-      transition: transform 0.06s ease-out;
-      will-change: transform;
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: space-between;
-      gap: 48px;
+      justify-content: center;
+      gap: 36px;
     }
 
     /* THE HEADLINE CONTAINER: 3D MULTI-PLANE FLOATING ARCHITECTURE */
     .hero-headline {
-      font-size: clamp(38px, 4.4vw, 56px);
+      font-size: clamp(38px, 4.2vw, 54px);
       font-weight: 800;
       letter-spacing: -1.6px;
       line-height: 1.12;
       color: var(--ink-primary);
       margin-bottom: 0;
-      flex: 1 1 52%;
-      max-width: 620px;
+      flex: 1 1 50%;
+      max-width: 520px;
       transform-style: preserve-3d;
       user-select: text;
+      pointer-events: auto;
+    }
+
+    /* CONNECTING BLUEPRINT TECHNICAL AXIS (UNIFIED HERO COMPOSITION) */
+    .hero-blueprint-axis {
+      width: 1px;
+      height: 270px;
+      background: linear-gradient(180deg, transparent 0%, rgba(37, 99, 235, 0.22) 15%, rgba(37, 99, 235, 0.22) 85%, transparent 100%);
+      position: relative;
+      flex-shrink: 0;
+      pointer-events: none;
+    }
+    .hero-blueprint-axis::before {
+      content: "INDEX · DEPT";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-90deg);
+      font-family: var(--font-mono);
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      color: rgba(37, 99, 235, 0.45);
+      white-space: nowrap;
+      background: var(--surface-canvas, #F8FAFC);
+      padding: 0 6px;
     }
 
     /* STATIC WORDS: "The " and "Built by VNITians." — 3D SPECULAR CHROME (DEEP SLATE TO MIDNIGHT) */
@@ -466,62 +488,37 @@
     }
 
     /* ═══════════════════════════════════════════════════════════
-       HERO 9-DEPARTMENT FOUNDER LEADERBOARD (NATIVE CANVAS READOUT)
+       HERO 9-DEPARTMENT FOUNDER TELEMETRY (NATIVE ON BLUEPRINT GRID)
        ═══════════════════════════════════════════════════════════ */
     .hero-leaderboard-wrap {
       pointer-events: auto;
-      flex: 0 0 460px;
-      max-width: 480px;
+      flex: 0 0 430px;
+      max-width: 440px;
       width: 100%;
       margin-top: 0;
       user-select: none;
-      transform-style: preserve-3d;
-      transform: translate3d(var(--plane1-x, 0px), var(--plane1-y, 0px), 24px);
-      transition: transform 0.08s ease-out;
+      transform: none !important; /* Grounded statically on grid — NO mouse tilt! */
     }
 
     .leaderboard-card {
-      background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(203, 213, 225, 0.7);
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04);
-      padding: 14px 16px 12px;
-      transition: border-color 0.2s ease;
-    }
-    .leaderboard-card:hover {
-      border-color: #94A3B8;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 0;
     }
 
-    .leaderboard-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 8px;
-      padding-bottom: 2px;
-    }
-
-    .leaderboard-title {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      color: #334155;
-      text-transform: uppercase;
-    }
-
-    /* 4-Column Headers */
+    /* 4-Column Headers (On the Grid) */
     .leaderboard-col-heads {
       display: grid;
-      grid-template-columns: 26px 88px 1fr 52px;
+      grid-template-columns: 24px 84px 1fr 50px;
       gap: 8px;
       align-items: center;
-      padding: 0 4px 6px;
-      border-bottom: 1px solid #E2E8F0;
+      padding-bottom: 5px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
       margin-bottom: 4px;
       font-family: var(--font-mono);
-      font-size: 9.5px;
+      font-size: 9px;
       font-weight: 700;
       color: #94A3B8;
       text-transform: uppercase;
@@ -531,7 +528,7 @@
       text-align: right;
     }
 
-    /* 9-Row List */
+    /* 9-Row List (On the Grid) */
     .leaderboard-list {
       display: flex;
       flex-direction: column;
@@ -540,23 +537,23 @@
 
     .leaderboard-row {
       display: grid;
-      grid-template-columns: 26px 88px 1fr 52px;
+      grid-template-columns: 24px 84px 1fr 50px;
       gap: 8px;
       align-items: center;
-      padding: 3.5px 4px;
-      border-radius: 6px;
+      padding: 3px 4px;
+      border-radius: 4px;
       cursor: pointer;
-      transition: background 0.12s ease, transform 0.12s ease, border-color 0.12s ease;
+      transition: background 0.12s ease, border-color 0.12s ease;
       border: 1px solid transparent;
     }
     .leaderboard-row:hover {
-      background: #F1F5F9;
-      transform: translateX(2px);
+      background: rgba(37, 99, 235, 0.05);
+      border-color: rgba(37, 99, 235, 0.15);
     }
     .leaderboard-row.is-active,
     .leaderboard-row.is-leader {
-      background: #EFF6FF;
-      border-color: #BFDBFE;
+      background: rgba(37, 99, 235, 0.07);
+      border-color: rgba(37, 99, 235, 0.22);
     }
 
     /* Rank Badges: 01, 02, 03... (Precision Pills from Screenshot 3) */
@@ -3868,6 +3865,10 @@
       .hero-typing-caret {
         width: 2.5px !important;
         margin-left: 2px !important;
+      }
+
+      .hero-blueprint-axis {
+        display: none !important;
       }
 
       /* Hero Leaderboard Mobile Refinements (Ultra-Compact "Titan" Matrix) */

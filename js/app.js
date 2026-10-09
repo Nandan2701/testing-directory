@@ -2780,14 +2780,12 @@
         requestAnimationFrame(loop);
 
         // Smooth 3D tilt interpolation
-        mouse.tiltX += (mouse.targetTiltX - mouse.tiltX) * 0.12;
-        mouse.tiltY += (mouse.targetTiltY - mouse.tiltY) * 0.12;
-
-        if (container) {
+        const headlineEl = document.getElementById('mainHeroHeadline');
+        if (headlineEl) {
           if (mouse.isInside || Math.abs(mouse.tiltX) > 0.05 || Math.abs(mouse.tiltY) > 0.05) {
-            container.style.transform = `perspective(1000px) rotateX(${mouse.tiltX.toFixed(2)}deg) rotateY(${mouse.tiltY.toFixed(2)}deg)`;
+            headlineEl.style.transform = `perspective(1000px) rotateX(${mouse.tiltX.toFixed(2)}deg) rotateY(${mouse.tiltY.toFixed(2)}deg)`;
           } else {
-            container.style.transform = 'none';
+            headlineEl.style.transform = 'none';
           }
         }
       }
