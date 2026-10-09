@@ -2228,6 +2228,20 @@
       input.disabled = false;
     }
 
+    function scrollToContributionDock() {
+      const dock = document.getElementById('dockRightPanel') || document.querySelector('.dock-right-panel');
+      if (dock) {
+        dock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        dock.classList.remove('dock-pulse-focus');
+        // Force reflow for re-triggering animation
+        void dock.offsetWidth;
+        dock.classList.add('dock-pulse-focus');
+        setTimeout(() => {
+          dock.classList.remove('dock-pulse-focus');
+        }, 1500);
+      }
+    }
+
     let activeDonationAmt = 150;
 
     function selectDonationAmt(amt, el) {

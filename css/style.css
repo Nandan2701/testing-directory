@@ -275,6 +275,49 @@
       transform: translateY(-1px);
     }
 
+    /* ─── NAVBAR SECONDARY CTA: GITHUB SPONSOR HEART PILL ─── */
+    .btn-support-nav {
+      font-family: var(--font-primary);
+      font-size: 12px;
+      font-weight: 700;
+      color: #334155;
+      background: #FFFFFF;
+      border: 1px solid rgba(225, 29, 72, 0.28);
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      white-space: nowrap;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .heart-icon-nav {
+      color: #E11D48;
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      flex-shrink: 0;
+    }
+
+    .btn-support-nav:hover {
+      background: rgba(225, 29, 72, 0.06);
+      border-color: rgba(225, 29, 72, 0.5);
+      color: #0F172A;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(225, 29, 72, 0.12);
+    }
+
+    .btn-support-nav:hover .heart-icon-nav {
+      transform: scale(1.18);
+    }
+
+    .btn-support-nav:active {
+      transform: translateY(0);
+    }
+
     /* Navbar "Submit Your Startup": the one solid-cobalt control that stays in view on every scroll position */
     .btn-submit-nav {
       font-size: 12px;
@@ -2322,9 +2365,83 @@
         padding: 11px 16px;
         font-size: 13px;
       }
-      }
       .dock-support-trust-row {
         font-size: 10px;
+      }
+    }
+
+    /* Pulse Focus Glow when triggered from Navbar Support Button */
+    @keyframes dockPulseFocus {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.6), var(--shadow-sm);
+        border-color: #2563EB;
+      }
+      50% {
+        box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.22), 0 8px 24px rgba(37, 99, 235, 0.25);
+        border-color: #2563EB;
+      }
+      100% {
+        box-shadow: var(--shadow-sm);
+        border-color: var(--border-card);
+      }
+    }
+
+    .dock-right-panel.dock-pulse-focus {
+      animation: dockPulseFocus 1.4s ease-out 1;
+    }
+
+    /* Navbar Mobile Responsiveness */
+    @media (max-width: 640px) {
+      .nav-inner {
+        padding: 8px 12px;
+      }
+      .nav-left {
+        gap: 8px;
+      }
+      .brand-group {
+        gap: 8px;
+      }
+      .hallmark-tile {
+        width: 27px;
+        height: 27px;
+        font-size: 10px;
+      }
+      .brand-text {
+        font-size: 11.5px;
+      }
+      .brand-sub {
+        font-size: 8px;
+      }
+      .nav-home {
+        width: 27px;
+        height: 27px;
+      }
+      .nav-actions {
+        gap: 6px;
+      }
+      .btn-support-nav {
+        font-size: 11.5px;
+        padding: 5.5px 10px;
+        gap: 4px;
+      }
+      .btn-submit-nav {
+        font-size: 11.5px;
+        padding: 5.5px 11px;
+        gap: 4px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .brand-sub {
+        display: none;
+      }
+      .btn-support-nav {
+        padding: 5px 8px;
+        font-size: 11px;
+      }
+      .btn-submit-nav {
+        padding: 5px 9px;
+        font-size: 11px;
       }
     }
 
