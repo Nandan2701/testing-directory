@@ -2500,7 +2500,7 @@
       if (formEl) formEl.style.display = 'flex';
       if (btn) {
         btn.disabled = false;
-        btn.innerHTML = '<span>Get Monthly Updates</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>';
+        btn.innerHTML = '<span>Send me Updates</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>';
       }
       if (emailInput) {
         emailInput.value = '';

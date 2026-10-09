@@ -23,7 +23,7 @@
     rel="stylesheet">
 
   <!-- Core Design System Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=curator_note_arch1">
+  <link rel="stylesheet" href="css/style.css?v=subscribe_arch1">
 </head>
 
 <body>
@@ -291,7 +291,7 @@
             </div>
             <span class="dispatch-subscriber-badge">420+ ALUMNI</span>
           </div>
-          <h2 class="dispatch-title">Stay in the loop with VNIT's startup ecosystem.</h2>
+          <h2 class="dispatch-title">Never Miss a startup Built by a VNITian.</h2>
           <p class="dispatch-sub" id="dispatchSubText">
             A handpicked monthly briefing covering alumni venture launches, seed rounds, and campus innovation.
           </p>
@@ -299,19 +299,20 @@
 
         <!-- Right: Architectural Action Capsule & In-Situ Confirmation State -->
         <div class="dispatch-right">
-          <!-- Active Form Capsule -->
+          <!-- Active Form Capsule (Architecture 1: Adaptive Morph) -->
           <form class="dispatch-capsule" id="newsletterFormCapsule" onsubmit="handleNewsletterSubmit(event)">
-            <div class="dispatch-icon" aria-hidden="true">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-              </svg>
+            <div class="dispatch-input-wrap">
+              <div class="dispatch-icon" aria-hidden="true">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+              </div>
+              <input type="email" id="newsletterEmail" class="dispatch-input" required
+                placeholder="your.name@gmail.com" autocomplete="email">
             </div>
-            <input type="email" id="newsletterEmail" class="dispatch-input" required
-              placeholder="Enter your email address..." autocomplete="email">
             <button type="submit" class="dispatch-action-btn" id="newsletterSubmitBtn">
-              <span class="desktop-btn-label">Get Monthly Updates</span>
-              <span class="mobile-btn-label">Notify Me</span>
+              <span>Send me Updates</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
             </button>
           </form>
@@ -532,7 +533,7 @@
 
   <!-- JAVASCRIPT APPLICATION CORE -->
   <!-- Core Client Application Engine -->
-  <script src="js/app.js?v=curator_note_arch1"></script>
+  <script src="js/app.js?v=subscribe_arch1"></script>
 
   <!-- MOBILE SIDE-BY-SIDE FILTER DRAWER (Left Slide-in Architecture) -->
   <div class="mobile-filter-overlay" id="mfOverlay" onclick="closeMobileFilterModal()"></div>
