@@ -23,7 +23,7 @@
     rel="stylesheet">
 
   <!-- Core Design System Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=leaderboard_rollout_v1">
+  <link rel="stylesheet" href="css/style.css?v=hero_side_by_side_v2">
 </head>
 
 <body>
@@ -78,26 +78,25 @@
         <div class="leaderboard-card">
           <div class="leaderboard-topbar">
             <span class="leaderboard-title">STARTUPS BY BRANCH</span>
-            <span class="leaderboard-total-tag">32 STARTUPS · 9 BRANCHES</span>
           </div>
 
           <div class="leaderboard-col-heads">
-            <span>#</span>
+            <span>RANK</span>
             <span>BRANCH</span>
-            <span>SHARE</span>
-            <span class="col-head-r">TOTAL</span>
+            <span>RELATIVE SHARE</span>
+            <span class="col-head-r">VOLUME</span>
           </div>
 
           <div class="leaderboard-list" id="heroLeaderboardList">
-            <!-- 1. CSE -->
-            <div class="leaderboard-row" data-facet="Computer Science" onclick="filterFromLeaderboard('Computer Science')" title="Filter by Computer Science">
-              <span class="leaderboard-rank">1</span>
+            <!-- 01. CSE -->
+            <div class="leaderboard-row is-leader" data-facet="Computer Science" onclick="filterFromLeaderboard('Computer Science')" title="Filter by Computer Science">
+              <span class="leaderboard-rank rank-01">01</span>
               <div class="leaderboard-branch-info">
                 <span class="leaderboard-branch-code">CSE</span>
-                <span class="leaderboard-branch-sub">Computer Science</span>
+                <span class="leaderboard-branch-sub">Comp. Science</span>
               </div>
               <div class="leaderboard-track">
-                <div class="leaderboard-bar" data-pct="100" data-count="8"></div>
+                <div class="leaderboard-bar bar-cse" data-pct="100" data-count="8"></div>
               </div>
               <div class="leaderboard-metrics">
                 <span class="leaderboard-val-count">0</span><br>
@@ -105,15 +104,15 @@
               </div>
             </div>
 
-            <!-- 2. ECE -->
+            <!-- 02. ECE -->
             <div class="leaderboard-row" data-facet="Electronics" onclick="filterFromLeaderboard('Electronics')" title="Filter by Electronics">
-              <span class="leaderboard-rank">2</span>
+              <span class="leaderboard-rank rank-02">02</span>
               <div class="leaderboard-branch-info">
                 <span class="leaderboard-branch-code">ECE</span>
                 <span class="leaderboard-branch-sub">Electronics</span>
               </div>
               <div class="leaderboard-track">
-                <div class="leaderboard-bar" data-pct="87.5" data-count="7"></div>
+                <div class="leaderboard-bar bar-ece" data-pct="87.5" data-count="7"></div>
               </div>
               <div class="leaderboard-metrics">
                 <span class="leaderboard-val-count">0</span><br>
@@ -121,15 +120,15 @@
               </div>
             </div>
 
-            <!-- 3. EEE -->
+            <!-- 03. EEE -->
             <div class="leaderboard-row" data-facet="Electrical" onclick="filterFromLeaderboard('Electrical')" title="Filter by Electrical">
-              <span class="leaderboard-rank">3</span>
+              <span class="leaderboard-rank rank-03">03</span>
               <div class="leaderboard-branch-info">
                 <span class="leaderboard-branch-code">EEE</span>
                 <span class="leaderboard-branch-sub">Electrical</span>
               </div>
               <div class="leaderboard-track">
-                <div class="leaderboard-bar" data-pct="75" data-count="6"></div>
+                <div class="leaderboard-bar bar-eee" data-pct="75" data-count="6"></div>
               </div>
               <div class="leaderboard-metrics">
                 <span class="leaderboard-val-count">0</span><br>
@@ -137,15 +136,15 @@
               </div>
             </div>
 
-            <!-- 4. CIVIL -->
+            <!-- 04. CIVIL -->
             <div class="leaderboard-row" data-facet="Civil" onclick="filterFromLeaderboard('Civil')" title="Filter by Civil">
-              <span class="leaderboard-rank">4</span>
+              <span class="leaderboard-rank rank-standard">04</span>
               <div class="leaderboard-branch-info">
                 <span class="leaderboard-branch-code">CIVIL</span>
                 <span class="leaderboard-branch-sub">Civil Eng.</span>
               </div>
               <div class="leaderboard-track">
-                <div class="leaderboard-bar" data-pct="50" data-count="4"></div>
+                <div class="leaderboard-bar bar-civil" data-pct="50" data-count="4"></div>
               </div>
               <div class="leaderboard-metrics">
                 <span class="leaderboard-val-count">0</span><br>
@@ -153,15 +152,15 @@
               </div>
             </div>
 
-            <!-- 5. MINING -->
+            <!-- 05. MINING -->
             <div class="leaderboard-row" data-facet="Mining" onclick="filterFromLeaderboard('Mining')" title="Filter by Mining">
-              <span class="leaderboard-rank">5</span>
+              <span class="leaderboard-rank rank-standard">05</span>
               <div class="leaderboard-branch-info">
                 <span class="leaderboard-branch-code">MINING</span>
                 <span class="leaderboard-branch-sub">Mining Eng.</span>
               </div>
               <div class="leaderboard-track">
-                <div class="leaderboard-bar" data-pct="37.5" data-count="3"></div>
+                <div class="leaderboard-bar bar-mining" data-pct="37.5" data-count="3"></div>
               </div>
               <div class="leaderboard-metrics">
                 <span class="leaderboard-val-count">0</span><br>
@@ -169,15 +168,18 @@
               </div>
             </div>
 
-            <!-- 6. MECH -->
+            <!-- Dashed Tier Divider -->
+            <div class="leaderboard-tier-divider"></div>
+
+            <!-- 06. MECH -->
             <div class="leaderboard-row" data-facet="Mechanical" onclick="filterFromLeaderboard('Mechanical')" title="Filter by Mechanical">
-              <span class="leaderboard-rank">6</span>
+              <span class="leaderboard-rank rank-standard">06</span>
               <div class="leaderboard-branch-info">
                 <span class="leaderboard-branch-code">MECH</span>
                 <span class="leaderboard-branch-sub">Mechanical</span>
               </div>
               <div class="leaderboard-track">
-                <div class="leaderboard-bar" data-pct="25" data-count="2"></div>
+                <div class="leaderboard-bar bar-mech" data-pct="25" data-count="2"></div>
               </div>
               <div class="leaderboard-metrics">
                 <span class="leaderboard-val-count">0</span><br>
@@ -185,15 +187,15 @@
               </div>
             </div>
 
-            <!-- 7. MME -->
+            <!-- 07. MME -->
             <div class="leaderboard-row" data-facet="Metallurgy" onclick="filterFromLeaderboard('Metallurgy')" title="Filter by Metallurgy">
-              <span class="leaderboard-rank">7</span>
+              <span class="leaderboard-rank rank-standard">07</span>
               <div class="leaderboard-branch-info">
                 <span class="leaderboard-branch-code">MME</span>
                 <span class="leaderboard-branch-sub">Metallurgy</span>
               </div>
               <div class="leaderboard-track">
-                <div class="leaderboard-bar" data-pct="25" data-count="2"></div>
+                <div class="leaderboard-bar bar-mme" data-pct="25" data-count="2"></div>
               </div>
               <div class="leaderboard-metrics">
                 <span class="leaderboard-val-count">0</span><br>
@@ -201,15 +203,15 @@
               </div>
             </div>
 
-            <!-- 8. ARCH -->
+            <!-- 08. ARCH -->
             <div class="leaderboard-row" data-facet="Architecture" onclick="filterFromLeaderboard('Architecture')" title="Filter by Architecture">
-              <span class="leaderboard-rank">8</span>
+              <span class="leaderboard-rank rank-standard">08</span>
               <div class="leaderboard-branch-info">
                 <span class="leaderboard-branch-code">ARCH</span>
                 <span class="leaderboard-branch-sub">Architecture</span>
               </div>
               <div class="leaderboard-track">
-                <div class="leaderboard-bar" data-pct="25" data-count="2"></div>
+                <div class="leaderboard-bar bar-arch" data-pct="25" data-count="2"></div>
               </div>
               <div class="leaderboard-metrics">
                 <span class="leaderboard-val-count">0</span><br>
@@ -217,26 +219,21 @@
               </div>
             </div>
 
-            <!-- 9. CHEM -->
+            <!-- 09. CHEM -->
             <div class="leaderboard-row" data-facet="Chemical" onclick="filterFromLeaderboard('Chemical')" title="Filter by Chemical">
-              <span class="leaderboard-rank">9</span>
+              <span class="leaderboard-rank rank-standard">09</span>
               <div class="leaderboard-branch-info">
                 <span class="leaderboard-branch-code">CHEM</span>
                 <span class="leaderboard-branch-sub">Chemical</span>
               </div>
               <div class="leaderboard-track">
-                <div class="leaderboard-bar" data-pct="12.5" data-count="1"></div>
+                <div class="leaderboard-bar bar-chem" data-pct="12.5" data-count="1"></div>
               </div>
               <div class="leaderboard-metrics">
                 <span class="leaderboard-val-count">0</span><br>
                 <span class="leaderboard-val-share">3.1%</span>
               </div>
             </div>
-          </div>
-
-          <div class="leaderboard-footer">
-            <span>Click any branch to filter directory</span>
-            <span class="leaderboard-hint-arrow">Explore ↓</span>
           </div>
         </div>
       </section>
@@ -683,7 +680,7 @@
 
   <!-- JAVASCRIPT APPLICATION CORE -->
   <!-- Core Client Application Engine -->
-  <script src="js/app.js?v=leaderboard_rollout_v1"></script>
+  <script src="js/app.js?v=hero_side_by_side_v2"></script>
 
   <!-- MOBILE SIDE-BY-SIDE FILTER DRAWER (Left Slide-in Architecture) -->
   <div class="mobile-filter-overlay" id="mfOverlay" onclick="closeMobileFilterModal()"></div>
