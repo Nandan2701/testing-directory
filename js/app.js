@@ -2596,26 +2596,52 @@
       }, { passive: true });
     })();
 
-    /* ─── HEADLINE PERSPECTIVE SWITCHER (Reddit Research) ─── */
-    function switchHeadline(n) {
-      const hEl = document.getElementById('mainHeroHeadline');
-      const subEl = document.getElementById('mainHeroSubhead');
+    /* ═══════════════════════════════════════════════════════════════════
+       DYNAMIC HERO HEADLINE TYPEWRITER ENGINE (Prototype 01 - Snappy Backspace)
+       ═══════════════════════════════════════════════════════════════════ */
+    (function initHeroDynamicHeadline() {
+      const wordEl = document.getElementById('heroDynamicWord');
+      if (!wordEl) return;
 
-      document.querySelectorAll('.h-switch-pill').forEach((btn, idx) => {
-        btn.classList.toggle('active', (idx + 1) === n);
-      });
+      const WORDS = ["Startups", "Companies", "Products"];
+      let wordIdx = 0;
+      let charIdx = WORDS[0].length;
+      let isDeleting = true;
+      let timerId = null;
 
-      if (n === 1) {
-        hEl.innerHTML = `Every Startup Founded by VNITians. <br><span class="accent">In One Place.</span>`;
-        subEl.innerHTML = `A <strong>handpicked</strong> directory of companies built by VNIT alumni. Filter by branch, funding status, or team size—and connect on LinkedIn in one click.`;
-      } else if (n === 2) {
-        hEl.innerHTML = `Discover VNIT-Born Startups <br><span class="accent">& Connect With Their Founders.</span>`;
-        subEl.innerHTML = `Handpicked alumni ventures from Mechanical to CSE. One click to explore their journey, open jobs, or reach out on LinkedIn.`;
-      } else if (n === 3) {
-        hEl.innerHTML = `From Campus to Company: <br><span class="accent">The VNIT Founder Directory.</span>`;
-        subEl.innerHTML = `Handpicked startups launched by VNIT alumni worldwide. Browse funded & bootstrapped teams, filter by department, and connect instantly.`;
+      const HOLD_TIME = 2500;  // 2.5s resting pause for comfortable human reading
+      const BACK_SPEED = 28;   // 28ms / letter (hyper-speed snappy terminal backspace)
+      const TYPE_SPEED = 52;   // 52ms / letter (snappy natural typing cadence)
+      const NEXT_PAUSE = 180;  // 180ms breath before typing next word
+
+      function tick() {
+        const currentWord = WORDS[wordIdx];
+
+        if (isDeleting) {
+          charIdx--;
+          wordEl.textContent = currentWord.substring(0, charIdx);
+          if (charIdx === 0) {
+            isDeleting = false;
+            wordIdx = (wordIdx + 1) % WORDS.length;
+            timerId = setTimeout(tick, NEXT_PAUSE);
+            return;
+          }
+          timerId = setTimeout(tick, BACK_SPEED);
+        } else {
+          charIdx++;
+          wordEl.textContent = WORDS[wordIdx].substring(0, charIdx);
+          if (charIdx === WORDS[wordIdx].length) {
+            isDeleting = true;
+            timerId = setTimeout(tick, HOLD_TIME);
+            return;
+          }
+          timerId = setTimeout(tick, TYPE_SPEED);
+        }
       }
-    }
+
+      // Initial resting hold of 2.5s before first backspace
+      timerId = setTimeout(tick, HOLD_TIME);
+    })();
 
 
   
