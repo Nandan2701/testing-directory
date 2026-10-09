@@ -1670,9 +1670,6 @@
         ];
       }
 
-      const colCount = foundersList.length === 1 ? 1 : (foundersList.length === 2 ? 2 : (foundersList.length === 3 ? 3 : 2));
-      const isCompact = foundersList.length >= 3;
-
       const foundersHtml = foundersList.map((f, idx) => {
         let degreeText = (f.degree || '').replace(/B\.Tech\s*/i, '').replace(/Engineering|Eningeering/i, 'Eng.').trim() || 'Alumnus';
         const photoUrl = getFounderPhoto(startup, f);
@@ -1680,18 +1677,9 @@
         const founderLinkedin = formatExternalUrl(f.linkedin || startup.linkedin_url || startup.website_url);
         const hasLinkedin = founderLinkedin && founderLinkedin !== '#';
 
-        // Safe email fallback
-        let founderEmail = (f.email || '').trim();
-        let emailHref = '';
-        if (founderEmail) {
-          emailHref = `mailto:${founderEmail}`;
-        } else if (startup.website_url) {
-          const domain = startup.website_url.replace(/https?:\/\/(www\.)?/, '').replace(/\/.*$/, '').trim();
-          if (domain) emailHref = `mailto:founder@${domain}`;
-        }
-
         return `
-          <div class="cert-founder-card ${isCompact ? 'is-compact' : ''}">
+          <div class="cert-founder-card">
+            <!-- Left: Avatar (Prominent 62px) -->
             <div class="cert-founder-avatar">
               ${photoUrl ? `
                 <img src="${photoUrl}" alt="${f.name}" class="cert-founder-avatar-img"
@@ -1701,31 +1689,28 @@
                 <span class="cert-founder-avatar-fallback">${initials}</span>
               `}
             </div>
-            <div class="cert-founder-name">${f.name}</div>
-            <div class="cert-founder-role">${f.role || 'Co-Founder'}</div>
-            <div class="cert-founder-batch" title="${f.degree || degreeText}">${degreeText}</div>
-            <div class="cert-founder-actions">
+
+            <!-- Middle: Name, Role & Academic Branch Tag -->
+            <div class="cert-founder-info">
+              <div class="cert-founder-name" title="${f.name}">${f.name}</div>
+              <div class="cert-founder-meta">
+                <span class="cert-founder-role">${f.role || 'Co-Founder'}</span>
+                <span class="cert-founder-batch" title="${f.degree || degreeText}">${degreeText}</span>
+              </div>
+            </div>
+
+            <!-- Right Wing: LinkedIn Hero Action Button (YC Standard) -->
+            <div class="cert-founder-wing">
               ${hasLinkedin ? `
-                <a href="${founderLinkedin}" target="_blank" rel="noopener" class="btn-action btn-b" style="justify-content: center;">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.89 0-1.61.72-1.61 1.61 0 .88.72 1.6 1.61 1.6.89 0 1.61-.72 1.61-1.6 0-.89-.72-1.61-1.61-1.61Z"/></svg>
-                  LinkedIn
+                <a href="${founderLinkedin}" target="_blank" rel="noopener" class="cert-founder-btn-linkedin" onclick="event.stopPropagation();" title="Open LinkedIn Profile for ${f.name}">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.89 0-1.61.72-1.61 1.61 0 .88.72 1.6 1.61 1.6.89 0 1.61-.72 1.61-1.6 0-.89-.72-1.61-1.61-1.61Z"/></svg>
+                  <span>LinkedIn ↗</span>
                 </a>
               ` : `
-                <button type="button" class="btn-action btn-b" style="justify-content: center; opacity: 0.5; cursor: default;" onclick="event.stopPropagation();" title="No LinkedIn profile listed">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.89 0-1.61.72-1.61 1.61 0 .88.72 1.6 1.61 1.6.89 0 1.61-.72 1.61-1.6 0-.89-.72-1.61-1.61-1.61Z"/></svg>
-                  LinkedIn
-                </button>
-              `}
-              ${emailHref ? `
-                <a href="${emailHref}" class="btn-action btn-o" style="justify-content: center;">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                  Email
-                </a>
-              ` : `
-                <button type="button" class="btn-action btn-o" style="justify-content: center; opacity: 0.5; cursor: default;" onclick="event.stopPropagation();">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                  Email
-                </button>
+                <span class="cert-founder-btn-linkedin is-disabled" title="No LinkedIn profile listed">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.89 0-1.61.72-1.61 1.61 0 .88.72 1.6 1.61 1.6.89 0 1.61-.72 1.61-1.6 0-.89-.72-1.61-1.61-1.61Z"/></svg>
+                  <span>LinkedIn</span>
+                </span>
               `}
             </div>
           </div>
@@ -1734,10 +1719,10 @@
 
       // 3. Body Injection (Founders + Company Details, no ISRO callout)
       bodyEl.innerHTML = `
-        <!-- Founders Section -->
+        <!-- Founders Section (Pattern 4: Split Action Wing) -->
         <div class="vital-specs-card">
           <div class="vital-specs-title">Founders</div>
-          <div class="cert-founders-grid" style="display: grid; grid-template-columns: repeat(${colCount}, minmax(0, 1fr)); gap: ${isCompact ? '6px' : '10px'}; margin-top: 10px;">
+          <div class="cert-founders-stack">
             ${foundersHtml}
           </div>
         </div>

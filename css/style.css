@@ -1217,40 +1217,47 @@
       gap: 8px;
     }
 
-    .cert-founders-grid {
-      display: grid;
+    /* ══════════════════════════════════════════════════════════════
+       FOUNDER CARDS (Pattern 4: The Split Action Wing - YC Standard)
+       ══════════════════════════════════════════════════════════════ */
+    .cert-founders-stack {
+      display: flex;
+      flex-direction: column;
       gap: 10px;
       margin-top: 10px;
       width: 100%;
     }
 
     .cert-founder-card {
-      flex: 1;
       border: 1px solid var(--border-card);
-      border-radius: 4px;
-      padding: 7px 4px;
-      text-align: center;
+      border-radius: 10px;
+      padding: 12px 14px;
       background: #FFFFFF;
       display: flex;
-      flex-direction: column;
       align-items: center;
+      gap: 14px;
       min-width: 0;
       box-sizing: border-box;
-      height: 100%;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .cert-founder-card:hover {
+      border-color: #94A3B8;
+      box-shadow: 0 3px 10px -2px rgba(15, 23, 42, 0.08);
     }
 
     .cert-founder-avatar {
-      width: 48px;
-      height: 48px;
+      width: 62px;
+      height: 62px;
       border-radius: 50%;
-      margin-bottom: 5px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      border: 2px solid #FFFFFF;
-      outline: 1px solid var(--border-subtle);
-      box-shadow: 0 1.5px 6px rgba(15, 23, 42, 0.08);
+      border: 2.5px solid #FFFFFF;
+      outline: 1.5px solid #CBD5E1;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
       background: #F1F5F9;
       flex-shrink: 0;
     }
@@ -1260,102 +1267,102 @@
       height: 100%;
       object-fit: cover;
       border-radius: 50%;
+      display: block;
     }
 
     .cert-founder-avatar-fallback {
       font-family: var(--font-mono);
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 800;
       color: var(--ink-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background: #F1F5F9;
     }
 
-    .cert-founder-name {
-      font-size: 11.5px;
-      font-weight: 800;
-      color: var(--ink-primary);
-      line-height: 1.2;
-      margin-top: 1px;
-    }
-
-    .cert-founder-role {
-      font-size: 9.5px;
-      color: var(--ink-muted);
-      margin-top: 1px;
-    }
-
-    .cert-founder-batch {
-      font-size: 8.5px;
-      font-weight: 700;
-      color: var(--action-primary-bg);
-      background: var(--status-telemetry-bg);
-      border: 1px solid var(--status-telemetry-border);
-      padding: 1px 4px;
-      border-radius: 2px;
-      margin-top: 3px;
-      font-family: var(--font-mono);
-      display: inline-block;
-    }
-
-    .cert-founder-actions {
+    .cert-founder-info {
+      flex: 1;
+      min-width: 0;
       display: flex;
       flex-direction: column;
       gap: 3px;
-      width: 100%;
-      margin-top: auto;
-      padding-top: 5px;
     }
 
-    /* Compact founder card for startups with 3+ founders */
-    .cert-founder-card.is-compact {
-      padding: 6px 3px;
-    }
-
-    .cert-founder-card.is-compact .cert-founder-avatar {
-      width: 40px;
-      height: 40px;
-      margin-bottom: 4px;
-    }
-
-    .cert-founder-card.is-compact .cert-founder-avatar-fallback {
-      font-size: 12px;
-    }
-
-    .cert-founder-card.is-compact .cert-founder-name {
-      font-size: 10.5px;
-      line-height: 1.15;
-      word-break: break-word;
-    }
-
-    .cert-founder-card.is-compact .cert-founder-role {
-      font-size: 8px;
-      line-height: 1.15;
-    }
-
-    .cert-founder-card.is-compact .cert-founder-batch {
-      font-size: 7.5px;
-      padding: 1px 3px;
-      max-width: 100%;
+    .cert-founder-name {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--ink-primary);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    .cert-founder-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .cert-founder-role {
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .cert-founder-batch {
+      font-size: 9.5px;
+      font-weight: 700;
+      color: #1D4ED8;
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      padding: 1.5px 6px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      display: inline-block;
+      letter-spacing: 0.02em;
+    }
+
+    .cert-founder-wing {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+    }
+
+    .cert-founder-btn-linkedin {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #0A66C2;
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6.5px 11px;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 1.5px 4px rgba(10, 102, 194, 0.22);
+      transition: background 0.15s ease, transform 0.15s ease;
       white-space: nowrap;
+      cursor: pointer;
     }
 
-    .cert-founder-card.is-compact .cert-founder-actions {
-      gap: 2.5px;
-      margin-top: auto;
-      padding-top: 4px;
+    .cert-founder-btn-linkedin:hover {
+      background: #084E96;
+      transform: translateY(-1px);
     }
 
-    .cert-founder-card.is-compact .btn-action {
-      font-size: 8.5px;
-      padding: 3px 2px;
-      gap: 2px;
-      justify-content: center;
-    }
-
-    .cert-founder-card.is-compact .btn-action svg {
-      width: 9.5px;
-      height: 9.5px;
+    .cert-founder-btn-linkedin.is-disabled {
+      background: #F1F5F9;
+      color: #94A3B8;
+      box-shadow: none;
+      cursor: default;
     }
 
     /* Option 02 Action Buttons */
@@ -4003,6 +4010,35 @@
     background: #FFFFFF !important;
     border-top: 1px solid var(--border-subtle, #E2E8F0) !important;
     flex-shrink: 0 !important;
+  }
+
+  /* Founder Cards (Pattern 4: Split Action Wing) Mobile Adjustments */
+  .cert-founder-card {
+    padding: 10px 12px !important;
+    gap: 12px !important;
+  }
+
+  .cert-founder-avatar {
+    width: 54px !important;
+    height: 54px !important;
+  }
+
+  .cert-founder-name {
+    font-size: 13.5px !important;
+  }
+
+  .cert-founder-role {
+    font-size: 11px !important;
+  }
+
+  .cert-founder-batch {
+    font-size: 9px !important;
+    padding: 1px 5px !important;
+  }
+
+  .cert-founder-btn-linkedin {
+    padding: 5.5px 9px !important;
+    font-size: 10.5px !important;
   }
 }
 

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Founders Card Layout Redesign Showcase — VNIT Startups</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --bg-page: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --border-subtle: #E2E8F0;
+      --border-card: #CBD5E1;
+      --ink-primary: #0F172A;
+      --ink-secondary: #334155;
+      --ink-muted: #64748B;
+      
+      --linkedin-blue: #0A66C2;
+      --linkedin-hover: #084E96;
+      
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-page);
+      color: var(--ink-primary);
+      padding: 40px 20px 80px 20px;
+      line-height: 1.5;
+    }
+
+    .showcase-header {
+      max-width: 1200px;
+      margin: 0 auto 36px auto;
+      text-align: center;
+    }
+
+    .showcase-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #1D4ED8;
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .showcase-title {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+      margin-bottom: 8px;
+    }
+
+    .showcase-desc {
+      font-size: 15px;
+      color: var(--ink-muted);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 28px;
+      max-width: 1280px;
+      margin: 0 auto 48px auto;
+    }
+
+    .option-column {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.05);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .option-header {
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+
+    .option-tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .option-name {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--ink-primary);
+      margin-bottom: 4px;
+    }
+
+    .option-desc {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      line-height: 1.45;
+    }
+
+    /* Simulate the actual Drawer Specs Card Container (380px wide context) */
+    .drawer-preview-card {
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 14px 16px;
+      background: #FAFAFA;
+      margin-bottom: 18px;
+    }
+
+    .drawer-preview-title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .scenario-label {
+      font-size: 9.5px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       BEFORE (CURRENT PROBLEM FROM USER SCREENSHOT)
+       ══════════════════════════════════════════════════════════════ */
+    .current-card-problem {
+      border: 1px solid #CBD5E1;
+      border-radius: 4px;
+      padding: 16px 14px;
+      text-align: center;
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .current-avatar-tiny {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin-bottom: 8px;
+      overflow: hidden;
+      border: 2px solid #FFFFFF;
+      outline: 1px solid #E2E8F0;
+      box-shadow: 0 1.5px 6px rgba(15, 23, 42, 0.08);
+      background: #F1F5F9;
+    }
+
+    .current-avatar-tiny img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .current-name {
+      font-size: 12px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 2px;
+    }
+
+    .current-role {
+      font-size: 10px;
+      color: #64748B;
+      margin-bottom: 4px;
+    }
+
+    .current-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: #1D4ED8;
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      padding: 1.5px 6px;
+      border-radius: 3px;
+      margin-bottom: 14px;
+    }
+
+    .current-btn-linkedin {
+      width: 100%;
+      padding: 7px;
+      background: #2563EB;
+      color: #FFFFFF;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 6px;
+      text-decoration: none;
+    }
+
+    .current-btn-email {
+      width: 100%;
+      padding: 7px;
+      background: #FFFFFF;
+      color: #0F172A;
+      border: 1px solid #CBD5E1;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       OPTION 1: THE EXECUTIVE HORIZONTAL BANNER (RECOMMENDED)
+       ══════════════════════════════════════════════════════════════ */
+    .arch1-founder-card {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      transition: all 0.2s ease;
+    }
+
+    .arch1-founder-card:hover {
+      border-color: #94A3B8;
+      box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+    }
+
+    .arch1-avatar {
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      overflow: hidden;
+      border: 2.5px solid #FFFFFF;
+      outline: 1.5px solid #CBD5E1;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.1);
+      background: #F1F5F9;
+    }
+
+    .arch1-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .arch1-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .arch1-name {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0F172A;
+      line-height: 1.25;
+      margin-bottom: 2px;
+    }
+
+    .arch1-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .arch1-role {
+      font-size: 12px;
+      color: #64748B;
+      font-weight: 500;
+    }
+
+    .arch1-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: #1D4ED8;
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      padding: 1.5px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    .arch1-linkedin-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #0A66C2;
+      color: #FFFFFF;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.15s ease, transform 0.15s ease;
+      box-shadow: 0 1.5px 4px rgba(10, 102, 194, 0.25);
+    }
+
+    .arch1-linkedin-btn:hover {
+      background: #084E96;
+      transform: translateY(-1px);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       OPTION 2: THE STUDIO DOSSIER (VERTICAL BALANCED)
+       ══════════════════════════════════════════════════════════════ */
+    .arch2-founder-card {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 10px;
+      padding: 18px 16px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    }
+
+    .arch2-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      overflow: hidden;
+      border: 3px solid #FFFFFF;
+      outline: 1.5px solid #CBD5E1;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.1);
+      background: #F1F5F9;
+      flex-shrink: 0;
+    }
+
+    .arch2-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .arch2-name {
+      font-size: 15.5px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 2px;
+    }
+
+    .arch2-role {
+      font-size: 12px;
+      color: #64748B;
+      margin-bottom: 6px;
+    }
+
+    .arch2-badge {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #1D4ED8;
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 14px;
+    }
+
+    .arch2-linkedin-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: #0A66C2;
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8.5px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(10, 102, 194, 0.25);
+      transition: background 0.15s ease;
+    }
+
+    .arch2-linkedin-btn:hover {
+      background: #084E96;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .feature-list li {
+      font-size: 12px;
+      color: var(--ink-secondary);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .check-icon {
+      color: #10B981;
+      font-weight: bold;
+    }
+
+    .multi-founders-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="showcase-header">
+    <div class="showcase-kicker">UX/UI Architecture Research & Benchmark</div>
+    <h1 class="showcase-title">Founders Card Layout Transformation</h1>
+    <p class="showcase-desc">
+      Eliminating awkward white space, scaling up the profile avatar from 48px to 66-70px, highlighting academic branch credentials, placing high focus on LinkedIn, and removing the dead email button.
+    </p>
+  </header>
+
+  <main class="comparison-grid">
+
+    <!-- CURRENT PROBLEM (WHAT WAS REPORTED) -->
+    <div class="option-column" style="border-color: #FCA5A5;">
+      <div class="option-header">
+        <span class="option-tag" style="background: #FEF2F2; color: #DC2626; border-color: #FECACA;">Current Pain Point</span>
+        <h2 class="option-name">What Was Reported</h2>
+        <p class="option-desc">Tiny 48px avatar, tiny 12px text, vast ocean of empty white padding, and unnecessary dead email button taking up vertical room.</p>
+      </div>
+
+      <div class="drawer-preview-card">
+        <div class="drawer-preview-title">
+          <span>FOUNDERS</span>
+          <span class="scenario-label" style="background:#FEE2E2; color:#DC2626;">Aristok Technologies</span>
+        </div>
+        
+        <div class="current-card-problem">
+          <div class="current-avatar-tiny">
+            <img src="./assets/Profile Pics/aristok-technologies_aniket-khare.jpg" alt="Aniket Khare">
+          </div>
+          <div class="current-name">Aniket Khare</div>
+          <div class="current-role">Co-Founder</div>
+          <div class="current-tag">EEE '06</div>
+          <a href="#" class="current-btn-linkedin" onclick="return false;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.89 0-1.61.72-1.61 1.61 0 .88.72 1.6 1.61 1.6.89 0 1.61-.72 1.61-1.6 0-.89-.72-1.61-1.61-1.61Z"/></svg>
+            LinkedIn
+          </a>
+          <a href="#" class="current-btn-email" onclick="return false;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Email
+          </a>
+        </div>
+      </div>
+
+      <ul class="feature-list">
+        <li><span style="color:#DC2626; font-weight: bold;">✕</span> <strong>Tiny Photo (48px):</strong> Stranded in a wide 350px box with empty left/right margins.</li>
+        <li><span style="color:#DC2626; font-weight: bold;">✕</span> <strong>Dead Email Box:</strong> Takes up vertical space without functional utility.</li>
+        <li><span style="color:#DC2626; font-weight: bold;">✕</span> <strong>Weak Hierarchy:</strong> Name and credentials lack visual authority.</li>
+      </ul>
+    </div>
+
+
+    <!-- OPTION 1: THE EXECUTIVE HORIZONTAL BANNER (RECOMMENDED) -->
+    <div class="option-column" style="border-color: #3B82F6; box-shadow: 0 4px 24px -2px rgba(59, 130, 246, 0.18);">
+      <div class="option-header">
+        <span class="option-tag" style="background: #EFF6FF; color: #1D4ED8; border-color: #BFDBFE;">Option 1 · Recommended</span>
+        <h2 class="option-name">Executive Horizontal Banner</h2>
+        <p class="option-desc">Inspired by Y Combinator Directory & Wellfound. Eliminates all horizontal whitespace by placing the large avatar on the left and identity + LinkedIn on the right.</p>
+      </div>
+
+      <div class="drawer-preview-card">
+        <div class="drawer-preview-title">
+          <span>FOUNDERS</span>
+          <span class="scenario-label" style="background: #EFF6FF; color: #1D4ED8;">1 Founder (Aristok)</span>
+        </div>
+        
+        <div class="arch1-founder-card">
+          <div class="arch1-avatar">
+            <img src="./assets/Profile Pics/aristok-technologies_aniket-khare.jpg" alt="Aniket Khare">
+          </div>
+          <div class="arch1-body">
+            <div class="arch1-name">Aniket Khare</div>
+            <div class="arch1-meta-row">
+              <span class="arch1-role">Co-Founder</span>
+              <span class="arch1-badge">EEE '06</span>
+            </div>
+            <a href="https://linkedin.com/in/aniket-khare" target="_blank" rel="noopener" class="arch1-linkedin-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.89 0-1.61.72-1.61 1.61 0 .88.72 1.6 1.61 1.6.89 0 1.61-.72 1.61-1.6 0-.89-.72-1.61-1.61-1.61Z"/></svg>
+              LinkedIn ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="drawer-preview-card" style="margin-top: -6px;">
+        <div class="drawer-preview-title">
+          <span>FOUNDERS</span>
+          <span class="scenario-label" style="background: #EFF6FF; color: #1D4ED8;">2 Founders (Human Capitalists)</span>
+        </div>
+        
+        <div class="multi-founders-stack">
+          <div class="arch1-founder-card">
+            <div class="arch1-avatar">
+              <img src="./assets/Profile Pics/human-capitalists_lakshya-shukla.jpg" alt="Lakshya Shukla">
+            </div>
+            <div class="arch1-body">
+              <div class="arch1-name">Lakshya Shukla</div>
+              <div class="arch1-meta-row">
+                <span class="arch1-role">Co-Founder</span>
+                <span class="arch1-badge">Chem '21</span>
+              </div>
+              <a href="#" class="arch1-linkedin-btn" onclick="return false;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.89 0-1.61.72-1.61 1.61 0 .88.72 1.6 1.61 1.6.89 0 1.61-.72 1.61-1.6 0-.89-.72-1.61-1.61-1.61Z"/></svg>
+                LinkedIn ↗
+              </a>
+            </div>
+          </div>
+
+          <div class="arch1-founder-card">
+            <div class="arch1-avatar">
+              <img src="./assets/Profile Pics/human-capitalists_nishant-singh-didawat.jpg" alt="Nishant Singh Didawat">
+            </div>
+            <div class="arch1-body">
+              <div class="arch1-name">Nishant Singh Didawat</div>
+              <div class="arch1-meta-row">
+                <span class="arch1-role">Co-Founder</span>
+                <span class="arch1-badge">Civil '13</span>
+              </div>
+              <a href="#" class="arch1-linkedin-btn" onclick="return false;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.89 0-1.61.72-1.61 1.61 0 .88.72 1.6 1.61 1.6.89 0 1.61-.72 1.61-1.6 0-.89-.72-1.61-1.61-1.61Z"/></svg>
+                LinkedIn ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ul class="feature-list">
+        <li><span class="check-icon">✓</span> <strong>66px Avatar:</strong> 38% larger, clear facial recognition.</li>
+        <li><span class="check-icon">✓</span> <strong>Zero Dead Whitespace:</strong> Natural horizontal ratio fills width effortlessly.</li>
+        <li><span class="check-icon">✓</span> <strong>Hero LinkedIn CTA:</strong> Single focused button with signature LinkedIn blue.</li>
+        <li><span class="check-icon">✓</span> <strong>Clear Branch Tag:</strong> Distinct monospace pill (`EEE '06`, `Chem '21`).</li>
+      </ul>
+    </div>
+
+
+    <!-- OPTION 2: THE STUDIO DOSSIER (VERTICAL BALANCED) -->
+    <div class="option-column">
+      <div class="option-header">
+        <span class="option-tag" style="background: #F3E8FF; color: #7E22CE; border-color: #E9D5FF;">Option 2</span>
+        <h2 class="option-name">Studio Dossier (Vertical Center)</h2>
+        <p class="option-desc">Maintains vertical symmetry but scales avatar to 70px, tightens container padding, and provides a full-width high-contrast LinkedIn button.</p>
+      </div>
+
+      <div class="drawer-preview-card">
+        <div class="drawer-preview-title">
+          <span>FOUNDERS</span>
+          <span class="scenario-label" style="background: #F3E8FF; color: #7E22CE;">1 Founder (Aristok)</span>
+        </div>
+        
+        <div class="arch2-founder-card">
+          <div class="arch2-avatar">
+            <img src="./assets/Profile Pics/aristok-technologies_aniket-khare.jpg" alt="Aniket Khare">
+          </div>
+          <div class="arch2-name">Aniket Khare</div>
+          <div class="arch2-role">Co-Founder</div>
+          <div class="arch2-badge">EEE '06</div>
+          <a href="#" class="arch2-linkedin-btn" onclick="return false;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45c-.89 0-1.61.72-1.61 1.61 0 .88.72 1.6 1.61 1.6.89 0 1.61-.72 1.61-1.6 0-.89-.72-1.61-1.61-1.61Z"/></svg>
+            Connect on LinkedIn ↗
+          </a>
+        </div>
+      </div>
+
+      <ul class="feature-list">
+        <li><span class="check-icon">✓</span> <strong>70px Prominent Avatar:</strong> Large, centered, bold portrait.</li>
+        <li><span class="check-icon">✓</span> <strong>Full-Width LinkedIn Bar:</strong> Maximum clickability across entire card width.</li>
+        <li><span class="check-icon">✓</span> <strong>No Email Clutter:</strong> Single focused objective.</li>
+      </ul>
+    </div>
+
+  </main>
+
+</body>
+</html>
