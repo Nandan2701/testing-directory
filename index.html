@@ -23,7 +23,7 @@
     rel="stylesheet">
 
   <!-- Core Design System Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=subscribe_clean_v2">
+  <link rel="stylesheet" href="css/style.css?v=confirmed_slate_v3">
 </head>
 
 <body>
@@ -283,15 +283,15 @@
       <!-- 1. The VNIT Dispatch (Newsletter Callout - Architectural Studio Ledger) -->
       <div class="studio-dispatch-card" id="newsletterCard">
         <!-- Left: Editorial Context & Narrative -->
-        <div class="dispatch-left">
+        <div class="dispatch-left" id="dispatchLeftContent">
           <h2 class="dispatch-title">Never Miss a startup Built by a VNITian.</h2>
           <p class="dispatch-sub" id="dispatchSubText">
             A handpicked monthly briefing covering alumni venture launches, seed rounds, and campus innovation.
           </p>
         </div>
 
-        <!-- Right: Architectural Action Capsule & In-Situ Confirmation State -->
-        <div class="dispatch-right">
+        <!-- Right: Architectural Action Capsule -->
+        <div class="dispatch-right" id="dispatchRightContent">
           <!-- Active Form Capsule (Architecture 1: Adaptive Morph) -->
           <form class="dispatch-capsule" id="newsletterFormCapsule" onsubmit="handleNewsletterSubmit(event)">
             <div class="dispatch-input-wrap">
@@ -309,26 +309,16 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
             </button>
           </form>
+        </div>
 
-          <!-- Confirmed In-Situ State (Architecture 1: High-Trust Flow) -->
-          <div class="dispatch-success-card" id="newsletterSuccessState">
-            <div class="dispatch-success-header">
-              <div class="dispatch-success-seal" aria-hidden="true">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div>
-              <div class="dispatch-success-title">You're on the list!</div>
-            </div>
-            <p class="dispatch-success-note">
-              The next founder briefing drops on the 1st of next month · Exactly 1 email a month, zero spam.
-            </p>
-            <div class="dispatch-success-footer">
-              <div class="dispatch-echo-chip">
-                <span style="color:#059669;">●</span>
-                <span id="dispatchConfirmedEmail">user@gmail.com</span>
-              </div>
-              <button type="button" class="dispatch-change-email-btn" onclick="resetNewsletterForm()">Change email</button>
-            </div>
+        <!-- Confirmed In-Situ State (Shows ONLY REGISTRATION CONFIRMED & You're on the list.) -->
+        <div class="dispatch-success-slate" id="newsletterSuccessState">
+          <div class="dispatch-success-kicker">
+            <span class="dispatch-success-dot"></span>
+            <span>REGISTRATION CONFIRMED</span>
           </div>
+          <div class="dispatch-success-title">You're on the list.</div>
+          <button type="button" class="dispatch-change-email-btn" onclick="resetNewsletterForm()">Change email</button>
         </div>
       </div>
 
@@ -528,7 +518,7 @@
 
   <!-- JAVASCRIPT APPLICATION CORE -->
   <!-- Core Client Application Engine -->
-  <script src="js/app.js?v=subscribe_clean_v2"></script>
+  <script src="js/app.js?v=confirmed_slate_v3"></script>
 
   <!-- MOBILE SIDE-BY-SIDE FILTER DRAWER (Left Slide-in Architecture) -->
   <div class="mobile-filter-overlay" id="mfOverlay" onclick="closeMobileFilterModal()"></div>

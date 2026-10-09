@@ -1713,16 +1713,23 @@
       cursor: progress;
     }
 
-    /* Newsletter In-Situ Confirmation State (Clean Vertical & High-Trust Flow) */
-    .dispatch-success-card {
-      background: #F8FAFC;
-      border: 1.5px solid #A7F3D0;
-      border-radius: 12px;
-      padding: 16px 18px;
+    /* Newsletter In-Situ Confirmation State (Clean Centered Slate: Only REGISTRATION CONFIRMED & You're on the list) */
+    .studio-dispatch-card.is-confirmed {
+      grid-template-columns: 1fr;
+      padding: 36px 24px;
+      border-color: #86EFAC;
+      box-shadow: 0 4px 20px -4px rgba(16, 185, 129, 0.12);
+      transition: all 0.2s ease;
+    }
+
+    .dispatch-success-slate {
       display: none;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       gap: 10px;
-      box-shadow: 0 4px 14px -3px rgba(5, 150, 105, 0.08);
+      width: 100%;
       animation: fadeInDispatchSuccess 0.22s ease-out forwards;
     }
 
@@ -1731,91 +1738,53 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .dispatch-success-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .dispatch-success-seal {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: #10B981;
-      color: #FFFFFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
-    }
-
-    .dispatch-success-title {
-      font-size: 14.5px;
-      font-weight: 800;
-      color: #065F46;
-      line-height: 1.25;
-      letter-spacing: -0.01em;
-    }
-
-    .dispatch-success-note {
-      font-size: 12.5px;
-      color: #334155;
-      line-height: 1.55;
-      margin: 0;
-    }
-
-    .dispatch-success-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding-top: 8px;
-      border-top: 1px solid #E2E8F0;
-      flex-wrap: wrap;
-    }
-
-    .dispatch-echo-chip {
+    .dispatch-success-kicker {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       font-family: var(--font-mono);
-      font-size: 11.5px;
-      font-weight: 600;
-      color: #0F172A;
-      background: #FFFFFF;
-      border: 1px solid #CBD5E1;
-      padding: 4px 10px;
-      border-radius: 6px;
-      max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #065F46;
+      background: #DCFCE7;
+      border: 1px solid #86EFAC;
+      padding: 3.5px 10px;
+      border-radius: 999px;
+    }
+
+    .dispatch-success-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+    }
+
+    .dispatch-success-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #065F46;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin: 0;
     }
 
     .dispatch-change-email-btn {
       background: none;
       border: none;
-      font-family: var(--font-primary);
+      font-family: inherit;
       font-size: 12px;
-      font-weight: 600;
-      color: var(--action-primary);
+      color: #059669;
       text-decoration: underline;
       cursor: pointer;
-      padding: 2px 4px;
+      margin-top: 2px;
+      padding: 4px 6px;
       transition: color 0.15s ease;
     }
 
     .dispatch-change-email-btn:hover {
-      color: var(--action-primary-hover);
-    }
-
-    .mobile-btn-label {
-      display: none;
-    }
-
-    .dispatch-subscriber-badge {
-      display: none;
+      color: #047857;
     }
 
     @media (max-width: 900px) {
@@ -1948,28 +1917,12 @@
         gap: 8px;
       }
 
+      .studio-dispatch-card.is-confirmed {
+        padding: 22px 16px;
+      }
+
       .dispatch-success-title {
-        font-size: 13.5px;
-      }
-
-      .dispatch-success-note {
-        font-size: 12px;
-        line-height: 1.5;
-      }
-
-      .dispatch-success-footer {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 6px;
-      }
-
-      .dispatch-echo-chip {
-        justify-content: center;
-        text-align: center;
-      }
-
-      .dispatch-change-email-btn {
-        text-align: center;
+        font-size: 19px;
       }
     }
 

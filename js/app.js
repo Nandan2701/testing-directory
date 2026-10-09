@@ -2471,33 +2471,30 @@
         console.log('Newsletter subscription recorded locally:', val);
       }
 
-      // Update echoed email in the confirmation card
-      const displayEmail = document.getElementById('dispatchConfirmedEmail');
-      if (displayEmail) displayEmail.textContent = val;
-
-      // In-situ swap: hide input form, show confirmed card
-      const formEl = document.getElementById('newsletterFormCapsule');
+      // In-situ swap: hide left & right content, show only clean confirmation slate
+      const card = document.getElementById('newsletterCard');
+      const leftEl = document.getElementById('dispatchLeftContent');
+      const rightEl = document.getElementById('dispatchRightContent');
       const successEl = document.getElementById('newsletterSuccessState');
-      if (formEl) formEl.style.display = 'none';
-      if (successEl) successEl.style.display = 'flex';
 
-      // Update editorial left panel cleanly
-      const kickerEl = document.getElementById('dispatchKickerText');
-      if (kickerEl) kickerEl.textContent = 'REGISTRATION CONFIRMED';
-      const kickerDot = document.getElementById('dispatchKickerDot');
-      if (kickerDot) kickerDot.style.background = '#10B981';
-      const subText = document.getElementById('dispatchSubText');
-      if (subText) subText.textContent = 'Your email has been confirmed. You will receive the monthly founder briefing on the 1st of the month.';
+      if (leftEl) leftEl.style.display = 'none';
+      if (rightEl) rightEl.style.display = 'none';
+      if (successEl) successEl.style.display = 'flex';
+      if (card) card.classList.add('is-confirmed');
     }
 
     function resetNewsletterForm() {
-      const formEl = document.getElementById('newsletterFormCapsule');
+      const card = document.getElementById('newsletterCard');
+      const leftEl = document.getElementById('dispatchLeftContent');
+      const rightEl = document.getElementById('dispatchRightContent');
       const successEl = document.getElementById('newsletterSuccessState');
       const btn = document.getElementById('newsletterSubmitBtn');
       const emailInput = document.getElementById('newsletterEmail');
 
       if (successEl) successEl.style.display = 'none';
-      if (formEl) formEl.style.display = 'flex';
+      if (leftEl) leftEl.style.display = '';
+      if (rightEl) rightEl.style.display = '';
+      if (card) card.classList.remove('is-confirmed');
       if (btn) {
         btn.disabled = false;
         btn.innerHTML = '<span>Send me Updates</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>';
@@ -2506,10 +2503,6 @@
         emailInput.value = '';
         setTimeout(() => emailInput.focus(), 60);
       }
-      const kickerEl = document.getElementById('dispatchKickerText');
-      if (kickerEl) kickerEl.textContent = '';
-      const subText = document.getElementById('dispatchSubText');
-      if (subText) subText.textContent = 'A handpicked monthly briefing covering alumni venture launches, seed rounds, and campus innovation.';
     }
 
     /* Once a visitor has scrolled past the whole list and returns to the top, draw the eye to the submit button (one time) */
