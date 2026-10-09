@@ -1975,7 +1975,13 @@
     @media (max-width: 860px) {
       .dock-left-panel {
         border-right: none;
-        border-bottom: 1px solid var(--border-subtle);
+        border-bottom: none;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .dock-left-panel {
+        padding: 18px 16px;
       }
     }
 
@@ -2050,11 +2056,10 @@
       background: var(--surface-card);
       border: 1.5px solid var(--border-card);
       border-radius: 8px;
-      padding: 13px 15px 11px 15px;
+      padding: 12px 14px;
       display: flex;
       flex-direction: column;
-      flex: 1;
-      gap: 10px;
+      gap: 8px;
       transition: all 0.15s ease;
     }
 
@@ -2067,44 +2072,46 @@
       width: 100%;
       border: none;
       outline: none;
-      resize: none;
+      resize: vertical;
       font-family: inherit;
       font-size: 13px;
       line-height: 1.55;
       color: var(--ink-primary);
       background: transparent;
       padding: 0;
-      flex: 1;
-      min-height: 82px;
+      min-height: 90px;
     }
 
     .dock-hero-textarea::placeholder {
       color: var(--ink-muted);
     }
 
-    .dock-compose-toolbar {
+    /* Step 3 Action Row */
+    .dock-action-row {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding-top: 9px;
-      border-top: 1px solid var(--border-subtle);
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 4px;
     }
 
-    .dock-compose-hint {
-      font-family: var(--font-mono);
-      font-size: 10.5px;
+    .dock-action-hint {
+      font-size: 12px;
       color: var(--ink-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .dock-anchored-btn {
       font-family: var(--font-primary);
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 700;
       background: var(--action-primary);
       color: #FFFFFF;
       border: none;
-      border-radius: 6px;
-      padding: 8px 18px;
+      border-radius: 7px;
+      padding: 9px 20px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
@@ -2115,7 +2122,27 @@
 
     .dock-anchored-btn:hover {
       background: var(--action-primary-hover);
-      transform: translateY(-0.5px);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 580px) {
+      .dock-action-row {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .dock-anchored-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 10px 16px;
+      }
+
+      .dock-action-hint {
+        text-align: center;
+        justify-content: center;
+        font-size: 11px;
+      }
     }
 
     /* Eye Path 3: Auxiliary Name & Email Fields */
