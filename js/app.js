@@ -2094,6 +2094,13 @@
           }
         });
       });
+
+      // Synchronize Hero Leaderboard active row state
+      const lbRows = document.querySelectorAll('.leaderboard-row[data-facet]');
+      lbRows.forEach(row => {
+        const facetVal = row.getAttribute('data-facet');
+        row.classList.toggle('is-active', currentFilter.branches.has(facetVal));
+      });
     }
 
     function toggleFacet(facetType, val) {
@@ -2641,6 +2648,56 @@
 
       // Initial resting hold of 2.5s before first backspace
       timerId = setTimeout(tick, HOLD_TIME);
+    })();
+
+    /* ═══════════════════════════════════════════════════════════════════
+       HERO LEADERBOARD ENGINE (Animation, Ticker, and Tap-to-Filter)
+       ═══════════════════════════════════════════════════════════════════ */
+    function filterFromLeaderboard(branchName) {
+      if (typeof toggleFacet === 'function') {
+        toggleFacet('branch', branchName);
+      }
+      // Smoothly scroll down to workbench
+      const workbench = document.getElementById('mainWorkbench');
+      if (workbench) {
+        const topOffset = workbench.getBoundingClientRect().top + window.scrollY - 70;
+        window.scrollTo({ top: topOffset, behavior: 'smooth' });
+      }
+    }
+
+    (function initHeroLeaderboard() {
+      const listEl = document.getElementById('heroLeaderboardList');
+      if (!listEl) return;
+
+      const bars = listEl.querySelectorAll('.leaderboard-bar');
+      bars.forEach((bar, idx) => {
+        bar.style.width = '0%';
+        const targetPct = bar.getAttribute('data-pct');
+        const targetCount = parseInt(bar.getAttribute('data-count'), 10);
+        const delay = 100 + idx * 45; // Staggered 45ms per row (1x normal cadence)
+
+        setTimeout(() => {
+          bar.style.width = `${targetPct}%`;
+
+          // Synchronized rolling number ticker
+          const row = bar.closest('.leaderboard-row');
+          const tickerEl = row ? row.querySelector('.leaderboard-val-count') : null;
+          if (tickerEl && !isNaN(targetCount)) {
+            let start = 0;
+            const duration = 550;
+            const startTime = performance.now();
+            function tickTicker(now) {
+              const elapsed = now - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              const current = Math.round(start + (targetCount - start) * Math.sin(progress * Math.PI / 2));
+              tickerEl.textContent = current;
+              if (progress < 1) requestAnimationFrame(tickTicker);
+              else tickerEl.textContent = targetCount;
+            }
+            requestAnimationFrame(tickTicker);
+          }
+        }, delay);
+      });
     })();
 
 

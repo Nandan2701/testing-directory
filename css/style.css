@@ -349,7 +349,8 @@
       background-color: var(--surface-canvas);
       overflow: hidden;
       border-bottom: 1px solid rgba(226, 232, 240, 0.85);
-      min-height: clamp(320px, 38vh, 420px);
+      min-height: auto;
+      padding: 48px 0 44px 0;
       display: flex;
       align-items: center;
       perspective: 1000px;
@@ -377,7 +378,7 @@
       max-width: 1400px;
       width: 100%;
       margin: 0 auto;
-      padding: 56px 56px 50px 56px;
+      padding: 0 56px;
       pointer-events: none;
       transform-style: preserve-3d;
       transform-origin: 15% 50%;
@@ -458,9 +459,199 @@
       50%, 100% { opacity: 0; }
     }
 
-    .hero-subhead strong {
+    /* ═══════════════════════════════════════════════════════════
+       HERO 9-DEPARTMENT FOUNDER LEADERBOARD (NEUTRAL PRECISION DATA)
+       ═══════════════════════════════════════════════════════════ */
+    .hero-leaderboard-wrap {
+      pointer-events: auto;
+      max-width: 480px;
+      width: 100%;
+      margin-top: 26px;
+      user-select: none;
+      transform-style: preserve-3d;
+      transform: translate3d(var(--plane1-x, 0px), var(--plane1-y, 0px), 24px);
+      transition: transform 0.08s ease-out;
+    }
+
+    .leaderboard-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1.5px solid #CBD5E1;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.08);
+      padding: 14px 16px 12px;
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .leaderboard-card:hover {
+      box-shadow: 0 10px 28px -6px rgba(15, 23, 42, 0.12);
+      border-color: #94A3B8;
+    }
+
+    .leaderboard-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding-bottom: 2px;
+    }
+
+    .leaderboard-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #334155;
+      text-transform: uppercase;
+    }
+
+    .leaderboard-total-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
       font-weight: 700;
-      color: var(--ink-primary);
+      color: #64748B;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      padding: 2.5px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.03em;
+    }
+
+    /* 4-Column Headers */
+    .leaderboard-col-heads {
+      display: grid;
+      grid-template-columns: 24px 84px 1fr 52px;
+      gap: 8px;
+      align-items: center;
+      padding: 0 6px 6px;
+      border-bottom: 1px solid #E2E8F0;
+      margin-bottom: 3px;
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      font-weight: 700;
+      color: #94A3B8;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .leaderboard-col-heads .col-head-r {
+      text-align: right;
+    }
+
+    /* 9-Row List */
+    .leaderboard-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5px;
+    }
+
+    .leaderboard-row {
+      display: grid;
+      grid-template-columns: 24px 84px 1fr 52px;
+      gap: 8px;
+      align-items: center;
+      padding: 4px 6px;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+      border: 1px solid transparent;
+    }
+    .leaderboard-row:hover {
+      background: #F1F5F9;
+      transform: translateX(2px);
+    }
+    .leaderboard-row.is-active {
+      background: #EFF6FF;
+      border-color: #BFDBFE;
+    }
+
+    /* Rank Badges: 100% Neutral Slate (1, 2, 3...) */
+    .leaderboard-rank {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      color: #475569;
+      border-radius: 4px;
+      text-align: center;
+      line-height: 18px;
+      height: 18px;
+      width: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Branch Identity */
+    .leaderboard-branch-info {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+    .leaderboard-branch-code {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #0F172A;
+      letter-spacing: -0.01em;
+    }
+    .leaderboard-branch-sub {
+      font-size: 9px;
+      font-weight: 500;
+      color: #64748B;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Precision Bar Track — Uniform Neutral Brand Gradient across all branches */
+    .leaderboard-track {
+      height: 7px;
+      background: #F1F5F9;
+      border-radius: 0 4px 4px 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .leaderboard-bar {
+      height: 100%;
+      border-radius: 0 3.5px 3.5px 0;
+      width: 0%;
+      transition: width 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+      background: linear-gradient(90deg, #2563EB 0%, #3B82F6 100%);
+    }
+
+    /* Dual Metrics (Right-aligned) */
+    .leaderboard-metrics {
+      text-align: right;
+      line-height: 1.15;
+    }
+    .leaderboard-val-count {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #0F172A;
+      font-family: var(--font-sans);
+    }
+    .leaderboard-val-share {
+      font-size: 9px;
+      font-weight: 600;
+      color: #64748B;
+      font-family: var(--font-mono);
+    }
+
+    /* Footer Hint */
+    .leaderboard-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px solid #E2E8F0;
+      font-size: 10px;
+      color: #64748B;
+      font-weight: 600;
+    }
+    .leaderboard-hint-arrow {
+      color: #2563EB;
+      font-weight: 700;
     }
 
     .h-switch-pill {
@@ -3657,6 +3848,33 @@
       .hero-typing-caret {
         width: 2.5px !important;
         margin-left: 2px !important;
+      }
+
+      /* Hero Leaderboard Mobile Refinements */
+      .hero-leaderboard-wrap {
+        max-width: 100% !important;
+        margin-top: 18px !important;
+      }
+      .leaderboard-card {
+        padding: 12px 10px 10px !important;
+        border-radius: 14px !important;
+      }
+      .leaderboard-col-heads, .leaderboard-row {
+        grid-template-columns: 20px 76px 1fr 46px !important;
+        gap: 6px !important;
+        padding: 3.5px 4px !important;
+      }
+      .leaderboard-branch-code {
+        font-size: 12px !important;
+      }
+      .leaderboard-branch-sub {
+        font-size: 8.5px !important;
+      }
+      .leaderboard-val-count {
+        font-size: 12px !important;
+      }
+      .leaderboard-val-share {
+        font-size: 8.5px !important;
       }
     }
 
