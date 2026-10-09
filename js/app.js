@@ -2773,9 +2773,9 @@
       function updatePhysics() {
         if (!isVisible) return;
 
-        // Snappy, silky LERP (0.24 damping factor)
-        currentX += (targetX - currentX) * 0.24;
-        currentY += (targetY - currentY) * 0.24;
+        // Snappy, silky LERP (0.35 damping factor)
+        currentX += (targetX - currentX) * 0.35;
+        currentY += (targetY - currentY) * 0.35;
 
         inspector.style.transform = `translate3d(${Math.round(currentX)}px, ${Math.round(currentY)}px, 0) scale(1)`;
 
@@ -2783,22 +2783,8 @@
       }
 
       function calcCoordinates(e) {
-        const rect = inspector.getBoundingClientRect();
-        const cardWidth = rect.width > 50 ? rect.width : 220;
-        const cardHeight = rect.height > 50 ? rect.height : 180;
-
-        // Attach top-left corner directly to cursor tip
-        let destX = e.clientX + 10;
-        let destY = e.clientY + 8;
-
-        // Keep inside viewport without flipping backwards
-        const maxX = window.innerWidth - cardWidth - 10;
-        if (destX > maxX) destX = maxX;
-        const maxY = window.innerHeight - cardHeight - 10;
-        if (destY > maxY) destY = maxY;
-        if (destY < 8) destY = 8;
-
-        return { x: destX, y: destY };
+        // Attach the window's exact top-left corner directly to the cursor tip
+        return { x: e.clientX, y: e.clientY };
       }
 
       const rows = cardWrap.querySelectorAll('.leaderboard-row');
