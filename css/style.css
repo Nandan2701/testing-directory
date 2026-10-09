@@ -42,12 +42,12 @@
       --cobalt-tint-border: #BFDBFE;
       --cobalt-tint-text: #1D4ED8;
 
-      /* 3D DEPTH LAB: REAL-TIME LIGHTING & DEPTH TOKENS (PRESET 02 CALIBRATED) */
-      --tilt-power: 0.2;
-      --z-elevation: 50px;
-      --plane1-z: 32px;
-      --plane2-z: 50px;
-      --plane3-z: 18px;
+      /* 3D DEPTH LAB: REAL-TIME LIGHTING & DEPTH TOKENS (STATIC HEADLINE CHROME) */
+      --tilt-power: 0;
+      --z-elevation: 0px;
+      --plane1-z: 0px;
+      --plane2-z: 0px;
+      --plane3-z: 0px;
       --plane1-x: 0px;
       --plane1-y: 0px;
       --plane2-x: 0px;
@@ -55,7 +55,7 @@
       --plane3-x: 0px;
       --plane3-y: 0px;
       --dynamic-shadow-x: 0px;
-      --dynamic-shadow-y: 4px;
+      --dynamic-shadow-y: 3px;
       --shadow-blur: 14px;
       --shadow-opacity: 0.20;
       --light-x: 50%;
@@ -387,7 +387,7 @@
       gap: 36px;
     }
 
-    /* THE HEADLINE CONTAINER: 3D MULTI-PLANE FLOATING ARCHITECTURE */
+    /* THE HEADLINE CONTAINER: PURE STATIC TYPOGRAPHY WITH DYNAMIC SPECULAR GRADIENT */
     .hero-headline {
       font-size: clamp(38px, 4.2vw, 54px);
       font-weight: 800;
@@ -397,7 +397,8 @@
       margin-bottom: 0;
       flex: 1 1 50%;
       max-width: 520px;
-      transform-style: preserve-3d;
+      transform: none !important;
+      transform-style: flat !important;
       user-select: text;
       pointer-events: auto;
     }
@@ -427,18 +428,17 @@
       padding: 0 6px;
     }
 
-    /* STATIC WORDS: "The " and "Built by VNITians." — 3D SPECULAR CHROME (DEEP SLATE TO MIDNIGHT) */
+    /* STATIC WORDS: "The " and "Built by VNITians." — DYNAMIC SPECULAR CHROME (DEEP SLATE TO MIDNIGHT) */
     .headline-top-plane,
     .headline-plane-static {
       display: inline-block;
-      transform-style: preserve-3d;
-      transform: translate3d(var(--plane1-x, 0px), var(--plane1-y, 0px), var(--plane1-z, 32px));
-      transition: transform 0.08s ease-out;
-      will-change: transform;
+      transform: none !important;
+      transition: none !important;
+      will-change: auto;
       background: radial-gradient(circle 420px at var(--light-x, 50%) var(--light-y, 50%), #334155 0%, #0F172A 70%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(var(--dynamic-shadow-x, 0px) var(--dynamic-shadow-y, 2px) 6px rgba(15, 23, 42, 0.10));
+      filter: drop-shadow(0 2px 6px rgba(15, 23, 42, 0.10));
     }
 
     /* Natural typographic word space between "The" and dynamic keyword */
@@ -460,22 +460,21 @@
       display: inline-block;
       white-space: nowrap;
       vertical-align: baseline;
-      transform-style: preserve-3d;
+      transform: none !important;
     }
 
-    /* DYNAMIC KEYWORD: "Startups", "Companies", "Products" — 3D SPECULAR CHROME (ELECTRIC COBALT BLUE) */
+    /* DYNAMIC KEYWORD: "Startups", "Companies", "Products" — SPECULAR CHROME (ELECTRIC COBALT BLUE) */
     .headline-accent-plane {
       display: inline-block;
-      transform-style: preserve-3d;
-      transform: translate3d(var(--plane2-x, 0px), var(--plane2-y, 0px), var(--plane2-z, 50px));
-      transition: transform 0.08s ease-out;
-      will-change: transform;
+      transform: none !important;
+      transition: none !important;
+      will-change: auto;
       background: radial-gradient(circle 420px at var(--light-x, 50%) var(--light-y, 50%), #60A5FA 0%, #1D4ED8 65%, #172554 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       border-bottom: 3px solid #2563EB;
       padding-bottom: 2px;
-      filter: drop-shadow(var(--dynamic-shadow-x, 0px) var(--dynamic-shadow-y, 3px) 10px rgba(37, 99, 235, 0.24));
+      filter: drop-shadow(0 3px 10px rgba(37, 99, 235, 0.24));
     }
 
     /* SNAPPY TERMINAL TYPING CARET */
@@ -725,7 +724,7 @@
       padding: 6px 7px;
       opacity: 0;
       visibility: hidden;
-      transform: translate3d(-9999px, -9999px, 0) scale(0.96);
+      transform: translate3d(-9999px, -9999px, 0);
       transition: opacity 0.16s ease, visibility 0.16s ease;
       will-change: transform, opacity;
     }
@@ -735,19 +734,9 @@
       visibility: visible;
     }
 
-    /* Apple Tooltip Pointer Beak Notch */
+    /* Clean Sleek Corner Vertex Anchor (Notch disabled for pure clean geometry) */
     .bhi-notch {
-      position: absolute;
-      top: -6px;
-      left: 14px;
-      width: 12px;
-      height: 12px;
-      background: #FFFFFF;
-      border-left: 1px solid rgba(226, 232, 240, 0.95);
-      border-top: 1px solid rgba(226, 232, 240, 0.95);
-      transform: rotate(45deg);
-      border-radius: 2px;
-      pointer-events: none;
+      display: none !important;
     }
 
     .bhi-list {

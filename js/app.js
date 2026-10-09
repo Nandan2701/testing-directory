@@ -2717,6 +2717,10 @@
       let activeBranchCode = null;
       let rAF = null;
 
+      function getPageZoom() {
+        return document.body.currentCSSZoom || parseFloat(window.getComputedStyle(document.body).zoom) || 1;
+      }
+
       function renderBranchRoster(code) {
         const query = BRANCH_QUERY_MAP[code] || code;
         const matching = (typeof allStartups !== 'undefined' ? allStartups : (typeof SEED_STARTUPS !== 'undefined' ? SEED_STARTUPS : []))
@@ -2773,21 +2777,42 @@
       function updatePhysics() {
         if (!isVisible) return;
 
-        // Snappy, silky LERP (0.28 damping factor)
-        currentX += (targetX - currentX) * 0.28;
-        currentY += (targetY - currentY) * 0.28;
+        // Snappy, silky LERP (0.35 damping factor for immediate responsiveness)
+        currentX += (targetX - currentX) * 0.35;
+        currentY += (targetY - currentY) * 0.35;
 
-        inspector.style.transform = `translate3d(${Math.round(currentX)}px, ${Math.round(currentY)}px, 0) scale(1)`;
+        inspector.style.transform = `translate3d(${Math.round(currentX)}px, ${Math.round(currentY)}px, 0)`;
 
         rAF = requestAnimationFrame(updatePhysics);
       }
 
       function calcCoordinates(e) {
-        // Variation 04: Visual Beak Notch (Apple Tooltip)
-        // Top-left notch at left: 14px, top: -6px points directly at cursor tip
+        const zoom = getPageZoom();
+        const offsetX = 10;
+        const offsetY = 8;
+
+        // Target coordinates in screen space (anchoring top-left corner right at cursor tip)
+        let screenX = e.clientX + offsetX;
+        let screenY = e.clientY + offsetY;
+
+        // Viewport bounds protection
+        const cardW = 224;
+        const cardH = inspector.offsetHeight || 220;
+
+        if (screenX + cardW > window.innerWidth - 12) {
+          screenX = e.clientX - cardW - offsetX;
+        }
+        if (screenX < 8) screenX = 8;
+
+        if (screenY + cardH > window.innerHeight - 12) {
+          screenY = window.innerHeight - cardH - 12;
+        }
+        if (screenY < 8) screenY = 8;
+
+        // Compensate for body CSS zoom so visual rendered position matches cursor 1:1
         return { 
-          x: e.clientX - 14, 
-          y: e.clientY + 18 
+          x: screenX / zoom, 
+          y: screenY / zoom 
         };
       }
 
@@ -2812,19 +2837,19 @@
             isVisible = true;
             currentX = targetX;
             currentY = targetY;
-            inspector.style.transform = `translate3d(${Math.round(currentX)}px, ${Math.round(currentY)}px, 0) scale(0.96)`;
+            inspector.style.transform = `translate3d(${Math.round(currentX)}px, ${Math.round(currentY)}px, 0)`;
             inspector.classList.add('is-active');
             if (rAF) cancelAnimationFrame(rAF);
             rAF = requestAnimationFrame(updatePhysics);
           }
         });
+      });
 
-        row.addEventListener('mousemove', (e) => {
-          if (!isVisible || window.innerWidth <= 960) return;
-          const coords = calcCoordinates(e);
-          targetX = coords.x;
-          targetY = coords.y;
-        });
+      cardWrap.addEventListener('mousemove', (e) => {
+        if (!isVisible || window.innerWidth <= 960) return;
+        const coords = calcCoordinates(e);
+        targetX = coords.x;
+        targetY = coords.y;
       });
 
       cardWrap.addEventListener('mouseleave', () => {
@@ -2841,28 +2866,16 @@
 
   
     /* ═══════════════════════════════════════════════════════════════════
-       DEPTH LAB PRESET 02: DYNAMIC SPECULAR CHROME + 3D DEPTH ENGINE
+       DYNAMIC SPECULAR CHROME LIGHTING ENGINE (STATIC HEADLINE)
        ═══════════════════════════════════════════════════════════════════ */
     (function initHeroDepthLabEngine() {
       const hero = document.getElementById('heroWrapper');
-      const container = document.getElementById('heroContainer');
-      if (!hero || !container) return;
+      if (!hero) return;
 
-      // Exact parameters from headline_3d_depth_lab.html Preset 02:
-      const params = {
-        tiltPower: 0.2,
-        zElevation: 50,
-        driftPower: 0,
-        shadowPower: 5
-      };
-
-      let mouse = {
-        targetX: -1000, targetY: -1000,
-        normX: 0, normY: 0,
-        tiltX: 0, tiltY: 0,
-        targetTiltX: 0, targetTiltY: 0,
-        isInside: false
-      };
+      const headlineEl = document.getElementById('mainHeroHeadline');
+      if (headlineEl) {
+        headlineEl.style.transform = 'none';
+      }
 
       let width = hero.offsetWidth;
       let height = hero.offsetHeight;
@@ -2877,59 +2890,20 @@
         const rect = hero.getBoundingClientRect();
         const currentX = e.clientX - rect.left;
         const currentY = e.clientY - rect.top;
-        mouse.targetX = currentX;
-        mouse.targetY = currentY;
-        mouse.isInside = true;
 
-        const centerX = width / 2;
-        const centerY = height / 2;
-        mouse.normX = (currentX - centerX) / (centerX || 1);
-        mouse.normY = (currentY - centerY) / (centerY || 1);
-
-        // Gyro Tilt: 7.5 * 0.2 = 1.5 deg max tilt
-        const maxTilt = 7.5 * params.tiltPower;
-        mouse.targetTiltX = -mouse.normY * maxTilt;
-        mouse.targetTiltY = mouse.normX * (maxTilt * 1.25);
-
-        // Dynamic Specular Chrome Light Angle Tracking (Light Sweep across letters)
-        const pctX = ((currentX / width) * 100).toFixed(1);
-        const pctY = ((currentY / height) * 100).toFixed(1);
+        // Dynamic Specular Chrome Light Angle Tracking (Light Sweep across letters ONLY)
+        const pctX = ((currentX / (width || 1)) * 100).toFixed(1);
+        const pctY = ((currentY / (height || 1)) * 100).toFixed(1);
         document.documentElement.style.setProperty('--light-x', `${pctX}%`);
         document.documentElement.style.setProperty('--light-y', `${pctY}%`);
-
-        // Floor Cast Shadow: tight 5px contact depth
-        const shadowX = -mouse.normX * params.shadowPower;
-        const shadowY = Math.max(2, -mouse.normY * params.shadowPower + 4);
-        document.documentElement.style.setProperty('--dynamic-shadow-x', `${shadowX.toFixed(1)}px`);
-        document.documentElement.style.setProperty('--dynamic-shadow-y', `${shadowY.toFixed(1)}px`);
       });
 
       hero.addEventListener('mouseleave', () => {
-        mouse.isInside = false;
-        mouse.targetTiltX = 0;
-        mouse.targetTiltY = 0;
-        mouse.normX = 0;
-        mouse.normY = 0;
-        document.documentElement.style.setProperty('--dynamic-shadow-x', '0px');
-        document.documentElement.style.setProperty('--dynamic-shadow-y', '4px');
+        document.documentElement.style.setProperty('--light-x', '50%');
+        document.documentElement.style.setProperty('--light-y', '50%');
       });
 
-      function loop() {
-        requestAnimationFrame(loop);
-
-        // Smooth 3D tilt interpolation
-        const headlineEl = document.getElementById('mainHeroHeadline');
-        if (headlineEl) {
-          if (mouse.isInside || Math.abs(mouse.tiltX) > 0.05 || Math.abs(mouse.tiltY) > 0.05) {
-            headlineEl.style.transform = `perspective(1000px) rotateX(${mouse.tiltX.toFixed(2)}deg) rotateY(${mouse.tiltY.toFixed(2)}deg)`;
-          } else {
-            headlineEl.style.transform = 'none';
-          }
-        }
-      }
-
       resize();
-      loop();
     })();
 
     /* ─── DUAL-ZONE INDEPENDENT SCROLL SYNC ─── */
