@@ -1679,8 +1679,8 @@
 
         return `
           <div class="cert-founder-card">
-            <!-- Left: Avatar (Prominent 62px) -->
-            <div class="cert-founder-avatar">
+            <!-- Left: Avatar (Prominent 62px with Stage 2 Photo Preview) -->
+            <div class="cert-founder-avatar ${photoUrl ? 'has-photo' : ''}" ${photoUrl ? `onclick="openFounderPhotoModal('${photoUrl}', '${(f.name || '').replace(/'/g, "\\'")}', '${(f.degree || degreeText).replace(/'/g, "\\'")}')" title="Click to view photo of ${f.name}" role="button" tabindex="0"` : ''}>
               ${photoUrl ? `
                 <img src="${photoUrl}" alt="${f.name}" class="cert-founder-avatar-img"
                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -2240,9 +2240,46 @@
       openContributionModal();
     }
 
+    /* ─── FOUNDER PHOTO LIGHTBOX MODAL (Stage 2 Only) ─── */
+    function openFounderPhotoModal(photoUrl, name, degree) {
+      if (!photoUrl) return;
+      const modal = document.getElementById('founderPhotoModal');
+      const img = document.getElementById('founderPhotoModalImg');
+      const nameEl = document.getElementById('founderPhotoModalName');
+      const metaEl = document.getElementById('founderPhotoModalMeta');
+
+      if (img) img.src = photoUrl;
+      if (nameEl) nameEl.textContent = name || '';
+      if (metaEl) metaEl.textContent = degree || '';
+
+      if (modal) {
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeFounderPhotoModal(event) {
+      if (event && event.target && event.target.id !== 'founderPhotoModal' && !event.target.classList.contains('founder-photo-modal-close')) {
+        return;
+      }
+      const modal = document.getElementById('founderPhotoModal');
+      if (modal) {
+        modal.classList.remove('is-open');
+        const contrib = document.getElementById('contribModal');
+        if (!contrib || !contrib.classList.contains('is-open')) {
+          document.body.style.overflow = '';
+        }
+      }
+    }
+
     // Close on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
+        const photoModal = document.getElementById('founderPhotoModal');
+        if (photoModal && photoModal.classList.contains('is-open')) {
+          closeFounderPhotoModal();
+          return;
+        }
         const modal = document.getElementById('contribModal');
         if (modal && modal.classList.contains('is-open')) {
           closeContributionModal();
