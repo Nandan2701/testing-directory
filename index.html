@@ -364,64 +364,63 @@
 
           <!-- RIGHT PANEL: Support & Contribute (Partitioned & High Emotional Resonance) -->
           <div class="dock-right-panel">
-            <div class="dock-panel-header">
-              <div class="dock-panel-title">
-                <span class="dock-dot-indicator green"></span>
-                <span>Support This Project</span>
+            <h3 class="dock-contribute-headline">
+              Keep the website <span class="dock-headline-highlight">100% free and updated</span> so VNITians can always discover and connect with founders.
+            </h3>
+
+            <!-- Layout 1: Vertical Power Stack (Tiers & Reasons) -->
+            <div class="dock-tiers-stack">
+              <!-- Tier 1: ₹50 -->
+              <div class="dock-tier-row" onclick="selectDonationAmt(50, this)">
+                <div class="dock-tier-left">
+                  <div class="dock-tier-radio"><div class="dock-tier-radio-dot"></div></div>
+                  <span class="dock-tier-amt">₹50</span>
+                </div>
+                <span class="dock-tier-reason">Adds 2 new startups</span>
               </div>
-              <span class="dock-badge-pill amber">100% FREE PROJECT</span>
-            </div>
 
-            <h3 class="dock-contribute-headline">100% Free Project. Help us keep it alive.</h3>
-            <p class="dock-contribute-desc">
-              We refuse ads, paywalls, and corporate sponsors. A small contribution of ₹50 or ₹150 covers hosting, domain fees, and continuous data verification. Pay whatever amount feels right.
-            </p>
+              <!-- Tier 2: ₹150 (Default / Popular) -->
+              <div class="dock-tier-row is-active" onclick="selectDonationAmt(150, this)">
+                <div class="dock-tier-left">
+                  <div class="dock-tier-radio"><div class="dock-tier-radio-dot"></div></div>
+                  <span class="dock-tier-amt">₹150</span>
+                </div>
+                <span class="dock-tier-reason">Covers 1 week of server</span>
+                <span class="dock-tier-badge">Popular</span>
+              </div>
 
-            <div class="dock-qr-card">
-              <svg width="68" height="68" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius:6px;background:white;padding:3px;border:1px solid #E2E8F0;flex-shrink:0;">
-                <rect width="72" height="72" fill="white"/>
-                <rect x="6" y="6" width="22" height="22" rx="3" fill="#111827"/>
-                <rect x="10" y="10" width="14" height="14" rx="2" fill="white"/>
-                <rect x="13" y="13" width="8" height="8" fill="#111827"/>
-                <rect x="44" y="6" width="22" height="22" rx="3" fill="#111827"/>
-                <rect x="48" y="10" width="14" height="14" rx="2" fill="white"/>
-                <rect x="51" y="13" width="8" height="8" fill="#111827"/>
-                <rect x="6" y="44" width="22" height="22" rx="3" fill="#111827"/>
-                <rect x="10" y="48" width="14" height="14" rx="2" fill="white"/>
-                <rect x="13" y="51" width="8" height="8" fill="#111827"/>
-                <rect x="32" y="8" width="8" height="4" fill="#111827"/>
-                <rect x="32" y="16" width="4" height="8" fill="#111827"/>
-                <rect x="8" y="32" width="4" height="8" fill="#111827"/>
-                <rect x="16" y="32" width="12" height="4" fill="#111827"/>
-                <rect x="32" y="32" width="8" height="8" rx="1" fill="#2563EB"/>
-                <rect x="44" y="32" width="10" height="4" fill="#111827"/>
-                <rect x="58" y="32" width="8" height="4" fill="#111827"/>
-                <rect x="32" y="44" width="4" height="12" fill="#111827"/>
-                <rect x="40" y="44" width="12" height="4" fill="#111827"/>
-                <rect x="56" y="44" width="10" height="10" fill="#111827"/>
-                <rect x="36" y="60" width="12" height="6" fill="#111827"/>
-                <rect x="52" y="58" width="14" height="8" fill="#111827"/>
-              </svg>
-              <div class="dock-qr-details">
-                <div class="dock-qr-title">
-                  <svg width="24" height="13" viewBox="0 0 32 18" fill="none"><path d="M12 2L6 16H2L8 2H12Z" fill="#097939"/><path d="M22 2L16 16H12L18 2H22Z" fill="#ED7524"/></svg>
-                  <span>Scan QR via PhonePe / GPay</span>
+              <!-- Tier 3: ₹500 -->
+              <div class="dock-tier-row" onclick="selectDonationAmt(500, this)">
+                <div class="dock-tier-left">
+                  <div class="dock-tier-radio"><div class="dock-tier-radio-dot"></div></div>
+                  <span class="dock-tier-amt">₹500</span>
                 </div>
-                <div class="dock-qr-sub">Scan with any UPI app · Razorpay Verified</div>
-                <div class="dock-amt-pills">
-                  <button type="button" class="dock-amt-pill" id="amtPill50" onclick="selectDonationAmt(50)">₹50 · Chai</button>
-                  <button type="button" class="dock-amt-pill is-active" id="amtPill150" onclick="selectDonationAmt(150)">₹150 · Server</button>
-                  <button type="button" class="dock-amt-pill" id="amtPill500" onclick="selectDonationAmt(500)">₹500 · Month</button>
+                <span class="dock-tier-reason">Backs 1 month of servers and updates</span>
+              </div>
+
+              <!-- Tier 4: Custom -->
+              <div class="dock-tier-row" id="dockCustomRow" onclick="selectCustomDonation(this)">
+                <div class="dock-tier-left">
+                  <div class="dock-tier-radio"><div class="dock-tier-radio-dot"></div></div>
+                  <span class="dock-tier-amt">Custom</span>
                 </div>
+                <span class="dock-tier-reason" id="dockCustomReasonLabel">Enter any amount (₹)...</span>
+              </div>
+
+              <div class="dock-custom-input-wrap" id="dockCustomInputWrap">
+                <input type="number" class="dock-custom-input" id="dockCustomAmtInput" placeholder="Enter amount in ₹ (e.g. 250)" oninput="updateCustomDonationVal(this.value)">
               </div>
             </div>
 
+            <!-- Dynamic Action Button -->
             <a href="javascript:void(0)" onclick="triggerUpiPay()" class="dock-btn-support" id="dockSupportBtn">
-              Back This Project (UPI) ↗
+              Pay ₹150 via Any UPI App ↗
             </a>
+
+            <!-- Finalized Reassurance Micro-Line -->
             <div class="dock-support-trust-row">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-              <span>100% goes to hosting & research · Zero pressure</span>
+              <span style="color:#10B981;font-size:12px;">🛡️</span>
+              <span>100% goes directly to server hosting & adding new startups</span>
             </div>
           </div>
 
@@ -587,7 +586,7 @@
 
   <!-- JAVASCRIPT APPLICATION CORE -->
   <!-- Core Client Application Engine -->
-  <script src="js/app.js?v=arch_v7"></script>
+  <script src="js/app.js?v=contrib_v1"></script>
 
   <!-- MOBILE SIDE-BY-SIDE FILTER DRAWER (Left Slide-in Architecture) -->
   <div class="mobile-filter-overlay" id="mfOverlay" onclick="closeMobileFilterModal()"></div>

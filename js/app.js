@@ -2230,38 +2230,51 @@
 
     let activeDonationAmt = 150;
 
-    function selectDonationAmt(amt) {
+    function selectDonationAmt(amt, el) {
       activeDonationAmt = amt;
-      ['50', '150', '500'].forEach(id => {
-        const pill = document.getElementById('amtPill' + id);
-        if (pill) {
-          if (id === String(amt)) {
-            pill.classList.add('is-active');
-          } else {
-            pill.classList.remove('is-active');
-          }
-        }
-      });
+      document.querySelectorAll('.dock-tier-row').forEach(r => r.classList.remove('is-active'));
+      if (el) el.classList.add('is-active');
+      const customWrap = document.getElementById('dockCustomInputWrap');
+      if (customWrap) customWrap.style.display = 'none';
+
       const btn = document.getElementById('dockSupportBtn');
       if (btn) {
-        btn.textContent = `Chip in ₹${amt} via UPI ↗`;
+        btn.innerHTML = `Pay ₹${amt} via Any UPI App ↗`;
+      }
+    }
+
+    function selectCustomDonation(el) {
+      document.querySelectorAll('.dock-tier-row').forEach(r => r.classList.remove('is-active'));
+      if (el) el.classList.add('is-active');
+      const customWrap = document.getElementById('dockCustomInputWrap');
+      if (customWrap) {
+        customWrap.style.display = 'block';
+        const input = document.getElementById('dockCustomAmtInput');
+        if (input) {
+          input.focus();
+          if (input.value) updateCustomDonationVal(input.value);
+          else {
+            const btn = document.getElementById('dockSupportBtn');
+            if (btn) btn.innerHTML = `Pay Custom via Any UPI App ↗`;
+          }
+        }
+      }
+    }
+
+    function updateCustomDonationVal(val) {
+      const clean = parseInt(val, 10);
+      const btn = document.getElementById('dockSupportBtn');
+      if (clean && clean > 0) {
+        activeDonationAmt = clean;
+        if (btn) btn.innerHTML = `Pay ₹${clean} via Any UPI App ↗`;
+      } else {
+        if (btn) btn.innerHTML = `Pay Custom via Any UPI App ↗`;
       }
     }
 
     function triggerUpiPay() {
       const upiUrl = `upi://pay?pa=nandanbhole72@okaxis&pn=VNIT%20Startups%20Directory&am=${activeDonationAmt}&cu=INR&tn=Community%20Support`;
-      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-      if (isMobile) {
-        window.location.href = upiUrl;
-      } else {
-        const qrCard = document.querySelector('.dock-qr-card');
-        if (qrCard) {
-          qrCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          qrCard.style.outline = '2px solid var(--action-primary)';
-          qrCard.style.borderRadius = '8px';
-          setTimeout(() => { qrCard.style.outline = 'none'; }, 1600);
-        }
-      }
+      window.location.href = upiUrl;
     }
 
     /* ─── SUBMIT YOUR STARTUP (four details → startup_submissions queue) ─── */
