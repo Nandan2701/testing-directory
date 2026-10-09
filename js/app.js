@@ -1011,6 +1011,9 @@
     let allStartups = [...SEED_STARTUPS];
     let activeStartup = null;
     let currentFilter = {
+      branches: new Set(),
+      teams: new Set(),
+      locations: new Set(),
       quick: 'all',
       branch: 'ALL',
       stage: 'ALL',
@@ -1338,19 +1341,28 @@
           else if (currentFilter.quick === 'Computer Science' && !hasBranch(item, 'Computer Science')) return false;
         }
 
-        // 1. Branch filter
-        if (currentFilter.branch !== 'ALL' && !hasBranch(item, currentFilter.branch)) {
-          return false;
+        // 1. Branch filter: OR within selected branches (pass all if empty)
+        if (currentFilter.branches && currentFilter.branches.size > 0) {
+          const match = Array.from(currentFilter.branches).some(b => hasBranch(item, b));
+          if (!match) return false;
+        } else if (currentFilter.branch && currentFilter.branch !== 'ALL' && currentFilter.branch !== 'MULTI') {
+          if (!hasBranch(item, currentFilter.branch)) return false;
         }
 
-        // 2. Company Size filter
-        if (currentFilter.team !== 'ALL' && !hasTeam(item, currentFilter.team)) {
-          return false;
+        // 2. Company Size filter: OR within selected sizes (pass all if empty)
+        if (currentFilter.teams && currentFilter.teams.size > 0) {
+          const match = Array.from(currentFilter.teams).some(t => hasTeam(item, t));
+          if (!match) return false;
+        } else if (currentFilter.team && currentFilter.team !== 'ALL' && currentFilter.team !== 'MULTI') {
+          if (!hasTeam(item, currentFilter.team)) return false;
         }
 
-        // 3. Location filter
-        if (currentFilter.location !== 'ALL' && !hasLocation(item, currentFilter.location)) {
-          return false;
+        // 3. Location filter: OR within selected locations (pass all if empty)
+        if (currentFilter.locations && currentFilter.locations.size > 0) {
+          const match = Array.from(currentFilter.locations).some(l => hasLocation(item, l));
+          if (!match) return false;
+        } else if (currentFilter.location && currentFilter.location !== 'ALL' && currentFilter.location !== 'MULTI') {
+          if (!hasLocation(item, currentFilter.location)) return false;
         }
 
         // Cohort Range slider
@@ -2066,13 +2078,58 @@
       applyFiltersAndRender();
     }
 
+    function getFilterSet(facetType) {
+      if (facetType === 'branch' || facetType === 'branches') return currentFilter.branches;
+      if (facetType === 'team' || facetType === 'teams') return currentFilter.teams;
+      if (facetType === 'location' || facetType === 'locations') return currentFilter.locations;
+      return null;
+    }
+
+    function syncDesktopFacetDOM() {
+      const mapping = [
+        { type: 'branch', set: currentFilter.branches },
+        { type: 'team', set: currentFilter.teams },
+        { type: 'location', set: currentFilter.locations }
+      ];
+
+      mapping.forEach(({ type, set }) => {
+        const items = document.querySelectorAll(`.facet-item[onclick*="'${type}'"]`);
+        items.forEach(item => {
+          const match = item.getAttribute('onclick')?.match(/toggleFacet\('[^']+',\s*'([^']+)'\)/);
+          if (!match) return;
+          const optVal = match[1];
+
+          if (optVal === 'ALL') {
+            item.classList.toggle('active', set.size === 0);
+          } else {
+            item.classList.toggle('active', set.has(optVal));
+          }
+        });
+      });
+    }
+
     function toggleFacet(facetType, val) {
-      currentFilter[facetType] = val;
-      // Mark active state in DOM
-      const targetGroup = event.currentTarget.closest('.facet-list');
-      if (targetGroup) {
-        targetGroup.querySelectorAll('.facet-item').forEach(el => el.classList.remove('active'));
-        event.currentTarget.classList.add('active');
+      const targetSet = getFilterSet(facetType);
+      if (!targetSet) return;
+
+      if (val === 'ALL') {
+        targetSet.clear();
+      } else {
+        if (targetSet.has(val)) {
+          targetSet.delete(val);
+        } else {
+          targetSet.add(val);
+        }
+      }
+
+      // Legacy string mirrors for compatibility
+      if (facetType === 'branch') currentFilter.branch = targetSet.size === 1 ? [...targetSet][0] : (targetSet.size === 0 ? 'ALL' : 'MULTI');
+      if (facetType === 'team') currentFilter.team = targetSet.size === 1 ? [...targetSet][0] : (targetSet.size === 0 ? 'ALL' : 'MULTI');
+      if (facetType === 'location') currentFilter.location = targetSet.size === 1 ? [...targetSet][0] : (targetSet.size === 0 ? 'ALL' : 'MULTI');
+
+      syncDesktopFacetDOM();
+      if (typeof renderMobileFilterUI === 'function') {
+        renderMobileFilterUI();
       }
       applyFiltersAndRender();
     }
@@ -2094,16 +2151,18 @@
     }
 
     function resetFilters() {
-      currentFilter = {
-        quick: 'all',
-        branch: 'ALL',
-        stage: 'ALL',
-        location: 'ALL',
-        team: 'ALL',
-        cohortMin: 1980,
-        search: '',
-        sort: 'relevance'
-      };
+      currentFilter.branches.clear();
+      currentFilter.teams.clear();
+      currentFilter.locations.clear();
+      currentFilter.quick = 'all';
+      currentFilter.branch = 'ALL';
+      currentFilter.stage = 'ALL';
+      currentFilter.location = 'ALL';
+      currentFilter.team = 'ALL';
+      currentFilter.cohortMin = 1980;
+      currentFilter.search = '';
+      currentFilter.sort = 'relevance';
+
       const sortSel = document.getElementById('sortSelect');
       if (sortSel) sortSel.value = 'relevance';
       const searchIn = document.getElementById('searchInput');
@@ -2115,10 +2174,11 @@
       document.querySelectorAll('.q-pill').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.filter === 'all');
       });
-      document.querySelectorAll('.facet-item').forEach(el => {
-        if (el.innerText.includes('All')) el.classList.add('active');
-        else el.classList.remove('active');
-      });
+
+      syncDesktopFacetDOM();
+      if (typeof renderMobileFilterUI === 'function') {
+        renderMobileFilterUI();
+      }
       applyFiltersAndRender();
     }
 
@@ -2661,34 +2721,18 @@
     };
 
     window.toggleMobileOption = function(tabId, optVal) {
-      currentFilter[tabId] = optVal;
-
-      // Sync desktop active state
-      const desktopList = Array.from(document.querySelectorAll('.facet-list')).find(list => {
-        const item = list.querySelector(`[onclick="toggleFacet('${tabId}', '${optVal}')"]`);
-        return item != null;
-      });
-      if (desktopList) {
-        desktopList.querySelectorAll('.facet-item').forEach(el => el.classList.remove('active'));
-        const activeItem = desktopList.querySelector(`[onclick="toggleFacet('${tabId}', '${optVal}')"]`);
-        if (activeItem) activeItem.classList.add('active');
-      }
-
-      renderMobileFilterUI();
+      toggleFacet(tabId, optVal);
     };
 
     window.clearMobileFilters = function() {
+      currentFilter.branches.clear();
+      currentFilter.teams.clear();
+      currentFilter.locations.clear();
       currentFilter.branch = 'ALL';
       currentFilter.team = 'ALL';
       currentFilter.location = 'ALL';
 
-      // Reset desktop facets
-      document.querySelectorAll('.facet-list').forEach(list => {
-        list.querySelectorAll('.facet-item').forEach(el => el.classList.remove('active'));
-        const allItem = list.querySelector(`[onclick*="'ALL'"]`);
-        if (allItem) allItem.classList.add('active');
-      });
-
+      syncDesktopFacetDOM();
       renderMobileFilterUI();
       applyFiltersAndRender();
     };
@@ -2703,9 +2747,10 @@
       const tabsEl = document.getElementById("mfTabsList");
       if (tabsEl) {
         tabsEl.innerHTML = mobileFilterData.map(group => {
-          const isFilterActive = currentFilter[group.id] && currentFilter[group.id] !== 'ALL';
+          const targetSet = getFilterSet(group.id);
+          const isFilterActive = targetSet && targetSet.size > 0;
           const isCurrentTab = group.id === mfActiveTabId;
-          const countBadge = isFilterActive ? `<span class="mf-tab-count">1</span>` : '';
+          const countBadge = isFilterActive ? `<span class="mf-tab-count">${targetSet.size}</span>` : '';
 
           return `
             <div class="mf-tab-item ${isCurrentTab ? 'active' : ''}" onclick="switchMobileTab('${group.id}')">
@@ -2720,10 +2765,10 @@
       const optionsEl = document.getElementById("mfOptionsList");
       const currentGroup = mobileFilterData.find(g => g.id === mfActiveTabId) || mobileFilterData[0];
       if (optionsEl && currentGroup) {
-        const selectedVal = currentFilter[currentGroup.id] || 'ALL';
+        const targetSet = getFilterSet(currentGroup.id);
 
         optionsEl.innerHTML = currentGroup.options.map(opt => {
-          const isSelected = selectedVal === opt.val;
+          const isSelected = opt.val === 'ALL' ? (targetSet.size === 0) : targetSet.has(opt.val);
           return `
             <div class="mf-option-item ${isSelected ? 'selected' : ''}" onclick="toggleMobileOption('${currentGroup.id}', '${opt.val}')">
               <span>${opt.label}</span>
@@ -2734,10 +2779,9 @@
       }
 
       // 3. Update Mobile Trigger Button count
-      let totalSelected = 0;
-      if (currentFilter.branch && currentFilter.branch !== 'ALL') totalSelected++;
-      if (currentFilter.team && currentFilter.team !== 'ALL') totalSelected++;
-      if (currentFilter.location && currentFilter.location !== 'ALL') totalSelected++;
+      const totalSelected = (currentFilter.branches ? currentFilter.branches.size : 0) + 
+                            (currentFilter.teams ? currentFilter.teams.size : 0) + 
+                            (currentFilter.locations ? currentFilter.locations.size : 0);
 
       const countEl = document.getElementById("mobileActiveCount");
       if (countEl) {
