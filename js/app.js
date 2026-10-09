@@ -1204,48 +1204,59 @@
       const indexedEl = document.getElementById('indexedCountDisplay');
       if (indexedEl) indexedEl.innerText = `${total} VERIFIED`;
       if (document.getElementById('pillCountAll')) document.getElementById('pillCountAll').innerText = total;
-      if (document.getElementById('branchAllCount')) document.getElementById('branchAllCount').innerText = total;
       if (document.getElementById('statsIndexedTotal')) document.getElementById('statsIndexedTotal').innerText = total;
-      if (document.getElementById('stageAllCount')) document.getElementById('stageAllCount').innerText = total;
-      if (document.getElementById('teamAllCount')) document.getElementById('teamAllCount').innerText = total;
-      if (document.getElementById('locAllCount')) document.getElementById('locAllCount').innerText = total;
 
-      const mechCount = allStartups.filter(s => hasBranch(s, 'Mechanical')).length;
+      // 1. Branch facet counts
+      if (document.getElementById('branchAllCount')) document.getElementById('branchAllCount').innerText = total;
       const cseCount = allStartups.filter(s => hasBranch(s, 'Computer Science')).length;
       const eceCount = allStartups.filter(s => hasBranch(s, 'Electronics')).length;
       const eeeCount = allStartups.filter(s => hasBranch(s, 'Electrical')).length;
-      const chemCount = allStartups.filter(s => hasBranch(s, 'Chemical') || hasBranch(s, 'Metallurgy')).length;
-      const seriesACount = allStartups.filter(s => s.funding_stage && s.funding_stage.includes('Series')).length;
-      const bootCount = allStartups.filter(s => s.funding_stage === 'Bootstrapped').length;
-      const fundedCount = allStartups.filter(s => s.funding_stage && s.funding_stage !== 'Bootstrapped').length;
+      const mechCount = allStartups.filter(s => hasBranch(s, 'Mechanical')).length;
+      const chemCount = allStartups.filter(s => hasBranch(s, 'Chemical')).length;
+      const civilCount = allStartups.filter(s => hasBranch(s, 'Civil')).length;
+      const metCount = allStartups.filter(s => hasBranch(s, 'Metallurgy')).length;
+      const miningCount = allStartups.filter(s => hasBranch(s, 'Mining')).length;
 
-      if (document.getElementById('pillCountMech')) document.getElementById('pillCountMech').innerText = mechCount;
-      if (document.getElementById('branchMechCount')) document.getElementById('branchMechCount').innerText = mechCount;
-      if (document.getElementById('pillCountCSE')) document.getElementById('pillCountCSE').innerText = cseCount;
       if (document.getElementById('branchCSECount')) document.getElementById('branchCSECount').innerText = cseCount;
       if (document.getElementById('branchECECount')) document.getElementById('branchECECount').innerText = eceCount;
       if (document.getElementById('branchEEECount')) document.getElementById('branchEEECount').innerText = eeeCount;
+      if (document.getElementById('branchMechCount')) document.getElementById('branchMechCount').innerText = mechCount;
       if (document.getElementById('branchChemCount')) document.getElementById('branchChemCount').innerText = chemCount;
-      if (document.getElementById('pillCountSeriesA')) document.getElementById('pillCountSeriesA').innerText = seriesACount;
-      if (document.getElementById('pillCountBoot')) document.getElementById('pillCountBoot').innerText = bootCount;
-      if (document.getElementById('stageFundedCount')) document.getElementById('stageFundedCount').innerText = fundedCount;
-      if (document.getElementById('stageBootCount')) document.getElementById('stageBootCount').innerText = bootCount;
+      if (document.getElementById('branchCivilCount')) document.getElementById('branchCivilCount').innerText = civilCount;
+      if (document.getElementById('branchMetCount')) document.getElementById('branchMetCount').innerText = metCount;
+      if (document.getElementById('branchMiningCount')) document.getElementById('branchMiningCount').innerText = miningCount;
 
-      // Team size counts
-      const earlyCount = allStartups.filter(s => (s.headcount || 0) <= 10).length;
-      const growthCount = allStartups.filter(s => (s.headcount || 0) > 10 && (s.headcount || 0) <= 50).length;
-      const scaleCount = allStartups.filter(s => (s.headcount || 0) > 50).length;
-      if (document.getElementById('teamEarlyCount')) document.getElementById('teamEarlyCount').innerText = earlyCount;
-      if (document.getElementById('teamGrowthCount')) document.getElementById('teamGrowthCount').innerText = growthCount;
-      if (document.getElementById('teamScaleCount')) document.getElementById('teamScaleCount').innerText = scaleCount;
+      // 2. Company Size counts
+      if (document.getElementById('teamAllCount')) document.getElementById('teamAllCount').innerText = total;
+      const team15 = allStartups.filter(s => hasTeam(s, '1-5')).length;
+      const team510 = allStartups.filter(s => hasTeam(s, '5-10')).length;
+      const team1050 = allStartups.filter(s => hasTeam(s, '10-50')).length;
+      const team50100 = allStartups.filter(s => hasTeam(s, '50-100')).length;
+      const team100200 = allStartups.filter(s => hasTeam(s, '100-200')).length;
+      const team200 = allStartups.filter(s => hasTeam(s, '200+')).length;
 
-      // Location counts
-      const blrCount = allStartups.filter(s => (s.location || '').toLowerCase().includes('bengaluru')).length;
-      const sfCount = allStartups.filter(s => (s.location || '').toLowerCase().includes('francisco') || (s.location || '').toLowerCase().includes('sunnyvale')).length;
-      const puneCount = allStartups.filter(s => (s.location || '').toLowerCase().includes('pune') || (s.location || '').toLowerCase().includes('mumbai')).length;
-      if (document.getElementById('locBlrCount')) document.getElementById('locBlrCount').innerText = blrCount;
-      if (document.getElementById('locSfCount')) document.getElementById('locSfCount').innerText = sfCount;
-      if (document.getElementById('locPuneCount')) document.getElementById('locPuneCount').innerText = puneCount;
+      if (document.getElementById('team15Count')) document.getElementById('team15Count').innerText = team15;
+      if (document.getElementById('team510Count')) document.getElementById('team510Count').innerText = team510;
+      if (document.getElementById('team1050Count')) document.getElementById('team1050Count').innerText = team1050;
+      if (document.getElementById('team50100Count')) document.getElementById('team50100Count').innerText = team50100;
+      if (document.getElementById('team100200Count')) document.getElementById('team100200Count').innerText = team100200;
+      if (document.getElementById('team200Count')) document.getElementById('team200Count').innerText = team200;
+
+      // 3. Location counts
+      if (document.getElementById('locAllCount')) document.getElementById('locAllCount').innerText = total;
+      const locMumbai = allStartups.filter(s => hasLocation(s, 'Mumbai')).length;
+      const locGurugram = allStartups.filter(s => hasLocation(s, 'Gurugram')).length;
+      const locPune = allStartups.filter(s => hasLocation(s, 'Pune')).length;
+      const locNagpur = allStartups.filter(s => hasLocation(s, 'Nagpur')).length;
+      const locBangalore = allStartups.filter(s => hasLocation(s, 'Bangalore')).length;
+      const locRedwood = allStartups.filter(s => hasLocation(s, 'Redwood City, California')).length;
+
+      if (document.getElementById('locMumbaiCount')) document.getElementById('locMumbaiCount').innerText = locMumbai;
+      if (document.getElementById('locGurugramCount')) document.getElementById('locGurugramCount').innerText = locGurugram;
+      if (document.getElementById('locPuneCount')) document.getElementById('locPuneCount').innerText = locPune;
+      if (document.getElementById('locNagpurCount')) document.getElementById('locNagpurCount').innerText = locNagpur;
+      if (document.getElementById('locBangaloreCount')) document.getElementById('locBangaloreCount').innerText = locBangalore;
+      if (document.getElementById('locRedwoodCount')) document.getElementById('locRedwoodCount').innerText = locRedwood;
 
       // Total Funding & Headcount
       let totalFunding = 0;
@@ -1270,10 +1281,50 @@
       if (hpEl) hpEl.innerText = allStartups.length;
     }
 
-    function hasBranch(startup, branchName) {
-      if (startup.department && startup.department.toLowerCase().includes(branchName.toLowerCase())) return true;
+    function hasBranch(startup, branchKey) {
+      if (!branchKey || branchKey === 'ALL') return true;
+      const target = branchKey.toLowerCase();
+      const checkStr = (str) => {
+        if (!str) return false;
+        const s = str.toLowerCase();
+        if (target === 'computer science') return s.includes('computer') || s.includes('comp') || s.includes('cse') || s.includes('cs ');
+        if (target === 'electronics') return s.includes('electronic') || s.includes('ece') || s.includes('communication');
+        if (target === 'electrical') return s.includes('electrical') || s.includes('eee');
+        if (target === 'mechanical') return s.includes('mechanical') || s.includes('mech');
+        if (target === 'chemical') return s.includes('chemical') || s.includes('chem');
+        if (target === 'civil') return s.includes('civil');
+        if (target === 'metallurgy') return s.includes('metallurg') || s.includes('material') || s.includes('mme');
+        if (target === 'mining') return s.includes('mining') || s.includes('mine');
+        return s.includes(target);
+      };
+      if (checkStr(startup.department)) return true;
       const founders = Array.isArray(startup.founders) ? startup.founders : normalizeFounders(startup.founders);
-      return founders.some(f => (f.degree && f.degree.toLowerCase().includes(branchName.toLowerCase())) || (f.vnit_branch && f.vnit_branch.toLowerCase().includes(branchName.toLowerCase())));
+      return founders.some(f => checkStr(f.degree) || checkStr(f.vnit_branch));
+    }
+
+    function hasTeam(startup, sizeKey) {
+      if (!sizeKey || sizeKey === 'ALL') return true;
+      const hc = Number(startup.headcount) || 0;
+      if (sizeKey === '1-5') return hc >= 1 && hc <= 5;
+      if (sizeKey === '5-10') return hc > 5 && hc <= 10;
+      if (sizeKey === '10-50') return hc > 10 && hc <= 50;
+      if (sizeKey === '50-100') return hc > 50 && hc <= 100;
+      if (sizeKey === '100-200') return hc > 100 && hc <= 200;
+      if (sizeKey === '200+') return hc > 200;
+      return true;
+    }
+
+    function hasLocation(startup, locKey) {
+      if (!locKey || locKey === 'ALL') return true;
+      const sLoc = (startup.location || '').toLowerCase();
+      const target = locKey.toLowerCase();
+      if (target === 'mumbai') return sLoc.includes('mumbai');
+      if (target === 'gurugram') return sLoc.includes('gurugram') || sLoc.includes('gurgaon');
+      if (target === 'pune') return sLoc.includes('pune');
+      if (target === 'nagpur') return sLoc.includes('nagpur');
+      if (target === 'bangalore') return sLoc.includes('bangalore') || sLoc.includes('bengaluru');
+      if (target.includes('redwood')) return sLoc.includes('redwood') || sLoc.includes('california') || sLoc.includes('francisco') || sLoc.includes('bay area');
+      return sLoc.includes(target);
     }
 
     /* ─── FILTERING & SORTING ENGINE ─── */
@@ -1287,29 +1338,19 @@
           else if (currentFilter.quick === 'Computer Science' && !hasBranch(item, 'Computer Science')) return false;
         }
 
-        // Branch filter
+        // 1. Branch filter
         if (currentFilter.branch !== 'ALL' && !hasBranch(item, currentFilter.branch)) {
           return false;
         }
 
-        // Stage filter
-        if (currentFilter.stage !== 'ALL') {
-          if (currentFilter.stage === 'Series' && !item.funding_stage?.includes('Series')) return false;
-          if (currentFilter.stage === 'Seed' && !item.funding_stage?.includes('Seed')) return false;
-          if (currentFilter.stage === 'Bootstrapped' && item.funding_stage !== 'Bootstrapped') return false;
+        // 2. Company Size filter
+        if (currentFilter.team !== 'ALL' && !hasTeam(item, currentFilter.team)) {
+          return false;
         }
 
-        // Location filter
-        if (currentFilter.location !== 'ALL') {
-          if (!item.location?.toLowerCase().includes(currentFilter.location.toLowerCase())) return false;
-        }
-
-        // Team filter
-        if (currentFilter.team !== 'ALL') {
-          const hc = item.headcount || 0;
-          if (currentFilter.team === '1-10' && (hc < 1 || hc > 10)) return false;
-          if (currentFilter.team === '11-50' && (hc < 11 || hc > 50)) return false;
-          if (currentFilter.team === '50+' && hc <= 50) return false;
+        // 3. Location filter
+        if (currentFilter.location !== 'ALL' && !hasLocation(item, currentFilter.location)) {
+          return false;
         }
 
         // Cohort Range slider
@@ -2561,32 +2602,32 @@
     const mobileFilterData = [
       { id: "branch", name: "Branch / Dept", shortName: "Branch", options: [
         { label: "All Departments", val: "ALL" },
-        { label: "Mechanical", val: "Mechanical" },
-        { label: "Computer Science", val: "Computer Science" },
-        { label: "Electronics & Comm.", val: "Electronics" },
-        { label: "Electrical & Electronics", val: "Electrical" },
-        { label: "Chemical", val: "Chemical" },
-        { label: "Metallurgy", val: "Metallurgy" },
-        { label: "Civil", val: "Civil" },
-        { label: "Architecture", val: "Architecture" },
-        { label: "Mining", val: "Mining" }
+        { label: "Computer Science Engineering", val: "Computer Science" },
+        { label: "Electronics and Communication Engineering", val: "Electronics" },
+        { label: "Electrical and Electronics Engineering", val: "Electrical" },
+        { label: "Mechanical Engineering", val: "Mechanical" },
+        { label: "Chemical Engineering", val: "Chemical" },
+        { label: "Civil Engineering", val: "Civil" },
+        { label: "Metallurgical and Materials", val: "Metallurgy" },
+        { label: "Mining Engineering", val: "Mining" }
       ]},
-      { id: "stage", name: "Funding Status", shortName: "Funding", options: [
-        { label: "All Funding Stages", val: "ALL" },
-        { label: "Funded (VC / Angel)", val: "Series" },
-        { label: "Bootstrapped / Profitable", val: "Bootstrapped" }
+      { id: "team", name: "Company Size", shortName: "Company Size", options: [
+        { label: "All Sizes", val: "ALL" },
+        { label: "1–5", val: "1-5" },
+        { label: "5–10", val: "5-10" },
+        { label: "10–50", val: "10-50" },
+        { label: "50–100", val: "50-100" },
+        { label: "100–200", val: "100-200" },
+        { label: "200+ (200 Onwards)", val: "200+" }
       ]},
-      { id: "team", name: "Team Size", shortName: "Team Size", options: [
-        { label: "All Team Sizes", val: "ALL" },
-        { label: "Early Stage (1–10)", val: "1-10" },
-        { label: "Growth Stage (11–50)", val: "11-50" },
-        { label: "Scaleup Stage (50+)", val: "50+" }
-      ]},
-      { id: "location", name: "Headquarters", shortName: "Location", options: [
+      { id: "location", name: "Location", shortName: "Location", options: [
         { label: "All Locations", val: "ALL" },
-        { label: "Bengaluru, IN", val: "Bengaluru" },
-        { label: "SF Bay Area, US", val: "San Francisco" },
-        { label: "Pune & Mumbai", val: "Pune" }
+        { label: "Mumbai", val: "Mumbai" },
+        { label: "Gurugram", val: "Gurugram" },
+        { label: "Pune", val: "Pune" },
+        { label: "Nagpur", val: "Nagpur" },
+        { label: "Bangalore", val: "Bangalore" },
+        { label: "Redwood City, California", val: "Redwood City, California" }
       ]}
     ];
 
@@ -2638,7 +2679,6 @@
 
     window.clearMobileFilters = function() {
       currentFilter.branch = 'ALL';
-      currentFilter.stage = 'ALL';
       currentFilter.team = 'ALL';
       currentFilter.location = 'ALL';
 
@@ -2695,10 +2735,9 @@
 
       // 3. Update Mobile Trigger Button count
       let totalSelected = 0;
-      if (currentFilter.branch !== 'ALL') totalSelected++;
-      if (currentFilter.stage !== 'ALL') totalSelected++;
-      if (currentFilter.team !== 'ALL') totalSelected++;
-      if (currentFilter.location !== 'ALL') totalSelected++;
+      if (currentFilter.branch && currentFilter.branch !== 'ALL') totalSelected++;
+      if (currentFilter.team && currentFilter.team !== 'ALL') totalSelected++;
+      if (currentFilter.location && currentFilter.location !== 'ALL') totalSelected++;
 
       const countEl = document.getElementById("mobileActiveCount");
       if (countEl) {

@@ -451,7 +451,7 @@
 
     /* ─── LEFT FACET FILTER RAIL ─── */
     .filter-rail {
-      width: 195px;
+      width: 215px;
       flex-shrink: 0;
       background: transparent;
       position: sticky;
@@ -481,14 +481,20 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 4px 7px;
+      gap: 8px;
+      padding: 5px 8px;
       border-radius: var(--radius-sm);
       font-size: 11.5px;
+      line-height: 1.25;
       font-weight: 600;
       color: var(--ink-secondary);
       cursor: pointer;
       transition: background 0.12s ease, color 0.12s ease;
       user-select: none;
+    }
+
+    .facet-item span:first-child {
+      flex: 1;
     }
 
     .facet-item:hover {
@@ -507,6 +513,7 @@
       font-family: var(--font-mono);
       font-size: 9.5px;
       color: var(--ink-subtle);
+      flex-shrink: 0;
     }
 
     .facet-item.active .facet-count {

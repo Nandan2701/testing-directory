@@ -79,114 +79,115 @@
     <!-- LEFT FACET FILTER RAIL -->
     <aside class="filter-rail" aria-label="Filters Rail">
 
-      <!-- Branch / Department -->
+      <!-- 1. Branch / Department -->
       <div>
         <div class="filter-group-title">Branch / Department</div>
         <div class="facet-list">
           <div class="facet-item active" onclick="toggleFacet('branch', 'ALL')">
             <span>All Departments</span>
-            <span class="facet-count" id="branchAllCount">4</span>
-          </div>
-          <div class="facet-item" onclick="toggleFacet('branch', 'Mechanical')">
-            <span>Mechanical</span>
-            <span class="facet-count" id="branchMechCount">2</span>
+            <span class="facet-count" id="branchAllCount">32</span>
           </div>
           <div class="facet-item" onclick="toggleFacet('branch', 'Computer Science')">
-            <span>Computer Science</span>
-            <span class="facet-count" id="branchCSECount">1</span>
+            <span>Computer Science Engineering</span>
+            <span class="facet-count" id="branchCSECount">9</span>
           </div>
           <div class="facet-item" onclick="toggleFacet('branch', 'Electronics')">
-            <span>Electronics & Comm.</span>
-            <span class="facet-count" id="branchECECount">2</span>
+            <span>Electronics and Communication Engineering</span>
+            <span class="facet-count" id="branchECECount">7</span>
           </div>
           <div class="facet-item" onclick="toggleFacet('branch', 'Electrical')">
-            <span>Electrical & Electronics</span>
-            <span class="facet-count" id="branchEEECount">0</span>
+            <span>Electrical and Electronics Engineering</span>
+            <span class="facet-count" id="branchEEECount">6</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('branch', 'Mechanical')">
+            <span>Mechanical Engineering</span>
+            <span class="facet-count" id="branchMechCount">2</span>
           </div>
           <div class="facet-item" onclick="toggleFacet('branch', 'Chemical')">
-            <span>Chemical</span>
-            <span class="facet-count" id="branchChemCount">0</span>
-          </div>
-          <div class="facet-item" onclick="toggleFacet('branch', 'Metallurgy')">
-            <span>Metallurgy</span>
-            <span class="facet-count" id="branchMetCount">0</span>
+            <span>Chemical Engineering</span>
+            <span class="facet-count" id="branchChemCount">1</span>
           </div>
           <div class="facet-item" onclick="toggleFacet('branch', 'Civil')">
-            <span>Civil</span>
-            <span class="facet-count" id="branchCivilCount">0</span>
+            <span>Civil Engineering</span>
+            <span class="facet-count" id="branchCivilCount">4</span>
           </div>
-          <div class="facet-item" onclick="toggleFacet('branch', 'Architecture')">
-            <span>Architecture</span>
-            <span class="facet-count" id="branchArchCount">0</span>
+          <div class="facet-item" onclick="toggleFacet('branch', 'Metallurgy')">
+            <span>Metallurgical and Materials</span>
+            <span class="facet-count" id="branchMetCount">2</span>
           </div>
           <div class="facet-item" onclick="toggleFacet('branch', 'Mining')">
-            <span>Mining</span>
-            <span class="facet-count" id="branchMiningCount">0</span>
+            <span>Mining Engineering</span>
+            <span class="facet-count" id="branchMiningCount">3</span>
           </div>
         </div>
       </div>
 
-      <!-- Funding Status -->
+      <!-- 2. Company Size -->
       <div>
-        <div class="filter-group-title">Funding Status</div>
-        <div class="facet-list">
-          <div class="facet-item active" onclick="toggleFacet('stage', 'ALL')">
-            <span>All</span>
-            <span class="facet-count" id="stageAllCount">4</span>
-          </div>
-          <div class="facet-item" onclick="toggleFacet('stage', 'Series')">
-            <span>Funded (VC / Angel)</span>
-            <span class="facet-count" id="stageFundedCount">4</span>
-          </div>
-          <div class="facet-item" onclick="toggleFacet('stage', 'Bootstrapped')">
-            <span>Bootstrapped / Profitable</span>
-            <span class="facet-count" id="stageBootCount">0</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Company Stage / Team Size -->
-      <div>
-        <div class="filter-group-title">Team Size</div>
+        <div class="filter-group-title">Company Size</div>
         <div class="facet-list">
           <div class="facet-item active" onclick="toggleFacet('team', 'ALL')">
             <span>All Sizes</span>
-            <span class="facet-count" id="teamAllCount">4</span>
+            <span class="facet-count" id="teamAllCount">32</span>
           </div>
-          <div class="facet-item" onclick="toggleFacet('team', '1-10')">
-            <span>Early Stage (1–10)</span>
-            <span class="facet-count" id="teamEarlyCount">0</span>
+          <div class="facet-item" onclick="toggleFacet('team', '1-5')">
+            <span>1–5</span>
+            <span class="facet-count" id="team15Count">6</span>
           </div>
-          <div class="facet-item" onclick="toggleFacet('team', '11-50')">
-            <span>Growth (11–50)</span>
-            <span class="facet-count" id="teamGrowthCount">3</span>
+          <div class="facet-item" onclick="toggleFacet('team', '5-10')">
+            <span>5–10</span>
+            <span class="facet-count" id="team510Count">2</span>
           </div>
-          <div class="facet-item" onclick="toggleFacet('team', '50+')">
-            <span>Scaleup (50+)</span>
-            <span class="facet-count" id="teamScaleCount">1</span>
+          <div class="facet-item" onclick="toggleFacet('team', '10-50')">
+            <span>10–50</span>
+            <span class="facet-count" id="team1050Count">8</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('team', '50-100')">
+            <span>50–100</span>
+            <span class="facet-count" id="team50100Count">4</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('team', '100-200')">
+            <span>100–200</span>
+            <span class="facet-count" id="team100200Count">5</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('team', '200+')">
+            <span>200+ (200 Onwards)</span>
+            <span class="facet-count" id="team200Count">7</span>
           </div>
         </div>
       </div>
 
-      <!-- Headquarters -->
+      <!-- 3. Location -->
       <div>
-        <div class="filter-group-title">Headquarters</div>
+        <div class="filter-group-title">Location</div>
         <div class="facet-list">
           <div class="facet-item active" onclick="toggleFacet('location', 'ALL')">
             <span>All Locations</span>
-            <span class="facet-count" id="locAllCount">4</span>
+            <span class="facet-count" id="locAllCount">32</span>
           </div>
-          <div class="facet-item" onclick="toggleFacet('location', 'Bengaluru')">
-            <span>Bengaluru, IN</span>
-            <span class="facet-count" id="locBlrCount">2</span>
+          <div class="facet-item" onclick="toggleFacet('location', 'Mumbai')">
+            <span>Mumbai</span>
+            <span class="facet-count" id="locMumbaiCount">2</span>
           </div>
-          <div class="facet-item" onclick="toggleFacet('location', 'San Francisco')">
-            <span>SF Bay Area, US</span>
-            <span class="facet-count" id="locSfCount">1</span>
+          <div class="facet-item" onclick="toggleFacet('location', 'Gurugram')">
+            <span>Gurugram</span>
+            <span class="facet-count" id="locGurugramCount">4</span>
           </div>
           <div class="facet-item" onclick="toggleFacet('location', 'Pune')">
-            <span>Pune & Mumbai</span>
-            <span class="facet-count" id="locPuneCount">1</span>
+            <span>Pune</span>
+            <span class="facet-count" id="locPuneCount">8</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('location', 'Nagpur')">
+            <span>Nagpur</span>
+            <span class="facet-count" id="locNagpurCount">7</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('location', 'Bangalore')">
+            <span>Bangalore</span>
+            <span class="facet-count" id="locBangaloreCount">6</span>
+          </div>
+          <div class="facet-item" onclick="toggleFacet('location', 'Redwood City, California')">
+            <span>Redwood City, California</span>
+            <span class="facet-count" id="locRedwoodCount">1</span>
           </div>
         </div>
       </div>
@@ -582,7 +583,7 @@
 
   <!-- JAVASCRIPT APPLICATION CORE -->
   <!-- Core Client Application Engine -->
-  <script src="js/app.js?v=clean_tabs_v2"></script>
+  <script src="js/app.js?v=filters_v3"></script>
 
   <!-- MOBILE SIDE-BY-SIDE FILTER DRAWER (Left Slide-in Architecture) -->
   <div class="mobile-filter-overlay" id="mfOverlay" onclick="closeMobileFilterModal()"></div>
