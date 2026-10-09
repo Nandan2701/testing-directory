@@ -3871,10 +3871,14 @@
         align-items: stretch !important;
         gap: 14px !important;
       }
+      .headline-word-the {
+        display: block !important;
+        margin-bottom: 2px !important;
+      }
       .hero-headline {
-        font-size: clamp(38px, 11vw, 46px) !important;
-        letter-spacing: -1.6px !important;
-        line-height: 1.08 !important;
+        font-size: clamp(34px, 9.6vw, 42px) !important;
+        letter-spacing: -1.4px !important;
+        line-height: 1.06 !important;
         margin-bottom: 0 !important;
         max-width: 100% !important;
         word-break: normal !important;
