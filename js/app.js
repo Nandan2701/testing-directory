@@ -1219,6 +1219,7 @@
       const civilCount = allStartups.filter(s => hasBranch(s, 'Civil')).length;
       const metCount = allStartups.filter(s => hasBranch(s, 'Metallurgy')).length;
       const miningCount = allStartups.filter(s => hasBranch(s, 'Mining')).length;
+      const archCount = allStartups.filter(s => hasBranch(s, 'Architecture')).length;
 
       if (document.getElementById('branchCSECount')) document.getElementById('branchCSECount').innerText = cseCount;
       if (document.getElementById('branchECECount')) document.getElementById('branchECECount').innerText = eceCount;
@@ -1228,6 +1229,7 @@
       if (document.getElementById('branchCivilCount')) document.getElementById('branchCivilCount').innerText = civilCount;
       if (document.getElementById('branchMetCount')) document.getElementById('branchMetCount').innerText = metCount;
       if (document.getElementById('branchMiningCount')) document.getElementById('branchMiningCount').innerText = miningCount;
+      if (document.getElementById('branchArchCount')) document.getElementById('branchArchCount').innerText = archCount;
 
       // 2. Company Size counts
       if (document.getElementById('teamAllCount')) document.getElementById('teamAllCount').innerText = total;
@@ -1298,6 +1300,7 @@
         if (target === 'civil') return /\b(civil)\b/i.test(s);
         if (target === 'metallurgy') return /\b(metallurg|metallurgy|material|materials|mme)\b/i.test(s);
         if (target === 'mining') return /\b(mining|mine)\b/i.test(s);
+        if (target === 'architecture') return /\b(architecture|arch|b\.arch)\b/i.test(s);
         return s.includes(target);
       };
       if (checkStr(startup.department)) return true;
@@ -2669,7 +2672,8 @@
         { label: "Chemical Engineering", val: "Chemical" },
         { label: "Civil Engineering", val: "Civil" },
         { label: "Metallurgical and Materials", val: "Metallurgy" },
-        { label: "Mining Engineering", val: "Mining" }
+        { label: "Mining Engineering", val: "Mining" },
+        { label: "Architecture", val: "Architecture" }
       ]},
       { id: "team", name: "Company Size", shortName: "Company Size", options: [
         { label: "All Sizes", val: "ALL" },
