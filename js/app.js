@@ -2240,10 +2240,11 @@
       openContributionModal();
     }
 
-    /* ─── FOUNDER PHOTO LIGHTBOX MODAL (Stage 2 Only) ─── */
+    /* ─── FOUNDER PHOTO LIGHTBOX MODAL (Stage 2 Only - 3D Kinetic Depth Lift) ─── */
     function openFounderPhotoModal(photoUrl, name, degree) {
       if (!photoUrl) return;
       const modal = document.getElementById('founderPhotoModal');
+      const dialog = document.querySelector('.founder-photo-modal-dialog');
       const img = document.getElementById('founderPhotoModalImg');
       const nameEl = document.getElementById('founderPhotoModalName');
       const metaEl = document.getElementById('founderPhotoModalMeta');
@@ -2251,6 +2252,7 @@
       if (img) img.src = photoUrl;
       if (nameEl) nameEl.textContent = name || '';
       if (metaEl) metaEl.textContent = degree || '';
+      if (dialog) dialog.style.transform = '';
 
       if (modal) {
         modal.classList.add('is-open');
@@ -2263,6 +2265,9 @@
         return;
       }
       const modal = document.getElementById('founderPhotoModal');
+      const dialog = document.querySelector('.founder-photo-modal-dialog');
+      if (dialog) dialog.style.transform = '';
+
       if (modal) {
         modal.classList.remove('is-open');
         const contrib = document.getElementById('contribModal');
@@ -2270,6 +2275,48 @@
           document.body.style.overflow = '';
         }
       }
+    }
+
+    // Subtle 3D Collector Card Micro-Tilt on Desktop
+    function initFounderModal3DTilt() {
+      const dialog = document.querySelector('.founder-photo-modal-dialog');
+      const backdrop = document.getElementById('founderPhotoModal');
+      if (!dialog || !backdrop) return;
+
+      let tiltRAF = null;
+
+      backdrop.addEventListener('mousemove', (e) => {
+        if (!backdrop.classList.contains('is-open')) return;
+        if (window.innerWidth < 768) return;
+
+        const rect = dialog.getBoundingClientRect();
+        const cardX = e.clientX - rect.left;
+        const cardY = e.clientY - rect.top;
+
+        if (cardX >= -40 && cardX <= rect.width + 40 && cardY >= -40 && cardY <= rect.height + 40) {
+          const normX = Math.max(-0.5, Math.min(0.5, (cardX / rect.width) - 0.5));
+          const normY = Math.max(-0.5, Math.min(0.5, (cardY / rect.height) - 0.5));
+          const rotX = -normY * 8;
+          const rotY = normX * 8;
+
+          if (tiltRAF) cancelAnimationFrame(tiltRAF);
+          tiltRAF = requestAnimationFrame(() => {
+            dialog.style.transform = `perspective(1200px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(0) scale(1.02)`;
+          });
+        }
+      });
+
+      dialog.addEventListener('mouseleave', () => {
+        if (!backdrop.classList.contains('is-open')) return;
+        if (tiltRAF) cancelAnimationFrame(tiltRAF);
+        dialog.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)`;
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initFounderModal3DTilt);
+    } else {
+      initFounderModal3DTilt();
     }
 
     // Close on Escape key
