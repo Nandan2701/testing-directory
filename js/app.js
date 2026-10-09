@@ -2688,8 +2688,7 @@
 
     /* ═══════════════════════════════════════════════════════════════════
        AWWWARDS DESKTOP CURSOR-FOLLOWING BRANCH INSPECTOR ENGINE
-       Features: Silky 60-120fps LERP inertia, boundary edge-detection,
-       persistent morphing across branch rows, logo+name only roster.
+       Top-Left Corner Anchored to Cursor · Pure Startups List (Logos + Names Only)
        ═══════════════════════════════════════════════════════════════════ */
     (function initBranchHoverInspector() {
       // Desktop-only interaction guard (pointer / mouse viewports)
@@ -2697,9 +2696,8 @@
 
       const cardWrap = document.querySelector('.leaderboard-card');
       const inspector = document.getElementById('branchHoverInspector');
-      const badgeEl = document.getElementById('bhiBadge');
       const listEl = document.getElementById('bhiList');
-      if (!cardWrap || !inspector || !badgeEl || !listEl) return;
+      if (!cardWrap || !inspector || !listEl) return;
 
       const BRANCH_QUERY_MAP = {
         'CSE': 'Computer Science',
@@ -2725,19 +2723,16 @@
           .filter(s => typeof hasBranch === 'function' ? hasBranch(s, query) : true)
           .sort((a, b) => (a.name || '').localeCompare(b.name || ''));
 
-        const countText = `${matching.length} ${matching.length === 1 ? 'STARTUP' : 'STARTUPS'}`;
-        badgeEl.textContent = `${code} · ${countText}`;
-
         listEl.innerHTML = '';
         if (matching.length === 0) {
-          listEl.innerHTML = '<div style="font-size:11px;color:#64748B;padding:6px;">No verified startups found</div>';
+          listEl.innerHTML = '<div style="font-size:11px;color:#64748B;padding:6px;">No startups found</div>';
           return;
         }
 
         matching.forEach((s, idx) => {
           const item = document.createElement('div');
           item.className = 'bhi-item';
-          item.style.animationDelay = `${idx * 22}ms`;
+          item.style.animationDelay = `${idx * 18}ms`;
 
           const monoText = (s.monogram || (s.name ? s.name.substring(0, 2).toUpperCase() : 'VN'));
 
@@ -2778,9 +2773,9 @@
       function updatePhysics() {
         if (!isVisible) return;
 
-        // High-end LERP interpolation (0.18 damping factor)
-        currentX += (targetX - currentX) * 0.18;
-        currentY += (targetY - currentY) * 0.18;
+        // Snappy, silky LERP (0.24 damping factor)
+        currentX += (targetX - currentX) * 0.24;
+        currentY += (targetY - currentY) * 0.24;
 
         inspector.style.transform = `translate3d(${Math.round(currentX)}px, ${Math.round(currentY)}px, 0) scale(1)`;
 
@@ -2789,22 +2784,19 @@
 
       function calcCoordinates(e) {
         const rect = inspector.getBoundingClientRect();
-        const cardWidth = rect.width > 50 ? rect.width : 240;
-        const cardHeight = rect.height > 50 ? rect.height : 220;
+        const cardWidth = rect.width > 50 ? rect.width : 220;
+        const cardHeight = rect.height > 50 ? rect.height : 180;
 
-        let destX = e.clientX + 22;
-        let destY = e.clientY - 25;
+        // Attach top-left corner directly to cursor tip
+        let destX = e.clientX + 10;
+        let destY = e.clientY + 8;
 
-        // Boundary safety: Invert to left if too close to right edge
-        if (destX + cardWidth > window.innerWidth - 16) {
-          destX = e.clientX - cardWidth - 22;
-        }
-        // Bottom clamp
-        if (destY + cardHeight > window.innerHeight - 16) {
-          destY = window.innerHeight - cardHeight - 16;
-        }
-        // Top clamp
-        if (destY < 16) destY = 16;
+        // Keep inside viewport without flipping backwards
+        const maxX = window.innerWidth - cardWidth - 10;
+        if (destX > maxX) destX = maxX;
+        const maxY = window.innerHeight - cardHeight - 10;
+        if (destY > maxY) destY = maxY;
+        if (destY < 8) destY = 8;
 
         return { x: destX, y: destY };
       }
