@@ -1290,14 +1290,14 @@
       const checkStr = (str) => {
         if (!str) return false;
         const s = str.toLowerCase();
-        if (target === 'computer science') return s.includes('computer') || s.includes('comp') || s.includes('cse') || s.includes('cs ');
-        if (target === 'electronics') return s.includes('electronic') || s.includes('ece') || s.includes('communication');
-        if (target === 'electrical') return s.includes('electrical') || s.includes('eee');
-        if (target === 'mechanical') return s.includes('mechanical') || s.includes('mech');
-        if (target === 'chemical') return s.includes('chemical') || s.includes('chem');
-        if (target === 'civil') return s.includes('civil');
-        if (target === 'metallurgy') return s.includes('metallurg') || s.includes('material') || s.includes('mme');
-        if (target === 'mining') return s.includes('mining') || s.includes('mine');
+        if (target === 'computer science') return /\b(computer|comp|cse|cs)\b/i.test(s) || s.includes('computer science');
+        if (target === 'electronics') return /\b(electronics|electronic|ece|comm|telecom)\b/i.test(s) || s.includes('electronics & communication') || s.includes('electronics and communication');
+        if (target === 'electrical') return /\b(electrical|eee)\b/i.test(s);
+        if (target === 'mechanical') return /\b(mechanical|mech)\b/i.test(s);
+        if (target === 'chemical') return /\b(chemical|chem)\b/i.test(s);
+        if (target === 'civil') return /\b(civil)\b/i.test(s);
+        if (target === 'metallurgy') return /\b(metallurg|metallurgy|material|materials|mme)\b/i.test(s);
+        if (target === 'mining') return /\b(mining|mine)\b/i.test(s);
         return s.includes(target);
       };
       if (checkStr(startup.department)) return true;
