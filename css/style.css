@@ -1952,7 +1952,7 @@
 
     .dock-split-body {
       display: grid;
-      grid-template-columns: 58% 42%;
+      grid-template-columns: 1fr;
       background: var(--surface-card);
     }
 
@@ -1966,7 +1966,7 @@
     .dock-left-panel {
       padding: 26px 28px;
       background: var(--surface-card);
-      border-right: 1px solid var(--border-subtle);
+      border-right: none;
       display: flex;
       flex-direction: column;
       gap: 15px;
@@ -2368,24 +2368,123 @@
       }
     }
 
-    /* Pulse Focus Glow when triggered from Navbar Support Button */
-    @keyframes dockPulseFocus {
-      0% {
-        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.6), var(--shadow-sm);
-        border-color: #2563EB;
-      }
-      50% {
-        box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.22), 0 8px 24px rgba(37, 99, 235, 0.25);
-        border-color: #2563EB;
-      }
-      100% {
-        box-shadow: var(--shadow-sm);
-        border-color: var(--border-card);
-      }
+    /* ─── CONTRIBUTION MODAL & MOBILE BOTTOM SHEET ─── */
+    .contrib-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 1200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s ease;
     }
 
-    .dock-right-panel.dock-pulse-focus {
-      animation: dockPulseFocus 1.4s ease-out 1;
+    .contrib-modal-backdrop.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .contrib-modal-dialog {
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.35), 0 0 0 1px rgba(15, 23, 42, 0.05);
+      width: 100%;
+      max-width: 440px;
+      position: relative;
+      overflow: hidden;
+      transform: scale(0.95) translateY(10px);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+    }
+
+    .contrib-modal-backdrop.is-open .contrib-modal-dialog {
+      transform: scale(1) translateY(0);
+    }
+
+    .contrib-sheet-handle {
+      display: none;
+    }
+
+    .contrib-close-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      color: #64748B;
+      font-size: 18px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      z-index: 10;
+      padding: 0;
+    }
+
+    .contrib-close-btn:hover {
+      background: #E2E8F0;
+      color: #0F172A;
+      transform: scale(1.05);
+    }
+
+    .contrib-modal-body {
+      padding: 24px 22px 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    /* Mobile Bottom Sheet (Slide-up from bottom to top) */
+    @media (max-width: 640px) {
+      .contrib-modal-backdrop {
+        padding: 0;
+        align-items: flex-end;
+      }
+
+      .contrib-modal-dialog {
+        max-width: 100vw;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom: none;
+        transform: translateY(100%);
+        transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+        padding-bottom: env(safe-area-inset-bottom, 14px);
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+
+      .contrib-modal-backdrop.is-open .contrib-modal-dialog {
+        transform: translateY(0);
+      }
+
+      .contrib-sheet-handle {
+        display: block;
+        width: 38px;
+        height: 4.5px;
+        background: #CBD5E1;
+        border-radius: 99px;
+        margin: 10px auto 4px auto;
+      }
+
+      .contrib-modal-body {
+        padding: 14px 18px 18px 18px;
+      }
     }
 
     /* Navbar Mobile Responsiveness */

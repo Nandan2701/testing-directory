@@ -23,7 +23,7 @@
     rel="stylesheet">
 
   <!-- Core Design System Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=sponsor_icon_v1">
+  <link rel="stylesheet" href="css/style.css?v=modal_release_v1">
 </head>
 
 <body>
@@ -47,7 +47,7 @@
         </a>
       </div>
       <div class="nav-actions">
-        <button class="btn-support-nav" id="navSupportBtn" onclick="scrollToContributionDock()" title="Support & Keep VNIT Startups Free" aria-label="Support VNIT Startups">
+        <button class="btn-support-nav" id="navSupportBtn" onclick="openContributionModal()" title="Support & Keep VNIT Startups Free" aria-label="Support VNIT Startups">
           <svg class="heart-icon-nav" width="16" height="16" viewBox="0 0 24 24" fill="#E11D48" stroke="#E11D48" stroke-width="0.8" aria-hidden="true">
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.48 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
           </svg>
@@ -367,68 +367,6 @@
             </div>
           </div>
 
-          <!-- RIGHT PANEL: Support & Contribute (Partitioned & High Emotional Resonance) -->
-          <div class="dock-right-panel" id="dockRightPanel">
-            <h3 class="dock-contribute-headline">
-              Keep the Website <span class="dock-headline-highlight">100% Free and Updated</span> so VNITians Can Always Discover and Connect with Founders.
-            </h3>
-
-            <!-- Layout 1: Vertical Power Stack (Tiers & Reasons) -->
-            <div class="dock-tiers-stack">
-              <!-- Tier 1: ₹50 -->
-              <div class="dock-tier-row" onclick="selectDonationAmt(50, this)">
-                <div class="dock-tier-left">
-                  <div class="dock-tier-radio"><div class="dock-tier-radio-dot"></div></div>
-                  <span class="dock-tier-amt">₹50</span>
-                </div>
-                <span class="dock-tier-reason">Adds 2 new startups</span>
-              </div>
-
-              <!-- Tier 2: ₹150 (Default / Popular) -->
-              <div class="dock-tier-row is-active" onclick="selectDonationAmt(150, this)">
-                <div class="dock-tier-left">
-                  <div class="dock-tier-radio"><div class="dock-tier-radio-dot"></div></div>
-                  <span class="dock-tier-amt">₹150</span>
-                </div>
-                <span class="dock-tier-reason">Covers 1 week of server</span>
-                <span class="dock-tier-badge">Popular</span>
-              </div>
-
-              <!-- Tier 3: ₹500 -->
-              <div class="dock-tier-row" onclick="selectDonationAmt(500, this)">
-                <div class="dock-tier-left">
-                  <div class="dock-tier-radio"><div class="dock-tier-radio-dot"></div></div>
-                  <span class="dock-tier-amt">₹500</span>
-                </div>
-                <span class="dock-tier-reason">Backs 1 month of servers and updates</span>
-              </div>
-
-              <!-- Tier 4: Custom -->
-              <div class="dock-tier-row" id="dockCustomRow" onclick="selectCustomDonation(this)">
-                <div class="dock-tier-left">
-                  <div class="dock-tier-radio"><div class="dock-tier-radio-dot"></div></div>
-                  <span class="dock-tier-amt">Custom</span>
-                </div>
-                <span class="dock-tier-reason" id="dockCustomReasonLabel">Enter any amount (₹)...</span>
-              </div>
-
-              <div class="dock-custom-input-wrap" id="dockCustomInputWrap">
-                <input type="number" class="dock-custom-input" id="dockCustomAmtInput" placeholder="Enter amount in ₹ (e.g. 250)" oninput="updateCustomDonationVal(this.value)">
-              </div>
-            </div>
-
-            <!-- Dynamic Action Button -->
-            <a href="javascript:void(0)" onclick="triggerUpiPay()" class="dock-btn-support" id="dockSupportBtn">
-              Pay ₹150 via Any UPI App ↗
-            </a>
-
-            <!-- Finalized Reassurance Micro-Line -->
-            <div class="dock-support-trust-row">
-              <span style="color:#10B981;font-size:12px;">🛡️</span>
-              <span>100% goes directly to server hosting & adding new startups</span>
-            </div>
-          </div>
-
         </div>
 
         <!-- INTEGRATED BASEMENT STRIP (Dignified Institutional + Live Telemetry) -->
@@ -591,7 +529,7 @@
 
   <!-- JAVASCRIPT APPLICATION CORE -->
   <!-- Core Client Application Engine -->
-  <script src="js/app.js?v=sponsor_icon_v1"></script>
+  <script src="js/app.js?v=modal_release_v1"></script>
 
   <!-- MOBILE SIDE-BY-SIDE FILTER DRAWER (Left Slide-in Architecture) -->
   <div class="mobile-filter-overlay" id="mfOverlay" onclick="closeMobileFilterModal()"></div>
@@ -619,6 +557,77 @@
     </div>
   </div>
 
+  <!-- CONTRIBUTION MODAL (Centered Modal on Desktop, Native Bottom Sheet on Mobile) -->
+  <div class="contrib-modal-backdrop" id="contribModal" role="dialog" aria-modal="true" aria-label="Support VNIT Startups" onclick="handleContribBackdropClick(event)">
+    <div class="contrib-modal-dialog" id="contribModalDialog">
+      <!-- Mobile Pill Drag Handle -->
+      <div class="contrib-sheet-handle" aria-hidden="true"></div>
+      
+      <!-- Close Button -->
+      <button type="button" class="contrib-close-btn" onclick="closeContributionModal()" aria-label="Close contribution window">×</button>
+
+      <div class="contrib-modal-body">
+        <h3 class="dock-contribute-headline">
+          Keep the Website <span class="dock-headline-highlight">100% Free and Updated</span> so VNITians Can Always Discover and Connect with Founders.
+        </h3>
+
+        <!-- Layout 1: Vertical Power Stack (Tiers & Reasons) -->
+        <div class="dock-tiers-stack">
+          <!-- Tier 1: ₹50 -->
+          <div class="dock-tier-row" onclick="selectDonationAmt(50, this)">
+            <div class="dock-tier-left">
+              <div class="dock-tier-radio"><div class="dock-tier-radio-dot"></div></div>
+              <span class="dock-tier-amt">₹50</span>
+            </div>
+            <span class="dock-tier-reason">Adds 2 new startups</span>
+          </div>
+
+          <!-- Tier 2: ₹150 (Default / Popular) -->
+          <div class="dock-tier-row is-active" onclick="selectDonationAmt(150, this)">
+            <div class="dock-tier-left">
+              <div class="dock-tier-radio"><div class="dock-tier-radio-dot"></div></div>
+              <span class="dock-tier-amt">₹150</span>
+            </div>
+            <span class="dock-tier-reason">Covers 1 week of server</span>
+            <span class="dock-tier-badge">Popular</span>
+          </div>
+
+          <!-- Tier 3: ₹500 -->
+          <div class="dock-tier-row" onclick="selectDonationAmt(500, this)">
+            <div class="dock-tier-left">
+              <div class="dock-tier-radio"><div class="dock-tier-radio-dot"></div></div>
+              <span class="dock-tier-amt">₹500</span>
+            </div>
+            <span class="dock-tier-reason">Backs 1 month of servers and updates</span>
+          </div>
+
+          <!-- Tier 4: Custom -->
+          <div class="dock-tier-row" id="dockCustomRow" onclick="selectCustomDonation(this)">
+            <div class="dock-tier-left">
+              <div class="dock-tier-radio"><div class="dock-tier-radio-dot"></div></div>
+              <span class="dock-tier-amt">Custom</span>
+            </div>
+            <span class="dock-tier-reason" id="dockCustomReasonLabel">Enter any amount (₹)...</span>
+          </div>
+
+          <div class="dock-custom-input-wrap" id="dockCustomInputWrap">
+            <input type="number" class="dock-custom-input" id="dockCustomAmtInput" placeholder="Enter amount in ₹ (e.g. 250)" oninput="updateCustomDonationVal(this.value)">
+          </div>
+        </div>
+
+        <!-- Dynamic Action Button -->
+        <a href="javascript:void(0)" onclick="triggerUpiPay()" class="dock-btn-support" id="dockSupportBtn">
+          Pay ₹150 via Any UPI App ↗
+        </a>
+
+        <!-- Finalized Reassurance Micro-Line -->
+        <div class="dock-support-trust-row">
+          <span style="color:#10B981;font-size:12px;">🛡️</span>
+          <span>100% goes directly to server hosting & adding new startups</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 

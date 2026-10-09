@@ -2228,19 +2228,42 @@
       input.disabled = false;
     }
 
-    function scrollToContributionDock() {
-      const dock = document.getElementById('dockRightPanel') || document.querySelector('.dock-right-panel');
-      if (dock) {
-        dock.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        dock.classList.remove('dock-pulse-focus');
-        // Force reflow for re-triggering animation
-        void dock.offsetWidth;
-        dock.classList.add('dock-pulse-focus');
-        setTimeout(() => {
-          dock.classList.remove('dock-pulse-focus');
-        }, 1500);
+    function openContributionModal() {
+      const modal = document.getElementById('contribModal');
+      if (modal) {
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
       }
     }
+
+    function closeContributionModal() {
+      const modal = document.getElementById('contribModal');
+      if (modal) {
+        modal.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function handleContribBackdropClick(event) {
+      if (event.target && event.target.id === 'contribModal') {
+        closeContributionModal();
+      }
+    }
+
+    // Fallback in case old caller exists
+    function scrollToContributionDock() {
+      openContributionModal();
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const modal = document.getElementById('contribModal');
+        if (modal && modal.classList.contains('is-open')) {
+          closeContributionModal();
+        }
+      }
+    });
 
     let activeDonationAmt = 150;
 
