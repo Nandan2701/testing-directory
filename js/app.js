@@ -2094,13 +2094,6 @@
           }
         });
       });
-
-      // Synchronize Hero Leaderboard active row state
-      const lbRows = document.querySelectorAll('.leaderboard-row[data-facet]');
-      lbRows.forEach(row => {
-        const facetVal = row.getAttribute('data-facet');
-        row.classList.toggle('is-active', currentFilter.branches.has(facetVal));
-      });
     }
 
     function toggleFacet(facetType, val) {
@@ -2651,18 +2644,11 @@
     })();
 
     /* ═══════════════════════════════════════════════════════════════════
-       HERO LEADERBOARD ENGINE (Animation, Ticker, and Tap-to-Filter)
+       HERO LEADERBOARD ENGINE (Animation and Precision Metrics - View-Only)
        ═══════════════════════════════════════════════════════════════════ */
     function filterFromLeaderboard(branchName) {
-      if (typeof toggleFacet === 'function') {
-        toggleFacet('branch', branchName);
-      }
-      // Smoothly scroll down to workbench
-      const workbench = document.getElementById('mainWorkbench');
-      if (workbench) {
-        const topOffset = workbench.getBoundingClientRect().top + window.scrollY - 70;
-        window.scrollTo({ top: topOffset, behavior: 'smooth' });
-      }
+      // Comparison metrics are view-only readout per design
+      return;
     }
 
     (function initHeroLeaderboard() {
