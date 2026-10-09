@@ -579,6 +579,11 @@
       cursor: default;
       user-select: none;
       border: 1px solid transparent;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .leaderboard-row:hover {
+      background: rgba(37, 99, 235, 0.05);
+      border-color: rgba(37, 99, 235, 0.14);
     }
     .leaderboard-row.is-leader {
       background: rgba(37, 99, 235, 0.04);
@@ -694,6 +699,159 @@
       font-weight: 600;
       color: #64748B;
       font-family: var(--font-mono);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       AWWWARDS CURSOR-FOLLOWING BRANCH INSPECTOR (DESKTOP)
+       ═══════════════════════════════════════════════════════════════════ */
+    .branch-hover-inspector {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none !important;
+      z-index: 99999;
+      width: 240px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(24px) saturate(190%);
+      -webkit-backdrop-filter: blur(24px) saturate(190%);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      border-radius: 13px;
+      box-shadow: 
+        0 20px 42px -10px rgba(15, 23, 42, 0.18),
+        0 8px 18px -6px rgba(15, 23, 42, 0.08),
+        0 0 0 1px rgba(255, 255, 255, 0.85) inset;
+      padding: 10px 11px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(-9999px, -9999px, 0) scale(0.95);
+      transition: opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1), 
+                  visibility 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
+    }
+
+    .branch-hover-inspector.is-active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .bhi-header {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding-bottom: 7px;
+      margin-bottom: 7px;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.75);
+    }
+
+    .bhi-indicator {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #2563EB;
+      box-shadow: 0 0 7px #2563EB;
+      animation: bhiPulse 1.8s infinite ease-in-out;
+      flex-shrink: 0;
+    }
+
+    @keyframes bhiPulse {
+      0%, 100% { opacity: 0.65; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 9px #3B82F6; }
+    }
+
+    .bhi-badge {
+      font-family: var(--font-mono, 'JetBrains Mono', monospace);
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: #0F172A;
+      text-transform: uppercase;
+    }
+
+    .bhi-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4.5px;
+      max-height: 270px;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    /* Sleek custom scrollbar if branch list exceeds max-height */
+    .bhi-list::-webkit-scrollbar {
+      width: 3px;
+    }
+    .bhi-list::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .bhi-list::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 999px;
+    }
+
+    .bhi-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 7px;
+      border-radius: 7px;
+      background: rgba(248, 250, 252, 0.85);
+      border: 1px solid rgba(226, 232, 240, 0.65);
+      animation: bhiItemIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    }
+
+    @keyframes bhiItemIn {
+      from {
+        opacity: 0;
+        transform: translateY(3px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .bhi-item-logo {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      object-fit: contain;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      flex-shrink: 0;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+
+    .bhi-item-mono {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      color: #1D4ED8;
+      font-family: var(--font-mono, 'JetBrains Mono', monospace);
+      font-size: 8px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .bhi-item-name {
+      font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #0F172A;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: -0.01em;
+    }
+
+    @media (max-width: 960px) {
+      .branch-hover-inspector {
+        display: none !important;
+      }
     }
 
     .h-switch-pill {

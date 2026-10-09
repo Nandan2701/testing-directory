@@ -2686,6 +2686,176 @@
       });
     })();
 
+    /* ═══════════════════════════════════════════════════════════════════
+       AWWWARDS DESKTOP CURSOR-FOLLOWING BRANCH INSPECTOR ENGINE
+       Features: Silky 60-120fps LERP inertia, boundary edge-detection,
+       persistent morphing across branch rows, logo+name only roster.
+       ═══════════════════════════════════════════════════════════════════ */
+    (function initBranchHoverInspector() {
+      // Desktop-only interaction guard (pointer / mouse viewports)
+      if (window.matchMedia('(max-width: 960px)').matches) return;
+
+      const cardWrap = document.querySelector('.leaderboard-card');
+      const inspector = document.getElementById('branchHoverInspector');
+      const badgeEl = document.getElementById('bhiBadge');
+      const listEl = document.getElementById('bhiList');
+      if (!cardWrap || !inspector || !badgeEl || !listEl) return;
+
+      const BRANCH_QUERY_MAP = {
+        'CSE': 'Computer Science',
+        'ECE': 'Electronics',
+        'EEE': 'Electrical',
+        'CIVIL': 'Civil',
+        'MINING': 'Mining',
+        'MECH': 'Mechanical',
+        'MME': 'Metallurgy',
+        'ARCH': 'Architecture',
+        'CHEM': 'Chemical'
+      };
+
+      let currentX = -9999, currentY = -9999;
+      let targetX = -9999, targetY = -9999;
+      let isVisible = false;
+      let activeBranchCode = null;
+      let rAF = null;
+
+      function renderBranchRoster(code) {
+        const query = BRANCH_QUERY_MAP[code] || code;
+        const matching = (typeof allStartups !== 'undefined' ? allStartups : (typeof SEED_STARTUPS !== 'undefined' ? SEED_STARTUPS : []))
+          .filter(s => typeof hasBranch === 'function' ? hasBranch(s, query) : true)
+          .sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+
+        const countText = `${matching.length} ${matching.length === 1 ? 'STARTUP' : 'STARTUPS'}`;
+        badgeEl.textContent = `${code} · ${countText}`;
+
+        listEl.innerHTML = '';
+        if (matching.length === 0) {
+          listEl.innerHTML = '<div style="font-size:11px;color:#64748B;padding:6px;">No verified startups found</div>';
+          return;
+        }
+
+        matching.forEach((s, idx) => {
+          const item = document.createElement('div');
+          item.className = 'bhi-item';
+          item.style.animationDelay = `${idx * 22}ms`;
+
+          const monoText = (s.monogram || (s.name ? s.name.substring(0, 2).toUpperCase() : 'VN'));
+
+          if (s.logo_url) {
+            const img = document.createElement('img');
+            img.className = 'bhi-item-logo';
+            img.src = s.logo_url;
+            img.alt = s.name || '';
+            img.loading = 'lazy';
+            img.onerror = function() {
+              this.style.display = 'none';
+              const next = this.nextElementSibling;
+              if (next) next.style.display = 'flex';
+            };
+            item.appendChild(img);
+
+            const monoFallback = document.createElement('span');
+            monoFallback.className = 'bhi-item-mono';
+            monoFallback.style.display = 'none';
+            monoFallback.textContent = monoText;
+            item.appendChild(monoFallback);
+          } else {
+            const mono = document.createElement('span');
+            mono.className = 'bhi-item-mono';
+            mono.textContent = monoText;
+            item.appendChild(mono);
+          }
+
+          const nameSpan = document.createElement('span');
+          nameSpan.className = 'bhi-item-name';
+          nameSpan.textContent = s.name;
+          item.appendChild(nameSpan);
+
+          listEl.appendChild(item);
+        });
+      }
+
+      function updatePhysics() {
+        if (!isVisible) return;
+
+        // High-end LERP interpolation (0.18 damping factor)
+        currentX += (targetX - currentX) * 0.18;
+        currentY += (targetY - currentY) * 0.18;
+
+        inspector.style.transform = `translate3d(${Math.round(currentX)}px, ${Math.round(currentY)}px, 0) scale(1)`;
+
+        rAF = requestAnimationFrame(updatePhysics);
+      }
+
+      function calcCoordinates(e) {
+        const rect = inspector.getBoundingClientRect();
+        const cardWidth = rect.width > 50 ? rect.width : 240;
+        const cardHeight = rect.height > 50 ? rect.height : 220;
+
+        let destX = e.clientX + 22;
+        let destY = e.clientY - 25;
+
+        // Boundary safety: Invert to left if too close to right edge
+        if (destX + cardWidth > window.innerWidth - 16) {
+          destX = e.clientX - cardWidth - 22;
+        }
+        // Bottom clamp
+        if (destY + cardHeight > window.innerHeight - 16) {
+          destY = window.innerHeight - cardHeight - 16;
+        }
+        // Top clamp
+        if (destY < 16) destY = 16;
+
+        return { x: destX, y: destY };
+      }
+
+      const rows = cardWrap.querySelectorAll('.leaderboard-row');
+      rows.forEach(row => {
+        row.addEventListener('mouseenter', (e) => {
+          if (window.innerWidth <= 960) return;
+          const codeEl = row.querySelector('.leaderboard-branch-code');
+          if (!codeEl) return;
+          const code = codeEl.textContent.trim();
+
+          if (activeBranchCode !== code) {
+            activeBranchCode = code;
+            renderBranchRoster(code);
+          }
+
+          const coords = calcCoordinates(e);
+          targetX = coords.x;
+          targetY = coords.y;
+
+          if (!isVisible) {
+            isVisible = true;
+            currentX = targetX;
+            currentY = targetY;
+            inspector.style.transform = `translate3d(${Math.round(currentX)}px, ${Math.round(currentY)}px, 0) scale(0.96)`;
+            inspector.classList.add('is-active');
+            if (rAF) cancelAnimationFrame(rAF);
+            rAF = requestAnimationFrame(updatePhysics);
+          }
+        });
+
+        row.addEventListener('mousemove', (e) => {
+          if (!isVisible || window.innerWidth <= 960) return;
+          const coords = calcCoordinates(e);
+          targetX = coords.x;
+          targetY = coords.y;
+        });
+      });
+
+      cardWrap.addEventListener('mouseleave', () => {
+        isVisible = false;
+        activeBranchCode = null;
+        inspector.classList.remove('is-active');
+        if (rAF) {
+          cancelAnimationFrame(rAF);
+          rAF = null;
+        }
+      });
+    })();
+
 
   
     /* ═══════════════════════════════════════════════════════════════════
