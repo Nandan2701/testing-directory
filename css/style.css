@@ -1381,13 +1381,14 @@
        ══════════════════════════════════════════════════════════════ */
     .founder-photo-modal-backdrop {
       position: fixed;
+      inset: 0;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(15, 23, 42, 0.82);
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.72);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       display: flex;
@@ -1417,8 +1418,8 @@
       flex-direction: column;
       align-items: center;
       position: relative;
-      box-shadow: 0 30px 65px -12px rgba(15, 23, 42, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
-      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 30px 65px -12px rgba(0, 0, 0, 0.38), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+      border: 1px solid rgba(226, 232, 240, 0.9);
       transform-style: preserve-3d;
       transform: perspective(1200px) rotateX(12deg) translateY(32px) scale(0.88);
       opacity: 0;
@@ -1466,7 +1467,7 @@
       border-radius: 50%;
       overflow: hidden;
       border: 4.5px solid #FFFFFF;
-      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.22);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
       outline: 2px solid #CBD5E1;
       background: #F1F5F9;
       margin-top: 8px;
@@ -1504,14 +1505,14 @@
     .founder-photo-modal-meta {
       font-family: var(--font-mono);
       font-size: 11.5px;
-      font-weight: 700;
-      color: #1D4ED8;
-      background: #EFF6FF;
-      border: 1px solid #BFDBFE;
+      font-weight: 600;
+      color: #334155;
+      background: #F1F5F9;
+      border: 1px solid #CBD5E1;
       padding: 3px 12px;
       border-radius: 999px;
       display: inline-block;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
     }
 
     @media (prefers-reduced-motion: reduce) {
