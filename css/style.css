@@ -446,6 +446,15 @@
       margin-right: 0.28em;
     }
 
+    /* KINETIC ITALIC EMPHASIS: "Built" — authentic crafted verb accent */
+    .headline-word-built {
+      font-style: italic;
+      font-weight: 800;
+      letter-spacing: -0.012em;
+      display: inline;
+      margin-right: 0.05em;
+    }
+
     /* DYNAMIC KEYWORD CONTAINER (Inline flow with zero unnatural gap) */
     .headline-dynamic-wrap {
       display: inline-block;
