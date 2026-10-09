@@ -2773,9 +2773,9 @@
       function updatePhysics() {
         if (!isVisible) return;
 
-        // Snappy, silky LERP (0.35 damping factor)
-        currentX += (targetX - currentX) * 0.35;
-        currentY += (targetY - currentY) * 0.35;
+        // Snappy, silky LERP (0.28 damping factor)
+        currentX += (targetX - currentX) * 0.28;
+        currentY += (targetY - currentY) * 0.28;
 
         inspector.style.transform = `translate3d(${Math.round(currentX)}px, ${Math.round(currentY)}px, 0) scale(1)`;
 
@@ -2783,8 +2783,12 @@
       }
 
       function calcCoordinates(e) {
-        // Attach the window's exact top-left corner directly to the cursor tip
-        return { x: e.clientX, y: e.clientY };
+        // Variation 04: Visual Beak Notch (Apple Tooltip)
+        // Top-left notch at left: 14px, top: -6px points directly at cursor tip
+        return { 
+          x: e.clientX - 14, 
+          y: e.clientY + 18 
+        };
       }
 
       const rows = cardWrap.querySelectorAll('.leaderboard-row');
