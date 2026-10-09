@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Branch Hover Inspector — 5 Interactive Hover Variations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --bg-page: #F8FAFC;
+      --ink-primary: #0F172A;
+      --ink-secondary: #475569;
+      --ink-muted: #64748B;
+      --border-subtle: #E2E8F0;
+      --blue-primary: #2563EB;
+      --blue-dark: #1D4ED8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-page);
+      color: var(--ink-primary);
+      min-height: 100vh;
+      padding: 24px 20px 80px;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Blueprint Background Grid */
+    .blueprint-grid {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(37, 99, 235, 0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(37, 99, 235, 0.07) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .main-wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .lab-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .lab-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue-primary);
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+    .lab-title {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+    .lab-sub {
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.45;
+    }
+
+    /* Variation Switcher Bar */
+    .switcher-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      box-shadow: 0 8px 24px -6px rgba(15, 23, 42, 0.08);
+      padding: 12px 16px;
+      margin-bottom: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .tab-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tab-btn {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 13px;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      background: #F8FAFC;
+      color: var(--ink-secondary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tab-btn:hover {
+      background: #F1F5F9;
+      color: var(--ink-primary);
+      border-color: #CBD5E1;
+    }
+    .tab-btn.active {
+      background: #2563EB;
+      color: #FFFFFF;
+      border-color: #1D4ED8;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.28);
+    }
+    .tab-btn .badge-num {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 1px 5px;
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.08);
+    }
+    .tab-btn.active .badge-num {
+      background: rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+    }
+
+    .telemetry-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+    .telemetry-pill {
+      background: #F1F5F9;
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid #E2E8F0;
+      font-weight: 600;
+    }
+    .telemetry-val {
+      color: var(--blue-primary);
+      font-weight: 700;
+    }
+
+    /* Explanation Banner */
+    .mode-desc-box {
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-bottom: 24px;
+      font-size: 12.5px;
+      color: #1E3A8A;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .mode-desc-title {
+      font-weight: 800;
+      color: #1D4ED8;
+      margin-right: 6px;
+    }
+
+    /* Stage Area */
+    .stage-wrapper {
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* Hero Left Preview */
+    .hero-mock-left {
+      padding-top: 24px;
+    }
+    .hero-mock-h1 {
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1.14;
+      letter-spacing: -0.025em;
+      color: #0F172A;
+      margin-bottom: 12px;
+    }
+    .hero-mock-blue {
+      color: #2563EB;
+      border-bottom: 3px solid #2563EB;
+    }
+    .hero-mock-italic {
+      font-style: italic;
+      color: #0F172A;
+    }
+    .hero-mock-sub {
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+    }
+
+    /* 9-Branch Leaderboard Card (Direct from Production) */
+    .leaderboard-card-wrap {
+      position: relative;
+    }
+
+    .leaderboard-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      border-radius: 8px;
+      padding: 12px 14px 10px 14px;
+      box-shadow: 
+        0 14px 30px -8px rgba(15, 23, 42, 0.08), 
+        0 4px 10px -3px rgba(15, 23, 42, 0.04), 
+        0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+      user-select: none;
+      position: relative;
+    }
+
+    .leaderboard-col-heads {
+      display: grid;
+      grid-template-columns: 24px 84px 1fr 50px;
+      gap: 8px;
+      padding: 0 4px 6px 4px;
+      border-bottom: 1px solid #E2E8F0;
+      margin-bottom: 6px;
+      font-family: var(--font-mono);
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: #64748B;
+      text-transform: uppercase;
+    }
+    .col-head-r { text-align: right; }
+
+    .leaderboard-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .leaderboard-row {
+      display: grid;
+      grid-template-columns: 24px 84px 1fr 50px;
+      gap: 8px;
+      align-items: center;
+      padding: 4px 6px;
+      border-radius: 5px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background 0.14s ease, border-color 0.14s ease;
+      position: relative;
+    }
+    .leaderboard-row:hover {
+      background: rgba(37, 99, 235, 0.06);
+      border-color: rgba(37, 99, 235, 0.18);
+    }
+    .leaderboard-row.is-leader {
+      background: rgba(37, 99, 235, 0.03);
+      border-color: rgba(37, 99, 235, 0.10);
+    }
+
+    .leaderboard-rank {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 800;
+      border-radius: 4px;
+      text-align: center;
+      line-height: 1;
+      height: 18px;
+      width: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .leaderboard-rank.rank-01 { background: #FEF3C7; color: #B45309; border: 1px solid #FDE68A; }
+    .leaderboard-rank.rank-02 { background: #F1F5F9; color: #475569; border: 1px solid #CBD5E1; }
+    .leaderboard-rank.rank-03 { background: #FFEDD5; color: #9A3412; border: 1px solid #FDBA74; }
+    .leaderboard-rank.rank-standard { background: #F8FAFC; color: #64748B; border: 1px solid #E2E8F0; }
+
+    .leaderboard-branch-info {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .leaderboard-branch-code {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #0F172A;
+      letter-spacing: -0.01em;
+    }
+    .leaderboard-branch-sub {
+      font-size: 9px;
+      font-weight: 500;
+      color: #64748B;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .leaderboard-track {
+      height: 7.5px;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      border-radius: 0 4px 4px 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .leaderboard-bar {
+      height: 100%;
+      border-radius: 0 3px 3px 0;
+      transition: width 0.3s ease;
+    }
+    .bar-cse { background: linear-gradient(90deg, #3B82F6, #1D4ED8); }
+    .bar-ece { background: linear-gradient(90deg, #60A5FA, #2563EB); }
+    .bar-eee { background: linear-gradient(90deg, #93C5FD, #3B82F6); }
+    .bar-civil { background: #059669; }
+    .bar-mining { background: #D97706; }
+    .bar-mech, .bar-mme, .bar-arch, .bar-chem { background: #475569; }
+
+    .leaderboard-metrics {
+      text-align: right;
+      line-height: 1.1;
+    }
+    .leaderboard-val-count {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #0F172A;
+      font-family: var(--font-sans);
+    }
+    .leaderboard-val-share {
+      font-size: 9px;
+      font-weight: 600;
+      color: #64748B;
+      font-family: var(--font-mono);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       THE FLOATING HOVER INSPECTOR CARD
+       ═══════════════════════════════════════════════════════════════════ */
+    .branch-hover-inspector {
+      position: fixed;
+      pointer-events: none !important;
+      z-index: 99999;
+      width: 224px;
+      transform-origin: top left;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(24px) saturate(190%);
+      -webkit-backdrop-filter: blur(24px) saturate(190%);
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      border-radius: 11px;
+      box-shadow: 
+        0 18px 40px -8px rgba(15, 23, 42, 0.18),
+        0 6px 14px -4px rgba(15, 23, 42, 0.08),
+        0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+      padding: 6px 7px;
+      opacity: 0;
+      visibility: hidden;
+      will-change: transform, opacity;
+      transition: opacity 0.16s ease, visibility 0.16s ease;
+    }
+    .branch-hover-inspector.is-active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Optional Notch Beak for Variation 04 */
+    .bhi-notch {
+      display: none;
+      position: absolute;
+      top: -6px;
+      left: 10px;
+      width: 12px;
+      height: 12px;
+      background: #FFFFFF;
+      border-left: 1px solid rgba(226, 232, 240, 0.95);
+      border-top: 1px solid rgba(226, 232, 240, 0.95);
+      transform: rotate(45deg);
+      border-radius: 2px;
+    }
+    .mode-notch .bhi-notch {
+      display: block;
+    }
+
+    .bhi-list {
+      display: flex;
+      flex-direction: column;
+      gap: 3.5px;
+      max-height: 275px;
+      overflow-y: auto;
+    }
+    .bhi-list::-webkit-scrollbar { width: 3px; }
+    .bhi-list::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 999px; }
+
+    .bhi-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 6px;
+      border-radius: 6px;
+      background: rgba(248, 250, 252, 0.9);
+      border: 1px solid rgba(226, 232, 240, 0.65);
+      animation: bhiItemIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    }
+    @keyframes bhiItemIn {
+      from { opacity: 0; transform: translateY(3px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .bhi-item-logo {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      object-fit: contain;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      flex-shrink: 0;
+    }
+    .bhi-item-mono {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      color: #1D4ED8;
+      font-family: var(--font-mono);
+      font-size: 8px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .bhi-item-name {
+      font-family: var(--font-sans);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #0F172A;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: -0.01em;
+    }
+
+    /* Live Tuning Controls */
+    .tune-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid #F1F5F9;
+      width: 100%;
+    }
+    .tune-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11.5px;
+      font-family: var(--font-mono);
+      color: var(--ink-secondary);
+    }
+    .tune-item input[type="range"] {
+      width: 80px;
+      cursor: pointer;
+    }
+
+    .cursor-crosshair {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #EF4444;
+      pointer-events: none;
+      z-index: 100000;
+      transform: translate(-50%, -50%);
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="blueprint-grid"></div>
+  <div class="cursor-crosshair" id="cursorDot"></div>
+
+  <div class="main-wrap">
+
+    <header class="lab-header">
+      <div class="lab-pill">Interactive UX Lab</div>
+      <h1 class="lab-title">5 Variations of Branch Startup Hover</h1>
+      <p class="lab-sub">Hover over any branch row on the right (CSE, ECE, EEE, Civil, etc.) to experience how each variation positions and tracks the startup cards roster.</p>
+    </header>
+
+    <!-- Variation Switcher Panel -->
+    <div class="switcher-card">
+      <div class="tab-pills">
+        <button class="tab-btn active" onclick="setMode('v1')" id="btn-v1">
+          <span class="badge-num">01</span> Direct Cursor Vertex (Zero Snapping)
+        </button>
+        <button class="tab-btn" onclick="setMode('v2')" id="btn-v2">
+          <span class="badge-num">02</span> Row-Locked Left Flyout (Raycast / Linear)
+        </button>
+        <button class="tab-btn" onclick="setMode('v3')" id="btn-v3">
+          <span class="badge-num">03</span> Row-Locked Right Flyout (Submenu)
+        </button>
+        <button class="tab-btn" onclick="setMode('v4')" id="btn-v4">
+          <span class="badge-num">04</span> Visual Beak Notch (Apple Tooltip)
+        </button>
+        <button class="tab-btn" onclick="setMode('v5')" id="btn-v5">
+          <span class="badge-num">05</span> Badge-Anchored Flyout (Snaps to 01 CSE)
+        </button>
+      </div>
+
+      <div class="telemetry-row">
+        <div class="telemetry-pill">Cursor: <span class="telemetry-val" id="tCursor">0, 0</span></div>
+        <div class="telemetry-pill">Card Top-Left: <span class="telemetry-val" id="tCard">0, 0</span></div>
+      </div>
+
+      <!-- Fine Offset Tuning -->
+      <div class="tune-controls">
+        <div class="tune-item">
+          <span>Offset X:</span>
+          <input type="range" id="offsetXSlider" min="-30" max="40" value="8" oninput="updateOffsets()">
+          <span id="offsetXVal" class="telemetry-val">+8px</span>
+        </div>
+        <div class="tune-item">
+          <span>Offset Y:</span>
+          <input type="range" id="offsetYSlider" min="-30" max="40" value="6" oninput="updateOffsets()">
+          <span id="offsetYVal" class="telemetry-val">+6px</span>
+        </div>
+        <div class="tune-item" style="margin-left: auto;">
+          <label style="cursor: pointer; display: flex; align-items: center; gap: 5px;">
+            <input type="checkbox" id="showDotCheck" onchange="toggleDot(this.checked)">
+            <span>Show Red Mouse Dot</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Description Box -->
+    <div class="mode-desc-box" id="modeDesc">
+      <div>
+        <span class="mode-desc-title">Variation 01: Direct Cursor Vertex Anchor</span>
+        The top-left corner of the popup window starts at your exact mouse cursor tip. As you move anywhere inside the row, the window glides directly from the cursor tip.
+      </div>
+    </div>
+
+    <!-- Stage Simulation Area -->
+    <div class="stage-wrapper">
+
+      <!-- Left Mock Headline -->
+      <div class="hero-mock-left">
+        <h1 class="hero-mock-h1">
+          The <span class="hero-mock-blue">Startups</span><br>
+          <span class="hero-mock-italic">Built</span> by VNITians.
+        </h1>
+        <p class="hero-mock-sub">
+          A handpicked high-density index of deep-tech, robotics, and venture-backed startups founded by VNIT alumni.
+        </p>
+      </div>
+
+      <!-- Right Comparison Card with real data -->
+      <div class="leaderboard-card-wrap">
+        <div class="leaderboard-card" id="demoLeaderboardCard">
+          <div class="leaderboard-col-heads">
+            <span>RANK</span>
+            <span>BRANCH</span>
+            <span>RELATIVE SHARE</span>
+            <span class="col-head-r">VOLUME</span>
+          </div>
+
+          <div class="leaderboard-list">
+            <!-- 01 CSE -->
+            <div class="leaderboard-row is-leader" data-code="CSE">
+              <span class="leaderboard-rank rank-01">01</span>
+              <div class="leaderboard-branch-info">
+                <span class="leaderboard-branch-code">CSE</span>
+                <span class="leaderboard-branch-sub">Comp. Science</span>
+              </div>
+              <div class="leaderboard-track">
+                <div class="leaderboard-bar bar-cse" style="width: 100%;"></div>
+              </div>
+              <div class="leaderboard-metrics">
+                <span class="leaderboard-val-count">8</span><br>
+                <span class="leaderboard-val-share">25.0%</span>
+              </div>
+            </div>
+
+            <!-- 02 ECE -->
+            <div class="leaderboard-row" data-code="ECE">
+              <span class="leaderboard-rank rank-02">02</span>
+              <div class="leaderboard-branch-info">
+                <span class="leaderboard-branch-code">ECE</span>
+                <span class="leaderboard-branch-sub">Electronics</span>
+              </div>
+              <div class="leaderboard-track">
+                <div class="leaderboard-bar bar-ece" style="width: 87.5%;"></div>
+              </div>
+              <div class="leaderboard-metrics">
+                <span class="leaderboard-val-count">7</span><br>
+                <span class="leaderboard-val-share">21.9%</span>
+              </div>
+            </div>
+
+            <!-- 03 EEE -->
+            <div class="leaderboard-row" data-code="EEE">
+              <span class="leaderboard-rank rank-03">03</span>
+              <div class="leaderboard-branch-info">
+                <span class="leaderboard-branch-code">EEE</span>
+                <span class="leaderboard-branch-sub">Electrical</span>
+              </div>
+              <div class="leaderboard-track">
+                <div class="leaderboard-bar bar-eee" style="width: 75%;"></div>
+              </div>
+              <div class="leaderboard-metrics">
+                <span class="leaderboard-val-count">6</span><br>
+                <span class="leaderboard-val-share">18.8%</span>
+              </div>
+            </div>
+
+            <!-- 04 CIVIL -->
+            <div class="leaderboard-row" data-code="CIVIL">
+              <span class="leaderboard-rank rank-standard">04</span>
+              <div class="leaderboard-branch-info">
+                <span class="leaderboard-branch-code">CIVIL</span>
+                <span class="leaderboard-branch-sub">Civil Eng.</span>
+              </div>
+              <div class="leaderboard-track">
+                <div class="leaderboard-bar bar-civil" style="width: 50%;"></div>
+              </div>
+              <div class="leaderboard-metrics">
+                <span class="leaderboard-val-count">4</span><br>
+                <span class="leaderboard-val-share">12.5%</span>
+              </div>
+            </div>
+
+            <!-- 05 MINING -->
+            <div class="leaderboard-row" data-code="MINING">
+              <span class="leaderboard-rank rank-standard">05</span>
+              <div class="leaderboard-branch-info">
+                <span class="leaderboard-branch-code">MINING</span>
+                <span class="leaderboard-branch-sub">Mining Eng.</span>
+              </div>
+              <div class="leaderboard-track">
+                <div class="leaderboard-bar bar-mining" style="width: 37.5%;"></div>
+              </div>
+              <div class="leaderboard-metrics">
+                <span class="leaderboard-val-count">3</span><br>
+                <span class="leaderboard-val-share">9.4%</span>
+              </div>
+            </div>
+
+            <!-- 06 MECH -->
+            <div class="leaderboard-row" data-code="MECH">
+              <span class="leaderboard-rank rank-standard">06</span>
+              <div class="leaderboard-branch-info">
+                <span class="leaderboard-branch-code">MECH</span>
+                <span class="leaderboard-branch-sub">Mechanical</span>
+              </div>
+              <div class="leaderboard-track">
+                <div class="leaderboard-bar bar-mech" style="width: 25%;"></div>
+              </div>
+              <div class="leaderboard-metrics">
+                <span class="leaderboard-val-count">2</span><br>
+                <span class="leaderboard-val-share">6.3%</span>
+              </div>
+            </div>
+
+            <!-- 07 MME -->
+            <div class="leaderboard-row" data-code="MME">
+              <span class="leaderboard-rank rank-standard">07</span>
+              <div class="leaderboard-branch-info">
+                <span class="leaderboard-branch-code">MME</span>
+                <span class="leaderboard-branch-sub">Metallurgy</span>
+              </div>
+              <div class="leaderboard-track">
+                <div class="leaderboard-bar bar-mme" style="width: 25%;"></div>
+              </div>
+              <div class="leaderboard-metrics">
+                <span class="leaderboard-val-count">2</span><br>
+                <span class="leaderboard-val-share">6.3%</span>
+              </div>
+            </div>
+
+            <!-- 08 ARCH -->
+            <div class="leaderboard-row" data-code="ARCH">
+              <span class="leaderboard-rank rank-standard">08</span>
+              <div class="leaderboard-branch-info">
+                <span class="leaderboard-branch-code">ARCH</span>
+                <span class="leaderboard-branch-sub">Architecture</span>
+              </div>
+              <div class="leaderboard-track">
+                <div class="leaderboard-bar bar-arch" style="width: 25%;"></div>
+              </div>
+              <div class="leaderboard-metrics">
+                <span class="leaderboard-val-count">2</span><br>
+                <span class="leaderboard-val-share">6.3%</span>
+              </div>
+            </div>
+
+            <!-- 09 CHEM -->
+            <div class="leaderboard-row" data-code="CHEM">
+              <span class="leaderboard-rank rank-standard">09</span>
+              <div class="leaderboard-branch-info">
+                <span class="leaderboard-branch-code">CHEM</span>
+                <span class="leaderboard-branch-sub">Chemical</span>
+              </div>
+              <div class="leaderboard-track">
+                <div class="leaderboard-bar bar-chem" style="width: 12.5%;"></div>
+              </div>
+              <div class="leaderboard-metrics">
+                <span class="leaderboard-val-count">1</span><br>
+                <span class="leaderboard-val-share">3.1%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- THE FLOATING INSPECTOR WINDOW -->
+  <aside id="branchHoverInspector" class="branch-hover-inspector" aria-hidden="true">
+    <div class="bhi-notch"></div>
+    <div class="bhi-list" id="bhiList"></div>
+  </aside>
+
+  <script>
+    // Real startups database
+    const STARTUPS_DATA = {
+      'CSE': [
+        { name: 'Awiros', logo: '../../temp files/testing-directory/assets/logos/awiros.png', mono: 'AW' },
+        { name: 'BizTranSights', logo: '../../temp files/testing-directory/assets/logos/biztransights.png', mono: 'BT' },
+        { name: 'Bombay Shaving Company', logo: '../../temp files/testing-directory/assets/logos/bombay-shaving-company.png', mono: 'BS' },
+        { name: 'CAMS Limited', logo: '../../temp files/testing-directory/assets/logos/cams-limited.png', mono: 'CA' },
+        { name: 'Cognizant', logo: '../../temp files/testing-directory/assets/logos/cognizant.png', mono: 'CO' },
+        { name: 'Collegise', logo: '../../temp files/testing-directory/assets/logos/collegise.png', mono: 'CL' },
+        { name: 'TeemGenie', logo: '../../temp files/testing-directory/assets/logos/teemgenie.png', mono: 'TG' }
+      ],
+      'ECE': [
+        { name: '99minds', logo: '../../temp files/testing-directory/assets/logos/99minds.png', mono: '99' },
+        { name: 'Airolabs.ai', logo: '../../temp files/testing-directory/assets/logos/airolabs-ai.png', mono: 'AI' },
+        { name: 'Autoven', logo: '../../temp files/testing-directory/assets/logos/autoven.png', mono: 'AU' },
+        { name: 'ettaflow', logo: '../../temp files/testing-directory/assets/logos/ettaflow.png', mono: 'ET' },
+        { name: 'Living Things', logo: '../../temp files/testing-directory/assets/logos/living-things.png', mono: 'LT' },
+        { name: 'Neewee', logo: '../../temp files/testing-directory/assets/logos/neewee.png', mono: 'NW' },
+        { name: 'Well Played Sports', logo: '../../temp files/testing-directory/assets/logos/well-played-sports.png', mono: 'WP' }
+      ],
+      'EEE': [
+        { name: 'Aristok Technologies', logo: '../../temp files/testing-directory/assets/logos/aristok-technologies.png', mono: 'AR' },
+        { name: 'Awiros', logo: '../../temp files/testing-directory/assets/logos/awiros.png', mono: 'AW' },
+        { name: 'BizTranSights', logo: '../../temp files/testing-directory/assets/logos/biztransights.png', mono: 'BT' },
+        { name: 'ettaflow', logo: '../../temp files/testing-directory/assets/logos/ettaflow.png', mono: 'ET' },
+        { name: 'MasterSoft', logo: '../../temp files/testing-directory/assets/logos/mastersoft.png', mono: 'MS' },
+        { name: 'Product Space', logo: '../../temp files/testing-directory/assets/logos/product-space.png', mono: 'PS' }
+      ],
+      'CIVIL': [
+        { name: 'Human Capitalists', logo: '../../temp files/testing-directory/assets/logos/human-capitalists.png', mono: 'HC' },
+        { name: 'Konverge AI', logo: '../../temp files/testing-directory/assets/logos/konverge-ai.png', mono: 'KO' },
+        { name: 'Sigmantle Research', logo: '../../temp files/testing-directory/assets/logos/sigmantle-research.png', mono: 'SR' },
+        { name: 'Truemeds India', logo: '../../temp files/testing-directory/assets/logos/truemeds-india.png', mono: 'TR' }
+      ],
+      'MINING': [
+        { name: 'Delphi Analytics', logo: '../../temp files/testing-directory/assets/logos/delphi-analytics.png', mono: 'DA' },
+        { name: 'Delphi Cloud', logo: '../../temp files/testing-directory/assets/logos/delphi-cloud.png', mono: 'DC' },
+        { name: 'Living Things', logo: '../../temp files/testing-directory/assets/logos/living-things.png', mono: 'LT' }
+      ],
+      'MECH': [
+        { name: 'CollegeDekho', logo: '../../temp files/testing-directory/assets/logos/collegedekho.png', mono: 'CD' },
+        { name: 'SimpleWorks', logo: '../../temp files/testing-directory/assets/logos/simpleworks.png', mono: 'SW' }
+      ],
+      'MME': [
+        { name: 'InfoCepts', logo: '../../temp files/testing-directory/assets/logos/infocepts.png', mono: 'IC' },
+        { name: 'Synthesis', logo: '../../temp files/testing-directory/assets/logos/synthesis.png', mono: 'SY' }
+      ],
+      'ARCH': [
+        { name: 'GeoAnalytica', logo: '../../temp files/testing-directory/assets/logos/geoanalytica.png', mono: 'GA' },
+        { name: 'Neewee', logo: '../../temp files/testing-directory/assets/logos/neewee.png', mono: 'NW' }
+      ],
+      'CHEM': [
+        { name: 'Human Capitalists', logo: '../../temp files/testing-directory/assets/logos/human-capitalists.png', mono: 'HC' }
+      ]
+    };
+
+    let currentMode = 'v1';
+    let offsetX = 8;
+    let offsetY = 6;
+
+    const inspector = document.getElementById('branchHoverInspector');
+    const listEl = document.getElementById('bhiList');
+    const cursorDot = document.getElementById('cursorDot');
+    const tCursor = document.getElementById('tCursor');
+    const tCard = document.getElementById('tCard');
+    const modeDesc = document.getElementById('modeDesc');
+
+    let currentX = -9999, currentY = -9999;
+    let targetX = -9999, targetY = -9999;
+    let isVisible = false;
+    let activeBranch = null;
+    let activeRowEl = null;
+    let rAF = null;
+
+    const MODE_DESCRIPTIONS = {
+      'v1': {
+        title: 'Variation 01: Direct Cursor Vertex Anchor',
+        text: 'The top-left corner of the window is anchored to your exact mouse cursor tip. As you move anywhere inside the row, the window glides directly from the cursor tip.'
+      },
+      'v2': {
+        title: 'Variation 02: Row-Locked Left Flyout (Raycast / Linear Style)',
+        text: 'The window docks cleanly to the LEFT side of the comparison plate, vertically locking to the active row. Your mouse stays free on the chart without ever blocking the popup!'
+      },
+      'v3': {
+        title: 'Variation 03: Row-Locked Right Flyout (Submenu Style)',
+        text: 'The window docks cleanly to the RIGHT side of the comparison plate, right outside the volume column. The entire leaderboard card remains 100% visible and unblocked.'
+      },
+      'v4': {
+        title: 'Variation 04: Visual Beak Notch (Apple Tooltip Style)',
+        text: 'Features a subtle angled pointer beak at the top-left corner pointing back at the cursor. Establishes a direct visual bond between cursor and card.'
+      },
+      'v5': {
+        title: 'Variation 05: Branch Badge Anchor (Snaps to 01 CSE Badge)',
+        text: 'Locks directly to the branch code badge on the left side of the row. Moving your cursor horizontally across the bar never shakes the popup.'
+      }
+    };
+
+    function setMode(modeKey) {
+      currentMode = modeKey;
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById(`btn-${modeKey}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      document.body.classList.toggle('mode-notch', modeKey === 'v4');
+
+      const info = MODE_DESCRIPTIONS[modeKey];
+      modeDesc.innerHTML = `<div><span class="mode-desc-title">${info.title}:</span> ${info.text}</div>`;
+    }
+
+    function updateOffsets() {
+      offsetX = parseInt(document.getElementById('offsetXSlider').value, 10);
+      offsetY = parseInt(document.getElementById('offsetYSlider').value, 10);
+      document.getElementById('offsetXVal').textContent = `${offsetX >= 0 ? '+' : ''}${offsetX}px`;
+      document.getElementById('offsetYVal').textContent = `${offsetY >= 0 ? '+' : ''}${offsetY}px`;
+    }
+
+    function toggleDot(show) {
+      cursorDot.style.display = show ? 'block' : 'none';
+    }
+
+    function renderRoster(code) {
+      const items = STARTUPS_DATA[code] || [];
+      listEl.innerHTML = '';
+      if (items.length === 0) {
+        listEl.innerHTML = '<div style="font-size:11px;color:#64748B;padding:6px;">No startups found</div>';
+        return;
+      }
+
+      items.forEach((s, idx) => {
+        const item = document.createElement('div');
+        item.className = 'bhi-item';
+        item.style.animationDelay = `${idx * 16}ms`;
+
+        if (s.logo) {
+          const img = document.createElement('img');
+          img.className = 'bhi-item-logo';
+          img.src = s.logo;
+          img.alt = s.name;
+          img.onerror = function() {
+            this.style.display = 'none';
+            if (this.nextElementSibling) this.nextElementSibling.style.display = 'flex';
+          };
+          item.appendChild(img);
+
+          const mono = document.createElement('span');
+          mono.className = 'bhi-item-mono';
+          mono.style.display = 'none';
+          mono.textContent = s.mono || 'VN';
+          item.appendChild(mono);
+        } else {
+          const mono = document.createElement('span');
+          mono.className = 'bhi-item-mono';
+          mono.textContent = s.mono || 'VN';
+          item.appendChild(mono);
+        }
+
+        const name = document.createElement('span');
+        name.className = 'bhi-item-name';
+        name.textContent = s.name;
+        item.appendChild(name);
+
+        listEl.appendChild(item);
+      });
+    }
+
+    function calcTargetPos(e, row) {
+      const cardRect = document.getElementById('demoLeaderboardCard').getBoundingClientRect();
+      const rowRect = row.getBoundingClientRect();
+      const inspRect = inspector.getBoundingClientRect();
+      const inspW = inspRect.width > 50 ? inspRect.width : 224;
+
+      if (currentMode === 'v1') {
+        // Variation 01: Direct Cursor Vertex Anchor
+        return {
+          x: e.clientX + offsetX,
+          y: e.clientY + offsetY
+        };
+      } 
+      else if (currentMode === 'v2') {
+        // Variation 02: Row-Locked Left Flyout (Sticks to left of comparison window)
+        return {
+          x: cardRect.left - inspW - 14 + offsetX,
+          y: rowRect.top + offsetY
+        };
+      }
+      else if (currentMode === 'v3') {
+        // Variation 03: Row-Locked Right Flyout (Sticks to right of comparison window)
+        return {
+          x: cardRect.right + 14 + offsetX,
+          y: rowRect.top + offsetY
+        };
+      }
+      else if (currentMode === 'v4') {
+        // Variation 04: Visual Beak Notch (Apple Tooltip)
+        return {
+          x: e.clientX - 16 + offsetX,
+          y: e.clientY + 18 + offsetY
+        };
+      }
+      else if (currentMode === 'v5') {
+        // Variation 05: Snaps to Branch Badge (01 CSE)
+        return {
+          x: rowRect.left + 32 + offsetX,
+          y: rowRect.bottom + 4 + offsetY
+        };
+      }
+
+      return { x: e.clientX + offsetX, y: e.clientY + offsetY };
+    }
+
+    function tickPhysics() {
+      if (!isVisible) return;
+
+      const damping = currentMode === 'v1' ? 0.35 : 0.22;
+      currentX += (targetX - currentX) * damping;
+      currentY += (targetY - currentY) * damping;
+
+      inspector.style.transform = `translate3d(${Math.round(currentX)}px, ${Math.round(currentY)}px, 0)`;
+      tCard.textContent = `${Math.round(currentX)}, ${Math.round(currentY)}`;
+
+      rAF = requestAnimationFrame(tickPhysics);
+    }
+
+    // Attach row events
+    const rows = document.querySelectorAll('.leaderboard-row');
+    rows.forEach(row => {
+      row.addEventListener('mouseenter', (e) => {
+        const code = row.getAttribute('data-code');
+        activeRowEl = row;
+        if (activeBranch !== code) {
+          activeBranch = code;
+          renderRoster(code);
+        }
+
+        const coords = calcTargetPos(e, row);
+        targetX = coords.x;
+        targetY = coords.y;
+
+        if (!isVisible) {
+          isVisible = true;
+          currentX = targetX;
+          currentY = targetY;
+          inspector.style.transform = `translate3d(${Math.round(currentX)}px, ${Math.round(currentY)}px, 0)`;
+          inspector.classList.add('is-active');
+          if (rAF) cancelAnimationFrame(rAF);
+          rAF = requestAnimationFrame(tickPhysics);
+        }
+      });
+
+      row.addEventListener('mousemove', (e) => {
+        if (!isVisible) return;
+        tCursor.textContent = `${Math.round(e.clientX)}, ${Math.round(e.clientY)}`;
+        cursorDot.style.left = `${e.clientX}px`;
+        cursorDot.style.top = `${e.clientY}px`;
+
+        const coords = calcTargetPos(e, row);
+        targetX = coords.x;
+        targetY = coords.y;
+      });
+    });
+
+    document.getElementById('demoLeaderboardCard').addEventListener('mouseleave', () => {
+      isVisible = false;
+      activeBranch = null;
+      activeRowEl = null;
+      inspector.classList.remove('is-active');
+      if (rAF) {
+        cancelAnimationFrame(rAF);
+        rAF = null;
+      }
+    });
+
+    // Initial default render
+    renderRoster('CSE');
+  </script>
+</body>
+</html>
