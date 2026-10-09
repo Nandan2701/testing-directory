@@ -2483,11 +2483,11 @@
 
       // Update editorial left panel cleanly
       const kickerEl = document.getElementById('dispatchKickerText');
-      if (kickerEl) kickerEl.textContent = 'DISPATCH CONFIRMED';
+      if (kickerEl) kickerEl.textContent = 'REGISTRATION CONFIRMED';
       const kickerDot = document.getElementById('dispatchKickerDot');
       if (kickerDot) kickerDot.style.background = '#10B981';
       const subText = document.getElementById('dispatchSubText');
-      if (subText) subText.textContent = 'We have registered your email. You will receive our monthly dispatch in your inbox.';
+      if (subText) subText.textContent = 'Your email has been confirmed. You will receive the monthly founder briefing on the 1st of the month.';
     }
 
     function resetNewsletterForm() {
@@ -2507,7 +2507,7 @@
         setTimeout(() => emailInput.focus(), 60);
       }
       const kickerEl = document.getElementById('dispatchKickerText');
-      if (kickerEl) kickerEl.textContent = 'VNIT Founder Registry · Monthly Briefing';
+      if (kickerEl) kickerEl.textContent = '';
       const subText = document.getElementById('dispatchSubText');
       if (subText) subText.textContent = 'A handpicked monthly briefing covering alumni venture launches, seed rounds, and campus innovation.';
     }
