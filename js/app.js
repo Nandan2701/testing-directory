@@ -628,7 +628,7 @@
                   {
                         "name": "Akshit Shah",
                         "role": "Co-Founder",
-                        "degree": "B.Tech Comp '16",
+                        "degree": "B.Tech Architecture '15",
                         "linkedin": "https://linkedin.com/in/ar-akshit-shah"
                   }
             ],
