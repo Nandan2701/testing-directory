@@ -2788,8 +2788,8 @@
 
       function calcCoordinates(e) {
         const zoom = getPageZoom();
-        const offsetX = 10;
-        const offsetY = 8;
+        const offsetX = 2;
+        const offsetY = 2;
 
         // Target coordinates in screen space (anchoring top-left corner right at cursor tip)
         let screenX = e.clientX + offsetX;
