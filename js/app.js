@@ -2623,7 +2623,7 @@
     })();
 
     /* ═══════════════════════════════════════════════════════════════════
-       DYNAMIC HERO HEADLINE TYPEWRITER ENGINE (Prototype 01 - Snappy Backspace)
+       DYNAMIC HERO HEADLINE TYPEWRITER ENGINE (Silky Smooth Single Controller)
        ═══════════════════════════════════════════════════════════════════ */
     (function initHeroDynamicHeadline() {
       const wordEl = document.getElementById('heroDynamicWord');
@@ -2635,10 +2635,10 @@
       let isDeleting = true;
       let timerId = null;
 
-      const HOLD_TIME = 2500;  // 2.5s resting pause for comfortable human reading
-      const BACK_SPEED = 28;   // 28ms / letter (hyper-speed snappy terminal backspace)
-      const TYPE_SPEED = 52;   // 52ms / letter (snappy natural typing cadence)
-      const NEXT_PAUSE = 180;  // 180ms breath before typing next word
+      const HOLD_TIME = 2600;  // 2.6s resting pause for comfortable human reading
+      const BACK_SPEED = 36;   // 36ms / letter smooth, steady backspace
+      const TYPE_SPEED = 68;   // 68ms / letter natural rhythmic typing cadence
+      const NEXT_PAUSE = 280;  // 280ms breath pause before typing next word
 
       function tick() {
         const currentWord = WORDS[wordIdx];
@@ -2665,7 +2665,7 @@
         }
       }
 
-      // Initial resting hold of 2.5s before first backspace
+      // Initial resting hold of 2.6s before first backspace
       timerId = setTimeout(tick, HOLD_TIME);
     })();
 
@@ -2940,38 +2940,6 @@
         targetY = 40;
         scheduleUpdate();
       }, { passive: true });
-
-      // 2. Typewriter Keyword Ticker for Headline (Startups -> Companies -> Products)
-      const dynamicWordEl = document.getElementById('heroDynamicWord');
-      if (dynamicWordEl) {
-        const tickerWords = ['Startups', 'Companies', 'Products'];
-        let wordIdx = 0, charIdx = tickerWords[0].length, isDeleting = true;
-        function typeTick() {
-          const currentWord = tickerWords[wordIdx];
-          if (isDeleting) {
-            charIdx--;
-            dynamicWordEl.textContent = currentWord.substring(0, charIdx);
-            if (charIdx <= 0) {
-              isDeleting = false;
-              wordIdx = (wordIdx + 1) % tickerWords.length;
-              setTimeout(typeTick, 380);
-              return;
-            }
-            setTimeout(typeTick, 45);
-          } else {
-            charIdx++;
-            dynamicWordEl.textContent = currentWord.substring(0, charIdx);
-            if (charIdx === currentWord.length) {
-              isDeleting = true;
-              setTimeout(typeTick, 2600);
-              return;
-            }
-            setTimeout(typeTick, 75);
-          }
-        }
-        // Startups is displayed on load; pause 2.6s before smooth deletion
-        setTimeout(typeTick, 2600);
-      }
     })();
 
     /* ─── DUAL-ZONE INDEPENDENT SCROLL SYNC ─── */

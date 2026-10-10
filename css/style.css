@@ -536,17 +536,22 @@
       margin-right: 0.05em;
     }
 
-    /* DYNAMIC KEYWORD CONTAINER (Inline flow with zero unnatural gap) */
+    /* DYNAMIC KEYWORD CONTAINER (Inline flow with zero unnatural gap & zero vertical jerk) */
     .headline-dynamic-wrap {
-      display: inline-block;
-      white-space: nowrap;
+      display: inline-flex;
+      align-items: baseline;
       vertical-align: baseline;
+      white-space: nowrap;
+      min-height: 1.15em;
       transform: none !important;
     }
 
     /* DYNAMIC KEYWORD: "Startups", "Companies", "Products" — SPECULAR CHROME (ELECTRIC COBALT BLUE) */
     .headline-accent-plane {
       display: inline-block;
+      min-height: 1.12em;
+      min-width: 2px;
+      line-height: inherit;
       transform: none !important;
       transition: none !important;
       will-change: auto;
@@ -562,9 +567,9 @@
     .hero-typing-caret {
       display: inline-block;
       width: 3px;
-      height: 1em;
+      height: 0.88em;
       background: #2563EB;
-      vertical-align: -0.08em;
+      vertical-align: -0.06em;
       margin-left: 3px;
       border-radius: 1px;
       animation: heroCaretBlink 0.75s infinite;
