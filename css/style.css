@@ -362,12 +362,27 @@
 
     /* Grids & Dots completely removed per Reddit clean design principles */
     .hero-grid-static,
-    .dot-grid-wrap,
-    .spotlight-wrap {
+    .dot-grid-wrap {
       display: none !important;
       opacity: 0 !important;
       pointer-events: none !important;
       visibility: hidden !important;
+    }
+
+    /* INTERACTIVE CURSOR SPOTLIGHT WAKE (HOVERS AND GLIDES SMOOTHLY WITH CURSOR) */
+    .spotlight-wrap {
+      position: absolute;
+      inset: 0;
+      pointer-events: none !important;
+      z-index: 2;
+      display: block !important;
+      background: radial-gradient(
+        680px circle at var(--mouse-x, 50%) var(--mouse-y, 40%),
+        rgba(37, 99, 235, calc(var(--ambient-opacity, 0.12) * 1.5)),
+        rgba(14, 165, 233, calc(var(--ambient-opacity, 0.12) * 0.8)) 35%,
+        transparent 70%
+      );
+      transition: background 0.08s ease-out;
     }
 
     /* ═══════════════════════════════════════════════════════════════════

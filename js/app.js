@@ -2913,6 +2913,8 @@
           const yStr = currentY.toFixed(2) + '%';
           hero.style.setProperty('--mouse-x', xStr);
           hero.style.setProperty('--mouse-y', yStr);
+          document.documentElement.style.setProperty('--mouse-x', xStr);
+          document.documentElement.style.setProperty('--mouse-y', yStr);
           document.documentElement.style.setProperty('--light-x', xStr);
           document.documentElement.style.setProperty('--light-y', yStr);
           requestAnimationFrame(updatePhysics);
