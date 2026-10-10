@@ -347,165 +347,127 @@
       }
     }
 
-    /* ─── HERO SECTION WITH FADING BLUEPRINT GRID ─── */
-    /* ─── EXPANDED HERO SECTION (60% VIEWPORT WITH STATIC BLUEPRINT GRID + 3D DEPTH LAB ENGINE) ─── */
+    /* ─── PURE SILK HERO SECTION WITH GLACIAL AURORA GRADIENT MESH ─── */
     .hero-wrapper {
       position: relative;
-      background-color: var(--surface-canvas);
+      background-color: #FFFFFF !important;
+      background: #FFFFFF !important;
       overflow: hidden;
-      border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+      border-bottom: 1px solid #F1F5F9;
       min-height: auto;
       padding: 48px 0 44px 0;
       display: flex;
       align-items: center;
-      perspective: 1000px;
-      perspective-origin: 50% 50%;
     }
 
-    .hero-grid-static {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        linear-gradient(to right, rgba(37, 99, 235, 0.08) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(37, 99, 235, 0.08) 1px, transparent 1px);
-      background-size: 36px 36px;
-      pointer-events: none;
-      z-index: 1;
-      transform: translateZ(0); /* Anchored to bottom floor */
+    /* Grids & Dots completely removed per Reddit clean design principles */
+    .hero-grid-static,
+    .dot-grid-wrap,
+    .spotlight-wrap {
+      display: none !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      visibility: hidden !important;
     }
 
     /* ═══════════════════════════════════════════════════════════════════
-       UNIVERSAL WINNING SOLUTION: AMBIENT BACKGROUND MICRO-ANIMATIONS
-       (Glacial Aurora Orbs + Dot Grid + Cursor Spotlight + Noise Dither)
+       ETHICALLY CRAFTED AMBIENT GLACIAL AURORA GRADIENT MESH
+       (Deep Silk Blur 140px + Organic Prime-Cycle Drift + Anti-Banding Shield)
        ═══════════════════════════════════════════════════════════════════ */
 
-    /* Strict Event Isolation (Secret 4) */
+    /* Strict Event Isolation (Zero Pointer Events Interference) */
     .ambient-background-stage {
       position: absolute;
       inset: 0;
       overflow: hidden;
       pointer-events: none !important;
       user-select: none !important;
-      z-index: 2;
+      z-index: 1;
+      background: #FFFFFF;
     }
 
-    /* SECRET 2: SVG Fractal Noise Dithering & Film Grain Overlay */
+    /* SVG Fractal Noise Dithering (Ultra-subtle 2.2% to prevent color banding on 8-bit displays) */
     .ambient-noise-shield {
       position: absolute;
       inset: 0;
-      opacity: 0.038; /* 3.8% eliminates gradient banding without darkening */
+      opacity: 0.022;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
       mix-blend-mode: overlay;
       pointer-events: none !important;
-      z-index: 5;
+      z-index: 3;
       display: block;
     }
 
-    /* PATTERN 1: GLACIAL AURORA ORBS (SECRET 1 & 3: GPU transforms + Prime cycles) */
+    /* GLACIAL AURORA ORBS CONTAINER */
     .aurora-orbs-wrap {
       position: absolute;
       inset: 0;
       pointer-events: none !important;
-      z-index: 2;
+      z-index: 1;
     }
 
     .aurora-orb {
       position: absolute;
       border-radius: 50%;
-      filter: blur(105px); /* Pre-blurred statically (Secret 1) */
+      filter: blur(140px); /* Deep, luxurious Gaussian blur for seamless ethereal bloom */
       will-change: transform;
-      opacity: var(--ambient-opacity, 0.08);
+      opacity: var(--ambient-opacity, 0.14);
       pointer-events: none !important;
       transform: translate3d(0, 0, 0);
     }
 
-    /* Orb 1: Cobalt Blue (Prime Duration: 29s) */
+    /* Orb 1: Cobalt Blue (Prime Duration: 29s) — Anchored top-left / center */
     .orb-cobalt {
-      width: 580px;
-      height: 580px;
-      background: radial-gradient(circle, #2563EB 0%, #1D4ED8 65%, transparent 100%);
-      top: -120px;
-      left: 15%;
+      width: 620px;
+      height: 620px;
+      background: radial-gradient(circle, #2563EB 0%, #3B82F6 40%, #1D4ED8 68%, transparent 100%);
+      top: -140px;
+      left: 10%;
       animation: float-prime-1 29s infinite ease-in-out alternate;
     }
 
-    /* Orb 2: Electric Cyan / Sky (Prime Duration: 37s) */
+    /* Orb 2: Electric Cyan / Sky (Prime Duration: 37s) — Anchored top-right */
     .orb-cyan {
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, #06B6D4 0%, #0284C7 60%, transparent 100%);
-      top: 40px;
-      right: 12%;
+      width: 560px;
+      height: 560px;
+      background: radial-gradient(circle, #38BDF8 0%, #0284C7 52%, transparent 100%);
+      top: 15px;
+      right: 8%;
       animation: float-prime-2 37s infinite ease-in-out alternate;
     }
 
-    /* Orb 3: Violet Deep Ambient (Prime Duration: 43s) */
+    /* Orb 3: Violet Deep Ambient (Prime Duration: 43s) — Anchored bottom-center */
     .orb-violet {
-      width: 440px;
-      height: 440px;
-      background: radial-gradient(circle, #8B5CF6 0%, #6D28D9 60%, transparent 100%);
-      bottom: -60px;
-      left: 45%;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, #8B5CF6 0%, #6D28D9 55%, transparent 100%);
+      bottom: -80px;
+      left: 42%;
       animation: float-prime-3 43s infinite ease-in-out alternate;
     }
 
-    /* GPU-Only Hardware-Accelerated Keyframes (Secret 1) */
+    /* Hardware-Accelerated Non-Repetitive Ambient Motion */
     @keyframes float-prime-1 {
       0%   { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
-      33%  { transform: translate3d(70px, 45px, 0) scale(1.09) rotate(8deg); }
-      66%  { transform: translate3d(-50px, 90px, 0) scale(0.96) rotate(-6deg); }
-      100% { transform: translate3d(30px, -40px, 0) scale(1.04) rotate(12deg); }
+      33%  { transform: translate3d(60px, 35px, 0) scale(1.07) rotate(6deg); }
+      66%  { transform: translate3d(-40px, 70px, 0) scale(0.96) rotate(-5deg); }
+      100% { transform: translate3d(25px, -30px, 0) scale(1.04) rotate(10deg); }
     }
     @keyframes float-prime-2 {
       0%   { transform: translate3d(0, 0, 0) scale(1); }
-      40%  { transform: translate3d(-85px, -35px, 0) scale(1.08); }
-      80%  { transform: translate3d(60px, 75px, 0) scale(0.94); }
-      100% { transform: translate3d(-40px, 40px, 0) scale(1.03); }
+      40%  { transform: translate3d(-70px, -30px, 0) scale(1.06); }
+      80%  { transform: translate3d(50px, 55px, 0) scale(0.95); }
+      100% { transform: translate3d(-30px, 30px, 0) scale(1.03); }
     }
     @keyframes float-prime-3 {
       0%   { transform: translate3d(0, 0, 0) scale(1); }
-      50%  { transform: translate3d(55px, -65px, 0) scale(1.1); }
-      100% { transform: translate3d(-60px, 30px, 0) scale(0.93); }
+      50%  { transform: translate3d(45px, -50px, 0) scale(1.08); }
+      100% { transform: translate3d(-45px, 25px, 0) scale(0.94); }
     }
 
-    /* PATTERN 2: INTERACTIVE CURSOR SPOTLIGHT / AMBIENT WAKE */
-    .spotlight-wrap {
-      position: absolute;
-      inset: 0;
-      pointer-events: none !important;
-      z-index: 3;
-      background: radial-gradient(
-        680px circle at var(--mouse-x, 50%) var(--mouse-y, 40%),
-        rgba(37, 99, 235, calc(var(--ambient-opacity, 0.08) * 1.5)),
-        rgba(14, 165, 233, calc(var(--ambient-opacity, 0.08) * 0.8)) 35%,
-        transparent 70%
-      );
-      transition: background 0.08s ease-out;
-    }
-
-    /* PATTERN 3: ARCHITECTURAL DOT MATRIX GRID WITH PROXIMITY MASK */
-    .dot-grid-wrap {
-      position: absolute;
-      inset: 0;
-      pointer-events: none !important;
-      z-index: 2;
-      background-image: radial-gradient(circle, rgba(100, 116, 139, calc(var(--ambient-opacity, 0.08) * 2.2)) 1.2px, transparent 1.2px);
-      background-size: 28px 28px;
-      mask-image: radial-gradient(ellipse 70% 60% at 50% 38%, black 25%, transparent 80%);
-      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 38%, black 25%, transparent 80%);
-      animation: grid-drift 45s infinite linear;
-    }
-    @keyframes grid-drift {
-      0% { background-position: 0px 0px; }
-      100% { background-position: 56px 56px; }
-    }
-
-    /* SECRET 5: REDUCED MOTION SAFEGUARD */
+    /* REDUCED MOTION SAFEGUARD */
     @media (prefers-reduced-motion: reduce) {
-      .aurora-orb, .dot-grid-wrap {
+      .aurora-orb {
         animation: none !important;
         transform: none !important;
       }
@@ -542,29 +504,9 @@
       pointer-events: auto;
     }
 
-    /* CONNECTING BLUEPRINT TECHNICAL AXIS (UNIFIED HERO COMPOSITION) */
+    /* CONNECTING BLUEPRINT TECHNICAL AXIS (HIDDEN FOR CLEAN ORGANIC CANVAS) */
     .hero-blueprint-axis {
-      width: 1px;
-      height: 270px;
-      background: linear-gradient(180deg, transparent 0%, rgba(37, 99, 235, 0.22) 15%, rgba(37, 99, 235, 0.22) 85%, transparent 100%);
-      position: relative;
-      flex-shrink: 0;
-      pointer-events: none;
-    }
-    .hero-blueprint-axis::before {
-      content: "INDEX · DEPT";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(-90deg);
-      font-family: var(--font-mono);
-      font-size: 8px;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      color: rgba(37, 99, 235, 0.45);
-      white-space: nowrap;
-      background: var(--surface-canvas, #F8FAFC);
-      padding: 0 6px;
+      display: none !important;
     }
 
     /* STATIC WORDS: "The " and "Built by VNITians." — DYNAMIC SPECULAR CHROME (DEEP SLATE TO MIDNIGHT) */
@@ -649,35 +591,18 @@
 
     .leaderboard-card {
       position: relative;
-      background: #FFFFFF;
-      border: 1px solid #CBD5E1;
-      border-radius: 4px;
-      padding: 14px 14px 10px;
-      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      border-radius: 14px;
+      padding: 12px 14px 10px;
+      box-shadow: 0 12px 32px -8px rgba(15, 23, 42, 0.07), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
     }
-    .leaderboard-card::before {
-      content: "+";
-      position: absolute;
-      top: -6px;
-      left: -5px;
-      font-family: var(--font-mono);
-      font-size: 14px;
-      font-weight: 800;
-      color: #2563EB;
-      line-height: 1;
-      pointer-events: none;
-    }
+    .leaderboard-card::before,
     .leaderboard-card::after {
-      content: "+";
-      position: absolute;
-      bottom: -6px;
-      right: -5px;
-      font-family: var(--font-mono);
-      font-size: 14px;
-      font-weight: 800;
-      color: #2563EB;
-      line-height: 1;
-      pointer-events: none;
+      display: none !important;
+      content: none !important;
     }
 
     /* 4-Column Headers (On the Grid) */

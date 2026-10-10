@@ -2941,11 +2941,11 @@
         scheduleUpdate();
       }, { passive: true });
 
-      // 2. Typewriter Keyword Ticker for Headline
+      // 2. Typewriter Keyword Ticker for Headline (Startups -> Companies -> Products)
       const dynamicWordEl = document.getElementById('heroDynamicWord');
       if (dynamicWordEl) {
-        const tickerWords = ['Startups', 'Companies', 'Ventures', 'Founders'];
-        let wordIdx = 0, charIdx = 0, isDeleting = false;
+        const tickerWords = ['Startups', 'Companies', 'Products'];
+        let wordIdx = 0, charIdx = tickerWords[0].length, isDeleting = true;
         function typeTick() {
           const currentWord = tickerWords[wordIdx];
           if (isDeleting) {
@@ -2954,7 +2954,7 @@
             if (charIdx <= 0) {
               isDeleting = false;
               wordIdx = (wordIdx + 1) % tickerWords.length;
-              setTimeout(typeTick, 350);
+              setTimeout(typeTick, 380);
               return;
             }
             setTimeout(typeTick, 45);
@@ -2963,13 +2963,14 @@
             dynamicWordEl.textContent = currentWord.substring(0, charIdx);
             if (charIdx === currentWord.length) {
               isDeleting = true;
-              setTimeout(typeTick, 2400);
+              setTimeout(typeTick, 2600);
               return;
             }
             setTimeout(typeTick, 75);
           }
         }
-        setTimeout(typeTick, 1200);
+        // Startups is displayed on load; pause 2.6s before smooth deletion
+        setTimeout(typeTick, 2600);
       }
     })();
 
