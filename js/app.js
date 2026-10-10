@@ -2413,9 +2413,9 @@
     function openSubmissionModal() {
       // Always reset title, subtitle and view to the form; anything typed earlier and not yet submitted is kept
       const modalTitle = document.getElementById('submissionModalTitle');
-      if (modalTitle) modalTitle.textContent = 'Submit your startup.';
+      if (modalTitle) modalTitle.textContent = 'Get your startup listed. 30 seconds.';
       const modalSub = document.getElementById('submissionModalSub');
-      if (modalSub) modalSub.textContent = 'Join the curated registry of companies built by VNIT alumni.';
+      if (modalSub) modalSub.textContent = 'Takes under 30 seconds. Join 30+ alumni founders putting VNIT on the global startup frontier.';
       document.getElementById('submissionForm').hidden = false;
       document.getElementById('submissionSuccess').hidden = true;
       document.getElementById('submissionError').hidden = true;
@@ -2502,12 +2502,12 @@
         document.getElementById('submissionForm').reset();
       } catch (err) {
         console.error('Startup submission failed:', err);
-        errorEl.textContent = "We couldn't submit your details right now. Please check your internet connection and try clicking Submit Startup again.";
+        errorEl.textContent = "We couldn't submit your details right now. Please check your internet connection and try clicking Submit for Listing again.";
         errorEl.hidden = false;
       } finally {
         clearTimeout(timeout);
         submitBtn.disabled = false;
-        submitBtn.innerHTML = '<span>Submit Startup</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>';
+        submitBtn.innerHTML = '<span>Submit for Listing</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>';
       }
     }
 
@@ -2527,6 +2527,11 @@
 
       const compEl = document.getElementById('submissionSuccessCompany');
       if (compEl) compEl.textContent = cleanCompany;
+
+      const metaEl = document.getElementById('submissionSuccessMeta');
+      if (metaEl) {
+        metaEl.innerHTML = `We've received <strong class="submit-success-company">${cleanCompany}</strong>. We'll verify your details and email you once your company is live.`;
+      }
 
       const emailEl = document.getElementById('submissionSuccessEmail');
       if (emailEl) emailEl.textContent = cleanEmail;
