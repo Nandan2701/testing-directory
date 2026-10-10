@@ -2795,14 +2795,8 @@
         let screenX = e.clientX + offsetX;
         let screenY = e.clientY + offsetY;
 
-        // Viewport bounds protection
-        const cardW = 224;
+        // Viewport bounds protection (Y-axis only to keep cursor at Top-Left)
         const cardH = inspector.offsetHeight || 220;
-
-        if (screenX + cardW > window.innerWidth - 12) {
-          screenX = e.clientX - cardW - offsetX;
-        }
-        if (screenX < 8) screenX = 8;
 
         if (screenY + cardH > window.innerHeight - 12) {
           screenY = window.innerHeight - cardH - 12;
