@@ -936,36 +936,6 @@
     "logo_url": "./assets/logos/aristok-technologies.png"
   },
   {
-    "id": "108ed4e6-924d-486e-9d27-6cd8ad918ac6",
-    "name": "Cognizant",
-    "sector": "Technology & Enterprise Solutions",
-    "pitch": "Global enterprise technology and consulting firm engineering modern digital architectures, cloud transformations, and AI systems for Fortune 500 companies.",
-    "website_url": "https://www.cognizant.com",
-    "linkedin_url": "https://linkedin.com/company/cognizant",
-    "department": "Computer Science",
-    "batch_year": "2016",
-    "location": "Bengaluru / Pune, India",
-    "funding_stage": "Bootstrapped",
-    "funding_amount": "Bootstrapped",
-    "headcount": 15,
-    "incorporated_year": 2019,
-    "founders": [
-      {
-        "name": "Chandramouli Killi",
-        "role": "Co-Founder / Alumnus",
-        "degree": "B.Tech Comp '16",
-        "linkedin": "https://linkedin.com/in/chandramouli-killi"
-      }
-    ],
-    "is_verified": true,
-    "is_published": false,
-    "display_order": 100,
-    "about": "Cognizant is a global Fortune 500 technology services and consulting enterprise that modernizes core business infrastructure, digital applications, and cloud operations for major global companies across banking, healthcare, and retail.",
-    "slug": "cognizant",
-    "monogram": "CO",
-    "logo_url": "./assets/logos/cognizant.png"
-  },
-  {
     "id": "e3edca99-45e0-4437-bbc0-dd5099a47060",
     "name": "CAMS Limited",
     "sector": "Technology & Enterprise Solutions",

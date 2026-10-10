@@ -947,36 +947,6 @@
             "logo_url": "./assets/logos/aristok-technologies.png"
       },
       {
-            "id": "108ed4e6-924d-486e-9d27-6cd8ad918ac6",
-            "name": "Cognizant",
-            "sector": "Technology & Enterprise Solutions",
-            "pitch": "Global enterprise technology and consulting firm engineering modern digital architectures, cloud transformations, and AI systems for Fortune 500 companies.",
-            "website_url": "https://www.cognizant.com",
-            "linkedin_url": "https://linkedin.com/company/cognizant",
-            "department": "Computer Science",
-            "batch_year": "2016",
-            "location": "Bengaluru / Pune, India",
-            "funding_stage": "Bootstrapped",
-            "funding_amount": "Bootstrapped",
-            "headcount": 15,
-            "incorporated_year": 2019,
-            "founders": [
-                  {
-                        "name": "Chandramouli Killi",
-                        "role": "Co-Founder / Alumnus",
-                        "degree": "B.Tech Comp '16",
-                        "linkedin": "https://linkedin.com/in/chandramouli-killi"
-                  }
-            ],
-            "is_verified": true,
-            "is_published": false,
-            "display_order": 100,
-            "about": "Cognizant is a global Fortune 500 technology services and consulting enterprise that modernizes core business infrastructure, digital applications, and cloud operations for major global companies across banking, healthcare, and retail.",
-            "slug": "cognizant",
-            "monogram": "CO",
-            "logo_url": "./assets/logos/cognizant.png"
-      },
-      {
             "id": "e3edca99-45e0-4437-bbc0-dd5099a47060",
             "name": "CAMS Limited",
             "sector": "Technology & Enterprise Solutions",
@@ -1284,6 +1254,58 @@
       if (hcEl) hcEl.innerText = totalHeadcount.toLocaleString();
       const hpEl = document.getElementById('handpickedStartupsCounter');
       if (hpEl) hpEl.innerText = allStartups.length;
+
+      // Ensure hero leaderboard comparison window counts stay dynamically aligned
+      updateHeroLeaderboardDynamic();
+    }
+
+    function updateHeroLeaderboardDynamic() {
+      const listEl = document.getElementById('heroLeaderboardList');
+      if (!listEl) return;
+      const rows = listEl.querySelectorAll('.leaderboard-row');
+      const branchQueryMap = {
+        'CSE': 'Computer Science',
+        'ECE': 'Electronics',
+        'EEE': 'Electrical',
+        'CIVIL': 'Civil',
+        'MINING': 'Mining',
+        'MECH': 'Mechanical',
+        'MME': 'Metallurgy',
+        'ARCH': 'Architecture',
+        'CHEM': 'Chemical'
+      };
+      const counts = {};
+      let maxCount = 0;
+      const total = allStartups.length || 1;
+      rows.forEach(row => {
+        const codeEl = row.querySelector('.leaderboard-branch-code');
+        if (!codeEl) return;
+        const code = codeEl.textContent.trim();
+        const query = branchQueryMap[code] || code;
+        const count = allStartups.filter(s => hasBranch(s, query)).length;
+        counts[code] = count;
+        if (count > maxCount) maxCount = count;
+      });
+      if (maxCount === 0) maxCount = 1;
+      rows.forEach(row => {
+        const codeEl = row.querySelector('.leaderboard-branch-code');
+        if (!codeEl) return;
+        const code = codeEl.textContent.trim();
+        const count = counts[code] !== undefined ? counts[code] : 0;
+        const sharePct = ((count / total) * 100).toFixed(1) + '%';
+        const relPct = ((count / maxCount) * 100).toFixed(1);
+
+        const bar = row.querySelector('.leaderboard-bar');
+        if (bar) {
+          bar.setAttribute('data-count', count);
+          bar.setAttribute('data-pct', relPct);
+          bar.style.width = `${relPct}%`;
+        }
+        const valCount = row.querySelector('.leaderboard-val-count');
+        if (valCount) valCount.textContent = count;
+        const valShare = row.querySelector('.leaderboard-val-share');
+        if (valShare) valShare.textContent = sharePct;
+      });
     }
 
     function hasBranch(startup, branchKey) {
