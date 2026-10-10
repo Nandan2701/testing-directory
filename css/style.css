@@ -61,6 +61,11 @@
       --light-x: 50%;
       --light-y: 50%;
 
+      /* UNIVERSAL WINNING SOLUTION: AMBIENT MOTION TOKENS */
+      --ambient-opacity: 0.08;
+      --mouse-x: 50%;
+      --mouse-y: 40%;
+
       /* STATUS TELEMETRY & FOOTER TOKENS */
       --status-telemetry-bg: #EFF6FF;
       --status-telemetry-border: #BFDBFE;
@@ -370,6 +375,140 @@
       pointer-events: none;
       z-index: 1;
       transform: translateZ(0); /* Anchored to bottom floor */
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       UNIVERSAL WINNING SOLUTION: AMBIENT BACKGROUND MICRO-ANIMATIONS
+       (Glacial Aurora Orbs + Dot Grid + Cursor Spotlight + Noise Dither)
+       ═══════════════════════════════════════════════════════════════════ */
+
+    /* Strict Event Isolation (Secret 4) */
+    .ambient-background-stage {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none !important;
+      user-select: none !important;
+      z-index: 2;
+    }
+
+    /* SECRET 2: SVG Fractal Noise Dithering & Film Grain Overlay */
+    .ambient-noise-shield {
+      position: absolute;
+      inset: 0;
+      opacity: 0.038; /* 3.8% eliminates gradient banding without darkening */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+      pointer-events: none !important;
+      z-index: 5;
+      display: block;
+    }
+
+    /* PATTERN 1: GLACIAL AURORA ORBS (SECRET 1 & 3: GPU transforms + Prime cycles) */
+    .aurora-orbs-wrap {
+      position: absolute;
+      inset: 0;
+      pointer-events: none !important;
+      z-index: 2;
+    }
+
+    .aurora-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(105px); /* Pre-blurred statically (Secret 1) */
+      will-change: transform;
+      opacity: var(--ambient-opacity, 0.08);
+      pointer-events: none !important;
+      transform: translate3d(0, 0, 0);
+    }
+
+    /* Orb 1: Cobalt Blue (Prime Duration: 29s) */
+    .orb-cobalt {
+      width: 580px;
+      height: 580px;
+      background: radial-gradient(circle, #2563EB 0%, #1D4ED8 65%, transparent 100%);
+      top: -120px;
+      left: 15%;
+      animation: float-prime-1 29s infinite ease-in-out alternate;
+    }
+
+    /* Orb 2: Electric Cyan / Sky (Prime Duration: 37s) */
+    .orb-cyan {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, #06B6D4 0%, #0284C7 60%, transparent 100%);
+      top: 40px;
+      right: 12%;
+      animation: float-prime-2 37s infinite ease-in-out alternate;
+    }
+
+    /* Orb 3: Violet Deep Ambient (Prime Duration: 43s) */
+    .orb-violet {
+      width: 440px;
+      height: 440px;
+      background: radial-gradient(circle, #8B5CF6 0%, #6D28D9 60%, transparent 100%);
+      bottom: -60px;
+      left: 45%;
+      animation: float-prime-3 43s infinite ease-in-out alternate;
+    }
+
+    /* GPU-Only Hardware-Accelerated Keyframes (Secret 1) */
+    @keyframes float-prime-1 {
+      0%   { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+      33%  { transform: translate3d(70px, 45px, 0) scale(1.09) rotate(8deg); }
+      66%  { transform: translate3d(-50px, 90px, 0) scale(0.96) rotate(-6deg); }
+      100% { transform: translate3d(30px, -40px, 0) scale(1.04) rotate(12deg); }
+    }
+    @keyframes float-prime-2 {
+      0%   { transform: translate3d(0, 0, 0) scale(1); }
+      40%  { transform: translate3d(-85px, -35px, 0) scale(1.08); }
+      80%  { transform: translate3d(60px, 75px, 0) scale(0.94); }
+      100% { transform: translate3d(-40px, 40px, 0) scale(1.03); }
+    }
+    @keyframes float-prime-3 {
+      0%   { transform: translate3d(0, 0, 0) scale(1); }
+      50%  { transform: translate3d(55px, -65px, 0) scale(1.1); }
+      100% { transform: translate3d(-60px, 30px, 0) scale(0.93); }
+    }
+
+    /* PATTERN 2: INTERACTIVE CURSOR SPOTLIGHT / AMBIENT WAKE */
+    .spotlight-wrap {
+      position: absolute;
+      inset: 0;
+      pointer-events: none !important;
+      z-index: 3;
+      background: radial-gradient(
+        680px circle at var(--mouse-x, 50%) var(--mouse-y, 40%),
+        rgba(37, 99, 235, calc(var(--ambient-opacity, 0.08) * 1.5)),
+        rgba(14, 165, 233, calc(var(--ambient-opacity, 0.08) * 0.8)) 35%,
+        transparent 70%
+      );
+      transition: background 0.08s ease-out;
+    }
+
+    /* PATTERN 3: ARCHITECTURAL DOT MATRIX GRID WITH PROXIMITY MASK */
+    .dot-grid-wrap {
+      position: absolute;
+      inset: 0;
+      pointer-events: none !important;
+      z-index: 2;
+      background-image: radial-gradient(circle, rgba(100, 116, 139, calc(var(--ambient-opacity, 0.08) * 2.2)) 1.2px, transparent 1.2px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 38%, black 25%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 38%, black 25%, transparent 80%);
+      animation: grid-drift 45s infinite linear;
+    }
+    @keyframes grid-drift {
+      0% { background-position: 0px 0px; }
+      100% { background-position: 56px 56px; }
+    }
+
+    /* SECRET 5: REDUCED MOTION SAFEGUARD */
+    @media (prefers-reduced-motion: reduce) {
+      .aurora-orb, .dot-grid-wrap {
+        animation: none !important;
+        transform: none !important;
+      }
     }
 
     .hero-container {

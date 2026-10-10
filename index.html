@@ -63,9 +63,29 @@
     </div>
   </nav>
 
-  <!-- HERO WRAPPER WITH STATIC ARCHITECTURAL BLUEPRINT GRID + 3D DEPTH -->
+  <!-- HERO WRAPPER WITH UNIVERSAL WINNING MICRO-ANIMATIONS (ORBS + DOT GRID + SPOTLIGHT + DITHERING) -->
   <div class="hero-wrapper" id="heroWrapper">
     <div class="hero-grid-static" aria-hidden="true"></div>
+
+    <!-- BACKGROUND AMBIENT STAGE (BEHIND TEXT & TELEMETRY) -->
+    <div class="ambient-background-stage" id="ambientStage" aria-hidden="true">
+      <!-- SECRET 2: DITHERING NOISE OVERLAY (3.8% FILM GRAIN TO PREVENT GRADIENT BANDING) -->
+      <div class="ambient-noise-shield" id="noiseShield"></div>
+
+      <!-- PATTERN 1: GLACIAL AURORA ORBS (PRIME-NUMBER DURATION CYCLES: 29s, 37s, 43s) -->
+      <div class="aurora-orbs-wrap" id="layerAurora">
+        <div class="aurora-orb orb-cobalt"></div>
+        <div class="aurora-orb orb-cyan"></div>
+        <div class="aurora-orb orb-violet"></div>
+      </div>
+
+      <!-- PATTERN 2: INTERACTIVE CURSOR SPOTLIGHT / AMBIENT WAKE -->
+      <div class="spotlight-wrap" id="layerSpotlight"></div>
+
+      <!-- PATTERN 3: ARCHITECTURAL DOTTED GRID WITH PROXIMITY MASK -->
+      <div class="dot-grid-wrap" id="layerDotGrid"></div>
+    </div>
+
     <header class="hero-container" id="heroContainer">
       <h1 class="hero-headline" id="mainHeroHeadline">
         <span class="headline-plane-static headline-word-the" id="planeTop">The</span>

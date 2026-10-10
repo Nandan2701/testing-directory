@@ -2886,9 +2886,10 @@
 
   
     /* ═══════════════════════════════════════════════════════════════════
-       DYNAMIC SPECULAR CHROME LIGHTING ENGINE (STATIC HEADLINE)
+       UNIVERSAL WINNING SOLUTION: AMBIENT MOTION & SPECULAR ENGINE
+       (LERP Physics Cursor Wake, Specular Sweep & Headline Ticker)
        ═══════════════════════════════════════════════════════════════════ */
-    (function initHeroDepthLabEngine() {
+    (function initUniversalAmbientEngine() {
       const hero = document.getElementById('heroWrapper');
       if (!hero) return;
 
@@ -2897,33 +2898,79 @@
         headlineEl.style.transform = 'none';
       }
 
-      let width = hero.offsetWidth;
-      let height = hero.offsetHeight;
+      // 1. Smooth LERP Cursor Tracking for Spotlight Wake & Specular Highlights
+      let targetX = 50, targetY = 40;
+      let currentX = 50, currentY = 40;
+      let isRafActive = false;
 
-      function resize() {
-        width = hero.offsetWidth;
-        height = hero.offsetHeight;
+      function updatePhysics() {
+        const dx = targetX - currentX;
+        const dy = targetY - currentY;
+        if (Math.abs(dx) > 0.04 || Math.abs(dy) > 0.04) {
+          currentX += dx * 0.12;
+          currentY += dy * 0.12;
+          const xStr = currentX.toFixed(2) + '%';
+          const yStr = currentY.toFixed(2) + '%';
+          hero.style.setProperty('--mouse-x', xStr);
+          hero.style.setProperty('--mouse-y', yStr);
+          document.documentElement.style.setProperty('--light-x', xStr);
+          document.documentElement.style.setProperty('--light-y', yStr);
+          requestAnimationFrame(updatePhysics);
+        } else {
+          isRafActive = false;
+        }
       }
-      window.addEventListener('resize', resize);
+
+      function scheduleUpdate() {
+        if (!isRafActive) {
+          isRafActive = true;
+          requestAnimationFrame(updatePhysics);
+        }
+      }
 
       hero.addEventListener('mousemove', (e) => {
         const rect = hero.getBoundingClientRect();
-        const currentX = e.clientX - rect.left;
-        const currentY = e.clientY - rect.top;
-
-        // Dynamic Specular Chrome Light Angle Tracking (Light Sweep across letters ONLY)
-        const pctX = ((currentX / (width || 1)) * 100).toFixed(1);
-        const pctY = ((currentY / (height || 1)) * 100).toFixed(1);
-        document.documentElement.style.setProperty('--light-x', `${pctX}%`);
-        document.documentElement.style.setProperty('--light-y', `${pctY}%`);
-      });
+        targetX = Math.max(0, Math.min(100, ((e.clientX - rect.left) / (rect.width || 1)) * 100));
+        targetY = Math.max(0, Math.min(100, ((e.clientY - rect.top) / (rect.height || 1)) * 100));
+        scheduleUpdate();
+      }, { passive: true });
 
       hero.addEventListener('mouseleave', () => {
-        document.documentElement.style.setProperty('--light-x', '50%');
-        document.documentElement.style.setProperty('--light-y', '50%');
-      });
+        targetX = 50;
+        targetY = 40;
+        scheduleUpdate();
+      }, { passive: true });
 
-      resize();
+      // 2. Typewriter Keyword Ticker for Headline
+      const dynamicWordEl = document.getElementById('heroDynamicWord');
+      if (dynamicWordEl) {
+        const tickerWords = ['Startups', 'Companies', 'Ventures', 'Founders'];
+        let wordIdx = 0, charIdx = 0, isDeleting = false;
+        function typeTick() {
+          const currentWord = tickerWords[wordIdx];
+          if (isDeleting) {
+            charIdx--;
+            dynamicWordEl.textContent = currentWord.substring(0, charIdx);
+            if (charIdx <= 0) {
+              isDeleting = false;
+              wordIdx = (wordIdx + 1) % tickerWords.length;
+              setTimeout(typeTick, 350);
+              return;
+            }
+            setTimeout(typeTick, 45);
+          } else {
+            charIdx++;
+            dynamicWordEl.textContent = currentWord.substring(0, charIdx);
+            if (charIdx === currentWord.length) {
+              isDeleting = true;
+              setTimeout(typeTick, 2400);
+              return;
+            }
+            setTimeout(typeTick, 75);
+          }
+        }
+        setTimeout(typeTick, 1200);
+      }
     })();
 
     /* ─── DUAL-ZONE INDEPENDENT SCROLL SYNC ─── */
