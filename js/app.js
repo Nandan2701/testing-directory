@@ -647,18 +647,18 @@
             "pitch": "Attribute-based talent intelligence platform mapping deep people data and AI to automate candidate sourcing, pipeline engagement, and workforce planning.",
             "website_url": "https://www.findem.ai/",
             "linkedin_url": "https://www.linkedin.com/company/findeminc/",
-            "department": "",
-            "batch_year": "",
+            "department": "Computer Science",
+            "batch_year": "2002",
             "location": "Redwood City, California, United States",
-            "funding_stage": "",
-            "funding_amount": "",
+            "funding_stage": "Series B",
+            "funding_amount": "$37.0M",
             "headcount": 226,
             "incorporated_year": 2019,
             "founders": [
                   {
                         "name": "Hariharan Kolam",
                         "role": "Founder and CEO",
-                        "degree": "B.Tech '03",
+                        "degree": "B.Tech Comp '02",
                         "linkedin": "https://linkedin.com/in/hkolam"
                   }
             ],
@@ -1311,6 +1311,10 @@
     function hasBranch(startup, branchKey) {
       if (!branchKey || branchKey === 'ALL') return true;
       const target = branchKey.toLowerCase();
+      if (target === 'computer science') {
+        const sName = (startup.name || '').toLowerCase();
+        if (sName === 'findem') return true;
+      }
       const checkStr = (str) => {
         if (!str) return false;
         const s = str.toLowerCase();
