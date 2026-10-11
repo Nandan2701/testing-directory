@@ -934,35 +934,5 @@
     "slug": "aristok-technologies",
     "monogram": "AR",
     "logo_url": "./assets/logos/aristok-technologies.png"
-  },
-  {
-    "id": "e3edca99-45e0-4437-bbc0-dd5099a47060",
-    "name": "CAMS Limited",
-    "sector": "Technology & Enterprise Solutions",
-    "pitch": "Financial infrastructure and technology platform providing mutual fund transfer agency, digital KYC, and payments processing for India's capital markets.",
-    "website_url": "https://www.cams-limited.com",
-    "linkedin_url": "https://linkedin.com/company/cams-limited",
-    "department": "Computer Science",
-    "batch_year": "2016",
-    "location": "Bengaluru / Pune, India",
-    "funding_stage": "Bootstrapped",
-    "funding_amount": "Bootstrapped",
-    "headcount": 15,
-    "incorporated_year": 2019,
-    "founders": [
-      {
-        "name": "Mohit Raisinghani",
-        "role": "Co-Founder / Alumnus",
-        "degree": "B.Tech Comp '16",
-        "linkedin": "https://linkedin.com/in/mohit-raisinghani"
-      }
-    ],
-    "is_verified": true,
-    "is_published": false,
-    "display_order": 100,
-    "about": "Computer Age Management Services (CAMS) is India's premier financial infrastructure provider and mutual fund registrar, handling transaction processing, digital KYC, and registry operations for over 69% of the Indian mutual fund industry.",
-    "slug": "cams-limited",
-    "monogram": "CA",
-    "logo_url": "./assets/logos/cams-limited.png"
   }
 ]
