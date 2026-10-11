@@ -590,13 +590,16 @@
       margin-right: 0.28em;
     }
 
-    /* KINETIC ITALIC EMPHASIS: "Built" — authentic crafted verb accent */
+    /* KINETIC EDITORIAL SERIF ACCENT: "Built" — Instrument Serif 400 Italic (Linear/Stripe pairing) */
     .headline-word-built {
+      font-family: 'Instrument Serif', Georgia, serif;
       font-style: italic;
-      font-weight: 800;
-      letter-spacing: -0.012em;
+      font-weight: 400;
+      font-size: 1.12em;
+      letter-spacing: -0.01em;
       display: inline;
-      margin-right: 0.05em;
+      margin-right: 0.08em;
+      vertical-align: -0.02em;
     }
 
     /* DYNAMIC KEYWORD CONTAINER (Inline flow with zero unnatural gap & zero vertical jerk) */
