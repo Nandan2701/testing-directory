@@ -3320,18 +3320,246 @@
       gap: 12px;
     }
 
-    .footer-links {
+    .footer-links,
+    .footer-legal-links {
       display: flex;
-      gap: 16px;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    .footer-links a {
-      color: #475569;
+    .footer-links a,
+    .footer-legal-links a {
+      color: #64748B;
+      text-decoration: none;
+      font-weight: 500;
       transition: color 0.15s ease;
     }
 
-    .footer-links a:hover {
-      color: var(--action-primary);
+    .footer-links a:hover,
+    .footer-legal-links a:hover {
+      color: var(--action-primary, #F97316);
+      text-decoration: underline;
+    }
+
+    .footer-dot {
+      color: #CBD5E1;
+      font-size: 8px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       LEGAL & COMPLIANCE MODAL (RAZORPAY VERIFICATION & PLATFORM POLICIES)
+       ═══════════════════════════════════════════════════════════════════ */
+    .legal-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .legal-modal-backdrop.is-open {
+      display: flex;
+      opacity: 1;
+    }
+
+    .legal-modal-dialog {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 18px;
+      width: 100%;
+      max-width: 720px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.25);
+      overflow: hidden;
+      animation: legalDialogIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes legalDialogIn {
+      from { transform: translateY(12px) scale(0.98); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .legal-modal-header {
+      padding: 20px 24px 16px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      border-bottom: 1px solid #F1F5F9;
+    }
+
+    .legal-modal-kicker {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #F59E0B;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .legal-modal-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #0F172A;
+      margin: 0;
+    }
+
+    .legal-close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      background: #F8FAFC;
+      color: #64748B;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .legal-close-btn:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+      border-color: #CBD5E1;
+    }
+
+    .legal-tabs-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 24px;
+      background: #F8FAFC;
+      border-bottom: 1px solid #E2E8F0;
+      overflow-x: auto;
+    }
+
+    .legal-tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #64748B;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .legal-tab-btn:hover {
+      color: #0F172A;
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .legal-tab-btn.is-active {
+      background: #FFFFFF;
+      color: #D97706;
+      border-color: #FED7AA;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .legal-modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: #334155;
+    }
+
+    .legal-tab-pane {
+      display: none;
+    }
+
+    .legal-tab-pane.is-active {
+      display: block;
+    }
+
+    .legal-section {
+      margin-bottom: 20px;
+    }
+
+    .legal-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .legal-h4 {
+      font-size: 14px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .legal-p {
+      color: #475569;
+      margin-bottom: 8px;
+    }
+
+    .legal-email-link {
+      color: #D97706;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    .legal-contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 640px) {
+      .legal-contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .legal-contact-card {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .legal-contact-icon {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .legal-contact-label {
+      font-size: 11.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748B;
+    }
+
+    .legal-contact-val {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0F172A;
+      word-break: break-all;
+    }
+
+    .legal-contact-sub {
+      font-size: 11.5px;
+      color: #94A3B8;
+      margin-top: 2px;
     }
 
     /* ─── MODAL (Submit Startup) ─── */

@@ -24,6 +24,9 @@
 
   <!-- Core Design System Stylesheet -->
   <link rel="stylesheet" href="css/style.css?v=static_headline_vertex_v11">
+
+  <!-- Razorpay Official Checkout SDK -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 
 <body>
@@ -533,10 +536,19 @@
 
     </div>
 
-    <!-- Institutional Footer Bar -->
+    <!-- Institutional Footer Bar with Compliance Links -->
     <div class="site-footer">
       <div class="footer-inner">
-        <div>VISVESVARAYA NATIONAL INSTITUTE OF TECHNOLOGY · EST. 1960 (FORMERLY VRCE NAGPUR)</div>
+        <div class="footer-institution">VISVESVARAYA NATIONAL INSTITUTE OF TECHNOLOGY · EST. 1960 (FORMERLY VRCE NAGPUR)</div>
+        <div class="footer-legal-links">
+          <a href="javascript:void(0)" onclick="openLegalModal('terms')">Terms of Service</a>
+          <span class="footer-dot" aria-hidden="true">•</span>
+          <a href="javascript:void(0)" onclick="openLegalModal('privacy')">Privacy Policy</a>
+          <span class="footer-dot" aria-hidden="true">•</span>
+          <a href="javascript:void(0)" onclick="openLegalModal('refund')">Refund & Cancellation</a>
+          <span class="footer-dot" aria-hidden="true">•</span>
+          <a href="javascript:void(0)" onclick="openLegalModal('contact')">Contact Us</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -796,6 +808,121 @@
           <span style="color:#10B981;font-size:12px;">🛡️</span>
           <span>100% goes directly to server hosting & adding new startups</span>
         </div>
+  <!-- LEGAL & COMPLIANCE MODAL (Razorpay Compliance & Platform Documentation) -->
+  <div class="legal-modal-backdrop" id="legalModal" role="dialog" aria-modal="true" aria-label="Legal & Platform Policies" onclick="handleLegalBackdropClick(event)">
+    <div class="legal-modal-dialog" id="legalModalDialog" onclick="event.stopPropagation()">
+      <div class="legal-modal-header">
+        <div class="legal-modal-title-wrap">
+          <span class="legal-modal-kicker">Platform Documentation</span>
+          <h2 class="legal-modal-title" id="legalModalTitle">Terms of Service</h2>
+        </div>
+        <button type="button" class="legal-close-btn" onclick="closeLegalModal()" aria-label="Close legal modal">✕</button>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div class="legal-tabs-bar" role="tablist">
+        <button type="button" class="legal-tab-btn is-active" id="legalTabTerms" onclick="switchLegalTab('terms')">Terms of Service</button>
+        <button type="button" class="legal-tab-btn" id="legalTabPrivacy" onclick="switchLegalTab('privacy')">Privacy Policy</button>
+        <button type="button" class="legal-tab-btn" id="legalTabRefund" onclick="switchLegalTab('refund')">Refund &amp; Cancellation</button>
+        <button type="button" class="legal-tab-btn" id="legalTabContact" onclick="switchLegalTab('contact')">Contact Us</button>
+      </div>
+
+      <!-- Tab Content Panes -->
+      <div class="legal-modal-body">
+        <!-- 1. Terms Pane -->
+        <div class="legal-tab-pane is-active" id="paneTerms">
+          <div class="legal-section">
+            <h4 class="legal-h4">1. Acceptance of Terms</h4>
+            <p class="legal-p">By accessing or using VNIT BuilderBase (accessible at <code>vnit-builderbase.vercel.app</code>), you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use the directory.</p>
+          </div>
+          <div class="legal-section">
+            <h4 class="legal-h4">2. Platform Purpose &amp; Scope</h4>
+            <p class="legal-p">VNIT BuilderBase is an independent community initiative designed to discover, celebrate, and connect startup ventures, digital products, and innovations founded or co-founded by alumni of Visvesvaraya National Institute of Technology (VNIT), Nagpur. It serves exclusively as a discovery and networking bridge between founders, students, operators, and ecosystem builders.</p>
+          </div>
+          <div class="legal-section">
+            <h4 class="legal-h4">3. Directory Submissions &amp; Verification</h4>
+            <p class="legal-p">Founders and community members may submit companies for inclusion via the submission portal. All submissions undergo manual review for accuracy before publishing. We reserve the right to decline or remove any listing that is fraudulent, misleading, or fails to meet community standards.</p>
+          </div>
+          <div class="legal-section">
+            <h4 class="legal-h4">4. Intellectual Property</h4>
+            <p class="legal-p">All brand logos, trademarks, and registered names displayed on the directory remain the intellectual property of their respective corporate owners. Their display on VNIT BuilderBase is strictly for editorial, informational, and identification purposes.</p>
+          </div>
+          <div class="legal-section">
+            <h4 class="legal-h4">5. Limitation of Liability</h4>
+            <p class="legal-p">VNIT BuilderBase is provided "as is" without warranties of any kind. We do not endorse any individual venture or guarantee investment or business outcomes resulting from directory connections.</p>
+          </div>
+        </div>
+
+        <!-- 2. Privacy Pane -->
+        <div class="legal-tab-pane" id="panePrivacy">
+          <div class="legal-section">
+            <h4 class="legal-h4">1. Information We Collect</h4>
+            <p class="legal-p">We collect only information voluntarily submitted through our forms: company name, founder names, graduation batch/department, official website URLs, and submission contact emails. If you subscribe to our monthly dispatch, your email is securely stored solely for receiving updates.</p>
+          </div>
+          <div class="legal-section">
+            <h4 class="legal-h4">2. Payment Security &amp; Processing</h4>
+            <p class="legal-p">Voluntary contributions made on VNIT BuilderBase are handled entirely through <strong>Razorpay Payment Gateway (PCI-DSS Level 1 Compliant)</strong>. <strong>We do not collect, store, or have access to any sensitive banking credentials, card numbers, or UPI PINs.</strong> All transactions are end-to-end encrypted under RBI and NPCI payment security standards.</p>
+          </div>
+          <div class="legal-section">
+            <h4 class="legal-h4">3. How We Use Information</h4>
+            <p class="legal-p">Information provided is used strictly to maintain the directory, verify alumni status, and communicate status updates regarding your company profile. We never sell, rent, monetize, or share your contact information with external marketing agencies.</p>
+          </div>
+          <div class="legal-section">
+            <h4 class="legal-h4">4. Analytics &amp; Cookies</h4>
+            <p class="legal-p">We use lightweight, privacy-friendly telemetry to monitor aggregate visitor counts and department engagement. No cross-site profiling or invasive ad-trackers are utilized on this platform.</p>
+          </div>
+        </div>
+
+        <!-- 3. Refund Pane -->
+        <div class="legal-tab-pane" id="paneRefund">
+          <div class="legal-section">
+            <h4 class="legal-h4">1. Nature of Voluntary Contributions</h4>
+            <p class="legal-p">VNIT BuilderBase is a free community platform. All financial contributions made through our support modal are voluntary micro-donations dedicated 100% to cloud server hosting, domain fees, and continuous data updates.</p>
+          </div>
+          <div class="legal-section">
+            <h4 class="legal-h4">2. Digital Service Delivery</h4>
+            <p class="legal-p">All services and listing verifications are digital. Submission receipts and listings are delivered and verified electronically within 24 to 48 hours of review.</p>
+          </div>
+          <div class="legal-section">
+            <h4 class="legal-h4">3. Refund Request Window (7 Days)</h4>
+            <p class="legal-p">If you made a voluntary contribution by mistake, in an unintended amount, or without authorization, you are entitled to a full refund. You may request a refund within <strong>7 calendar days</strong> from the date of the transaction.</p>
+          </div>
+          <div class="legal-section">
+            <h4 class="legal-h4">4. Refund Timeline &amp; Processing</h4>
+            <p class="legal-p">To initiate a refund, please send an email to <strong><a href="mailto:vnitbuilderbase@gmail.com" class="legal-email-link">vnitbuilderbase@gmail.com</a></strong> with your <strong>Razorpay Payment ID</strong> and transaction date. Upon receipt, our team will review and approve the refund within 24 hours. The funds will be credited back to your original payment source (UPI account, Bank Account, or Card) within <strong>5 to 7 business days</strong> via Razorpay.</p>
+          </div>
+        </div>
+
+        <!-- 4. Contact Pane -->
+        <div class="legal-tab-pane" id="paneContact">
+          <div class="legal-contact-grid">
+            <div class="legal-contact-card">
+              <span class="legal-contact-icon">📧</span>
+              <div class="legal-contact-label">Official Support &amp; Inquiries</div>
+              <a href="mailto:vnitbuilderbase@gmail.com" class="legal-contact-val">vnitbuilderbase@gmail.com</a>
+              <span class="legal-contact-sub">Direct channel for all inquiries</span>
+            </div>
+            <div class="legal-contact-card">
+              <span class="legal-contact-icon">📍</span>
+              <div class="legal-contact-label">Operating Address</div>
+              <div class="legal-contact-val" style="font-size:13px; line-height:1.4;">VNIT Campus, South Ambazari Road, Nagpur, Maharashtra 440010, India</div>
+              <span class="legal-contact-sub">Community Ecosystem Platform</span>
+            </div>
+            <div class="legal-contact-card">
+              <span class="legal-contact-icon">🛡️</span>
+              <div class="legal-contact-label">Grievance &amp; Compliance Desk</div>
+              <div class="legal-contact-val">Team VNIT BuilderBase</div>
+              <span class="legal-contact-sub">Contact desk: <a href="mailto:vnitbuilderbase@gmail.com" style="color:var(--action-primary);">vnitbuilderbase@gmail.com</a></span>
+            </div>
+            <div class="legal-contact-card">
+              <span class="legal-contact-icon">⏰</span>
+              <div class="legal-contact-label">Operational Hours</div>
+              <div class="legal-contact-val">Mon – Fri, 9:00 AM – 6:00 PM IST</div>
+              <span class="legal-contact-sub">Response within 24–48 hours</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

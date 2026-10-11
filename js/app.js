@@ -2362,6 +2362,11 @@
     // Close on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
+        const legalModal = document.getElementById('legalModal');
+        if (legalModal && legalModal.classList.contains('is-open')) {
+          closeLegalModal();
+          return;
+        }
         const photoModal = document.getElementById('founderPhotoModal');
         if (photoModal && photoModal.classList.contains('is-open')) {
           closeFounderPhotoModal();
@@ -2419,9 +2424,99 @@
     }
 
     function triggerUpiPay() {
-      const upiUrl = `upi://pay?pa=nandanbhole72@okaxis&pn=VNIT%20Startups%20Directory&am=${activeDonationAmt}&cu=INR&tn=Community%20Support`;
+      const amountInPaise = Math.round(Number(activeDonationAmt || 150) * 100);
+
+      // 1. If Razorpay SDK is loaded, open professional checkout modal
+      if (typeof window.Razorpay === 'function') {
+        const options = {
+          "key": "rzp_test_placeholder",
+          "amount": amountInPaise,
+          "currency": "INR",
+          "name": "VNIT BuilderBase",
+          "description": `Community Infrastructure Support (₹${activeDonationAmt})`,
+          "prefill": {
+            "email": "vnitbuilderbase@gmail.com"
+          },
+          "theme": {
+            "color": "#D97706"
+          },
+          "handler": function (response) {
+            closeContributionModal();
+            alert("❤️ Thank you so much for supporting VNIT BuilderBase! Payment ID: " + response.razorpay_payment_id);
+          }
+        };
+
+        try {
+          const rzp = new window.Razorpay(options);
+          rzp.open();
+          return;
+        } catch (err) {
+          console.warn('Razorpay Checkout failed to open, fallback to UPI intent:', err);
+        }
+      }
+
+      // 2. Direct fallback for mobile UPI
+      const upiUrl = `upi://pay?pa=nandanbhole72@okaxis&pn=VNIT%20BuilderBase&am=${activeDonationAmt}&cu=INR&tn=Community%20Support`;
       window.location.href = upiUrl;
     }
+
+    /* ─── LEGAL & COMPLIANCE MODAL CONTROLLER ─── */
+    function openLegalModal(tabName) {
+      const modal = document.getElementById('legalModal');
+      if (!modal) return;
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      if (tabName) {
+        switchLegalTab(tabName);
+      }
+    }
+
+    function closeLegalModal() {
+      const modal = document.getElementById('legalModal');
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    function handleLegalBackdropClick(event) {
+      if (event && event.target && event.target.id === 'legalModal') {
+        closeLegalModal();
+      }
+    }
+
+    function switchLegalTab(tabKey) {
+      const titles = {
+        'terms': 'Terms of Service',
+        'privacy': 'Privacy Policy',
+        'refund': 'Refund & Cancellation Policy',
+        'contact': 'Contact Us & Grievance Desk'
+      };
+
+      const titleEl = document.getElementById('legalModalTitle');
+      if (titleEl && titles[tabKey]) {
+        titleEl.textContent = titles[tabKey];
+      }
+
+      const tabs = ['Terms', 'Privacy', 'Refund', 'Contact'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`legalTab${t}`);
+        const pane = document.getElementById(`pane${t}`);
+        const isMatch = t.toLowerCase() === tabKey.toLowerCase();
+        if (btn) {
+          if (isMatch) btn.classList.add('is-active');
+          else btn.classList.remove('is-active');
+        }
+        if (pane) {
+          if (isMatch) pane.classList.add('is-active');
+          else pane.classList.remove('is-active');
+        }
+      });
+    }
+
+    window.openLegalModal = openLegalModal;
+    window.closeLegalModal = closeLegalModal;
+    window.handleLegalBackdropClick = handleLegalBackdropClick;
+    window.switchLegalTab = switchLegalTab;
 
     /* ─── SUBMIT YOUR STARTUP (four details → startup_submissions queue) ─── */
     function openSubmissionModal() {
