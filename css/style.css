@@ -551,6 +551,17 @@
       gap: 36px;
     }
 
+    /* HERO LEFT COLUMN: STACKS HEADLINE AND SOCIAL PROOF TELEMETRY PILL */
+    .hero-left-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      flex: 1 1 50%;
+      max-width: 520px;
+      pointer-events: auto;
+    }
+
     /* THE HEADLINE CONTAINER: PURE STATIC TYPOGRAPHY WITH DYNAMIC SPECULAR GRADIENT */
     .hero-headline {
       font-size: clamp(38px, 4.2vw, 54px);
@@ -559,12 +570,78 @@
       line-height: 1.12;
       color: var(--ink-primary);
       margin-bottom: 0;
-      flex: 1 1 50%;
-      max-width: 520px;
+      width: 100%;
       transform: none !important;
       transform-style: flat !important;
       user-select: text;
       pointer-events: auto;
+    }
+
+    /* LIVE SOCIAL PROOF TELEMETRY BADGE (AUTHENTIC HIGH-VISIBILITY SOCIAL PROOF) */
+    .hero-telemetry-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      border-radius: 9999px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 4px 12px rgba(15, 23, 42, 0.03);
+      font-family: var(--font-primary, 'Plus Jakarta Sans', sans-serif);
+      font-size: 13px;
+      color: #475569;
+      line-height: 1;
+      user-select: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-telemetry-badge:hover {
+      background: rgba(255, 255, 255, 0.96);
+      border-color: rgba(203, 213, 225, 1);
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06), 0 8px 18px rgba(15, 23, 42, 0.04);
+      transform: translateY(-1px);
+    }
+
+    .telemetry-live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: livePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes livePulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+      }
+    }
+
+    .telemetry-stat {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .telemetry-stat strong {
+      font-weight: 700;
+      color: #0F172A;
+      font-feature-settings: 'tnum';
+      font-variant-numeric: tabular-nums;
+    }
+
+    .telemetry-sep {
+      color: #CBD5E1;
+      font-size: 11px;
     }
 
     /* CONNECTING BLUEPRINT TECHNICAL AXIS (HIDDEN FOR CLEAN ORGANIC CANVAS) */
@@ -3280,24 +3357,14 @@
       color: var(--ink-primary);
     }
 
-    .dock-vnit-identity {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      letter-spacing: 0.04em;
+    .dock-basement-tag {
+      font-weight: 600;
+      color: #334155;
+      letter-spacing: 0.02em;
     }
 
-    .dock-telemetry-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .dock-tel-item {
-      display: flex;
-      align-items: center;
-      gap: 5px;
+    .dock-basement-sub {
+      color: #64748B;
     }
 
     /* Institutional Footer Bar Attached at Bottom */
@@ -4384,6 +4451,16 @@
       .headline-word-the {
         display: block !important;
         margin-bottom: 2px !important;
+      }
+      .hero-left-col {
+        width: 100% !important;
+        max-width: 100% !important;
+        gap: 12px !important;
+      }
+      .hero-telemetry-badge {
+        align-self: flex-start !important;
+        font-size: 12px !important;
+        padding: 5px 12px !important;
       }
       .hero-headline {
         font-size: clamp(34px, 9.6vw, 42px) !important;

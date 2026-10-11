@@ -2246,7 +2246,7 @@
         console.log('Saved note local:', payloadNote);
       }
 
-      alert('Thank you! Your message has been sent directly to the curator inbox.');
+      alert('Thank you! Your note has been received by the VNIT BuilderBase directory team.');
       input.value = '';
       if (nameInput) nameInput.value = '';
       if (emailInput) emailInput.value = '';

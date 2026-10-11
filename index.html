@@ -76,11 +76,21 @@
     </div>
 
     <header class="hero-container" id="heroContainer">
-      <h1 class="hero-headline" id="mainHeroHeadline">
-        <span class="headline-plane-static headline-word-the" id="planeTop">The</span>
-        <span class="headline-dynamic-wrap"><span class="headline-accent-plane" id="heroDynamicWord">Startups</span><span class="hero-typing-caret" id="heroCaret" aria-hidden="true"></span></span><br>
-        <span class="headline-plane-static" id="planeBottom"><em class="headline-word-built">Built</em> by VNITians.</span>
-      </h1>
+      <div class="hero-left-col">
+        <h1 class="hero-headline" id="mainHeroHeadline">
+          <span class="headline-plane-static headline-word-the" id="planeTop">The</span>
+          <span class="headline-dynamic-wrap"><span class="headline-accent-plane" id="heroDynamicWord">Startups</span><span class="hero-typing-caret" id="heroCaret" aria-hidden="true"></span></span><br>
+          <span class="headline-plane-static" id="planeBottom"><em class="headline-word-built">Built</em> by VNITians.</span>
+        </h1>
+
+        <!-- Live Social Proof Telemetry Badge -->
+        <div class="hero-telemetry-badge" id="heroTelemetryBadge">
+          <span class="telemetry-live-dot" aria-hidden="true"></span>
+          <span class="telemetry-stat"><strong id="uniqueVisitorsCounter">1,843</strong> Unique Visitors</span>
+          <span class="telemetry-sep">•</span>
+          <span class="telemetry-stat"><strong id="pageViewsCounter">8,995</strong> Views</span>
+        </div>
+      </div>
 
       <!-- 9-DEPARTMENT FOUNDER TELEMETRY LEADERBOARD -->
       <section class="hero-leaderboard-wrap" id="heroLeaderboardWrap" aria-label="Startups by Branch Leaderboard">
@@ -493,14 +503,14 @@
       <div class="unified-dock-card">
         <div class="dock-split-body">
           
-          <!-- Note to the Curator (Architecture 1: Natural Sequential Flow) -->
+          <!-- Suggest an Addition or Edit (Community & Directory Team Flow) -->
           <div class="dock-left-panel">
             <div class="dock-panel-header">
               <div class="dock-panel-title">
                 <span class="dock-dot-indicator blue"></span>
-                <span>Note to the Curator</span>
+                <span>Suggest an Addition or Edit</span>
               </div>
-              <span class="dock-badge-pill blue">DIRECT INBOX</span>
+              <span class="dock-badge-pill blue">COMMUNITY DESK</span>
             </div>
 
             <!-- Step 1: Identity Row (Name & Email) -->
@@ -511,26 +521,24 @@
 
             <!-- Step 2: Message Canvas -->
             <div class="hero-compose-box">
-              <textarea id="feedbackInput" class="dock-hero-textarea" rows="4" placeholder="Spotted an unlisted founder, a batch correction, or have feedback? Write directly to the curator..."></textarea>
+              <textarea id="feedbackInput" class="dock-hero-textarea" rows="4" placeholder="Spotted an unlisted founder, a batch correction, or have feedback? Share your notes with the directory team..."></textarea>
             </div>
 
             <!-- Step 3: Action Row (Hint + Send Button) -->
             <div class="dock-action-row">
-              <span class="dock-action-hint">📬 Received directly in the curator's inbox</span>
+              <span class="dock-action-hint">⚡ Reviewed by the directory team within 24 hours</span>
               <button type="button" class="dock-anchored-btn" onclick="sendMakerFeedback()">
-                Send to Curator ↗
+                Send to Team ↗
               </button>
             </div>
           </div>
 
         </div>
 
-        <!-- INTEGRATED BASEMENT STRIP (Dignified Institutional + Live Telemetry) -->
+        <!-- INTEGRATED BASEMENT STRIP -->
         <div class="dock-basement-strip">
-          <div class="dock-telemetry-row">
-            <span class="dock-tel-item"><span style="color:#10B981;">●</span> <strong id="pageViewsCounter">8,995</strong> Views</span>
-            <span class="dock-tel-item"><span style="color:#2563EB;">●</span> <strong id="uniqueVisitorsCounter">1,843</strong> Visitors</span>
-          </div>
+          <span class="dock-basement-tag">VNIT BuilderBase · Verified Alumni &amp; Founder Ecosystem</span>
+          <span class="dock-basement-sub">Updated regularly by the directory team</span>
         </div>
       </div>
 
@@ -539,7 +547,7 @@
     <!-- Institutional Footer Bar with Compliance Links -->
     <div class="site-footer">
       <div class="footer-inner">
-        <div class="footer-institution">VISVESVARAYA NATIONAL INSTITUTE OF TECHNOLOGY · EST. 1960 (FORMERLY VRCE NAGPUR)</div>
+        <div class="footer-institution">VISVESVARAYA NATIONAL INSTITUTE OF TECHNOLOGY</div>
         <div class="footer-legal-links">
           <a href="javascript:void(0)" onclick="openLegalModal('terms')">Terms of Service</a>
           <span class="footer-dot" aria-hidden="true">•</span>
