@@ -195,21 +195,21 @@
       align-items: center;
     }
 
-    /* ─── TOP-LEFT BRAND HOME ANCHOR (BUILDERBASE LOCKUP) ─── */
+    /* ─── TOP-LEFT BRAND HOME ANCHOR (VNIT | BUILDERBASE LOCKUP) ─── */
     .brand-home-anchor {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       text-decoration: none;
-      padding: 5px 8px;
-      border-radius: 10px;
+      padding: 4px 6px;
+      border-radius: 8px;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
       user-select: none;
     }
 
     .brand-home-anchor:hover {
-      background: rgba(241, 245, 249, 0.85);
+      background: rgba(241, 245, 249, 0.9);
       transform: translateY(-1px);
     }
 
@@ -217,35 +217,23 @@
       transform: translateY(0);
     }
 
-    .brand-emblem-box {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: #0F172A;
-      color: #F8FAFC;
-      display: flex;
+    .brand-vnit-tag {
+      font-family: var(--font-primary, 'Plus Jakarta Sans', sans-serif);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #94A3B8;
+      padding-right: 7px;
+      border-right: 1.5px solid #CBD5E1;
+      line-height: 1;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.16);
-      transition: all 0.2s ease;
-      flex-shrink: 0;
-    }
-
-    .brand-home-anchor:hover .brand-emblem-box {
-      background: #1E293B;
-      color: var(--action-primary, #F97316);
-      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.22);
-    }
-
-    .brand-typography {
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .brand-product-title {
       font-family: var(--font-primary, 'Plus Jakarta Sans', sans-serif);
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 800;
       letter-spacing: -0.03em;
       color: var(--ink-primary, #0F172A);
@@ -254,21 +242,6 @@
 
     .brand-accent-text {
       color: var(--action-primary, #F97316);
-    }
-
-    .brand-chapter-pill {
-      font-size: 10.5px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--ink-secondary, #475569);
-      background: #F1F5F9;
-      border: 1px solid var(--border-card, #CBD5E1);
-      padding: 2.5px 7px;
-      border-radius: 6px;
-      line-height: 1;
-      display: inline-flex;
-      align-items: center;
     }
 
     .nav-home {
@@ -3213,20 +3186,13 @@
       .nav-left {
         gap: 8px;
       }
+      .brand-vnit-tag {
+        font-size: 10.5px;
+        letter-spacing: 0.10em;
+        padding-right: 6px;
+      }
       .brand-product-title {
-        font-size: 16px;
-      }
-      .brand-chapter-pill {
-        font-size: 9.5px;
-        padding: 2px 5px;
-      }
-      .brand-emblem-box {
-        width: 28px;
-        height: 28px;
-      }
-      .brand-emblem-box svg {
-        width: 15px;
-        height: 15px;
+        font-size: 16.5px;
       }
       .brand-group {
         gap: 8px;

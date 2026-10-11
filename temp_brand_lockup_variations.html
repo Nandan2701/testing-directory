@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VNIT BuilderBase — 10 Brand Lockup Variations Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Space+Grotesk:wght@600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --nav-bg: #FFFFFF;
+      --border: #E2E8F0;
+      --border-hover: #CBD5E1;
+      --text-main: #0F172A;
+      --text-muted: #64748B;
+      --text-light: #94A3B8;
+      --amber-500: #F59E0B;
+      --amber-600: #D97706;
+      --orange-500: #F97316;
+      --orange-600: #EA580C;
+      --slate-900: #0F172A;
+      --badge-bg: #F1F5F9;
+      --badge-border: #E2E8F0;
+      --badge-text: #475569;
+    }
+
+    body.dark-mode {
+      --bg: #090D16;
+      --card-bg: #111827;
+      --nav-bg: #0F172A;
+      --border: #1E293B;
+      --border-hover: #334155;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-light: #64748B;
+      --badge-bg: rgba(255, 255, 255, 0.05);
+      --badge-border: rgba(255, 255, 255, 0.12);
+      --badge-text: #CBD5E1;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      padding: 32px 20px 80px;
+      transition: background 0.25s ease, color 0.25s ease;
+      min-height: 100vh;
+    }
+
+    /* ─── STICKY CONTROL BAR ─── */
+    .controls-wrapper {
+      position: sticky;
+      top: 16px;
+      z-index: 1000;
+      max-width: 1100px;
+      margin: 0 auto 36px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 20px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.07);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      backdrop-filter: blur(12px);
+    }
+
+    .controls-left h1 {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .controls-left p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .controls-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-toggle {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-toggle:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-1px);
+    }
+
+    .zoom-group {
+      display: flex;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 3px;
+    }
+
+    .zoom-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 5px 10px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .zoom-btn.active {
+      background: var(--card-bg);
+      color: var(--text-main);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    /* ─── GRID LAYOUT ─── */
+    .variations-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    /* ─── VARIATION CARD ─── */
+    .var-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.03);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      position: relative;
+    }
+
+    .var-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.06);
+    }
+
+    .card-meta-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .badge-number {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge-pill-style {
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(245, 158, 11, 0.1);
+      color: #D97706;
+      border: 1px solid rgba(245, 158, 11, 0.25);
+    }
+
+    body.dark-mode .badge-pill-style {
+      background: rgba(245, 158, 11, 0.15);
+      color: #FBBF24;
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
+    /* ─── HERO EMBLEM PRESENTATION AREA ─── */
+    .hero-presentation {
+      padding: 28px 24px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      transition: transform 0.2s ease;
+      min-height: 100px;
+    }
+
+    /* ─── REAL NAVBAR SIMULATION ROW ─── */
+    .nav-simulation-wrap {
+      margin-bottom: 18px;
+      background: var(--nav-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .mock-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mock-search-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 12px;
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      width: 160px;
+    }
+
+    .mock-btn-action {
+      background: #0F172A;
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 8px;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    body.dark-mode .mock-btn-action {
+      background: #F8FAFC;
+      color: #0F172A;
+    }
+
+    /* ─── DETAILS & NOTES ─── */
+    .card-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .card-details .title {
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .card-details .desc {
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .tokens-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .token-chip {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ==========================================================================
+       10 SPECIFIC BRAND LOCKUP VARIATIONS
+       ========================================================================== */
+
+    /* ──────────────────────────────────────────────────────────────────────────
+       V1: THE POLISHED ORIGINAL (Isometric Stack + Wordmark + Pill)
+       ────────────────────────────────────────────────────────────────────────── */
+    .lockup-v1 {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      user-select: none;
+    }
+    .v1-emblem {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: #0F172A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.2);
+      flex-shrink: 0;
+    }
+    body.dark-mode .v1-emblem {
+      background: #020617;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
+    }
+    .v1-text {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      color: var(--text-main);
+      line-height: 1;
+    }
+    .v1-accent {
+      color: #EA580C;
+    }
+    .v1-pill {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      color: var(--badge-text);
+      line-height: 1.2;
+    }
+
+    /* ──────────────────────────────────────────────────────────────────────────
+       V2: THE GEOMETRIC CUBE MONOGRAM (Isometric Hexagon B + Micro Sub-origin)
+       ────────────────────────────────────────────────────────────────────────── */
+    .lockup-v2 {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .v2-emblem {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #F97316 0%, #EA580C 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(234, 88, 12, 0.28);
+      flex-shrink: 0;
+    }
+    .v2-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text-main);
+      line-height: 1;
+    }
+    .v2-accent {
+      color: #F97316;
+    }
+    .v2-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 2.5px 7px;
+      border-radius: 5px;
+      background: #0F172A;
+      color: #F8FAFC;
+    }
+    body.dark-mode .v2-badge {
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+    }
+
+    /* ──────────────────────────────────────────────────────────────────────────
+       V3: EYEBROW INSTITUTIONAL ORIGIN (VNIT as subtle kicker header above BuilderBase)
+       ────────────────────────────────────────────────────────────────────────── */
+    .lockup-v3 {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+    }
+    .v3-emblem {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: #0B0F19;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+    .v3-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .v3-eyebrow {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #EA580C;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .v3-eyebrow::after {
+      content: '';
+      display: inline-block;
+      width: 14px;
+      height: 1px;
+      background: #EA580C;
+      opacity: 0.5;
+    }
+    .v3-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text-main);
+      line-height: 1.1;
+    }
+    .v3-title .accent {
+      color: #F97316;
+    }
+
+    /* ──────────────────────────────────────────────────────────────────────────
+       V4: MINIMAL VERTICAL DIVIDER (Linear / Vercel style)
+       ────────────────────────────────────────────────────────────────────────── */
+    .lockup-v4 {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+    }
+    .v4-emblem {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #1E293B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    body.dark-mode .v4-emblem {
+      background: #0F172A;
+      border: 1px solid #334155;
+    }
+    .v4-title {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text-main);
+      line-height: 1;
+    }
+    .v4-title .accent {
+      color: #D97706;
+    }
+    .v4-divider {
+      width: 1px;
+      height: 14px;
+      background: var(--border-hover);
+      margin: 0 1px;
+    }
+    .v4-sub {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ──────────────────────────────────────────────────────────────────────────
+       V5: DUAL-TONE ISOMETRIC EMBLEM (Orange Cap + Charcoal Base)
+       ────────────────────────────────────────────────────────────────────────── */
+    .lockup-v5 {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+    }
+    .v5-emblem-box {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: #0F172A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15);
+      position: relative;
+    }
+    body.dark-mode .v5-emblem-box {
+      background: #020617;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .v5-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text-main);
+      line-height: 1;
+    }
+    .v5-title .accent {
+      color: #F59E0B;
+    }
+    .v5-pill {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      color: #D97706;
+    }
+    body.dark-mode .v5-pill {
+      color: #FBBF24;
+    }
+
+    /* ──────────────────────────────────────────────────────────────────────────
+       V6: DEVELOPER / HACKER MONO EMBLEM (JetBrains Mono + Terminal Prompt)
+       ────────────────────────────────────────────────────────────────────────── */
+    .lockup-v6 {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .v6-emblem {
+      width: 33px;
+      height: 33px;
+      border-radius: 8px;
+      background: #0F172A;
+      border: 1px solid #334155;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #F59E0B;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      font-weight: 800;
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1);
+    }
+    .v6-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text-main);
+      line-height: 1;
+    }
+    .v6-text .accent {
+      color: #F97316;
+    }
+    .v6-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #059669;
+    }
+    body.dark-mode .v6-pill {
+      color: #34D399;
+      background: rgba(16, 185, 129, 0.15);
+    }
+
+    /* ──────────────────────────────────────────────────────────────────────────
+       V7: CIRCULAR FOUNDATION TOKEN (Embossed Coin Seal)
+       ────────────────────────────────────────────────────────────────────────── */
+    .lockup-v7 {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+    }
+    .v7-emblem {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #0F172A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.2);
+      border: 1.5px solid #F59E0B;
+    }
+    body.dark-mode .v7-emblem {
+      background: #020617;
+    }
+    .v7-title {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text-main);
+      line-height: 1;
+    }
+    .v7-title .accent {
+      color: #EA580C;
+    }
+    .v7-badge {
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #0F172A;
+      color: #FFFFFF;
+    }
+    body.dark-mode .v7-badge {
+      background: #F8FAFC;
+      color: #0F172A;
+    }
+
+    /* ──────────────────────────────────────────────────────────────────────────
+       V8: THE FLOATING ORANGE ACCENT DOT & TIGHT GROTESK
+       ────────────────────────────────────────────────────────────────────────── */
+    .lockup-v8 {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .v8-emblem {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #111827;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .v8-title {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--text-main);
+      line-height: 1;
+      display: flex;
+      align-items: center;
+    }
+    .v8-title .dot {
+      color: #EA580C;
+      font-size: 24px;
+      line-height: 0;
+      margin: 0 1px;
+    }
+    .v8-pill {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 2.5px 7px;
+      border-radius: 6px;
+      background: var(--bg);
+      border: 1px solid var(--border-hover);
+      color: var(--text-muted);
+    }
+
+    /* ──────────────────────────────────────────────────────────────────────────
+       V9: ALL-CAPS ARCHITECTURAL MONUMENTAL (High-Fashion / Tech Foundry)
+       ────────────────────────────────────────────────────────────────────────── */
+    .lockup-v9 {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .v9-emblem {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: #0F172A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    body.dark-mode .v9-emblem {
+      background: #020617;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .v9-title {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      line-height: 1;
+    }
+    .v9-title .accent {
+      color: #F97316;
+    }
+    .v9-tag {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 6px;
+      border-radius: 4px;
+      background: rgba(249, 115, 22, 0.1);
+      border: 1px solid rgba(249, 115, 22, 0.25);
+      color: #EA580C;
+    }
+
+    /* ──────────────────────────────────────────────────────────────────────────
+       V10: AMBER GLOW GRADIENT WORDMARK (Pure High-Conversion Modern Startup)
+       ────────────────────────────────────────────────────────────────────────── */
+    .lockup-v10 {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .v10-emblem {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.2);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    .v10-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      color: var(--text-main);
+      line-height: 1;
+    }
+    .v10-title .gradient-accent {
+      background: linear-gradient(135deg, #F59E0B 0%, #EA580C 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .v10-pill {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-hover);
+      color: var(--text-main);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- STICKY TOP TOOLBAR -->
+  <div class="controls-wrapper">
+    <div class="controls-left">
+      <h1>VNIT BuilderBase — 10 Brand Variations Lab</h1>
+      <p>Comparing 10 distinct typographic, geometric, and pill lockups in both Light & Dark modes.</p>
+    </div>
+    <div class="controls-actions">
+      <div class="zoom-group">
+        <button class="zoom-btn active" onclick="setZoom(1)">100%</button>
+        <button class="zoom-btn" onclick="setZoom(1.25)">125%</button>
+        <button class="zoom-btn" onclick="setZoom(1.5)">150%</button>
+      </div>
+      <button class="btn-toggle" onclick="toggleTheme()" id="themeBtn">
+        <span>🌙</span> Dark Mode
+      </button>
+    </div>
+  </div>
+
+  <!-- VARIATIONS GRID -->
+  <div class="variations-grid" id="variationsGrid">
+
+    <!-- ────────────────────────────────────────────────────────────
+         VARIATION 1: THE REFINED ORIGINAL (CURRENT WINNER)
+         ──────────────────────────────────────────────────────────── -->
+    <div class="var-card">
+      <div class="card-meta-header">
+        <div class="badge-number">
+          <span>Variation 01</span>
+          <span class="badge-pill-style">Recommended Baseline</span>
+        </div>
+        <span style="font-size:12px; color:var(--text-muted); font-weight:600;">Style: Isometric Stack + Two-Tone Wordmark</span>
+      </div>
+
+      <!-- Hero Presentation -->
+      <div class="hero-presentation zoomable">
+        <div class="lockup-v1">
+          <div class="v1-emblem">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <!-- Top Isometric Diamond -->
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#F8FAFC" />
+              <!-- Middle Plate -->
+              <path d="M2 12L12 17L22 12" stroke="#F8FAFC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <!-- Bottom Foundation Plate -->
+              <path d="M2 17L12 22L22 17" stroke="#F8FAFC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="v1-text">Builder<span class="v1-accent">Base</span></div>
+          <div class="v1-pill">VNIT</div>
+        </div>
+      </div>
+
+      <!-- Live 56px Navbar Simulation -->
+      <div class="nav-simulation-wrap">
+        <div class="lockup-v1">
+          <div class="v1-emblem">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#F8FAFC" />
+              <path d="M2 12L12 17L22 12" stroke="#F8FAFC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M2 17L12 22L22 17" stroke="#F8FAFC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="v1-text">Builder<span class="v1-accent">Base</span></div>
+          <div class="v1-pill">VNIT</div>
+        </div>
+        <div class="mock-nav-right">
+          <div class="mock-search-box">🔍 Search founders...</div>
+          <button class="mock-btn-action">+ Get Listed</button>
+        </div>
+      </div>
+
+      <!-- Notes & Tokens -->
+      <div class="card-details">
+        <div>
+          <div class="title">Visual Psychology</div>
+          <div class="desc">Direct, instantly readable, and balanced. The isometric 3-layer emblem signifies building on top of deep foundational layers. The orange "Base" adds warm energy while "VNIT" remains a clean, discrete chapter pill.</div>
+        </div>
+        <div>
+          <div class="title">Design Tokens</div>
+          <div class="tokens-list">
+            <span class="token-chip">Font: Plus Jakarta Sans</span>
+            <span class="token-chip">Weight: 800 (ExtraBold)</span>
+            <span class="token-chip">Accent: #EA580C</span>
+            <span class="token-chip">Pill: Capsule 999px</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ────────────────────────────────────────────────────────────
+         VARIATION 2: THE GEOMETRIC CUBE (SPACE GROTESK + ORANGE EMBLEM)
+         ──────────────────────────────────────────────────────────── -->
+    <div class="var-card">
+      <div class="card-meta-header">
+        <div class="badge-number">
+          <span>Variation 02</span>
+          <span class="badge-pill-style">Tech-First / Web3 & AI Vibe</span>
+        </div>
+        <span style="font-size:12px; color:var(--text-muted); font-weight:600;">Style: Orange Gradient Mark + Dark Mono Badge</span>
+      </div>
+
+      <div class="hero-presentation zoomable">
+        <div class="lockup-v2">
+          <div class="v2-emblem">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+          </div>
+          <div class="v2-text">Builder<span class="v2-accent">Base</span></div>
+          <div class="v2-badge">VNIT</div>
+        </div>
+      </div>
+
+      <div class="nav-simulation-wrap">
+        <div class="lockup-v2">
+          <div class="v2-emblem">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+          </div>
+          <div class="v2-text">Builder<span class="v2-accent">Base</span></div>
+          <div class="v2-badge">VNIT</div>
+        </div>
+        <div class="mock-nav-right">
+          <div class="mock-search-box">🔍 Search founders...</div>
+          <button class="mock-btn-action">+ Get Listed</button>
+        </div>
+      </div>
+
+      <div class="card-details">
+        <div>
+          <div class="title">Visual Psychology</div>
+          <div class="desc">Isometric 3D Cube mark with Space Grotesk gives an ultra-modern, high-velocity Y-Combinator tech product feel. The high-contrast dark mono badge makes VNIT look like an engineering release build.</div>
+        </div>
+        <div>
+          <div class="title">Design Tokens</div>
+          <div class="tokens-list">
+            <span class="token-chip">Font: Space Grotesk</span>
+            <span class="token-chip">Emblem: Orange Gradient</span>
+            <span class="token-chip">Badge: JetBrains Mono Dark</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ────────────────────────────────────────────────────────────
+         VARIATION 3: EYEBROW SUB-STACK (VERTICAL HIERARCHY)
+         ──────────────────────────────────────────────────────────── -->
+    <div class="var-card">
+      <div class="card-meta-header">
+        <div class="badge-number">
+          <span>Variation 03</span>
+          <span class="badge-pill-style">Architectural Eyebrow</span>
+        </div>
+        <span style="font-size:12px; color:var(--text-muted); font-weight:600;">Style: Micro-Kicker Origin Header above Wordmark</span>
+      </div>
+
+      <div class="hero-presentation zoomable">
+        <div class="lockup-v3">
+          <div class="v3-emblem">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#F97316" />
+              <path d="M2 12L12 17L22 12" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M2 17L12 22L22 17" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="v3-stack">
+            <span class="v3-eyebrow">VNIT CHAPTER</span>
+            <span class="v3-title">Builder<span class="accent">Base</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-simulation-wrap">
+        <div class="lockup-v3">
+          <div class="v3-emblem">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#F97316" />
+              <path d="M2 12L12 17L22 12" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M2 17L12 22L22 17" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="v3-stack">
+            <span class="v3-eyebrow">VNIT CHAPTER</span>
+            <span class="v3-title">Builder<span class="accent">Base</span></span>
+          </div>
+        </div>
+        <div class="mock-nav-right">
+          <div class="mock-search-box">🔍 Search founders...</div>
+          <button class="mock-btn-action">+ Get Listed</button>
+        </div>
+      </div>
+
+      <div class="card-details">
+        <div>
+          <div class="title">Visual Psychology</div>
+          <div class="desc">Places "VNIT" as an authentic micro-kicker eyebrow above the product name. Eliminates the side pill completely, creating a tight horizontal footprint ideal for crowded mobile headers.</div>
+        </div>
+        <div>
+          <div class="title">Design Tokens</div>
+          <div class="tokens-list">
+            <span class="token-chip">Layout: Vertical 2-tier</span>
+            <span class="token-chip">Eyebrow: 10px Letterspacing +0.16em</span>
+            <span class="token-chip">Footprint: Ultra Compact</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ────────────────────────────────────────────────────────────
+         VARIATION 4: LINEAR / VERCEL DIVIDER (MINIMALIST TECH)
+         ──────────────────────────────────────────────────────────── -->
+    <div class="var-card">
+      <div class="card-meta-header">
+        <div class="badge-number">
+          <span>Variation 04</span>
+          <span class="badge-pill-style">Linear / Vercel Minimalist</span>
+        </div>
+        <span style="font-size:12px; color:var(--text-muted); font-weight:600;">Style: Vertical Border Divider + Muted Subtitle</span>
+      </div>
+
+      <div class="hero-presentation zoomable">
+        <div class="lockup-v4">
+          <div class="v4-emblem">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F8FAFC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          <div class="v4-title">Builder<span class="accent">Base</span></div>
+          <div class="v4-divider"></div>
+          <div class="v4-sub">VNIT</div>
+        </div>
+      </div>
+
+      <div class="nav-simulation-wrap">
+        <div class="lockup-v4">
+          <div class="v4-emblem">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F8FAFC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          <div class="v4-title">Builder<span class="accent">Base</span></div>
+          <div class="v4-divider"></div>
+          <div class="v4-sub">VNIT</div>
+        </div>
+        <div class="mock-nav-right">
+          <div class="mock-search-box">🔍 Search founders...</div>
+          <button class="mock-btn-action">+ Get Listed</button>
+        </div>
+      </div>
+
+      <div class="card-details">
+        <div>
+          <div class="title">Visual Psychology</div>
+          <div class="desc">Inspired by the sleek minimalist navigation bars of Linear, Raycast, and Vercel. Instead of a rounded pill, a crisp 1px vertical hairline divider links the product name with the VNIT institution mark.</div>
+        </div>
+        <div>
+          <div class="title">Design Tokens</div>
+          <div class="tokens-list">
+            <span class="token-chip">Separator: 1px Hairline</span>
+            <span class="token-chip">Sub-mark: Uppercase tracking 0.08em</span>
+            <span class="token-chip">Aesthetic: Sleek Developer Tool</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ────────────────────────────────────────────────────────────
+         VARIATION 5: DUAL-TONE ISOMETRIC EMBLEM (GOLD ACCENT)
+         ──────────────────────────────────────────────────────────── -->
+    <div class="var-card">
+      <div class="card-meta-header">
+        <div class="badge-number">
+          <span>Variation 05</span>
+          <span class="badge-pill-style">Warm Amber & Gold Accent</span>
+        </div>
+        <span style="font-size:12px; color:var(--text-muted); font-weight:600;">Style: Outfit Typography + Gold Highlight Cap</span>
+      </div>
+
+      <div class="hero-presentation zoomable">
+        <div class="lockup-v5">
+          <div class="v5-emblem-box">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <!-- Golden highlighted top plate -->
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#F59E0B" />
+              <!-- Platinum lower tiers -->
+              <path d="M2 12L12 17L22 12" stroke="#E2E8F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M2 17L12 22L22 17" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="v5-title">Builder<span class="accent">Base</span></div>
+          <div class="v5-pill">VNIT</div>
+        </div>
+      </div>
+
+      <div class="nav-simulation-wrap">
+        <div class="lockup-v5">
+          <div class="v5-emblem-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#F59E0B" />
+              <path d="M2 12L12 17L22 12" stroke="#E2E8F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M2 17L12 22L22 17" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="v5-title">Builder<span class="accent">Base</span></div>
+          <div class="v5-pill">VNIT</div>
+        </div>
+        <div class="mock-nav-right">
+          <div class="mock-search-box">🔍 Search founders...</div>
+          <button class="mock-btn-action">+ Get Listed</button>
+        </div>
+      </div>
+
+      <div class="card-details">
+        <div>
+          <div class="title">Visual Psychology</div>
+          <div class="desc">The top isometric facet glows in vivid amber-gold while the lower foundation plates remain platinum white. This visually reinforces that new products are actively being launched on the bedrock foundation.</div>
+        </div>
+        <div>
+          <div class="title">Design Tokens</div>
+          <div class="tokens-list">
+            <span class="token-chip">Font: Outfit ExtraBold</span>
+            <span class="token-chip">Top Facet: #F59E0B</span>
+            <span class="token-chip">Pill: Amber Tinted Capsule</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ────────────────────────────────────────────────────────────
+         VARIATION 6: DEVELOPER / TERMINAL CODE MONO
+         ──────────────────────────────────────────────────────────── -->
+    <div class="var-card">
+      <div class="card-meta-header">
+        <div class="badge-number">
+          <span>Variation 06</span>
+          <span class="badge-pill-style">Engineering / CLI Native</span>
+        </div>
+        <span style="font-size:12px; color:var(--text-muted); font-weight:600;">Style: JetBrains Mono + Terminal Prompt Emblem</span>
+      </div>
+
+      <div class="hero-presentation zoomable">
+        <div class="lockup-v6">
+          <div class="v6-emblem">>_</div>
+          <div class="v6-text">builder<span class="accent">::base</span></div>
+          <div class="v6-pill">vnit.live</div>
+        </div>
+      </div>
+
+      <div class="nav-simulation-wrap">
+        <div class="lockup-v6">
+          <div class="v6-emblem">>_</div>
+          <div class="v6-text">builder<span class="accent">::base</span></div>
+          <div class="v6-pill">vnit.live</div>
+        </div>
+        <div class="mock-nav-right">
+          <div class="mock-search-box">🔍 Search founders...</div>
+          <button class="mock-btn-action">+ Get Listed</button>
+        </div>
+      </div>
+
+      <div class="card-details">
+        <div>
+          <div class="title">Visual Psychology</div>
+          <div class="desc">Designed specifically for hardcore student engineers and software developers. The terminal prompt icon and scope-resolution operator (`::`) echo modern system languages (Rust/C++) and command lines.</div>
+        </div>
+        <div>
+          <div class="title">Design Tokens</div>
+          <div class="tokens-list">
+            <span class="token-chip">Font: JetBrains Mono</span>
+            <span class="token-chip">Icon: Terminal Prompt</span>
+            <span class="token-chip">Pill: Emerald Terminal Tag</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ────────────────────────────────────────────────────────────
+         VARIATION 7: CIRCULAR FOUNDATION TOKEN (COIN SEAL)
+         ──────────────────────────────────────────────────────────── -->
+    <div class="var-card">
+      <div class="card-meta-header">
+        <div class="badge-number">
+          <span>Variation 07</span>
+          <span class="badge-pill-style">Embossed Foundation Seal</span>
+        </div>
+        <span style="font-size:12px; color:var(--text-muted); font-weight:600;">Style: Circular Token + Gold Bezel Ring</span>
+      </div>
+
+      <div class="hero-presentation zoomable">
+        <div class="lockup-v7">
+          <div class="v7-emblem">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#F8FAFC" />
+              <path d="M2 12L12 17L22 12" stroke="#F8FAFC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M2 17L12 22L22 17" stroke="#F8FAFC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="v7-title">Builder<span class="accent">Base</span></div>
+          <div class="v7-badge">VNIT</div>
+        </div>
+      </div>
+
+      <div class="nav-simulation-wrap">
+        <div class="lockup-v7">
+          <div class="v7-emblem">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#F8FAFC" />
+              <path d="M2 12L12 17L22 12" stroke="#F8FAFC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M2 17L12 22L22 17" stroke="#F8FAFC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="v7-title">Builder<span class="accent">Base</span></div>
+          <div class="v7-badge">VNIT</div>
+        </div>
+        <div class="mock-nav-right">
+          <div class="mock-search-box">🔍 Search founders...</div>
+          <button class="mock-btn-action">+ Get Listed</button>
+        </div>
+      </div>
+
+      <div class="card-details">
+        <div>
+          <div class="title">Visual Psychology</div>
+          <div class="desc">Circular badge acts like a certified token of excellence. The circular geometry provides an interesting optical contrast against the angular isometric layers inside.</div>
+        </div>
+        <div>
+          <div class="title">Design Tokens</div>
+          <div class="tokens-list">
+            <span class="token-chip">Shape: 50% Circular Coin</span>
+            <span class="token-chip">Border: 1.5px Gold Ring</span>
+            <span class="token-chip">Badge: High-Contrast Obsidian</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ────────────────────────────────────────────────────────────
+         VARIATION 8: DOT ACCENT & TIGHT GROTESK
+         ──────────────────────────────────────────────────────────── -->
+    <div class="var-card">
+      <div class="card-meta-header">
+        <div class="badge-number">
+          <span>Variation 08</span>
+          <span class="badge-pill-style">Interconnected Node</span>
+        </div>
+        <span style="font-size:12px; color:var(--text-muted); font-weight:600;">Style: BuilderBase with Dynamic Orange Dot Connection</span>
+      </div>
+
+      <div class="hero-presentation zoomable">
+        <div class="lockup-v8">
+          <div class="v8-emblem">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="3" width="7" height="7" rx="2" fill="#EA580C"/>
+              <rect x="14" y="3" width="7" height="7" rx="2" fill="#F8FAFC"/>
+              <rect x="3" y="14" width="7" height="7" rx="2" fill="#F8FAFC"/>
+              <rect x="14" y="14" width="7" height="7" rx="2" fill="#EA580C"/>
+            </svg>
+          </div>
+          <div class="v8-title">Builder<span class="dot">•</span>Base</div>
+          <div class="v8-pill">VNIT</div>
+        </div>
+      </div>
+
+      <div class="nav-simulation-wrap">
+        <div class="lockup-v8">
+          <div class="v8-emblem">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="3" width="7" height="7" rx="2" fill="#EA580C"/>
+              <rect x="14" y="3" width="7" height="7" rx="2" fill="#F8FAFC"/>
+              <rect x="3" y="14" width="7" height="7" rx="2" fill="#F8FAFC"/>
+              <rect x="14" y="14" width="7" height="7" rx="2" fill="#EA580C"/>
+            </svg>
+          </div>
+          <div class="v8-title">Builder<span class="dot">•</span>Base</div>
+          <div class="v8-pill">VNIT</div>
+        </div>
+        <div class="mock-nav-right">
+          <div class="mock-search-box">🔍 Search founders...</div>
+          <button class="mock-btn-action">+ Get Listed</button>
+        </div>
+      </div>
+
+      <div class="card-details">
+        <div>
+          <div class="title">Visual Psychology</div>
+          <div class="desc">A rhythmic dot separator (`Builder•Base`) breaks the two words with precision. The 4-quadrant modular grid emblem represents ecosystem products co-existing in one directory.</div>
+        </div>
+        <div>
+          <div class="title">Design Tokens</div>
+          <div class="tokens-list">
+            <span class="token-chip">Emblem: 4-Quadrant Matrix</span>
+            <span class="token-chip">Wordmark: Punctuation Interpunct</span>
+            <span class="token-chip">Weight: 900 UltraBold</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ────────────────────────────────────────────────────────────
+         VARIATION 9: MONUMENTAL ARCHITECTURAL ALL-CAPS
+         ──────────────────────────────────────────────────────────── -->
+    <div class="var-card">
+      <div class="card-meta-header">
+        <div class="badge-number">
+          <span>Variation 09</span>
+          <span class="badge-pill-style">Industrial / Heavy Structural</span>
+        </div>
+        <span style="font-size:12px; color:var(--text-muted); font-weight:600;">Style: Uppercase Tracking + Compact Steel Tag</span>
+      </div>
+
+      <div class="hero-presentation zoomable">
+        <div class="lockup-v9">
+          <div class="v9-emblem">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F8FAFC" stroke-width="2.2">
+              <path d="M4 20L12 4L20 20H4Z" stroke-linejoin="round"/>
+              <path d="M8 14H16"/>
+            </svg>
+          </div>
+          <div class="v9-title">BUILDER<span class="accent">BASE</span></div>
+          <div class="v9-tag">VNIT</div>
+        </div>
+      </div>
+
+      <div class="nav-simulation-wrap">
+        <div class="lockup-v9">
+          <div class="v9-emblem">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F8FAFC" stroke-width="2.2">
+              <path d="M4 20L12 4L20 20H4Z" stroke-linejoin="round"/>
+              <path d="M8 14H16"/>
+            </svg>
+          </div>
+          <div class="v9-title">BUILDER<span class="accent">BASE</span></div>
+          <div class="v9-tag">VNIT</div>
+        </div>
+        <div class="mock-nav-right">
+          <div class="mock-search-box">🔍 Search founders...</div>
+          <button class="mock-btn-action">+ Get Listed</button>
+        </div>
+      </div>
+
+      <div class="card-details">
+        <div>
+          <div class="title">Visual Psychology</div>
+          <div class="desc">All-caps tracking delivers an authoritative, institutional weight without feeling bureaucratic. The delta-beam structure evokes mechanical and civil engineering foundations.</div>
+        </div>
+        <div>
+          <div class="title">Design Tokens</div>
+          <div class="tokens-list">
+            <span class="token-chip">Casing: UPPERCASE</span>
+            <span class="token-chip">Letterspacing: +0.06em</span>
+            <span class="token-chip">Emblem: Delta Truss / Apex</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ────────────────────────────────────────────────────────────
+         VARIATION 10: FLUID AMBER GRADIENT + FROSTED PILL
+         ──────────────────────────────────────────────────────────── -->
+    <div class="var-card">
+      <div class="card-meta-header">
+        <div class="badge-number">
+          <span>Variation 10</span>
+          <span class="badge-pill-style">Fluid Radiant Gradient</span>
+        </div>
+        <span style="font-size:12px; color:var(--text-muted); font-weight:600;">Style: Sunset Amber Gradient Clip + Subtle Halo</span>
+      </div>
+
+      <div class="hero-presentation zoomable">
+        <div class="lockup-v10">
+          <div class="v10-emblem">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#F59E0B" />
+              <path d="M2 12L12 17L22 12" stroke="#F8FAFC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M2 17L12 22L22 17" stroke="#EA580C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="v10-title">Builder<span class="gradient-accent">Base</span></div>
+          <div class="v10-pill">VNIT</div>
+        </div>
+      </div>
+
+      <div class="nav-simulation-wrap">
+        <div class="lockup-v10">
+          <div class="v10-emblem">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#F59E0B" />
+              <path d="M2 12L12 17L22 12" stroke="#F8FAFC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M2 17L12 22L22 17" stroke="#EA580C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="v10-title">Builder<span class="gradient-accent">Base</span></div>
+          <div class="v10-pill">VNIT</div>
+        </div>
+        <div class="mock-nav-right">
+          <div class="mock-search-box">🔍 Search founders...</div>
+          <button class="mock-btn-action">+ Get Listed</button>
+        </div>
+      </div>
+
+      <div class="card-details">
+        <div>
+          <div class="title">Visual Psychology</div>
+          <div class="desc">Utilizes a high-end dual-stop sunset gradient (Amber #F59E0B to Electric Orange #EA580C) clipped directly into the wordmark. Gives the brand an energetic, radiant warmth that draws the eye directly on first visit.</div>
+        </div>
+        <div>
+          <div class="title">Design Tokens</div>
+          <div class="tokens-list">
+            <span class="token-chip">Effect: Text Gradient Clip</span>
+            <span class="token-chip">Palette: 2-Stop Sunset Amber</span>
+            <span class="token-chip">Emblem: Ambient Halo Rim</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle('dark-mode');
+      const btn = document.getElementById('themeBtn');
+      if (isDark) {
+        btn.innerHTML = '<span>☀️</span> Light Mode';
+      } else {
+        btn.innerHTML = '<span>🌙</span> Dark Mode';
+      }
+    }
+
+    function setZoom(scale) {
+      document.querySelectorAll('.zoomable').forEach(el => {
+        el.style.transform = `scale(${scale})`;
+      });
+      document.querySelectorAll('.zoom-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>
