@@ -2784,6 +2784,55 @@
     })();
 
     /* ═══════════════════════════════════════════════════════════════════
+       DYNAMIC DISPATCH NEWSLETTER TYPEWRITER ENGINE (Cycles Startup / Company / Product)
+       ═══════════════════════════════════════════════════════════════════ */
+    (function initDispatchDynamicHeadline() {
+      const wordEl = document.getElementById('dispatchDynamicWord');
+      if (!wordEl) return;
+
+      const WORDS = ["Startup", "Company", "Product"];
+      let wordIdx = 0;
+      let charIdx = WORDS[0].length;
+      let isDeleting = true;
+      let timerId = null;
+
+      const HOLD_TIME = 2600;  // 2.6s resting pause for comfortable human reading
+      const BACK_SPEED = 36;   // 36ms / letter smooth, steady backspace
+      const TYPE_SPEED = 68;   // 68ms / letter natural rhythmic typing cadence
+      const NEXT_PAUSE = 280;  // 280ms breath pause before typing next word
+
+      function tick() {
+        const currentWord = WORDS[wordIdx];
+
+        if (isDeleting) {
+          charIdx--;
+          wordEl.textContent = currentWord.substring(0, charIdx);
+          if (charIdx === 0) {
+            isDeleting = false;
+            wordIdx = (wordIdx + 1) % WORDS.length;
+            timerId = setTimeout(tick, NEXT_PAUSE);
+            return;
+          }
+          timerId = setTimeout(tick, BACK_SPEED);
+        } else {
+          charIdx++;
+          wordEl.textContent = WORDS[wordIdx].substring(0, charIdx);
+          if (charIdx === WORDS[wordIdx].length) {
+            isDeleting = true;
+            timerId = setTimeout(tick, HOLD_TIME);
+            return;
+          }
+          timerId = setTimeout(tick, TYPE_SPEED);
+        }
+      }
+
+      // Offset start by 1.2s so hero and dispatch don't type in exact robotic lockstep
+      setTimeout(() => {
+        timerId = setTimeout(tick, HOLD_TIME);
+      }, 1200);
+    })();
+
+    /* ═══════════════════════════════════════════════════════════════════
        HERO LEADERBOARD ENGINE (Animation and Precision Metrics - View-Only)
        ═══════════════════════════════════════════════════════════════════ */
     function filterFromLeaderboard(branchName) {
