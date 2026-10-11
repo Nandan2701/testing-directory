@@ -2196,6 +2196,20 @@
       applyFiltersAndRender();
     }
 
+    /**
+     * TOP-LEFT BRAND HOME ANCHOR CONTROLLER
+     * Performs a soft reset: clears search, resets department filter, and smooth scrolls to top.
+     */
+    function handleBrandHomeClick(event) {
+      if (event) event.preventDefault();
+      resetFilters();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+    window.handleBrandHomeClick = handleBrandHomeClick;
+
     /* ─── MAKER FEEDBACK TRIGGER ─── */
     function prefillFeedback(text) {
       document.getElementById('feedbackInput').value = text;
