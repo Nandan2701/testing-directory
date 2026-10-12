@@ -2350,6 +2350,14 @@
     });
 
     let activeDonationAmt = 150;
+    const RAZORPAY_ME_BASE_URL = 'https://razorpay.me/@vnitbuilderbase';
+
+    function getRazorpayPaymentUrl(amt) {
+      const cleanAmt = Number(amt || 0);
+      return cleanAmt > 0
+        ? `${RAZORPAY_ME_BASE_URL}?amount=${cleanAmt}`
+        : RAZORPAY_ME_BASE_URL;
+    }
 
     function selectDonationAmt(amt, el) {
       activeDonationAmt = amt;
@@ -2360,7 +2368,8 @@
 
       const btn = document.getElementById('dockSupportBtn');
       if (btn) {
-        btn.innerHTML = `Pay ₹${amt} via Any UPI App ↗`;
+        btn.innerHTML = `Pay ₹${amt} via Any UPI App / Cards ↗`;
+        btn.href = getRazorpayPaymentUrl(amt);
       }
     }
 
@@ -2376,7 +2385,10 @@
           if (input.value) updateCustomDonationVal(input.value);
           else {
             const btn = document.getElementById('dockSupportBtn');
-            if (btn) btn.innerHTML = `Pay Custom via Any UPI App ↗`;
+            if (btn) {
+              btn.innerHTML = `Pay Custom via Any UPI App / Cards ↗`;
+              btn.href = RAZORPAY_ME_BASE_URL;
+            }
           }
         }
       }
@@ -2387,47 +2399,28 @@
       const btn = document.getElementById('dockSupportBtn');
       if (clean && clean > 0) {
         activeDonationAmt = clean;
-        if (btn) btn.innerHTML = `Pay ₹${clean} via Any UPI App ↗`;
+        if (btn) {
+          btn.innerHTML = `Pay ₹${clean} via Any UPI App / Cards ↗`;
+          btn.href = getRazorpayPaymentUrl(clean);
+        }
       } else {
-        if (btn) btn.innerHTML = `Pay Custom via Any UPI App ↗`;
+        if (btn) {
+          btn.innerHTML = `Pay Custom via Any UPI App / Cards ↗`;
+          btn.href = RAZORPAY_ME_BASE_URL;
+        }
       }
     }
 
+    function handleDonationLinkClick(event) {
+      setTimeout(() => {
+        closeContributionModal();
+      }, 400);
+    }
+
     function triggerUpiPay() {
-      const amountInPaise = Math.round(Number(activeDonationAmt || 150) * 100);
-
-      // 1. If Razorpay SDK is loaded, open professional checkout modal
-      if (typeof window.Razorpay === 'function') {
-        const options = {
-          "key": "rzp_test_placeholder",
-          "amount": amountInPaise,
-          "currency": "INR",
-          "name": "VNIT BuilderBase",
-          "description": `Community Infrastructure Support (₹${activeDonationAmt})`,
-          "prefill": {
-            "email": "vnitbuilderbase@gmail.com"
-          },
-          "theme": {
-            "color": "#D97706"
-          },
-          "handler": function (response) {
-            closeContributionModal();
-            alert("❤️ Thank you so much for supporting VNIT BuilderBase! Payment ID: " + response.razorpay_payment_id);
-          }
-        };
-
-        try {
-          const rzp = new window.Razorpay(options);
-          rzp.open();
-          return;
-        } catch (err) {
-          console.warn('Razorpay Checkout failed to open, fallback to UPI intent:', err);
-        }
-      }
-
-      // 2. Direct fallback for mobile UPI
-      const upiUrl = `upi://pay?pa=nandanbhole72@okaxis&pn=VNIT%20BuilderBase&am=${activeDonationAmt}&cu=INR&tn=Community%20Support`;
-      window.location.href = upiUrl;
+      const paymentUrl = getRazorpayPaymentUrl(activeDonationAmt);
+      window.open(paymentUrl, '_blank', 'noopener,noreferrer');
+      closeContributionModal();
     }
 
     /* ─── LEGAL & COMPLIANCE MODAL CONTROLLER ─── */
