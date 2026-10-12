@@ -2350,10 +2350,10 @@
     });
 
     let activeDonationAmt = 150;
-    const RAZORPAY_ME_BASE_URL = 'https://razorpay.me/@vnitbuilderbase';
+    const BMC_SUPPORT_URL = 'https://buymeacoffee.com/vnitbuilderbase';
 
-    function getRazorpayPaymentUrl() {
-      return RAZORPAY_ME_BASE_URL;
+    function getBmcSupportUrl() {
+      return BMC_SUPPORT_URL;
     }
 
     function selectDonationAmt(amt, el) {
@@ -2365,8 +2365,8 @@
 
       const btn = document.getElementById('dockSupportBtn');
       if (btn) {
-        btn.innerHTML = `Pay ₹${amt} via Any UPI App / Cards ↗`;
-        btn.href = getRazorpayPaymentUrl(amt);
+        btn.innerHTML = `Support ₹${amt} via Buy Me a Coffee ☕ ↗`;
+        btn.href = BMC_SUPPORT_URL;
       }
     }
 
@@ -2383,8 +2383,8 @@
           else {
             const btn = document.getElementById('dockSupportBtn');
             if (btn) {
-              btn.innerHTML = `Pay Custom via Any UPI App / Cards ↗`;
-              btn.href = RAZORPAY_ME_BASE_URL;
+              btn.innerHTML = `Support via Buy Me a Coffee ☕ ↗`;
+              btn.href = BMC_SUPPORT_URL;
             }
           }
         }
@@ -2397,13 +2397,13 @@
       if (clean && clean > 0) {
         activeDonationAmt = clean;
         if (btn) {
-          btn.innerHTML = `Pay ₹${clean} via Any UPI App / Cards ↗`;
-          btn.href = getRazorpayPaymentUrl(clean);
+          btn.innerHTML = `Support ₹${clean} via Buy Me a Coffee ☕ ↗`;
+          btn.href = BMC_SUPPORT_URL;
         }
       } else {
         if (btn) {
-          btn.innerHTML = `Pay Custom via Any UPI App / Cards ↗`;
-          btn.href = RAZORPAY_ME_BASE_URL;
+          btn.innerHTML = `Support via Buy Me a Coffee ☕ ↗`;
+          btn.href = BMC_SUPPORT_URL;
         }
       }
     }
@@ -2415,8 +2415,7 @@
     }
 
     function triggerUpiPay() {
-      const paymentUrl = getRazorpayPaymentUrl(activeDonationAmt);
-      window.open(paymentUrl, '_blank', 'noopener,noreferrer');
+      window.open(BMC_SUPPORT_URL, '_blank', 'noopener,noreferrer');
       closeContributionModal();
     }
 
