@@ -2352,11 +2352,8 @@
     let activeDonationAmt = 150;
     const RAZORPAY_ME_BASE_URL = 'https://razorpay.me/@vnitbuilderbase';
 
-    function getRazorpayPaymentUrl(amt) {
-      const cleanAmt = Number(amt || 0);
-      return cleanAmt > 0
-        ? `${RAZORPAY_ME_BASE_URL}?amount=${cleanAmt}`
-        : RAZORPAY_ME_BASE_URL;
+    function getRazorpayPaymentUrl() {
+      return RAZORPAY_ME_BASE_URL;
     }
 
     function selectDonationAmt(amt, el) {
